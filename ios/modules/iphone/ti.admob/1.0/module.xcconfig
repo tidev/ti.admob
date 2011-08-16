@@ -1,0 +1,6 @@
+//
+// PLACE ANY BUILD DEFINITIONS IN THIS FILE AND THEY WILL BE 
+// PICKED UP DURING THE APP BUILD FOR YOUR MODULE
+//
+
+OTHER_LDFLAGS=$(inherited) -framework AudioToolbox -framework MessageUI -framework SystemConfiguration

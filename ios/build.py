@@ -58,7 +58,7 @@ def generate_doc(config):
 	return documentation
 
 def compile_js(manifest,config):
-	js_file = os.path.join(cwd,'assets','__MODULE_ID__.js')
+	js_file = os.path.join(cwd,'assets','ti.admob.js')
 	if not os.path.exists(js_file): return
 	
 	sdk = config['TITANIUM_SDK']
@@ -72,7 +72,7 @@ def compile_js(manifest,config):
 	eq = path.replace('.','_')
 	method = '  return %s;' % method
 	
-	f = os.path.join(cwd,'Classes','___PROJECTNAMEASIDENTIFIER___ModuleAssets.m')
+	f = os.path.join(cwd,'Classes','TiAdmobModuleAssets.m')
 	c = open(f).read()
 	idx = c.find('return ')
 	before = c[0:idx]
@@ -97,7 +97,7 @@ def warn(msg):
 
 def validate_license():
 	c = open('LICENSE').read()
-	if c.find(module_license_default)!=1:
+	if c.find(module_license_default)!=-1:
 		warn('please update the LICENSE file with your license text before distributing')
 			
 def validate_manifest():
@@ -119,7 +119,7 @@ def validate_manifest():
 			if curvalue==defvalue: warn("please update the manifest key: '%s' to a non-default value" % key)
 	return manifest,path
 
-ignoreFiles = ['.DS_Store','.gitignore','libTitanium.a','titanium.jar','README','__MODULE_ID__.js']
+ignoreFiles = ['.DS_Store','.gitignore','libTitanium.a','titanium.jar','README','ti.admob.js']
 ignoreDirs = ['.DS_Store','.svn','.git','CVSROOT']
 
 def zip_dir(zf,dir,basepath,ignore=[]):

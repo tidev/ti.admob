@@ -1,0 +1,26 @@
+<h1>Ti.Admob.View</h1>
+<h2>Description</h2>
+<p>A view for displaying ads delivered through Admob. The view should be at least 320x48.</p>
+<h2>Properties</h2>
+<h3>string publisherId</h3>
+<p>The publisher ID for admob.</p>
+<h3>string adBackgroundColor</h3>
+<p>The background color used for the ad.</p>
+<h3>boolean testing</h3>
+<p>Whether or not admob should be run in testing mode.  Running in testing mode
+returns test ads to the simulator when running in simulator, and the current
+device when running from device.</p>
+<h3>Date dateOfBirth</h3>
+<p>A date object representing the user's date of birth that should be used
+for determining ad delivery.</p>
+<h3>string gender</h3>
+<p>The user's gender for the purpose of determining ad delivery. This should be "male" or "female", in lower case.</p>
+<h3>string keywords</h3>
+<p>Keywords used to determine ad delivery.</p>
+<h3>object location</h3>
+<p>A dictionary with the location of the user for location-based ads:</p>
+<ul>
+<li>float latitude</li>
+<li>float longitude</li>
+<li>float accuracy</li>
+</ul>

@@ -1,57 +1,50 @@
-# ti.admob.View
+# Ti.Admob.View
 
 ## Description
 
-An _admob_ module object which is a view for displaying ads delivered through the admob system.
-The view should be at least 320x48.
+A view for displaying ads delivered through Admob.
 
-## Reference
+You should explicitly size the ad to one of the following predefined sizes (width x height). An appropriate
+ad will be loaded from the server automatically:
+
+* 320x50
+* 300x250
+* 468x60
+* 728x90
 
 ## Properties
 
-### ti.admob.View.publisherId[string]
+### string publisherId
 
 The publisher ID for admob.
 
-### ti.admob.View.adBackgroundColor[object]
+### string adBackgroundColor
 
 The background color used for the ad.
 
-### ti.admob.View.primaryTextColor[object]
-
-The primary text color used for the ad.
-
-### ti.admob.View.secondaryTextColor[object]
-
-The secondary text color used for the ad.
-
-### ti.admob.View.testing[boolean]
+### boolean testing
 
 Whether or not admob should be run in testing mode.  Running in testing mode
 returns test ads to the simulator when running in simulator, and the current
 device when running from device.
 
-### ti.admob.View.postalCode[string]
+### Date dateOfBirth
 
-The postal code that should be used for determining ad delivery.
-
-### ti.admob.View.areaCode[string]
-
-The area code that should be used for determining ad delivery.
-
-### ti.admob.View.dateOfBirth[object]
-
-A date object representing the user's date of birth that should be used 
+A date object representing the user's date of birth that should be used
 for determining ad delivery.
 
-### ti.admob.View.gender[string]
+### string gender
 
-The user's gender for the purpose of determining ad delivery.
+The user's gender for the purpose of determining ad delivery. This should be "male" or "female", in lower case.
 
-### ti.admob.View.keywords[string]
+### string keywords
 
 Keywords used to determine ad delivery.
 
-### ti.admob.View.searchString[string]
+### object location
 
-The search string used to determine ad delivery.
+A dictionary with the location of the user for location-based ads:
+
+* float latitude
+* float longitude
+* float accuracy

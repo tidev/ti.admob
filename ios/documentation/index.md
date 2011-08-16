@@ -1,25 +1,30 @@
-# admob Module
+# Ti.Admob Module
 
 ## Description
 
-Produces views for the admob ad delivery system.
+Shows ads from Admob.
 
-## Accessing the admob Module
+## Accessing the Ti.Admob Module
 
 To access this module from JavaScript, you would do the following:
 
-	var admob = require("ti.admob");
+	Titanium.Admob = Ti.Admob = require("ti.admob");
 
-The admob variable is a reference to the Module object.	
+### Ti.Admob.createView({...})
 
-## Reference
-
-### ti.admob.createView({...})
-
-Creates and returns a [ti.admob.View][] object which displays ads delivered by admob.
+Creates and returns a [Ti.Admob.View][] object which displays ads.
 
 ## Usage
 
 See example.
 
-[ti.admob.View]: view.html
+## Author
+
+Jeff Haynie <jhaynie@appcelerator.com>, Appcelerator Inc.
+Stephen Tramer <stramer@appcelerator.com>, Appcelerator Inc.
+
+## License
+
+Copyright(c) 2010-2011 by Appcelerator, Inc. All Rights Reserved. Please see the LICENSE file included in the distribution for further details.
+
+[Ti.Admob.View]: view.html

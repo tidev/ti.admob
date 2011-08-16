@@ -5,16 +5,13 @@
  * Please see the LICENSE included with this distribution for details.
  */
 #import "TiUIView.h"
-#import "AdMobView.h"
-#import "AdMobDelegateProtocol.h"
+#import "GADBannerView.h"
+#import "GADBannerViewDelegate.h"
 
-@interface TiAdmobView : TiUIView<AdMobDelegate> {
+@interface TiAdmobView : TiUIView {
 
 @private
-	AdMobView *adview;
-	NSTimer *refreshTimer;
-	CGFloat refreshPeriod;
-	UIViewController* controller;
+	GADBannerView *ad;
 }
 
 @end
