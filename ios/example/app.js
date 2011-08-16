@@ -10,7 +10,7 @@ var ad;
 win.add(ad = Ti.Admob.createView({
     top: 0, left: 0,
     width: 320, height: 50,
-    publisherId: 'a14e4acdd01df4f', // You can get your own at http: //www.admob.com/
+    publisherId: '<<YOUR PUBLISHER ID HERE>>', // You can get your own at http: //www.admob.com/
     adBackgroundColor: 'black',
     testing: true,
     dateOfBirth: new Date(1985, 10, 1, 12, 1, 1),
@@ -50,7 +50,7 @@ Ti.Geolocation.getCurrentPosition(function reportPosition(e) {
         win.add(Ti.Admob.createView({
             top: 100, left: 0,
             width: 320, height: 50,
-            publisherId: 'a14e4acdd01df4f', // You can get your own at http: //www.admob.com/
+            publisherId: '<<YOUR PUBLISHER ID HERE>>', // You can get your own at http: //www.admob.com/
             adBackgroundColor: 'black',
             testing: true,
             dateOfBirth: new Date(1985, 10, 1, 12, 1, 1),
