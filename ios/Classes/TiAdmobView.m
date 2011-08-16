@@ -11,6 +11,9 @@
 
 @implementation TiAdmobView
 
+#pragma mark -
+#pragma mark Ad Lifecycle
+
 -(void)refreshAd:(CGRect)bounds
 {
     ad = [[[GADBannerView alloc] initWithFrame:bounds] retain];
@@ -52,6 +55,7 @@
     }
     
     [self addSubview:ad];
+    ad.delegate = self;
     [ad loadRequest:request];
 }
 
@@ -65,5 +69,39 @@
 	RELEASE_TO_NIL(ad);
 	[super dealloc];
 }
+
+#pragma mark -
+#pragma mark Ad Delegate
+
+- (void)adViewDidReceiveAd:(GADBannerView *)view
+{
+    [self.proxy fireEvent:@"didReceiveAd"];
+}
+
+- (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error
+{
+    [self.proxy fireEvent:@"didFailToReceiveAd"];
+}
+
+- (void)adViewWillPresentScreen:(GADBannerView *)adView
+{
+    [self.proxy fireEvent:@"willPresentScreen"];
+}
+
+- (void)adViewWillDismissScreen:(GADBannerView *)adView
+{
+    [self.proxy fireEvent:@"willDismissScreen"];
+}
+
+- (void)adViewDidDismissScreen:(GADBannerView *)adView
+{
+    [self.proxy fireEvent:@"didDismissScreen"];
+}
+
+- (void)adViewWillLeaveApplication:(GADBannerView *)adView
+{
+    [self.proxy fireEvent:@"willLeaveApplication"];
+}
+
 
 @end

@@ -8,7 +8,7 @@
 #import "GADBannerView.h"
 #import "GADBannerViewDelegate.h"
 
-@interface TiAdmobView : TiUIView {
+@interface TiAdmobView : TiUIView<GADBannerViewDelegate> {
 
 @private
 	GADBannerView *ad;

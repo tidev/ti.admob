@@ -6,7 +6,8 @@ var win = Ti.UI.createWindow({
 /*
  We'll make two ads. This first one doesn't care about where the user is located.
  */
-win.add(Ti.Admob.createView({
+var ad;
+win.add(ad = Ti.Admob.createView({
     top: 0, left: 0,
     width: 320, height: 50,
     publisherId: 'a14e4acdd01df4f', // You can get your own at http: //www.admob.com/
@@ -16,6 +17,24 @@ win.add(Ti.Admob.createView({
     gender: 'male',
     keywords: ''
 }));
+ad.addEventListener('didReceiveAd', function() {
+    alert('Did receive ad!');
+});
+ad.addEventListener('didFailToReceiveAd', function() {
+    alert('Failed to receive ad!');
+});
+ad.addEventListener('willPresentScreen', function() {
+    alert('Presenting screen!');
+});
+ad.addEventListener('willDismissScreen', function() {
+    alert('Dismissing screen!');
+});
+ad.addEventListener('didDismissScreen', function() {
+    alert('Dismissed screen!');
+});
+ad.addEventListener('willLeaveApplication', function() {
+    alert('Leaving the app!');
+});
 
 /*
  And we'll try to get the user's location for this second ad!

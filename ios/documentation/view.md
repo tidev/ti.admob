@@ -48,3 +48,43 @@ A dictionary with the location of the user for location-based ads:
 * float latitude
 * float longitude
 * float accuracy
+
+## Events
+
+### didReceiveAd
+
+ Sent when an ad request loaded an ad.  This is a good opportunity to add this
+ view to the hierarchy if it has not yet been added.  If the ad was received
+ as a part of the server-side auto refreshing, you can examine the
+ hasAutoRefreshed property of the view.
+
+### didFailToReceiveAd
+
+ Sent when an ad request failed.  Normally this is because no network
+ connection was available or no ads were available (i.e. no fill).
+
+ ### willPresentScreen
+
+Sent just before presenting the user a full screen view, such as a browser,
+in response to clicking on an ad.  Use this opportunity to stop animations,
+time sensitive interactions, etc.
+
+Normally the user looks at the ad, dismisses it, and control returns to your
+application by firing off "didDismissScreen":.  However if the user hits the
+Home button or clicks on an App Store link your application will end. In that case,
+"willLeaveApplication" would fire.
+
+### willDismissScreen
+
+Sent just before dismissing a full screen view.
+
+### didDismissScreen
+
+Sent just after dismissing a full screen view.  Use this opportunity to
+restart anything you may have stopped as part of "willPresentScreen".
+
+### willLeaveApplication
+
+Sent just before the application will background or terminate because the
+user clicked on an ad that will launch another application (such as the App
+Store).
