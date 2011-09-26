@@ -1,0 +1,17 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 0.1
+description: My module
+author: Your Name
+license: Specify your license
+copyright: Copyright (c) 2011 by Your Company
+
+
+# these should not be edited
+name: ti.admob
+moduleid: com.appcelerator.ti.admob
+guid: 36619fab-6fe2-412d-9d35-dd8cf9445633
+platform: android
+minsdk: 1.7.2
