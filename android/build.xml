@@ -1,0 +1,10 @@
+<project name="admob" default="dist">
+	<description>
+		Ant build script for Titanium Android module admob
+	</description>
+
+	<property name="ti.module.root" location="${basedir}"/>
+	<property file="build.properties" />
+
+	<import file="${titanium.platform}/../module/android/build.xml"/>
+</project>
