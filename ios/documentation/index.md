@@ -8,7 +8,7 @@ Shows ads from Admob.
 
 To access this module from JavaScript, you would do the following:
 
-	Titanium.Admob = Ti.Admob = require("ti.admob");
+	var Admob = require('ti.admob');
 
 ### Ti.Admob.createView({...})
 

@@ -22,10 +22,10 @@ In any event, you will either need to NOT set your screen support -- or set andr
 </android></p>
 <ol>
 <li>
-<p>Add this to your javascript: var admob = require("ti.admob");</p>
+<p>Add this to your javascript: var Admob = require('ti.admob');</p>
 </li>
 <li>
-<p>The "admob" variable is now a reference to the Module object.  <br />
+<p>The "Admob" variable is now a reference to the Module object.  <br />
 </p>
 </li>
 </ol>
@@ -33,7 +33,7 @@ In any event, you will either need to NOT set your screen support -- or set andr
 <h2>createAdMobView({options:object})</h2>
 <p>returns a view with an ad initialized by default</p>
 <h3>Usage</h3>
-<p>var adMobView = admob.createAdMobView({
+<p>var adMobView = Admob.createAdMobView({
     publisherId: <your publisher id>",
     testing:false, // default is false
     top: 10, //optional

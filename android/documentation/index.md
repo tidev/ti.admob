@@ -25,9 +25,9 @@ To access this module from JavaScript, you would do the following:
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 </android>
 
-3. Add this to your javascript:	var admob = require("ti.admob");
+3. Add this to your javascript:	var Admob = require('ti.admob');
 
-4. The "admob" variable is now a reference to the Module object.	
+4. The "Admob" variable is now a reference to the Module object.	
 
 # Reference
 
@@ -36,7 +36,7 @@ To access this module from JavaScript, you would do the following:
 returns a view with an ad initialized by default
 
 ### Usage
-var adMobView = admob.createAdMobView({
+var adMobView = Admob.createAdMobView({
     publisherId: <your publisher id>",
     testing:false, // default is false
     top: 0, //optional

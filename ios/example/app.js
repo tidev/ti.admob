@@ -1,4 +1,4 @@
-Titanium.Admob = Ti.Admob = require('ti.admob');
+var Admob = require('ti.admob');
 var win = Ti.UI.createWindow({
     backgroundColor: 'white'
 });
@@ -7,7 +7,7 @@ var win = Ti.UI.createWindow({
  We'll make two ads. This first one doesn't care about where the user is located.
  */
 var ad;
-win.add(ad = Ti.Admob.createView({
+win.add(ad = Admob.createView({
     top: 0, left: 0,
     width: 320, height: 50,
     publisherId: '<<YOUR PUBLISHER ID HERE>>', // You can get your own at http: //www.admob.com/
@@ -47,7 +47,7 @@ Ti.Geolocation.getCurrentPosition(function reportPosition(e) {
         // aw, shucks...
     }
     else {
-        win.add(Ti.Admob.createView({
+        win.add(Admob.createView({
             top: 100, left: 0,
             width: 320, height: 50,
             publisherId: '<<YOUR PUBLISHER ID HERE>>', // You can get your own at http: //www.admob.com/

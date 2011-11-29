@@ -6,14 +6,14 @@
  */
 
 var win = Titanium.UI.createWindow({
-	backgroundColor: "#FFFFFF",
+	backgroundColor: "#FFFFFF"
 });
 
 // require AdMob
-var admob = require("ti.admob");
+var Admob = require('ti.admob');
 
 // then create an adMob view
-var adMobView = admob.createView({
+var adMobView = Admob.createView({
     publisherId:"<<your publisher id>>",
     testing:false, // default is false
     //top: 10, //optional
@@ -33,13 +33,13 @@ var adMobView = admob.createView({
 
 
 //listener for adReceived
-adMobView.addEventListener(admob.AD_RECEIVED,function(){
+adMobView.addEventListener(Admob.AD_RECEIVED,function(){
    // alert("ad received");
    Ti.API.info("ad received");
 });
 
 //listener for adNotReceived
-adMobView.addEventListener(admob.AD_NOT_RECEIVED,function(){
+adMobView.addEventListener(Admob.AD_NOT_RECEIVED,function(){
     //alert("ad not received");
      Ti.API.info("ad not received");
 });
