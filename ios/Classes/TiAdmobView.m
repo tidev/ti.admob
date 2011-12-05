@@ -16,7 +16,7 @@
 
 -(void)refreshAd:(CGRect)bounds
 {
-    ad = [[[GADBannerView alloc] initWithFrame:bounds] retain];
+    ad = [[GADBannerView alloc] initWithFrame:bounds];
     
     // Specify the ad's "unit identifier." This is your AdMob Publisher ID.
     ad.adUnitID = [self.proxy valueForKey:@"publisherId"];
@@ -57,6 +57,8 @@
     [self addSubview:ad];
     ad.delegate = self;
     [ad loadRequest:request];
+    
+    [ad autorelease];
 }
 
 -(void)frameSizeChanged:(CGRect)frame bounds:(CGRect)bounds
