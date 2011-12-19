@@ -49,11 +49,14 @@ def generate_doc(config):
 	sdk = config['TITANIUM_SDK']
 	support_dir = os.path.join(sdk,'module','support')
 	sys.path.append(support_dir)
-	import markdown2
+	try:
+		import markdown2 as markdown
+	except ImportError:
+		import markdown
 	documentation = []
 	for file in os.listdir(docdir):
 		md = open(os.path.join(docdir,file)).read()
-		html = markdown2.markdown(md)
+		html = markdown.markdown(md)
 		documentation.append({file:html});
 	return documentation
 
