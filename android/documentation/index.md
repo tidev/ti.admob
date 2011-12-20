@@ -88,6 +88,9 @@ calls for a test ad if needed. This works independently from the testing flag ab
 
 adMobView.requestTestAd();
 
+## Module History
+
+View the [change log](changelog.html) for this module.
 
 # Author
 
