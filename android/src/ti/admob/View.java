@@ -8,7 +8,7 @@ package ti.admob;
 
 import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.titanium.proxy.TiViewProxy;
-import org.appcelerator.titanium.util.Log;
+import org.appcelerator.kroll.common.Log;
 import org.appcelerator.titanium.view.TiUIView;
 
 import android.app.Activity;

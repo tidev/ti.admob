@@ -9,7 +9,7 @@ package ti.admob;
 
 import org.appcelerator.kroll.KrollModule;
 import org.appcelerator.kroll.annotations.Kroll;
-import org.appcelerator.titanium.util.Log;
+import org.appcelerator.kroll.common.Log;
 
 @Kroll.module(name = "Admob", id = "ti.admob")
 public class AdmobModule extends KrollModule {
