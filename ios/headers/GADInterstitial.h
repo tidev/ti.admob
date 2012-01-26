@@ -61,6 +61,11 @@
 // interstitialAdDidReceiveAd: will be called when this switches from NO to YES.
 @property (nonatomic, readonly) BOOL isReady;
 
+// Returns YES if the interstitial object has already shown an interstitial.
+// Note that an interstitial object can only be used once even with different
+// requests.
+@property (nonatomic, readonly) BOOL hasBeenUsed;
+
 // Presents the interstitial ad which takes over the entire screen until the
 // user dismisses it.  This has no effect unless isReady returns YES and/or the
 // delegate's interstitialDidReceiveAd: has been received.
