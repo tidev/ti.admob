@@ -32,6 +32,13 @@ typedef enum {
 
   // The request was unable to be loaded before being timed out.
   kGADErrorTimeout,
+  
+  // Will not send request because the interstitial object has already been
+  // used.
+  kGADErrorInterstitialAlreadyUsed,
+
+  // The mediation request encountered an error.
+  kGADMediationError,
 
 } GADErrorCode;
 

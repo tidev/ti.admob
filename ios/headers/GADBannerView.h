@@ -56,9 +56,10 @@
 // every unique placement of an ad in your application.  Set this to the ID
 // assigned for this placement.  Ad units are important for targeting and stats.
 // Example values for different request types:
-//   AdMob: a0123456789ABCD
-//     DFP: /0123/ca-pub-0123456789012345/my-ad-identifier
-// AdSense: ca-mb-app-pub-0123456789012345/my-ad-identifier
+//     AdMob: a0123456789ABCD
+//       DFP: /0123/ca-pub-0123456789012345/my-ad-identifier
+//   AdSense: ca-mb-app-pub-0123456789012345/my-ad-identifier
+// Mediation: AB123456789ABCDE
 @property (nonatomic, copy) NSString *adUnitID;
 
 // Required reference to the current root view controller.  For example the root

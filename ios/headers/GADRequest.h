@@ -24,7 +24,46 @@ typedef enum {
 // Creates an autoreleased GADRequest.
 + (GADRequest *)request;
 
-// Reserved for future use.
+// Passes extra details in ad requests.
+//
+// One case is for Ad Network Mediation. Some Ad Networks may ask for additional
+// information about the ad request. Consult with the individual Ad Network
+// on what to send. Place the information in a dictionary and put that in
+// another dictionary under the key "mediation". An example might be:
+//
+//   additionalParameters = {
+//     mediation: {
+//       MyAdNetwork: {
+//         market_segment: "abc",
+//         some_info: "xyz",
+//         some_num: 1000
+//       },
+//       AdNetworkX: {
+//         key1: "val1",
+//         key2: "val2"
+//       }
+//     }
+//   }
+//
+// To create such a dictionary, do the following:
+//
+//    NSDictionary *myAdNetwork = [NSDictionary dictionaryWithObjectsAndKeys:
+//                                 @"abc", @"market_segment",
+//                                 @"xyz", @"some_info",
+//                                 [NSNumber numberWithInt:1000], @"some_num",
+//                                 nil];
+//    NSDictionary *adNetwokX = [NSDictionary dictionaryWithObjectsAndKeys:
+//                               @"val1", @"key1",
+//                               @"val2", @"key2",
+//                               nil];
+//    NSDictionary *mediation = [NSDictionary dictionaryWithObjectsAndKeys:
+//                               myAdNetwork, @"MyAdNetwork",
+//                               adNetwokX, @"AdNetworkX",
+//                               nil];
+//    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+//                            mediation, @"mediation",
+//                            nil];
+//    gadRequest.additionalParameters = params;
 @property (nonatomic, retain) NSDictionary *additionalParameters;
 
 #pragma mark Collecting SDK Information
