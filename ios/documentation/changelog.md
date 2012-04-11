@@ -1,5 +1,7 @@
 # Change Log
 <pre>
+v1.3	Fixed crash on iOS 4.3 [MOD-600]
+
 v1.2	Upgraded to SDK 5.0.5 [MOD-410]
 
 v1.1	Fixed ad retention issue [MOD-320]
