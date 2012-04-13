@@ -16,7 +16,10 @@
 
 -(void)refreshAd:(CGRect)bounds
 {
-    RELEASE_TO_NIL(ad);
+    if (ad != nil) {
+        [ad removeFromSuperview];
+        RELEASE_TO_NIL(ad);
+    }
     
     ad = [[GADBannerView alloc] initWithFrame:bounds];
     
@@ -68,7 +71,10 @@
 
 -(void)dealloc
 {
-    RELEASE_TO_NIL(ad);
+    if (ad != nil) {
+        [ad removeFromSuperview];
+        RELEASE_TO_NIL(ad);
+    }
     [super dealloc];
 }
 
