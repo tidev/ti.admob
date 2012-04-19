@@ -15,14 +15,13 @@ To access this module from JavaScript, you would do the following:
 1. Add this to the <modules /> node in tiapp.xml: 
 
 <modules>
-    <module platform="android" version="0.1">ti.admob</module>
+    <module platform="android">ti.admob</module>
 </modules>
 
 2. Add this to the <android /> node in tiapp.xml: 
 
 <android>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <tool-api-level>14</tool-api-level>
 </android>
 
 3. Add this to your javascript:	var Admob = require('ti.admob');
