@@ -66,6 +66,6 @@ win.add(Ti.UI.createLabel({
         'Note that there may be a several minute delay ' +
         'if you have not viewed an ad in over 24 hours.',
     bottom: 40,
-    height: 'auto', width: 'auto'
+    height: Ti.UI.SIZE || 'auto', width: Ti.UI.SIZE || 'auto'
 }));
 win.open();
