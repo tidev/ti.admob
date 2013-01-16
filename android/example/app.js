@@ -14,7 +14,7 @@ var Admob = require('ti.admob');
 
 // then create an adMob view
 var adMobView = Admob.createView({
-    publisherId:"<<your publisher id>>",
+    publisherId:"<<YOUR PUBLISHER ID HERE>>",
     testing:false, // default is false
     //top: 10, //optional
     //left: 0, // optional
@@ -47,9 +47,9 @@ adMobView.addEventListener(Admob.AD_NOT_RECEIVED,function(){
 
 var adRequestBtn = Ti.UI.createButton({
     title:"Request an ad",
-    top:80,
-    height: 30,
-    width: 300
+    top:"10%",
+    height: "10%",
+    width: "80%"
 });
 
 adRequestBtn.addEventListener("click",function(){
@@ -58,9 +58,9 @@ adRequestBtn.addEventListener("click",function(){
 
 var adRequestBtn2 = Ti.UI.createButton({
     title: "Request a test ad",
-    top: 120,
-    height: 30,
-    width: 300
+    top: "25%",
+    height: "10%",
+    width: "80%"
 });
 
 adRequestBtn2.addEventListener("click",function(){

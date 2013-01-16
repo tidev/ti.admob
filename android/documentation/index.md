@@ -1,100 +1,113 @@
-# admob Module
+# Admob Module
 
 ## Description
 
 Allows for the display of AdMob in Titanium Android applications. 
 
 Please note that if your androidManifest has screen support set to: android:anyDensity="false", any banner ads will display too small on high density devices. 
-It is not clear at this point if this is a bug with adMob or Titanium. 
+It is not clear at this point if this is a bug with AdMob or Titanium. 
 In any event, you will either need to NOT set your screen support -- or set android:anyDensity="true" and adjust your app layout accordingly
 
-## Accessing the admob Module
+## Getting Started
 
-To access this module from JavaScript, you would do the following:
+View the [Using Titanium Modules](http://docs.appcelerator.com/titanium/latest/#!/guide/Using_Titanium_Modules) document for instructions on getting
+started with using this module in your application.
 
-1. Add this to the <modules /> node in tiapp.xml: 
+## Requirements
 
-<modules>
-    <module platform="android">ti.admob</module>
-</modules>
+Add this to the &lt;android /&gt; node in tiapp.xml: 
 
-2. Add this to the <android /> node in tiapp.xml: 
+	<android>
+	    <tool-api-level>14</tool-ai-level>
+	</android>
 
-<android>
-    <tool-api-level>14</tool-api-level>
-</android>
+## Accessing the Admob Module
 
-3. Add this to your javascript:	var Admob = require('ti.admob');
+To access this module from JavaScript, you would do the following (recommended):
 
-4. The "Admob" variable is now a reference to the Module object.	
+	var Admob = require('ti.admob');
 
-# Reference
+The "Admob" variable is now a reference to the Module object.	
 
-## createAdMobView({options:object})
+## Doubleclick for Publishers Developer Docs
+<https://developers.google.com/mobile-ads-sdk/>
 
-returns a view with an ad initialized by default
+## Functions
 
-### Usage
-var adMobView = Admob.createAdMobView({
-    publisherId: <your publisher id>",
-    testing:false, // default is false
-    top: 0, //optional
-    left: 0, // optional
-    right: 0, // optional
-    bottom: 0 // optional
-    adBackgroundColor:"FF8800", // optional
-    backgroundColorTop: "738000", //optional - Gradient background color at top
-    borderColor: "#000000", // optional - Border color
-    textColor: "#000000", // optional - Text color
-    urlColor: "#00FF00", // optional - URL color
-    linkColor: "#0000FF" //optional -  Link text color
-    primaryTextColor: "blue", // deprecated -- now maps to textColor
-    secondaryTextColor: "green" // deprecated -- now maps to linkColor
-});
+### createAdMobView({ . . . })
 
-## admob.AD_RECEIVED
+Returns a view with an ad initialized by default.
+
+#### Arguments
+
+parameters[object]: a dictionary object of properties.
+
+#### Example:
+
+	var adMobView = Admob.createAdMobView({
+	    publisherId: "<<YOUR PUBLISHER ID HERE>>",
+	    testing:false, // default is false
+	    top: 0, //optional
+	    left: 0, // optional
+	    right: 0, // optional
+	    bottom: 0 // optional
+	    adBackgroundColor:"FF8800", // optional
+	    backgroundColorTop: "738000", //optional - Gradient background color at top
+	    borderColor: "#000000", // optional - Border color
+	    textColor: "#000000", // optional - Text color
+	    urlColor: "#00FF00", // optional - URL color
+	    linkColor: "#0000FF" //optional -  Link text color
+	    primaryTextColor: "blue", // deprecated -- now maps to textColor
+	    secondaryTextColor: "green" // deprecated -- now maps to linkColor
+	});
+
+### Admob.AD_RECEIVED
 
 returns the constant for AD_RECEIVED -- for use in an event listener
 
-### Usage
-adMobView.addEventListener(admob.AD_RECEIVED,function(){
-    alert("ad was just received");
-});
+#### Example:
 
-## admob.AD_NOT_RECEIVED
+	adMobView.addEventListener(Admob.AD_RECEIVED,function(){
+	    alert("ad was just received");
+	});
+
+### Admob.AD_NOT_RECEIVED
 
 returns the constant for AD_NOT_RECEIVED -- for use in an event listener
 
-### Usage
-adMobView.addEventListener(admob.AD_NOT_RECEIVED,function(){
-    alert("ad was not received");
-});
+#### Example:
 
+	adMobView.addEventListener(Admob.AD_NOT_RECEIVED,function(){
+	    alert("ad was not received");
+	});
 
-## AdMobView.requestAd();
+### AdMobView.requestAd();
 
-calls for a new ad if needed
+Calls for a new ad if needed.
 
-### Usage
+#### Example:
 
-adMobView.requestAd();
+	adMobView.requestAd();
 
-## AdMobView.requestTestAd();
+### AdMobView.requestTestAd();
 
-calls for a test ad if needed. This works independently from the testing flag above
+Calls for a test ad if needed. This works independently from the testing flag above.
 
-### Usage
+#### Example:
 
-adMobView.requestTestAd();
+	adMobView.requestTestAd();
 
 ## Module History
 
 View the [change log](changelog.html) for this module.
 
-# Author
+## Feedback and Support
+
+Please direct all questions, feedback, and concerns to [info@appcelerator.com](mailto:info@appcelerator.com?subject=Android%20Admob%20Module).
+
+## Author
 
 Brian Kurzius | bkurzius@gmail.com
 
-# License
-
-Apache License
+## License
+Copyright 2011 Brian Kurzius, Studio Classics. Please see the LICENSE file included in the distribution for further details.
