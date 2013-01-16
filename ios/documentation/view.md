@@ -63,7 +63,7 @@ A dictionary with the location of the user for location-based ads:
  Sent when an ad request failed.  Normally this is because no network
  connection was available or no ads were available (i.e. no fill).
 
- ### willPresentScreen
+### willPresentScreen
 
 Sent just before presenting the user a full screen view, such as a browser,
 in response to clicking on an ad.  Use this opportunity to stop animations,
