@@ -14,7 +14,7 @@ import org.appcelerator.kroll.common.Log;
 @Kroll.module(name = "Admob", id = "ti.admob")
 public class AdmobModule extends KrollModule {
 	// Standard Debugging variables
-	private static final String LCAT = "AdmobModule";
+	private static final String TAG = "AdmobModule";
 	public static String MODULE_NAME = "AndroidAdMobModule";
 	@Kroll.constant
 	public static final String AD_RECEIVED = "ad_received";
@@ -38,20 +38,20 @@ public class AdmobModule extends KrollModule {
 
 	public AdmobModule() {
 		super();
-		Log.d(LCAT, "adMob module instantiated");
+		Log.d(TAG, "adMob module instantiated");
 	}
 
 	// use this to set the publisher id
 	// must be done before the call to instantiate the view
 	@Kroll.method
 	public void setPublisherId(String pubId) {
-		Log.d(LCAT, "setPublisherId(): " + pubId);
+		Log.d(TAG, "setPublisherId(): " + pubId);
 		PUBLISHER_ID = pubId;
 	}
 
 	@Kroll.method
 	public void setTesting(Boolean testing) {
-		Log.d(LCAT, "setTesting(): " + testing);
+		Log.d(TAG, "setTesting(): " + testing);
 		TESTING = testing;
 	}
 

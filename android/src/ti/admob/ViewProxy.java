@@ -18,7 +18,7 @@ import android.app.Activity;
 @Kroll.proxy(creatableInModule = AdmobModule.class)
 public class ViewProxy extends TiViewProxy implements OnLifecycleEvent {
 	private View adMob;
-	private static final String LCAT = "AdMobViewProxy";
+	private static final String TAG = "AdMobViewProxy";
 
 	public ViewProxy() {
 		super();
@@ -39,13 +39,13 @@ public class ViewProxy extends TiViewProxy implements OnLifecycleEvent {
 
 	@Kroll.method
 	public void requestAd() {
-		Log.d(LCAT, "requestAd()");
+		Log.d(TAG, "requestAd()");
 		adMob.requestAd();
 	}
 
 	@Kroll.method
 	public void requestTestAd() {
-		Log.d(LCAT, "requestTestAd(): ");
+		Log.d(TAG, "requestTestAd(): ");
 		adMob.requestTestAd();
 	}
 
@@ -56,10 +56,12 @@ public class ViewProxy extends TiViewProxy implements OnLifecycleEvent {
 
 	@Override
 	public void onPause(Activity activity) {
+		adMob.pause();
 	}
 
 	@Override
 	public void onResume(Activity activity) {
+		adMob.resume();
 	}
 
 	@Override
