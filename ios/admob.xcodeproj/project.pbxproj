@@ -13,13 +13,13 @@
 		249BE67411B47B3800AF41CF /* TiAdmobView.m in Sources */ = {isa = PBXBuildFile; fileRef = 249BE67211B47B3800AF41CF /* TiAdmobView.m */; };
 		24DD6CF91134B3F500162E58 /* TiAdmobModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DD6CF71134B3F500162E58 /* TiAdmobModule.h */; };
 		24DD6CFA1134B3F500162E58 /* TiAdmobModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DD6CF81134B3F500162E58 /* TiAdmobModule.m */; };
+		83FEEAB119754BCE005F527E /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83FEEAB019754BCE005F527E /* libGoogleAdMobAds.a */; };
 		A8668C7213FB071500834503 /* GADBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = A8668C6C13FB071500834503 /* GADBannerView.h */; };
 		A8668C7313FB071500834503 /* GADBannerViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A8668C6D13FB071500834503 /* GADBannerViewDelegate.h */; };
 		A8668C7413FB071500834503 /* GADInterstitial.h in Headers */ = {isa = PBXBuildFile; fileRef = A8668C6E13FB071500834503 /* GADInterstitial.h */; };
 		A8668C7513FB071500834503 /* GADInterstitialDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A8668C6F13FB071500834503 /* GADInterstitialDelegate.h */; };
 		A8668C7613FB071500834503 /* GADRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = A8668C7013FB071500834503 /* GADRequest.h */; };
 		A8668C7713FB071500834503 /* GADRequestError.h in Headers */ = {isa = PBXBuildFile; fileRef = A8668C7113FB071500834503 /* GADRequestError.h */; };
-		A8668C7913FB072700834503 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8668C7813FB072700834503 /* libGoogleAdMobAds.a */; };
 		AA747D9F0F9514B9006C5449 /* TiAdmob_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* TiAdmob_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		DAD5D7CF12527E11009CF986 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD5D7CE12527E11009CF986 /* AudioToolbox.framework */; };
@@ -35,13 +35,13 @@
 		24DD6CF71134B3F500162E58 /* TiAdmobModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiAdmobModule.h; path = Classes/TiAdmobModule.h; sourceTree = "<group>"; };
 		24DD6CF81134B3F500162E58 /* TiAdmobModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiAdmobModule.m; path = Classes/TiAdmobModule.m; sourceTree = "<group>"; };
 		24DD6D1B1134B66800162E58 /* titanium.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = titanium.xcconfig; sourceTree = "<group>"; };
+		83FEEAB019754BCE005F527E /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
 		A8668C6C13FB071500834503 /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerView.h; sourceTree = "<group>"; };
 		A8668C6D13FB071500834503 /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerViewDelegate.h; sourceTree = "<group>"; };
 		A8668C6E13FB071500834503 /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitial.h; sourceTree = "<group>"; };
 		A8668C6F13FB071500834503 /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
 		A8668C7013FB071500834503 /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
 		A8668C7113FB071500834503 /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
-		A8668C7813FB072700834503 /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* TiAdmob_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiAdmob_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libTiAdmob.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTiAdmob.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,7 +59,7 @@
 				DAD5D7CF12527E11009CF986 /* AudioToolbox.framework in Frameworks */,
 				DAD5D7D212527E1A009CF986 /* MediaPlayer.framework in Frameworks */,
 				DAD5D7D512527E2F009CF986 /* MessageUI.framework in Frameworks */,
-				A8668C7913FB072700834503 /* libGoogleAdMobAds.a in Frameworks */,
+				83FEEAB119754BCE005F527E /* libGoogleAdMobAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,7 +77,7 @@
 		0867D691FE84028FC02AAC07 /* admob */ = {
 			isa = PBXGroup;
 			children = (
-				A8668C7813FB072700834503 /* libGoogleAdMobAds.a */,
+				83FEEAB019754BCE005F527E /* libGoogleAdMobAds.a */,
 				249BE66811B47AC900AF41CF /* headers */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
@@ -245,8 +245,9 @@
 				INSTALL_PATH = /usr/local/lib;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
 					"\"$(SRCROOT)/lib\"",
+					"$(PROJECT_DIR)",
 				);
 				OTHER_CFLAGS = (
 					"-DDEBUG",
@@ -296,8 +297,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
 					"\"$(SRCROOT)/lib\"",
+					"$(PROJECT_DIR)",
 				);
 				OTHER_CFLAGS = "-DTI_POST_1_2";
 				OTHER_LDFLAGS = "-ObjC";
