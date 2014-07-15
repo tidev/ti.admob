@@ -36,8 +36,12 @@
     // Go through the configurable properties, populating our request with their values (if they have been provided).
     request.keywords = [self.proxy valueForKey:@"keywords"];
     request.birthday = [self.proxy valueForKey:@"dateOfBirth"];
-    request.testing = [TiUtils boolValue:[self.proxy valueForKey:@"testing"] def:NO];
-    
+    if( [TiUtils boolValue:[self.proxy valueForKey:@"testing"] def:NO] ) {
+        NSLog(@"Detected device: %@", [UIDevice currentDevice].identifierForVendor);
+        NSLog(@"Detected advertising device: %@", [ASIdentifierManager sharedManager].advertisingIdentifier);
+        request.testDevices = @[ @"6dad9958ede75b0eb863957490e0b8bc" ];
+    }
+  
     NSString* backgroundColor = [self.proxy valueForKey:@"adBackgroundColor"];
     if (backgroundColor != nil) {
         ad.backgroundColor = [[TiUtils colorValue:backgroundColor] _color];
