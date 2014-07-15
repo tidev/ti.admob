@@ -8,6 +8,7 @@
 #import "TiUIView.h"
 #import "GADBannerView.h"
 #import "GADBannerViewDelegate.h"
+#import <AdSupport/ASIdentifierManager.h>
 
 @interface TiAdmobView : TiUIView<GADBannerViewDelegate> {
 
