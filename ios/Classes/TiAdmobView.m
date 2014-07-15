@@ -24,7 +24,7 @@
     ad = [[GADBannerView alloc] initWithFrame:bounds];
     
     // Specify the ad's "unit identifier." This is your AdMob Publisher ID.
-    ad.adUnitID = [self.proxy valueForKey:@"publisherId"];
+    ad.adUnitID = [self.proxy valueForKey:@"adUnitId"];
     
     // Let the runtime know which UIViewController to restore after taking
     // the user wherever the ad goes and add it to the view hierarchy.
