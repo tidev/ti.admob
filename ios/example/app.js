@@ -10,7 +10,7 @@ var ad;
 win.add(ad = Admob.createView({
     top: 0, left: 0,
     width: 320, height: 50,
-    publisherId: '<<YOUR PUBLISHER ID HERE>>', // You can get your own at http: //www.admob.com/
+    adUnitId: '<<YOUR ADD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
     adBackgroundColor: 'black',
     testing: true,
     dateOfBirth: new Date(1985, 10, 1, 12, 1, 1),
