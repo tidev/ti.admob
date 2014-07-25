@@ -33,14 +33,19 @@
     // Initiate a generic request to load it with an ad.
     GADRequest* request = [GADRequest request];
     
+    if ([self.proxy valueForKey:@"publisherId"]) {
+        NSLog(@"`publisherId` has been removed. Use `adUnitId` instead.");
+    }
+    if ([TiUtils boolValue:[self.proxy valueForKey:@"testing"] def:NO]) {
+        NSLog(@"`testing` has been deprecated. Use `testDevices` instead.");
+        // testing is deprecated
+        request.testing = YES;
+    }
+    
     // Go through the configurable properties, populating our request with their values (if they have been provided).
     request.keywords = [self.proxy valueForKey:@"keywords"];
     request.birthday = [self.proxy valueForKey:@"dateOfBirth"];
-    if( [TiUtils boolValue:[self.proxy valueForKey:@"testing"] def:NO] ) {
-        NSLog(@"Detected device: %@", [UIDevice currentDevice].identifierForVendor);
-        NSLog(@"Detected advertising device: %@", [ASIdentifierManager sharedManager].advertisingIdentifier);
-        request.testDevices = @[ @"6dad9958ede75b0eb863957490e0b8bc" ];
-    }
+    request.testDevices = [self.proxy valueForKey:@"testDevices"];
   
     NSString* backgroundColor = [self.proxy valueForKey:@"adBackgroundColor"];
     if (backgroundColor != nil) {

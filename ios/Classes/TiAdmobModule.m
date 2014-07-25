@@ -9,6 +9,7 @@
 #import "TiBase.h"
 #import "TiHost.h"
 #import "TiUtils.h"
+#import "GADRequest.h"
 
 @implementation TiAdmobModule
 
@@ -61,5 +62,9 @@
 	// reloaded once memory is available - such as caches
 	[super didReceiveMemoryWarning:notification];
 }
+
+#pragma mark Constants
+
+MAKE_SYSTEM_STR(SIMULATOR_ID,GAD_SIMULATOR_ID);
 
 @end

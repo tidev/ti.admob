@@ -14,19 +14,32 @@ ad will be loaded from the server automatically:
 
 ## Properties
 
-### string publisherId
+### string adUnitId
 
-The publisher ID for admob.
+The ad Unit ID for admob.
 
 ### string adBackgroundColor
 
 The background color used for the ad.
 
-### boolean testing
+### boolean testing (deprecated)
 
 Whether or not admob should be run in testing mode.  Running in testing mode
 returns test ads to the simulator when running in simulator, and the current
-device when running from device.
+device when running from device. 
+
+### Array[String] testDevices
+
+An array of test device ids. Adding the id of a test device to this array 
+will allow that device to be served test ads. 
+
+Use the module constant `SIMULATOR_ID` to use the simulator as a test device. 
+If you do not know the id for your device, launch your app and request an ad 
+like you normally would, then look in the console for the id. 
+
+eg. <Google> To get test ads on this device, call: request.testDevices = @[ @"980bb6fbbb6687047c631fe21136869b" ];
+
+Ad the id to the array passed to `testDevices`.
 
 ### Date dateOfBirth
 

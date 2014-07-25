@@ -12,7 +12,8 @@ win.add(ad = Admob.createView({
     width: 320, height: 50,
     adUnitId: '<<YOUR ADD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
     adBackgroundColor: 'black',
-    testing: true,
+    // You can get your device's id for testDevices by looking in the console log after the app launched
+    testDevices: [Admob.SIMULATOR_ID],
     dateOfBirth: new Date(1985, 10, 1, 12, 1, 1),
     gender: 'male',
     keywords: ''
@@ -50,9 +51,10 @@ Ti.Geolocation.getCurrentPosition(function reportPosition(e) {
         win.add(Admob.createView({
             top: 100, left: 0,
             width: 320, height: 50,
-            publisherId: '<<YOUR PUBLISHER ID HERE>>', // You can get your own at http: //www.admob.com/
+            adUnitId: '<<YOUR ADD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
             adBackgroundColor: 'black',
-            testing: true,
+            // You can get your device's id for testDevices by looking in the console log after the app launched
+            testDevices: [Admob.SIMULATOR_ID],
             dateOfBirth: new Date(1985, 10, 1, 12, 1, 1),
             gender: 'female',
             keywords: '',

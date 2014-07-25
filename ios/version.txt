@@ -1,6 +1,5 @@
-Google AdMob Ads SDK for iOS
-Version 6.4.2
-Released May 20, 2013
+Google Mobile Ads SDK for iOS
+Version 6.10.0
 
 Downloaded from:
 https://developers.google.com/mobile-ads-sdk/download
