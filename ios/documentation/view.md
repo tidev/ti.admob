@@ -39,7 +39,7 @@ like you normally would, then look in the console for the id.
 
 eg. <Google> To get test ads on this device, call: request.testDevices = @[ @"980bb6fbbb6687047c631fe21136869b" ];
 
-Ad the id to the array passed to `testDevices`.
+Add the id to the array passed to `testDevices`.
 
 ### Date dateOfBirth
 

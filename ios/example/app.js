@@ -10,7 +10,7 @@ var ad;
 win.add(ad = Admob.createView({
     top: 0, left: 0,
     width: 320, height: 50,
-    adUnitId: '<<YOUR ADD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
+    adUnitId: '<<YOUR AD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
     adBackgroundColor: 'black',
     // You can get your device's id for testDevices by looking in the console log after the app launched
     testDevices: [Admob.SIMULATOR_ID],
@@ -51,7 +51,7 @@ Ti.Geolocation.getCurrentPosition(function reportPosition(e) {
         win.add(Admob.createView({
             top: 100, left: 0,
             width: 320, height: 50,
-            adUnitId: '<<YOUR ADD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
+            adUnitId: '<<YOUR AD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
             adBackgroundColor: 'black',
             // You can get your device's id for testDevices by looking in the console log after the app launched
             testDevices: [Admob.SIMULATOR_ID],
