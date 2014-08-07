@@ -1,0 +1,5 @@
+Google Mobile Ads SDK for iOS
+Version 6.10.0
+
+Downloaded from:
+https://developers.google.com/mobile-ads-sdk/download
