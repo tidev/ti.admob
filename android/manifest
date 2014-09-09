@@ -15,4 +15,4 @@ name: admob
 moduleid: ti.admob
 guid: 0d005e93-9980-4739-9e41-fd1129c8ff32
 platform: android
-minsdk: 2.1.3.GA
+minsdk: 3.2.3.GA
