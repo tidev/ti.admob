@@ -9,10 +9,10 @@
 #import "TiApp.h"
 #import "TiUtils.h"
 
-@implementation TiAdmobInterstitialView
+@implementation TiAdmobView
 
 #pragma mark -
-#pragma mark Ad Lifecycle
+#pragma mark Interstitial Lifecycle
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -24,8 +24,6 @@
   request.testDevices = @[ GAD_SIMULATOR_ID ];
   [interstitial loadRequest:request];
 }
-
-@end
 
 
 ///**
