@@ -14,8 +14,9 @@
 #pragma mark -
 #pragma mark Ad Lifecycle
 
-- (void)viewDidLoad {
-  [super viewDidLoad];
+-(void)initializeState {
+  [super initializeState];
+  NSLog(@"[jo jasper]viewDidLoad was called on TiAdmobInterstitialView");
   interstitial = [[GADInterstitial alloc] init];
   interstitial.adUnitID = [self.proxy valueForKey:@"adUnitId"];
   
@@ -23,6 +24,7 @@
   // Requests test ads on simulators.
   request.testDevices = @[ GAD_SIMULATOR_ID ];
   [interstitial loadRequest:request];
+
 }
 
 @end
