@@ -25,6 +25,7 @@
   [interstitial loadRequest:request];
 }
 
+@end
 
 ///**
 // * Appcelerator Titanium Mobile
