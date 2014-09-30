@@ -13,7 +13,8 @@
 
 @implementation TiAdmobInterstitialProxy
 
--(void)initializeState {
+-(void)initializeProperty:(NSString *)name defaultValue:(id)value {
+  [super initializeProperty:name defaultValue:value];
   NSLog(@"[jo jasper]viewDidLoad was called on TiAdmobInterstitialView with key %@", [self valueForKey:@"adUnitId"]);
   interstitial = [[GADInterstitial alloc] init];
   interstitial.adUnitID = [self valueForKey:@"adUnitId"];
@@ -26,6 +27,7 @@
 
 -(void)showMe
 {
+  NSLog([@"[jo jasper] Request to show was received"]);
   [interstitial presentFromRootViewController:self];
 }
 
