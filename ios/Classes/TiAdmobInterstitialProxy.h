@@ -5,10 +5,14 @@
  * Please see the LICENSE included with this distribution for details.
  */
 
-#import "TiAdmobInterstitialViewProxy.h"
+#import "TiProxy.h"
+//#import "TiAdmobInterstitial.h"
+#import "GADInterstitial.h"
+#import "GADInterstitialDelegate.h"
 
-#import "TiUtils.h"
+@interface TiAdmobInterstitialProxy : TiProxy<GADInterstitialDelegate> {
 
-@implementation TiAdmobInterstitialViewProxy
+GADInterstitial *interstitial;
+}
 
 @end

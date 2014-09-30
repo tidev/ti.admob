@@ -5,26 +5,28 @@
  * Please see the LICENSE included with this distribution for details.
  */
 
-#import "TiAdmobInterstitialView.h"
+#import "TiAdmobInterstitialProxy.h"
+
+#import "TiUtils.h"
 #import "TiApp.h"
 #import "TiUtils.h"
 
-@implementation TiAdmobInterstitialView
-
-#pragma mark -
-#pragma mark Ad Lifecycle
+@implementation TiAdmobInterstitialProxy
 
 -(void)initializeState {
-  [super initializeState];
-  NSLog(@"[jo jasper]viewDidLoad was called on TiAdmobInterstitialView");
+  NSLog(@"[jo jasper]viewDidLoad was called on TiAdmobInterstitialView with key %@", [self valueForKey:@"adUnitId"]);
   interstitial = [[GADInterstitial alloc] init];
-  interstitial.adUnitID = [self.proxy valueForKey:@"adUnitId"];
-  
+  interstitial.adUnitID = [self valueForKey:@"adUnitId"];
+
   GADRequest *request = [GADRequest request];
   // Requests test ads on simulators.
   request.testDevices = @[ GAD_SIMULATOR_ID ];
   [interstitial loadRequest:request];
+}
 
+-(void)showMe
+{
+  [interstitial presentFromRootViewController:self];
 }
 
 @end
