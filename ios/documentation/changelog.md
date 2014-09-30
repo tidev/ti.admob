@@ -1,7 +1,5 @@
 # Change Log
 <pre>
-v1.7.0  [TIMODOPEN-436] Updating Admob SDK to 6.12.0
-
 v1.6.0  [TIMODOPEN-427] Updating Admob SDK to 6.10.0, Building with TiSDK 3.2.3.GA, update documentation
         Replaced `publisherId` with `adUnitId`
         Deprecated `testing`

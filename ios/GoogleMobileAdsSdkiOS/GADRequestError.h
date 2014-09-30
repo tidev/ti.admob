@@ -49,16 +49,7 @@ typedef NS_ENUM(NSInteger, GADErrorCode) {
   kGADErrorMediationNoFill,
 
   /// Attempting to pass an invalid ad size to an adapter.
-  kGADErrorMediationInvalidAdSize,
-
-  /// Internal error.
-  kGADErrorInternalError,
-
-  /// Invalid argument error.
-  kGADErrorInvalidArgument,
-
-  /// Received invalid response.
-  kGADErrorReceivedInvalidResponse
+  kGADErrorMediationInvalidAdSize
 };
 
 /// Represents the error generated due to invalid request parameters.
