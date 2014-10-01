@@ -13,22 +13,23 @@
 
 @implementation TiAdmobInterstitialProxy
 
--(void)initializeProperty:(NSString *)name defaultValue:(id)value {
-  [super initializeProperty:name defaultValue:value];
+-(void)prepare:(id)args
+{
+  ENSURE_UI_THREAD(prepare, nil);
+  ENSURE_UI_THREAD(showMe, nil);
   NSLog(@"[jo jasper]viewDidLoad was called on TiAdmobInterstitialView with key %@", [self valueForKey:@"adUnitId"]);
-  interstitial = [[GADInterstitial alloc] init];
-  interstitial.adUnitID = [self valueForKey:@"adUnitId"];
-
-  GADRequest *request = [GADRequest request];
-  // Requests test ads on simulators.
-  request.testDevices = @[ GAD_SIMULATOR_ID ];
-  [interstitial loadRequest:request];
+  interstitialView = [[TiAdmobInterstitial alloc] init];
+  interstitialView.adUnitID = [self valueForKey:@"adUnitId"];
+  
+  NSLog(@"[jo jasper] Will call prepare");
+  [interstitialView prepareInterstitial:nil];
+  NSLog(@"[jo jasper] Called prepare");
 }
 
--(void)showMe
+-(void)showMe:(id)args
 {
-  NSLog([@"[jo jasper] Request to show was received"]);
-  [interstitial presentFromRootViewController:self];
+  NSLog(@"[jo jasper] Request to show was received");
+  [interstitialView showMe:nil];
 }
 
 @end

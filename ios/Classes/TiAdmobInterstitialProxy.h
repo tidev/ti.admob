@@ -9,10 +9,11 @@
 //#import "TiAdmobInterstitial.h"
 #import "GADInterstitial.h"
 #import "GADInterstitialDelegate.h"
+#import "TiAdmobInterstitial.h"
 
 @interface TiAdmobInterstitialProxy : TiProxy<GADInterstitialDelegate> {
-
-GADInterstitial *interstitial;
+  TiAdmobInterstitial *interstitialView;
 }
-
+-(void)prepare:(id)args;
+-(void)showMe:(id)args;
 @end
