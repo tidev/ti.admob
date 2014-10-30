@@ -1,5 +1,7 @@
 # Change Log
 <pre>
+v2.1.2  Updating to use google-play-services library [TIMODOPEN-445]
+
 v2.1.1  Updating to use google-play-services library [TIMOB-16940]
 
 v2.1.0  Updating Admob SDK to 6.2.1, Building with TiSDK 2.1.3.GA, update documentation [TIMODOPEN-212]
