@@ -1,5 +1,7 @@
 # Change Log
 <pre>
+v2.1.3  Updating to use google-play-services library [TIMODOPEN-454]
+
 v2.1.2  Updating to use google-play-services library [TIMODOPEN-445]
 
 v2.1.1  Updating to use google-play-services library [TIMOB-16940]
