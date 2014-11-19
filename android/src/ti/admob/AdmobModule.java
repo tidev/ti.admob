@@ -10,6 +10,8 @@ package ti.admob;
 import org.appcelerator.kroll.KrollModule;
 import org.appcelerator.kroll.annotations.Kroll;
 import org.appcelerator.kroll.common.Log;
+import org.appcelerator.titanium.TiApplication;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 
 @Kroll.module(name = "Admob", id = "ti.admob")
 public class AdmobModule extends KrollModule {
@@ -39,6 +41,18 @@ public class AdmobModule extends KrollModule {
 	public AdmobModule() {
 		super();
 		Log.d(TAG, "adMob module instantiated");
+	}
+
+	// Response from isGooglePlayServicesAvailable()
+	@Kroll.constant public static final int SUCCESS = 0;
+	@Kroll.constant public static final int SERVICE_MISSING = 1;
+	@Kroll.constant public static final int SERVICE_VERSION_UPDATE_REQUIRED = 2;
+	@Kroll.constant public static final int SERVICE_DISABLED = 3;
+	@Kroll.constant public static final int SERVICE_INVALID = 9;
+
+	@Kroll.method
+	public int isGooglePlayServicesAvailable() {
+		return GooglePlayServicesUtil.isGooglePlayServicesAvailable(TiApplication.getAppRootOrCurrentActivity());
 	}
 
 	// use this to set the publisher id

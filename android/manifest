@@ -2,7 +2,7 @@
 # this is your module manifest and used by Titanium
 # during compilation, packaging, distribution, etc.
 #
-version: 2.1.1
+version: 2.1.4
 apiversion: 2
 description: Titanium Admob module for Android
 author: Brian Kurzius

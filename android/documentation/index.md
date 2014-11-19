@@ -34,6 +34,12 @@ The "Admob" variable is now a reference to the Module object.
 
 ## Functions
 
+### number isGooglePlayServicesAvailable()
+
+Returns a number value indicating the availability of Google Play Services which are for push notifications.
+
+Possible values include `SUCCESS`, `SERVICE_MISSING`, `SERVICE_VERSION_UPDATE_REQUIRED`, `SERVICE_DISABLED`, and `SERVICE_INVALID`.
+
 ### createAdMobView({ . . . })
 
 Returns a view with an ad initialized by default.
@@ -96,6 +102,24 @@ Calls for a test ad if needed. This works independently from the testing flag ab
 #### Example:
 
 	adMobView.requestTestAd();
+
+## Constants
+
+### number SUCCESS
+Returned by `isGooglePlayServicesAvailable` if the connection to Google Play services was successful.
+
+### number SERVICE_MISSING
+Returned by `isGooglePlayServicesAvailable` if Google Play services is missing on this device.
+
+### number SERVICE_VERSION_UPDATE_REQUIRED
+Returned by `isGooglePlayServicesAvailable` if the installed version of Google Play services is out of date.
+
+### number SERVICE_DISABLED
+Returned by `isGooglePlayServicesAvailable` if the installed version of Google Play services has been disabled on this device.
+
+### number SERVICE_INVALID
+Returned by `isGooglePlayServicesAvailable` if the version of the Google Play services installed on this device is not authentic.
+
 
 ## Module History
 

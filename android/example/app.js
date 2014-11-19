@@ -12,6 +12,12 @@ var win = Titanium.UI.createWindow({
 // require AdMob
 var Admob = require('ti.admob');
 
+// check if google play services are available
+var code = Admob.isGooglePlayServicesAvailable();
+if (code != Admob.SUCCESS) {
+    alert("Google Play Services is not installed/updated/available");
+}
+
 // then create an adMob view
 var adMobView = Admob.createView({
     publisherId:"<<YOUR PUBLISHER ID HERE>>",
