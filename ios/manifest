@@ -2,7 +2,8 @@
 # this is your module manifest and used by Titanium
 # during compilation, packaging, distribution, etc.
 #
-version: 1.8.0
+version: 1.8.1
+architectures:  armv7 i386 x86_64 arm64
 description: AdMob module for ad delivery via AdMob
 author: Jeff Haynie, Stephen Tramer, Jasper Kennis, and Jon Alter
 license: Apache License, Version 2.0
