@@ -7,12 +7,14 @@
 
 #import "TiUIView.h"
 #import "GADBannerView.h"
+#import "GADInterstitial.h"
 #import "GADBannerViewDelegate.h"
 
-@interface TiAdmobView : TiUIView<GADBannerViewDelegate> {
+@interface TiAdmobView : TiUIView<GADBannerViewDelegate, GADInterstitialDelegate> {
 
 @private
-	GADBannerView *ad;
+	GADBannerView *adBanner;
+	GADInterstitial *adInterstitial;
 }
 
 @end

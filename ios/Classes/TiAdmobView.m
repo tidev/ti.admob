@@ -16,19 +16,37 @@
 
 -(void)refreshAd:(CGRect)bounds
 {
-    if (ad != nil) {
-        [ad removeFromSuperview];
-        RELEASE_TO_NIL(ad);
+    NSNumber *value = [self.proxy valueForKey:@"isInterstitial"];
+    BOOL isInterstitial = [value boolValue];
+    
+    
+    if (adInterstitial != nil) {
+        RELEASE_TO_NIL(adInterstitial);
     }
     
-    ad = [[GADBannerView alloc] initWithFrame:bounds];
+    if (adBanner != nil) {
+        [adBanner removeFromSuperview];
+        RELEASE_TO_NIL(adBanner);
+    }
     
-    // Specify the ad's "unit identifier." This is your AdMob Publisher ID.
-    ad.adUnitID = [self.proxy valueForKey:@"adUnitId"];
+    if(isInterstitial)
+    {
+        adInterstitial = [[GADInterstitial alloc] init];
+        
+        // Specify the ad's "unit identifier." This is your AdMob Publisher ID.
+        adInterstitial.adUnitID = [self.proxy valueForKey:@"adUnitId"];
+    }
+    else
+    {
+        adBanner = [[GADBannerView alloc] initWithFrame:bounds];
+        // Specify the ad's "unit identifier." This is your AdMob Publisher ID.
+        adBanner.adUnitID = [self.proxy valueForKey:@"adUnitId"];
+        
+        // Let the runtime know which UIViewController to restore after taking
+        // the user wherever the ad goes and add it to the view hierarchy.
+        adBanner.rootViewController = [[TiApp app] controller];
+    }
     
-    // Let the runtime know which UIViewController to restore after taking
-    // the user wherever the ad goes and add it to the view hierarchy.
-    ad.rootViewController = [[TiApp app] controller];
     
     // Initiate a generic request to load it with an ad.
     GADRequest* request = [GADRequest request];
@@ -49,7 +67,10 @@
   
     NSString* backgroundColor = [self.proxy valueForKey:@"adBackgroundColor"];
     if (backgroundColor != nil) {
-        ad.backgroundColor = [[TiUtils colorValue:backgroundColor] _color];
+        if(isInterstitial)
+            ;
+        else
+            adBanner.backgroundColor = [[TiUtils colorValue:backgroundColor] _color];
     }
     
     NSDictionary* location = [self.proxy valueForKey:@"location"];
@@ -68,9 +89,18 @@
         request.gender = kGADGenderUnknown;
     }
     
-    [self addSubview:ad];
-    ad.delegate = self;
-    [ad loadRequest:request];
+    if(isInterstitial)
+    {
+        adInterstitial.delegate = self;
+        [adInterstitial loadRequest:request];        
+    }
+    else
+    {
+        [self addSubview:adBanner];
+        adBanner.delegate = self;
+        [adBanner loadRequest:request];                
+    }
+
 }
 
 -(void)frameSizeChanged:(CGRect)frame bounds:(CGRect)bounds
@@ -80,10 +110,15 @@
 
 -(void)dealloc
 {
-    if (ad != nil) {
-        [ad removeFromSuperview];
-        RELEASE_TO_NIL(ad);
+    if (adBanner != nil) {
+        [adBanner removeFromSuperview];
+        RELEASE_TO_NIL(adBanner);
     }
+    
+    if (adInterstitial != nil) {
+        RELEASE_TO_NIL(adInterstitial);
+    }
+    
     [super dealloc];
 }
 
@@ -120,5 +155,40 @@
     [self.proxy fireEvent:@"willLeaveApplication"];
 }
 
+#pragma mark -
+#pragma mark Interstitial Delegate
+- (void)interstitialDidReceiveAd:(GADInterstitial *)ad
+{
+    [self.proxy fireEvent:@"didReceiveAd"];
+    if ([adInterstitial isReady]) {
+        id rootVC = [[[[[UIApplication sharedApplication] keyWindow] subviews] objectAtIndex:0] nextResponder];
+        [adInterstitial presentFromRootViewController:rootVC];
+    }
+}
+
+- (void)interstitial:(GADInterstitial *)ad didFailToReceiveAdWithError:(GADRequestError *)error
+{
+    [self.proxy fireEvent:@"didFailToReceiveAd"];    
+}
+
+- (void)interstitialWillPresentScreen:(GADInterstitial *)ad
+{
+    [self.proxy fireEvent:@"willPresentScreen"];
+}
+
+- (void)interstitialWillDismissScreen:(GADInterstitial *)ad
+{
+    [self.proxy fireEvent:@"willDismissScreen"];
+}
+
+- (void)interstitialDidDismissScreen:(GADInterstitial *)ad
+{
+    [self.proxy fireEvent:@"didDismissScreen"];
+}
+
+- (void)interstitialWillLeaveApplication:(GADInterstitial *)ad
+{
+    [self.proxy fireEvent:@"willLeaveApplication"];
+}
 
 @end
