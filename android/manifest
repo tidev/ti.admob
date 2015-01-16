@@ -4,6 +4,7 @@
 #
 version: 2.1.4
 apiversion: 2
+architectures: armeabi armeabi-v7a x86
 description: Titanium Admob module for Android
 author: Brian Kurzius
 license: Apache License, Version 2.0
