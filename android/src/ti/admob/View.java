@@ -56,6 +56,11 @@ public class View extends TiUIView {
 				Log.d(TAG, "onAdFailedToLoad(): " + errorCode);
 				proxy.fireEvent(AdmobModule.AD_NOT_RECEIVED, new KrollDict());
 			}
+
+			public void onAdLeftApplication() {
+				Log.d(TAG, "onAdLeftApplication()");
+				proxy.fireEvent(AdmobModule.AD_LEFT_APPLICATION, new KrollDict());
+			}
 		});
 		adView.setPadding(prop_left, prop_top, prop_right, 0);
 		// Add the AdView to your view hierarchy.
