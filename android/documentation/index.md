@@ -18,7 +18,7 @@ started with using this module in your application.
 Add this to the &lt;android /&gt; node in tiapp.xml: 
 
 	<android>
-	    <tool-api-level>14</tool-ai-level>
+	    <tool-api-level>14</tool-api-level>
 	</android>
 
 ## Accessing the Admob Module
