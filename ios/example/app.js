@@ -21,7 +21,7 @@ win.add(ad = Admob.createView({
     dateOfBirth: new Date(1985, 10, 1, 12, 1, 1),
     gender: 'male',
     keywords: '',
-    extras
+    extras: extras
 }));
 ad.addEventListener('didReceiveAd', function() {
     alert('Did receive ad!');
