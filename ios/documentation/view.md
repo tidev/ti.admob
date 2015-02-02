@@ -62,6 +62,13 @@ A dictionary with the location of the user for location-based ads:
 * float longitude
 * float accuracy
 
+### extras object
+
+A dictionary with key/value pairs that can be used to target ads:
+
+* key1 : value1
+* key2 : value2
+
 ## Events
 
 ### didReceiveAd

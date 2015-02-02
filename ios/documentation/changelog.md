@@ -1,5 +1,6 @@
 # Change Log
 <pre>
+v1.9.1 	Added support for a DFPextras object. 
 v1.9.0 	[TIMOB-18092] ti.admob added 64bit support for iOS #15 
 
 v1.8.0  [TIMOB-17928] Updated to build for 64-bit

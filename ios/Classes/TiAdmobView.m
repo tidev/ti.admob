@@ -68,6 +68,14 @@
         request.gender = kGADGenderUnknown;
     }
     
+    NSDictionary* dictExtras = [self.proxy valueForKey:@"extras"];
+    if (dictExtras != nil) {
+        DFPExtras *extras = [[DFPExtras alloc] init];
+        extras.additionalParameters = dictExtras;
+        [request registerAdNetworkExtras:extras];
+    }
+    
+    
     [self addSubview:ad];
     ad.delegate = self;
     [ad loadRequest:request];

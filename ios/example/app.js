@@ -7,6 +7,10 @@ var win = Ti.UI.createWindow({
  We'll make two ads. This first one doesn't care about where the user is located.
  */
 var ad;
+var extras = {};
+extras["key1"] = "value1";
+extras["key2"] = "value2";
+
 win.add(ad = Admob.createView({
     top: 0, left: 0,
     width: 320, height: 50,
@@ -16,7 +20,8 @@ win.add(ad = Admob.createView({
     testDevices: [Admob.SIMULATOR_ID],
     dateOfBirth: new Date(1985, 10, 1, 12, 1, 1),
     gender: 'male',
-    keywords: ''
+    keywords: '',
+    extras
 }));
 ad.addEventListener('didReceiveAd', function() {
     alert('Did receive ad!');
