@@ -50,9 +50,9 @@ for determining ad delivery.
 
 The user's gender for the purpose of determining ad delivery. This should be "male" or "female", in lower case.
 
-### object keywords
+### string keywords
 
-Dictionary object containing Keywords used to determine ad delivery.
+Keywords used to determine ad delivery.
 
 ### object location
 
