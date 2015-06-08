@@ -3,3 +3,6 @@ ios/build
 
 # Ignore built modules.
 ios/ti.admob-iphone-*
+
+# Ignore .DS_Store.
+ios/.DS_Store
