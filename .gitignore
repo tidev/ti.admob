@@ -1,2 +1,5 @@
 # Ignore the build directory.
 ios/build
+
+# Ignore built modules.
+ios/ti.admob-iphone-*
