@@ -238,7 +238,7 @@
 					"$(SRCROOT)/GoogleMobileAdsSdkiOS",
 				);
 				INSTALL_PATH = /usr/local/lib;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -254,7 +254,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = iphoneos;
-				TITANIUM_SDK_VERSION = 3.5.0.GA;
+				TITANIUM_SDK_VERSION = 3.5.1.GA;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -294,7 +294,7 @@
 					"$(SRCROOT)/GoogleMobileAdsSdkiOS",
 				);
 				INSTALL_PATH = /usr/local/lib;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -307,7 +307,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = iphoneos;
-				TITANIUM_SDK_VERSION = 3.5.0.GA;
+				TITANIUM_SDK_VERSION = 3.5.1.GA;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

@@ -9,6 +9,8 @@ description: AdMob module for ad delivery via AdMob
 author: Jeff Haynie, Stephen Tramer, Jasper Kennis, Jon Alter, and Paul Nelson
 license: Apache License, Version 2.0
 copyright: Copyright (c) 2010-2014 by Appcelerator, Inc.
+ios/manifest:
+architectures: armv7 arm64 i386 x86_64
 
 
 # these should not be edited
@@ -16,4 +18,4 @@ name: admob
 moduleid: ti.admob
 guid: 0d005e93-9980-4739-9e41-fd1129c8ff32
 platform: iphone
-minsdk: 3.4.1.GA
+minsdk: 3.5.0.GA
