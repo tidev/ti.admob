@@ -1,5 +1,7 @@
 # Change Log
 <pre>
+v2.1.6  Strip Google Play Services jar to reduce method count [TIMOB-18082]
+
 v2.1.5  Updates Google Play Services library [TIMOB-18988]
 
 v2.1.4  Added isGooglePlayServicesAvailable method [TIMODOPEN-461]
