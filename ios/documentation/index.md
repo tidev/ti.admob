@@ -59,6 +59,7 @@ parameters[object]: a dictionary object of properties defined in [Ti.Admob.View]
 		top: 0, left: 0,
 		width: 320, height: 50,
 		adUnitId: '<<YOUR ADD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
+		isInterstitial: true, //if ad is of type Interstitial (fullscreen) or not - this is decided when you create adUnitID on http://www.admob.com 
 		adBackgroundColor: 'black',
 		// You can get your device's id for testDevices by looking in the console log after the app launched
 		testDevices: [Admob.SIMULATOR_ID],
