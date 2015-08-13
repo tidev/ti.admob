@@ -9,7 +9,7 @@
 #import "TiBase.h"
 #import "TiHost.h"
 #import "TiUtils.h"
-#import "GADRequest.h"
+#import "GoogleMobileAds/GADRequest.h"
 
 @implementation TiAdmobModule
 
@@ -65,6 +65,7 @@
 
 #pragma mark Constants
 
+NSString *GAD_SIMULATOR_ID = @"";
 MAKE_SYSTEM_STR(SIMULATOR_ID,GAD_SIMULATOR_ID);
 
 @end

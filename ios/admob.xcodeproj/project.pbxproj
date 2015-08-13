@@ -13,6 +13,7 @@
 		249BE67411B47B3800AF41CF /* TiAdmobView.m in Sources */ = {isa = PBXBuildFile; fileRef = 249BE67211B47B3800AF41CF /* TiAdmobView.m */; };
 		24DD6CF91134B3F500162E58 /* TiAdmobModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DD6CF71134B3F500162E58 /* TiAdmobModule.h */; };
 		24DD6CFA1134B3F500162E58 /* TiAdmobModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DD6CF81134B3F500162E58 /* TiAdmobModule.m */; };
+		9A5C94661AF2093E00EDF0D2 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5C94651AF2093E00EDF0D2 /* GoogleMobileAds.framework */; };
 		AA747D9F0F9514B9006C5449 /* TiAdmob_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* TiAdmob_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		CE6C17A01982D1170017C788 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6C179F1982D1170017C788 /* AdSupport.framework */; };
@@ -21,19 +22,6 @@
 		CE6C17A61982D1660017C788 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6C17A51982D1660017C788 /* CoreTelephony.framework */; };
 		CE6C17A81982D1780017C788 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6C17A71982D1780017C788 /* StoreKit.framework */; };
 		CE6C17AA1982D1870017C788 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6C17A91982D1870017C788 /* SystemConfiguration.framework */; };
-		CE6C17DC1982D1C90017C788 /* GADAdMobExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = CE6C17BF1982D1C90017C788 /* GADAdMobExtras.h */; };
-		CE6C17DD1982D1C90017C788 /* GADAdNetworkExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = CE6C17C01982D1C90017C788 /* GADAdNetworkExtras.h */; };
-		CE6C17DE1982D1C90017C788 /* GADAdSize.h in Headers */ = {isa = PBXBuildFile; fileRef = CE6C17C11982D1C90017C788 /* GADAdSize.h */; };
-		CE6C17DF1982D1C90017C788 /* GADBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = CE6C17C21982D1C90017C788 /* GADBannerView.h */; };
-		CE6C17E01982D1C90017C788 /* GADBannerViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = CE6C17C31982D1C90017C788 /* GADBannerViewDelegate.h */; };
-		CE6C17E11982D1C90017C788 /* GADInAppPurchase.h in Headers */ = {isa = PBXBuildFile; fileRef = CE6C17C41982D1C90017C788 /* GADInAppPurchase.h */; };
-		CE6C17E21982D1C90017C788 /* GADInAppPurchaseDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = CE6C17C51982D1C90017C788 /* GADInAppPurchaseDelegate.h */; };
-		CE6C17E31982D1C90017C788 /* GADInterstitial.h in Headers */ = {isa = PBXBuildFile; fileRef = CE6C17C61982D1C90017C788 /* GADInterstitial.h */; };
-		CE6C17E41982D1C90017C788 /* GADInterstitialDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = CE6C17C71982D1C90017C788 /* GADInterstitialDelegate.h */; };
-		CE6C17E51982D1C90017C788 /* GADModules.h in Headers */ = {isa = PBXBuildFile; fileRef = CE6C17C81982D1C90017C788 /* GADModules.h */; };
-		CE6C17E61982D1C90017C788 /* GADRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = CE6C17C91982D1C90017C788 /* GADRequest.h */; };
-		CE6C17E71982D1C90017C788 /* GADRequestError.h in Headers */ = {isa = PBXBuildFile; fileRef = CE6C17CA1982D1C90017C788 /* GADRequestError.h */; };
-		CE6C17F21982D7F40017C788 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6C17CB1982D1C90017C788 /* libGoogleAdMobAds.a */; };
 		DAD5D7CF12527E11009CF986 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD5D7CE12527E11009CF986 /* AudioToolbox.framework */; };
 		DAD5D7D512527E2F009CF986 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD5D7D412527E2F009CF986 /* MessageUI.framework */; };
 /* End PBXBuildFile section */
@@ -46,6 +34,7 @@
 		24DD6CF71134B3F500162E58 /* TiAdmobModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiAdmobModule.h; path = Classes/TiAdmobModule.h; sourceTree = "<group>"; };
 		24DD6CF81134B3F500162E58 /* TiAdmobModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiAdmobModule.m; path = Classes/TiAdmobModule.m; sourceTree = "<group>"; };
 		24DD6D1B1134B66800162E58 /* titanium.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = titanium.xcconfig; sourceTree = "<group>"; };
+		9A5C94651AF2093E00EDF0D2 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* TiAdmob_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiAdmob_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CE6C179F1982D1170017C788 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -54,20 +43,6 @@
 		CE6C17A51982D1660017C788 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		CE6C17A71982D1780017C788 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CE6C17A91982D1870017C788 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		CE6C17BF1982D1C90017C788 /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
-		CE6C17C01982D1C90017C788 /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
-		CE6C17C11982D1C90017C788 /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
-		CE6C17C21982D1C90017C788 /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerView.h; sourceTree = "<group>"; };
-		CE6C17C31982D1C90017C788 /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerViewDelegate.h; sourceTree = "<group>"; };
-		CE6C17C41982D1C90017C788 /* GADInAppPurchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInAppPurchase.h; sourceTree = "<group>"; };
-		CE6C17C51982D1C90017C788 /* GADInAppPurchaseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInAppPurchaseDelegate.h; sourceTree = "<group>"; };
-		CE6C17C61982D1C90017C788 /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitial.h; sourceTree = "<group>"; };
-		CE6C17C71982D1C90017C788 /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
-		CE6C17C81982D1C90017C788 /* GADModules.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADModules.h; sourceTree = "<group>"; };
-		CE6C17C91982D1C90017C788 /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
-		CE6C17CA1982D1C90017C788 /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
-		CE6C17CB1982D1C90017C788 /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
-		CE6C17CC1982D1C90017C788 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		D2AAC07E0554694100DB518D /* libTiAdmob.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTiAdmob.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAD5D7CE12527E11009CF986 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		DAD5D7D112527E1A009CF986 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -79,9 +54,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE6C17F21982D7F40017C788 /* libGoogleAdMobAds.a in Frameworks */,
 				CE6C17A01982D1170017C788 /* AdSupport.framework in Frameworks */,
 				DAD5D7CF12527E11009CF986 /* AudioToolbox.framework in Frameworks */,
+				9A5C94661AF2093E00EDF0D2 /* GoogleMobileAds.framework in Frameworks */,
 				CE6C17A21982D12D0017C788 /* AVFoundation.framework in Frameworks */,
 				CE6C17A41982D13A0017C788 /* CoreGraphics.framework in Frameworks */,
 				CE6C17A61982D1660017C788 /* CoreTelephony.framework in Frameworks */,
@@ -106,7 +81,7 @@
 		0867D691FE84028FC02AAC07 /* admob */ = {
 			isa = PBXGroup;
 			children = (
-				CE6C17AB1982D1C90017C788 /* GoogleMobileAdsSdkiOS */,
+				9A5C94651AF2093E00EDF0D2 /* GoogleMobileAds.framework */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
@@ -154,27 +129,6 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
-		CE6C17AB1982D1C90017C788 /* GoogleMobileAdsSdkiOS */ = {
-			isa = PBXGroup;
-			children = (
-				CE6C17BF1982D1C90017C788 /* GADAdMobExtras.h */,
-				CE6C17C01982D1C90017C788 /* GADAdNetworkExtras.h */,
-				CE6C17C11982D1C90017C788 /* GADAdSize.h */,
-				CE6C17C21982D1C90017C788 /* GADBannerView.h */,
-				CE6C17C31982D1C90017C788 /* GADBannerViewDelegate.h */,
-				CE6C17C41982D1C90017C788 /* GADInAppPurchase.h */,
-				CE6C17C51982D1C90017C788 /* GADInAppPurchaseDelegate.h */,
-				CE6C17C61982D1C90017C788 /* GADInterstitial.h */,
-				CE6C17C71982D1C90017C788 /* GADInterstitialDelegate.h */,
-				CE6C17C81982D1C90017C788 /* GADModules.h */,
-				CE6C17C91982D1C90017C788 /* GADRequest.h */,
-				CE6C17CA1982D1C90017C788 /* GADRequestError.h */,
-				CE6C17CB1982D1C90017C788 /* libGoogleAdMobAds.a */,
-				CE6C17CC1982D1C90017C788 /* README.txt */,
-			);
-			path = GoogleMobileAdsSdkiOS;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -182,22 +136,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE6C17E21982D1C90017C788 /* GADInAppPurchaseDelegate.h in Headers */,
-				CE6C17E41982D1C90017C788 /* GADInterstitialDelegate.h in Headers */,
 				AA747D9F0F9514B9006C5449 /* TiAdmob_Prefix.pch in Headers */,
-				CE6C17E31982D1C90017C788 /* GADInterstitial.h in Headers */,
-				CE6C17DF1982D1C90017C788 /* GADBannerView.h in Headers */,
 				24DD6CF91134B3F500162E58 /* TiAdmobModule.h in Headers */,
-				CE6C17E01982D1C90017C788 /* GADBannerViewDelegate.h in Headers */,
-				CE6C17E61982D1C90017C788 /* GADRequest.h in Headers */,
-				CE6C17E71982D1C90017C788 /* GADRequestError.h in Headers */,
-				CE6C17DD1982D1C90017C788 /* GADAdNetworkExtras.h in Headers */,
 				249BE66F11B47B2700AF41CF /* TiAdmobViewProxy.h in Headers */,
-				CE6C17DE1982D1C90017C788 /* GADAdSize.h in Headers */,
 				249BE67311B47B3800AF41CF /* TiAdmobView.h in Headers */,
-				CE6C17E11982D1C90017C788 /* GADInAppPurchase.h in Headers */,
-				CE6C17E51982D1C90017C788 /* GADModules.h in Headers */,
-				CE6C17DC1982D1C90017C788 /* GADAdMobExtras.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +209,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DSTROOT = /tmp/TiAdmob.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"/Users/iampnelson/Downloads/GoogleMobileAdsSdkiOS-7.1.0",
+					2,
+				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -290,6 +238,7 @@
 					"$(SRCROOT)/GoogleMobileAdsSdkiOS",
 				);
 				INSTALL_PATH = /usr/local/lib;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -305,6 +254,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = iphoneos;
+				TITANIUM_SDK_VERSION = 3.5.1.GA;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -315,6 +265,12 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DSTROOT = /tmp/TiAdmob.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"/Users/iampnelson/Downloads/GoogleMobileAdsSdkiOS-7.1.0",
+					2,
+				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -338,7 +294,7 @@
 					"$(SRCROOT)/GoogleMobileAdsSdkiOS",
 				);
 				INSTALL_PATH = /usr/local/lib;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -351,6 +307,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = iphoneos;
+				TITANIUM_SDK_VERSION = 3.5.1.GA;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
@@ -390,6 +347,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = iphoneos;
+				TITANIUM_SDK_VERSION = 3.5.0.GA;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -424,6 +382,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = iphoneos;
+				TITANIUM_SDK_VERSION = 3.5.0.GA;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

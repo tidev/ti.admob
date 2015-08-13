@@ -6,8 +6,8 @@
  */
 
 #import "TiUIView.h"
-#import "GADBannerView.h"
-#import "GADBannerViewDelegate.h"
+#import "GoogleMobileAds/GADBannerView.h"
+#import "GoogleMobileAds/GADBannerViewDelegate.h"
 
 @interface TiAdmobView : TiUIView<GADBannerViewDelegate> {
 
