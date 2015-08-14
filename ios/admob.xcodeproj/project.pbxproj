@@ -46,6 +46,7 @@
 		24DD6CF71134B3F500162E58 /* TiAdmobModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiAdmobModule.h; path = Classes/TiAdmobModule.h; sourceTree = "<group>"; };
 		24DD6CF81134B3F500162E58 /* TiAdmobModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiAdmobModule.m; path = Classes/TiAdmobModule.m; sourceTree = "<group>"; };
 		24DD6D1B1134B66800162E58 /* titanium.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = titanium.xcconfig; sourceTree = "<group>"; };
+		516F694B1A7C126A00ECD412 /* DFPExtras.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DFPExtras.h; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* TiAdmob_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiAdmob_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CE6C179F1982D1170017C788 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -171,6 +172,7 @@
 				CE6C17CA1982D1C90017C788 /* GADRequestError.h */,
 				CE6C17CB1982D1C90017C788 /* libGoogleAdMobAds.a */,
 				CE6C17CC1982D1C90017C788 /* README.txt */,
+				516F694B1A7C126A00ECD412 /* DFPExtras.h */,
 			);
 			path = GoogleMobileAdsSdkiOS;
 			sourceTree = "<group>";

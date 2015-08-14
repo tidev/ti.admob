@@ -8,6 +8,8 @@
 #import "TiUIView.h"
 #import "GADBannerView.h"
 #import "GADBannerViewDelegate.h"
+#import "GADRequest.h"
+#import "DFPExtras.h"
 
 @interface TiAdmobView : TiUIView<GADBannerViewDelegate> {
 
