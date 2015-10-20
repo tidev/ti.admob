@@ -22,6 +22,7 @@ if (code != Admob.SUCCESS) {
 var adMobView = Admob.createView({
     publisherId:"<<YOUR PUBLISHER ID HERE>>",
     testing:false, // default is false
+    smartBanner: true, // default is false
     //top: 10, //optional
     //left: 0, // optional
     //right: 0, // optional

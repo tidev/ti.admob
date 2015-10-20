@@ -31,6 +31,7 @@ public class View extends TiUIView {
 	String prop_color_text;
 	String prop_color_link;
 	String prop_color_url;
+	boolean smart_banner = false;
 
 	public View(final TiViewProxy proxy) {
 		super(proxy);
@@ -43,7 +44,7 @@ public class View extends TiUIView {
 		Log.d(TAG, "createAdView()");
 		// create the adView
 		adView = new AdView(proxy.getActivity());
-		adView.setAdSize(AdSize.BANNER);
+		adView.setAdSize(smart_banner ? AdSize.SMART_BANNER : AdSize.BANNER);
 		adView.setAdUnitId(AdmobModule.PUBLISHER_ID);
 		// set the listener
 		adView.setAdListener(new AdListener() {
@@ -95,6 +96,10 @@ public class View extends TiUIView {
 		if (d.containsKey("testing")) {
 			Log.d(TAG, "has testing param: " + d.getBoolean("testing"));
 			AdmobModule.TESTING = d.getBoolean("testing");
+		}
+		if (d.containsKey(AdmobModule.PROPERTY_SMART_BANNER)) {
+			Log.d(TAG, "has PROPERTY_SMART_BANNER param: " + d.getBoolean(AdmobModule.PROPERTY_SMART_BANNER));
+			smart_banner = d.getBoolean(AdmobModule.PROPERTY_SMART_BANNER);
 		}
 		if (d.containsKey(AdmobModule.PROPERTY_COLOR_BG)) {
 			Log.d(TAG, "has PROPERTY_COLOR_BG: " + d.getString(AdmobModule.PROPERTY_COLOR_BG));
