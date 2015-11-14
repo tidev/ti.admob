@@ -13,7 +13,7 @@
                 <activity android:name="com.google.android.gms.ads.AdActivity"
                           android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
                 <meta-data android:name="com.google.android.gms.version"
-                           android:value="7571000"/>
+                           android:value="8115000"/>
             </application>
             <uses-permission android:name="android.permission.INTERNET"/>
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
