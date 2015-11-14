@@ -2,5 +2,7 @@
 // PLACE ANY BUILD DEFINITIONS IN THIS FILE AND THEY WILL BE 
 // PICKED UP DURING THE APP BUILD FOR YOUR MODULE
 //
+MODULE_VER=2.0.0
+MODULE_FRAMEWORK_DIR=$(SRCROOT)/../../modules/iphone/ti.admob/$(TI_ADMOB_MODULE_VER)/platform/ExternalFrameworks
 
-OTHER_LDFLAGS=$(inherited) -framework AdSupport -framework AudioToolbox -framework AVFoundation -framework CoreGraphics -framework CoreTelephony -framework MessageUI -framework StoreKit -framework SystemConfiguration
+OTHER_LDFLAGS=$(inherited) -F"$(TI_ADMOB_MODULE_FRAMEWORK_DIR)" -framework GoogleMobileAds -framework AdSupport -framework AudioToolbox -framework AVFoundation -framework CoreGraphics -framework CoreTelephony -framework MessageUI -framework StoreKit -framework SystemConfiguration

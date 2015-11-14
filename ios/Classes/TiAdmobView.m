@@ -39,7 +39,7 @@
     if ([TiUtils boolValue:[self.proxy valueForKey:@"testing"] def:NO]) {
         NSLog(@"`testing` has been deprecated. Use `testDevices` instead.");
         // testing is deprecated
-        request.testing = YES;
+        //request.testing = YES;
     }
     
     // Go through the configurable properties, populating our request with their values (if they have been provided).
