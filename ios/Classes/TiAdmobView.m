@@ -25,10 +25,12 @@
 -(GADBannerView*)bannerView
 {
     if (bannerView == nil) {
+        // Create the view with dynamic width and height specification.
         bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeFluid];
         
         // Set the delegate to receive the internal events
         [bannerView setDelegate:self];
+        [bannerView setInAppPurchaseDelegate:self];
 
         // Let the runtime know which UIViewController to restore after taking
         // the user wherever the ad goes and add it to the view hierarchy.
@@ -55,8 +57,10 @@
 {
     if (bannerView != nil) {
         [bannerView removeFromSuperview];
-        RELEASE_TO_NIL(bannerView);
     }
+    
+    RELEASE_TO_NIL(bannerView);
+    RELEASE_TO_NIL(request);
     
     [super dealloc];
 }
@@ -72,6 +76,12 @@
 {
     ENSURE_TYPE(value, NSString);
     [[self bannerView] setAdUnitID:[TiUtils stringValue:value]];
+}
+
+-(void)setAutoloadEnabled:(id)value
+{
+    ENSURE_TYPE(value, NSNumber);
+    [[self bannerView] setAutoloadEnabled:[TiUtils boolValue:value]];
 }
 
 -(void)setKeywords_:(id)value
@@ -118,6 +128,11 @@
 -(void)setContentURL_:(id)value
 {
     ENSURE_TYPE(value, NSString);
+    
+    if ([self validateUrl:value] == NO) {
+        NSLog(@"[WARN] Ti.Admob: The value of the property `contentURL` looks invalid.");
+    }
+    
     [[self request] setContentURL:[TiUtils stringValue:value]];
 }
 
@@ -164,6 +179,15 @@
     NSLog(@"[ERROR] Ti.Admob: The property `testing` has been removed. Use `testDevices` instead.");
 }
 
+#pragma mark - Utilities
+
+// http://stackoverflow.com/a/3819561/5537752
+- (BOOL)validateUrl:(NSString *)candidate {
+    NSString *urlRegEx = @"(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
+    NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlRegEx];
+    return [urlTest evaluateWithObject:candidate];
+}
+
 #pragma mark - Ad Delegate
 
 - (void)adViewDidReceiveAd:(GADBannerView *)view
@@ -194,6 +218,14 @@
 - (void)adViewWillLeaveApplication:(GADBannerView *)adView
 {
     [self.proxy fireEvent:@"willLeaveApplication"];
+}
+
+- (void)didReceiveInAppPurchase:(GADInAppPurchase *)purchase
+{
+    [self.proxy fireEvent:@"didReceiveInAppPurchase" withObject:@{
+        @"productID": purchase.productID,
+        @"quantity": [NSNumber numberWithInteger:purchase.quantity]
+    }];
 }
 
 

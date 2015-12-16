@@ -8,11 +8,39 @@
 #import "TiUIView.h"
 #import <GoogleMobileAds/GoogleMobileAds.h>
 
-@interface TiAdmobView : TiUIView<GADBannerViewDelegate> {
+@interface TiAdmobView : TiUIView<GADBannerViewDelegate,GADInAppPurchaseDelegate> {
 
 @private
-	GADBannerView *bannerView;
+    GADBannerView *bannerView;
     GADRequest *request;
 }
+
+-(void)loadRequest:(id)unused;
+
+-(void)setAdUnitId_:(id)value;
+
+-(void)setKeywords_:(id)value;
+
+-(void)setDateOfBirth_:(id)value;
+
+-(void)setTestDevices_:(id)value;
+
+-(void)setAdBackgroundColor_:(id)value;
+
+-(void)setTagForChildDirectedTreatment_:(id)value;
+
+-(void)setRequestAgent_:(id)value;
+
+-(void)setContentURL_:(id)value;
+
+-(void)setExtras_:(id)args;
+
+-(void)setGender_:(id)value;
+
+-(void)setLocation_:(id)args;
+
+-(void)setPublisherId_:(id)value;
+
+-(void)setTesting_:(id)value;
 
 @end
