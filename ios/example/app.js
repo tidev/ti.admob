@@ -8,8 +8,10 @@ var win = Ti.UI.createWindow({
  */
 var ad;
 win.add(ad = Admob.createView({
-    top: 0, left: 0,
-    width: 320, height: 50,
+    top: 0,
+    left: 0,
+    width: 320,
+    height: 50,
     adUnitId: '<<YOUR AD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
     adBackgroundColor: 'black',
     // You can get your device's id for testDevices by looking in the console log after the app launched
@@ -49,8 +51,10 @@ Ti.Geolocation.getCurrentPosition(function reportPosition(e) {
     }
     else {
         win.add(Admob.createView({
-            top: 100, left: 0,
-            width: 320, height: 50,
+            top: 100,
+            left: 0,
+            width: 320,
+            height: 50,
             adUnitId: '<<YOUR AD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
             adBackgroundColor: 'black',
             // You can get your device's id for testDevices by looking in the console log after the app launched
@@ -68,6 +72,7 @@ win.add(Ti.UI.createLabel({
         'Note that there may be a several minute delay ' +
         'if you have not viewed an ad in over 24 hours.',
     bottom: 40,
-    height: Ti.UI.SIZE || 'auto', width: Ti.UI.SIZE || 'auto'
+    height: Ti.UI.SIZE,
+    width: Ti.UI.SIZE
 }));
 win.open();

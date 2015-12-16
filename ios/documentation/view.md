@@ -22,12 +22,6 @@ The ad Unit ID for admob.
 
 The background color used for the ad.
 
-### boolean testing (deprecated)
-
-Whether or not admob should be run in testing mode.  Running in testing mode
-returns test ads to the simulator when running in simulator, and the current
-device when running from device. 
-
 ### Array[String] testDevices
 
 An array of test device ids. Adding the id of a test device to this array 

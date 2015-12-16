@@ -9,7 +9,7 @@
 #import "TiBase.h"
 #import "TiHost.h"
 #import "TiUtils.h"
-#import "GADRequest.h"
+#import <GoogleMobileAds/GoogleMobileAds.h>
 
 @implementation TiAdmobModule
 
@@ -65,6 +65,6 @@
 
 #pragma mark Constants
 
-MAKE_SYSTEM_STR(SIMULATOR_ID,GAD_SIMULATOR_ID);
+MAKE_SYSTEM_STR(SIMULATOR_ID,kGADSimulatorID);
 
 @end

@@ -36,10 +36,9 @@
     if ([self.proxy valueForKey:@"publisherId"]) {
         NSLog(@"`publisherId` has been removed. Use `adUnitId` instead.");
     }
+    
     if ([TiUtils boolValue:[self.proxy valueForKey:@"testing"] def:NO]) {
-        NSLog(@"`testing` has been deprecated. Use `testDevices` instead.");
-        // testing is deprecated
-        request.testing = YES;
+        NSLog(@"`testing` has been removed. Use `testDevices` instead.");
     }
     
     // Go through the configurable properties, populating our request with their values (if they have been provided).
