@@ -26,7 +26,7 @@
 {
     if (bannerView == nil) {
         // Create the view with dynamic width and height specification.
-        bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeFluid];
+        bannerView = [[GADBannerView alloc] initWithAdSize:[self generateHeight]];
         
         // Set the delegate to receive the internal events
         [bannerView setDelegate:self];
@@ -43,14 +43,9 @@
     return bannerView;
 }
 
--(void)refreshAd:(CGRect)bounds
-{
-    [self loadRequest:nil];
-}
-
 -(void)frameSizeChanged:(CGRect)frame bounds:(CGRect)bounds
 {
-    [self refreshAd:bounds];
+    [self loadRequest:nil];
 }
 
 -(void)dealloc
@@ -67,24 +62,32 @@
 
 #pragma mark - Public API's
 
--(void)loadRequest:(id)unused
+- (void)loadRequest:(id)unused
 {
     [[self bannerView] loadRequest:[self request]];
 }
 
--(void)setAdUnitId_:(id)value
+- (void)setAdUnitId_:(id)value
 {
     ENSURE_TYPE(value, NSString);
+    
+    id debugEnabled = [[self proxy] valueForKey:@"debugEnabled"];
+    
+    if (debugEnabled != nil && [TiUtils boolValue:debugEnabled] == YES) {
+        [[self bannerView] setAdUnitID:@"ca-app-pub-0123456789012345/0123456789"]; // Provided test id by Google
+        return;
+    }
+    
     [[self bannerView] setAdUnitID:[TiUtils stringValue:value]];
 }
 
--(void)setAutoloadEnabled:(id)value
+- (void)setAutoloadEnabled:(id)value
 {
     ENSURE_TYPE(value, NSNumber);
     [[self bannerView] setAutoloadEnabled:[TiUtils boolValue:value]];
 }
 
--(void)setKeywords_:(id)value
+- (void)setKeywords_:(id)value
 {
     if ([value isKindOfClass:[NSString class]]) {
         [[self request] setKeywords:@[[TiUtils stringValue:value]]];
@@ -96,36 +99,36 @@
     }
 }
 
--(void)setDateOfBirth_:(id)value
+- (void)setDateOfBirth_:(id)value
 {
     ENSURE_TYPE(value, NSDate);
     [[self request] setBirthday:value];
 }
 
--(void)setTestDevices_:(id)value
+- (void)setTestDevices_:(id)value
 {
     ENSURE_TYPE(value, NSArray);
     [[self request] setTestDevices:value];
 }
 
--(void)setAdBackgroundColor_:(id)value
+- (void)setAdBackgroundColor_:(id)value
 {
     [[self bannerView] setBackgroundColor:[[TiUtils colorValue:value] _color]];
 }
 
--(void)setTagForChildDirectedTreatment_:(id)value
+- (void)setTagForChildDirectedTreatment_:(id)value
 {
     ENSURE_TYPE(value, NSNumber);
     [[self request] tagForChildDirectedTreatment:[TiUtils boolValue:value]];
 }
 
--(void)setRequestAgent_:(id)value
+- (void)setRequestAgent_:(id)value
 {
     ENSURE_TYPE(value, NSString);
     [[self request] setRequestAgent:[TiUtils stringValue:value]];
 }
 
--(void)setContentURL_:(id)value
+- (void)setContentURL_:(id)value
 {
     ENSURE_TYPE(value, NSString);
     
@@ -136,7 +139,7 @@
     [[self request] setContentURL:[TiUtils stringValue:value]];
 }
 
--(void)setExtras_:(id)args
+- (void)setExtras_:(id)args
 {
     ENSURE_TYPE(args, NSDictionary);
     
@@ -145,20 +148,27 @@
     [[self request] registerAdNetworkExtras:extras];
 }
 
--(void)setGender_:(id)value
+- (void)setGender_:(id)value
 {
-    ENSURE_TYPE(value, NSString);
-    
-    if ([value isEqualToString:@"male"]) {
-        [[self request] setGender:kGADGenderMale];
-    } else if ([value isEqualToString:@"female"]) {
-        [[self request] setGender:kGADGenderFemale];
-    } else {
-        [[self request] setGender:kGADGenderUnknown];
+    if ([value isKindOfClass:[NSString class]]) {
+        NSLog(@"[WARN] Ti.Admob: String values for `gender` are deprecated in 2.0.0, use the `GENDER_MALE` or `GENDER_FEMALE` constant instead.");
+        
+        if ([value isEqualToString:@"male"]) {
+            [[self request] setGender:kGADGenderMale];
+        } else if ([value isEqualToString:@"female"]) {
+            [[self request] setGender:kGADGenderFemale];
+        } else {
+            [[self request] setGender:kGADGenderUnknown];
+        }
+        
+        return;
     }
+    
+    ENSURE_TYPE(value, NSNumber);
+    [[self request] setGender:[TiUtils intValue:value def:kGADGenderUnknown]];
 }
 
--(void)setLocation_:(id)args
+- (void)setLocation_:(id)args
 {
     ENSURE_TYPE(args, NSDictionary);
     
@@ -169,14 +179,14 @@
 
 #pragma mark - Deprecated / removed API's
 
--(void)setPublisherId_:(id)value
+- (void)setPublisherId_:(id)value
 {
-    NSLog(@"[ERROR] Ti.Admob: The property `publisherId` has been removed. Use `adUnitId` instead.");
+    NSLog(@"[ERROR] Ti.Admob: The property `publisherId` has been removed in 2.0.0, use `adUnitId` instead.");
 }
 
--(void)setTesting_:(id)value
+- (void)setTesting_:(id)value
 {
-    NSLog(@"[ERROR] Ti.Admob: The property `testing` has been removed. Use `testDevices` instead.");
+    NSLog(@"[ERROR] Ti.Admob: The property `testing` has been removed in 2.0.0, use `testDevices` instead.");
 }
 
 #pragma mark - Utilities
@@ -186,6 +196,17 @@
     NSString *urlRegEx = @"(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
     NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlRegEx];
     return [urlTest evaluateWithObject:candidate];
+}
+
+- (GADAdSize)generateHeight
+{
+    id height = [[self proxy] valueForKey:@"height"];
+    
+    if (height != nil) {
+        return GADAdSizeFullWidthPortraitWithHeight([TiUtils floatValue:height]);
+    }
+    
+    return kGADAdSizeFluid;
 }
 
 #pragma mark - Ad Delegate

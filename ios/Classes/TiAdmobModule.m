@@ -66,5 +66,7 @@
 #pragma mark Constants
 
 MAKE_SYSTEM_STR(SIMULATOR_ID, kGADSimulatorID);
+MAKE_SYSTEM_PROP(GENDER_MALE, kGADGenderMale);
+MAKE_SYSTEM_PROP(GENDER_FEMAILE, kGADGenderFemale);
 
 @end
