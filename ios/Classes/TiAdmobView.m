@@ -11,8 +11,7 @@
 
 @implementation TiAdmobView
 
-#pragma mark -
-#pragma mark Ad Lifecycle
+#pragma mark - Ad Lifecycle
 
 -(void)refreshAd:(CGRect)bounds
 {
@@ -23,32 +22,24 @@
     
     ad = [[GADBannerView alloc] initWithFrame:bounds];
     
-    // Specify the ad's "unit identifier." This is your AdMob Publisher ID.
-    ad.adUnitID = [self.proxy valueForKey:@"adUnitId"];
-    
-    // Let the runtime know which UIViewController to restore after taking
-    // the user wherever the ad goes and add it to the view hierarchy.
-    ad.rootViewController = [[TiApp app] controller];
-    
     // Initiate a generic request to load it with an ad.
     GADRequest* request = [GADRequest request];
     
-    if ([self.proxy valueForKey:@"publisherId"]) {
-        NSLog(@"`publisherId` has been removed. Use `adUnitId` instead.");
-    }
+    // Specify the ad's "unit identifier." This is your AdMob Publisher ID.
+    [ad setAdUnitID:[self.proxy valueForKey:@"adUnitId"]];
     
-    if ([TiUtils boolValue:[self.proxy valueForKey:@"testing"] def:NO]) {
-        NSLog(@"`testing` has been removed. Use `testDevices` instead.");
-    }
+    // Let the runtime know which UIViewController to restore after taking
+    // the user wherever the ad goes and add it to the view hierarchy.
+    [ad setRootViewController:[[TiApp app] controller]];
     
     // Go through the configurable properties, populating our request with their values (if they have been provided).
-    request.keywords = [self.proxy valueForKey:@"keywords"];
-    request.birthday = [self.proxy valueForKey:@"dateOfBirth"];
-    request.testDevices = [self.proxy valueForKey:@"testDevices"];
+    [request setKeywords:[self.proxy valueForKey:@"keywords"]];
+     [request setBirthday:[self.proxy valueForKey:@"dateOfBirth"]];
+     [request setTestDevices:[self.proxy valueForKey:@"testDevices"]];
   
     NSString* backgroundColor = [self.proxy valueForKey:@"adBackgroundColor"];
     if (backgroundColor != nil) {
-        ad.backgroundColor = [[TiUtils colorValue:backgroundColor] _color];
+        [ad setBackgroundColor:[[TiUtils colorValue:backgroundColor] _color]];
     }
     
     NSDictionary* location = [self.proxy valueForKey:@"location"];
@@ -60,15 +51,40 @@
     
     NSString* gender = [self.proxy valueForKey:@"gender"];
     if ([gender isEqualToString:@"male"]) {
-        request.gender = kGADGenderMale;
+        [request setGender:kGADGenderMale];
     } else if ([gender isEqualToString:@"female"]) {
-        request.gender = kGADGenderFemale;
+        [request setGender:kGADGenderFemale];
     } else {
-        request.gender = kGADGenderUnknown;
+        [request setGender:kGADGenderUnknown];
+    }
+    
+    NSDictionary* extras = [self.proxy valueForKey:@"extras"];
+    if (extras != nil) {
+        GADExtras *extraInfos = [[GADExtras alloc] init];
+        [extraInfos setAdditionalParameters:extras];
+        [request registerAdNetworkExtras:extraInfos];
+    }
+    
+    NSString *contentURL = [self.proxy valueForKey:@"contentURL"];
+    if (contentURL != nil) {
+        [request setContentURL:contentURL];
+    }
+    
+    NSString *requestAgent = [self.proxy valueForKey:@"requestAgent"];
+    if (requestAgent != nil) {
+        [request setRequestAgent:requestAgent];
+    }
+    
+    id tagForChildDirectedTreatment = [self.proxy valueForKey:@"tagForChildDirectedTreatment"];
+    ENSURE_TYPE_OR_NIL(tagForChildDirectedTreatment, NSNumber);
+    
+    if (tagForChildDirectedTreatment != nil) {
+        [request tagForChildDirectedTreatment:[TiUtils boolValue:tagForChildDirectedTreatment]];
     }
     
     [self addSubview:ad];
-    ad.delegate = self;
+    
+    [ad setDelegate:self];
     [ad loadRequest:request];
 }
 
@@ -86,8 +102,19 @@
     [super dealloc];
 }
 
-#pragma mark -
-#pragma mark Ad Delegate
+#pragma mark - Deprecated / removed properties
+
+-(void)setPublisherId:(id)value
+{
+    NSLog(@"[ERROR] Ti.Admob: The property `publisherId` has been removed. Use `adUnitId` instead.");
+}
+
+-(void)setTesting:(id)value
+{
+    NSLog(@"[ERROR] Ti.Admob: The property `testing` has been removed. Use `testDevices` instead");
+}
+
+#pragma mark - Ad Delegate
 
 - (void)adViewDidReceiveAd:(GADBannerView *)view
 {
