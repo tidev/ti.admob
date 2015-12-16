@@ -1,6 +1,6 @@
 /**
  * Appcelerator Titanium Mobile
- * Copyright (c) 2010-2013 by Appcelerator, Inc. All Rights Reserved.
+ * Copyright (c) 2010-2015 by Appcelerator, Inc. All Rights Reserved.
  * Licensed under the terms of the Apache Public License
  * Please see the LICENSE included with this distribution for details.
  */
@@ -13,79 +13,37 @@
 
 #pragma mark - Ad Lifecycle
 
+-(GADRequest*)request
+{
+    if (request == nil) {
+        request = [GADRequest request];
+    }
+    
+    return request;
+}
+
+-(GADBannerView*)bannerView
+{
+    if (bannerView == nil) {
+        bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeFluid];
+        
+        // Set the delegate to receive the internal events
+        [bannerView setDelegate:self];
+
+        // Let the runtime know which UIViewController to restore after taking
+        // the user wherever the ad goes and add it to the view hierarchy.
+        [bannerView setRootViewController:[[TiApp app] controller]];
+        
+        // Add the view to the view hirarchie
+        [self addSubview:[self bannerView]];
+    }
+    
+    return bannerView;
+}
+
 -(void)refreshAd:(CGRect)bounds
 {
-    if (ad != nil) {
-        [ad removeFromSuperview];
-        RELEASE_TO_NIL(ad);
-    }
-    
-    ad = [[GADBannerView alloc] initWithFrame:bounds];
-    
-    // Initiate a generic request to load it with an ad.
-    GADRequest* request = [GADRequest request];
-    
-    // Specify the ad's "unit identifier." This is your AdMob Publisher ID.
-    [ad setAdUnitID:[self.proxy valueForKey:@"adUnitId"]];
-    
-    // Let the runtime know which UIViewController to restore after taking
-    // the user wherever the ad goes and add it to the view hierarchy.
-    [ad setRootViewController:[[TiApp app] controller]];
-    
-    // Go through the configurable properties, populating our request with their values (if they have been provided).
-    [request setKeywords:[self.proxy valueForKey:@"keywords"]];
-     [request setBirthday:[self.proxy valueForKey:@"dateOfBirth"]];
-     [request setTestDevices:[self.proxy valueForKey:@"testDevices"]];
-  
-    NSString* backgroundColor = [self.proxy valueForKey:@"adBackgroundColor"];
-    if (backgroundColor != nil) {
-        [ad setBackgroundColor:[[TiUtils colorValue:backgroundColor] _color]];
-    }
-    
-    NSDictionary* location = [self.proxy valueForKey:@"location"];
-    if (location != nil) {
-        [request setLocationWithLatitude:[[location valueForKey:@"latitude"] floatValue]
-                               longitude:[[location valueForKey:@"longitude"] floatValue]
-                                accuracy:[[location valueForKey:@"accuracy"] floatValue]];
-    }
-    
-    NSString* gender = [self.proxy valueForKey:@"gender"];
-    if ([gender isEqualToString:@"male"]) {
-        [request setGender:kGADGenderMale];
-    } else if ([gender isEqualToString:@"female"]) {
-        [request setGender:kGADGenderFemale];
-    } else {
-        [request setGender:kGADGenderUnknown];
-    }
-    
-    NSDictionary* extras = [self.proxy valueForKey:@"extras"];
-    if (extras != nil) {
-        GADExtras *extraInfos = [[GADExtras alloc] init];
-        [extraInfos setAdditionalParameters:extras];
-        [request registerAdNetworkExtras:extraInfos];
-    }
-    
-    NSString *contentURL = [self.proxy valueForKey:@"contentURL"];
-    if (contentURL != nil) {
-        [request setContentURL:contentURL];
-    }
-    
-    NSString *requestAgent = [self.proxy valueForKey:@"requestAgent"];
-    if (requestAgent != nil) {
-        [request setRequestAgent:requestAgent];
-    }
-    
-    id tagForChildDirectedTreatment = [self.proxy valueForKey:@"tagForChildDirectedTreatment"];
-    ENSURE_TYPE_OR_NIL(tagForChildDirectedTreatment, NSNumber);
-    
-    if (tagForChildDirectedTreatment != nil) {
-        [request tagForChildDirectedTreatment:[TiUtils boolValue:tagForChildDirectedTreatment]];
-    }
-    
-    [self addSubview:ad];
-    
-    [ad setDelegate:self];
-    [ad loadRequest:request];
+    [self loadRequest:nil];
 }
 
 -(void)frameSizeChanged:(CGRect)frame bounds:(CGRect)bounds
@@ -95,23 +53,115 @@
 
 -(void)dealloc
 {
-    if (ad != nil) {
-        [ad removeFromSuperview];
-        RELEASE_TO_NIL(ad);
+    if (bannerView != nil) {
+        [bannerView removeFromSuperview];
+        RELEASE_TO_NIL(bannerView);
     }
+    
     [super dealloc];
 }
 
-#pragma mark - Deprecated / removed properties
+#pragma mark - Public API's
 
--(void)setPublisherId:(id)value
+-(void)loadRequest:(id)unused
+{
+    [[self bannerView] loadRequest:[self request]];
+}
+
+-(void)setAdUnitId_:(id)value
+{
+    ENSURE_TYPE(value, NSString);
+    [[self bannerView] setAdUnitID:[TiUtils stringValue:value]];
+}
+
+-(void)setKeywords_:(id)value
+{
+    if ([value isKindOfClass:[NSString class]]) {
+        [[self request] setKeywords:@[[TiUtils stringValue:value]]];
+        NSLog(@"[WARN] Ti.Admob: The property `keywords` for string values is deprecated. Please use an array of string values instead.");
+    } else if ([value isKindOfClass:[NSArray class]]) {
+        [[self request] setKeywords:value];
+    } else {
+        NSLog(@"[ERROR] Ti.Admob: The property `keywords` must be either a String or an Array.");
+    }
+}
+
+-(void)setDateOfBirth_:(id)value
+{
+    ENSURE_TYPE(value, NSDate);
+    [[self request] setBirthday:value];
+}
+
+-(void)setTestDevices_:(id)value
+{
+    ENSURE_TYPE(value, NSArray);
+    [[self request] setTestDevices:value];
+}
+
+-(void)setAdBackgroundColor_:(id)value
+{
+    [[self bannerView] setBackgroundColor:[[TiUtils colorValue:value] _color]];
+}
+
+-(void)setTagForChildDirectedTreatment_:(id)value
+{
+    ENSURE_TYPE(value, NSNumber);
+    [[self request] tagForChildDirectedTreatment:[TiUtils boolValue:value]];
+}
+
+-(void)setRequestAgent_:(id)value
+{
+    ENSURE_TYPE(value, NSString);
+    [[self request] setRequestAgent:[TiUtils stringValue:value]];
+}
+
+-(void)setContentURL_:(id)value
+{
+    ENSURE_TYPE(value, NSString);
+    [[self request] setContentURL:[TiUtils stringValue:value]];
+}
+
+-(void)setExtras_:(id)args
+{
+    ENSURE_TYPE(args, NSDictionary);
+    
+    GADExtras *extras = [[GADExtras alloc] init];
+    [extras setAdditionalParameters:args];
+    [[self request] registerAdNetworkExtras:extras];
+}
+
+-(void)setGender_:(id)value
+{
+    ENSURE_TYPE(value, NSString);
+    
+    if ([value isEqualToString:@"male"]) {
+        [[self request] setGender:kGADGenderMale];
+    } else if ([value isEqualToString:@"female"]) {
+        [[self request] setGender:kGADGenderFemale];
+    } else {
+        [[self request] setGender:kGADGenderUnknown];
+    }
+}
+
+-(void)setLocation_:(id)args
+{
+    ENSURE_TYPE(args, NSDictionary);
+    
+    [[self request] setLocationWithLatitude:[[args valueForKey:@"latitude"] floatValue]
+                           longitude:[[args valueForKey:@"longitude"] floatValue]
+                            accuracy:[[args valueForKey:@"accuracy"] floatValue]];
+}
+
+#pragma mark - Deprecated / removed API's
+
+-(void)setPublisherId_:(id)value
 {
     NSLog(@"[ERROR] Ti.Admob: The property `publisherId` has been removed. Use `adUnitId` instead.");
 }
 
--(void)setTesting:(id)value
+-(void)setTesting_:(id)value
 {
-    NSLog(@"[ERROR] Ti.Admob: The property `testing` has been removed. Use `testDevices` instead");
+    NSLog(@"[ERROR] Ti.Admob: The property `testing` has been removed. Use `testDevices` instead.");
 }
 
 #pragma mark - Ad Delegate
@@ -123,7 +173,7 @@
 
 - (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error
 {
-    [self.proxy fireEvent:@"didFailToReceiveAd"];
+    [self.proxy fireEvent:@"didFailToReceiveAd" withObject:@{@"error":error.localizedDescription}];
 }
 
 - (void)adViewWillPresentScreen:(GADBannerView *)adView

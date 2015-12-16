@@ -81,7 +81,6 @@
 		0867D691FE84028FC02AAC07 /* admob */ = {
 			isa = PBXGroup;
 			children = (
-				CE6C17AB1982D1C90017C788 /* GoogleMobileAdsSdkiOS */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
@@ -93,6 +92,7 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE6C17AB1982D1C90017C788 /* AdMob iOS SDK */,
 				CE6C17A91982D1870017C788 /* SystemConfiguration.framework */,
 				CE6C17A71982D1780017C788 /* StoreKit.framework */,
 				CE6C17A51982D1660017C788 /* CoreTelephony.framework */,
@@ -129,11 +129,12 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
-		CE6C17AB1982D1C90017C788 /* GoogleMobileAdsSdkiOS */ = {
+		CE6C17AB1982D1C90017C788 /* AdMob iOS SDK */ = {
 			isa = PBXGroup;
 			children = (
 				3A1034731C217B0A00F16663 /* GoogleMobileAds.framework */,
 			);
+			name = "AdMob iOS SDK";
 			path = GoogleMobileAdsSdkiOS;
 			sourceTree = "<group>";
 		};
@@ -177,7 +178,7 @@
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0720;
 			};
 			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "admob" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -322,6 +323,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DSTROOT = /tmp/TiAdmob.dst;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
