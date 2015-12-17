@@ -12,6 +12,9 @@ ad will be loaded from the server automatically:
 * 468x60
 * 728x90
 
+Note: Starting in 2.0.0, you just need to specify a height and and apropiate ad is selected by the Admob SDK.
+See the example for more infos.
+
 ## Properties
 
 ### string adUnitId
@@ -31,7 +34,7 @@ Use the module constant `SIMULATOR_ID` to use the simulator as a test device.
 If you do not know the id for your device, launch your app and request an ad 
 like you normally would, then look in the console for the id. 
 
-eg. <Google> To get test ads on this device, call: request.testDevices = @[ @"980bb6fbbb6687047c631fe21136869b" ];
+eg. <Google> To get test ads on this device, set the property `debugEnabled` to true
 
 Add the id to the array passed to `testDevices`.
 
@@ -60,7 +63,7 @@ A dictionary with the location of the user for location-based ads:
 
 Ad networks may have additional parameters they accept. To pass these parameters to them, create the ad network extras 
 object for that network, fill in the parameters, and register it here. The ad network should have a header defining the 
-interface for the 'extras' object to create. All networks will have access to the basic settings you've set in this 
+interface for the `extras` object to create. All networks will have access to the basic settings you've set in this 
 GADRequest (gender, birthday, testing mode, etc.). If you register an extras object that is the same class as one you have
 
 ### String contentURL
@@ -76,11 +79,11 @@ is mediating requests to the Mobile Ads SDK should set this property as "CoolAds
 ### Boolean tagForChildDirectedTreatment
 
 This property allows you to specify whether you would like your app to be treated as child-directed for purposes of the 
-Children’s Online Privacy Protection Act (COPPA), http:///business.ftc.gov/privacy-and-security/childrens-privacy.
+Children's Online Privacy Protection Act (COPPA), http:///business.ftc.gov/privacy-and-security/childrens-privacy.
 
 If you call this method with YES, you are indicating that your app should be treated as child-directed for purposes of the 
-Children’s Online Privacy Protection Act (COPPA). If you call this method with NO, you are indicating that your app should 
-not be treated as child-directed for purposes of the Children’s Online Privacy Protection Act (COPPA). If you do not call this 
+Children's Online Privacy Protection Act (COPPA). If you call this method with NO, you are indicating that your app should 
+not be treated as child-directed for purposes of the Children's Online Privacy Protection Act (COPPA). If you do not call this 
 method, ad requests will include no indication of how you would like your app treated with respect to COPPA.
 
 By setting this method, you certify that this notification is accurate and you are authorized to act on behalf of the owner of 
@@ -89,30 +92,34 @@ the app. You understand that abuse of this setting may result in termination of 
 It may take some time for this designation to be fully implemented in applicable Google services. This designation will 
 only apply to ad requests for which you have set this method.
 
+### Boolean debugEnabled
+
+Sets a testing value for `adUnitId` to test ads without an admob account.
+
 ## Events
 
 ### didReceiveAd
 
- Sent when an ad request loaded an ad.  This is a good opportunity to add this
- view to the hierarchy if it has not yet been added.  If the ad was received
+ Sent when an ad request loaded an ad. This is a good opportunity to add this
+ view to the hierarchy if it has not yet been added. If the ad was received
  as a part of the server-side auto refreshing, you can examine the
  hasAutoRefreshed property of the view.
 
 ### didFailToReceiveAd
 
- Sent when an ad request failed.  Normally this is because no network
+ Sent when an ad request failed. Normally this is because no network
  connection was available or no ads were available (i.e. no fill).
 
 ### willPresentScreen
 
 Sent just before presenting the user a full screen view, such as a browser,
-in response to clicking on an ad.  Use this opportunity to stop animations,
+in response to clicking on an ad. Use this opportunity to stop animations,
 time sensitive interactions, etc.
 
 Normally the user looks at the ad, dismisses it, and control returns to your
-application by firing off "didDismissScreen":.  However if the user hits the
+application by firing off `didDismissScreen`: However if the user hits the
 Home button or clicks on an App Store link your application will end. In that case,
-"willLeaveApplication" would fire.
+`willLeaveApplication` would fire.
 
 ### willDismissScreen
 
@@ -120,8 +127,8 @@ Sent just before dismissing a full screen view.
 
 ### didDismissScreen
 
-Sent just after dismissing a full screen view.  Use this opportunity to
-restart anything you may have stopped as part of "willPresentScreen".
+Sent just after dismissing a full screen view. Use this opportunity to
+restart anything you may have stopped as part of `willPresentScreen`.
 
 ### willLeaveApplication
 
