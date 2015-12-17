@@ -42,11 +42,11 @@ for determining ad delivery.
 
 ### string gender
 
-The user's gender for the purpose of determining ad delivery. This should be "male" or "female", in lower case.
+The user's gender for the purpose of determining ad delivery. This should be one of the constants GENDER_MALE or GENDER_FEMALE.
 
-### string keywords
+### Array[String] keywords
 
-Keywords used to determine ad delivery.
+An array of keywords used to determine ad delivery.
 
 ### object location
 
@@ -55,6 +55,39 @@ A dictionary with the location of the user for location-based ads:
 * float latitude
 * float longitude
 * float accuracy
+
+### object extras
+
+Ad networks may have additional parameters they accept. To pass these parameters to them, create the ad network extras 
+object for that network, fill in the parameters, and register it here. The ad network should have a header defining the 
+interface for the 'extras' object to create. All networks will have access to the basic settings you've set in this 
+GADRequest (gender, birthday, testing mode, etc.). If you register an extras object that is the same class as one you have
+
+### String contentURL
+
+URL string for a webpage whose content matches the app content. This webpage content is used for targeting purposes.
+
+### String requestAgent
+
+String that identifies the ad request's origin. Third party libraries that reference the Mobile. Ads SDK should set this property 
+to denote the platform from which the ad request originated. For example, a third party ad network called "CoolAds network" that 
+is mediating requests to the Mobile Ads SDK should set this property as "CoolAds".
+
+### Boolean tagForChildDirectedTreatment
+
+This property allows you to specify whether you would like your app to be treated as child-directed for purposes of the 
+Children’s Online Privacy Protection Act (COPPA), http:///business.ftc.gov/privacy-and-security/childrens-privacy.
+
+If you call this method with YES, you are indicating that your app should be treated as child-directed for purposes of the 
+Children’s Online Privacy Protection Act (COPPA). If you call this method with NO, you are indicating that your app should 
+not be treated as child-directed for purposes of the Children’s Online Privacy Protection Act (COPPA). If you do not call this 
+method, ad requests will include no indication of how you would like your app treated with respect to COPPA.
+
+By setting this method, you certify that this notification is accurate and you are authorized to act on behalf of the owner of 
+the app. You understand that abuse of this setting may result in termination of your Google account.
+
+It may take some time for this designation to be fully implemented in applicable Google services. This designation will 
+only apply to ad requests for which you have set this method.
 
 ## Events
 
@@ -95,3 +128,9 @@ restart anything you may have stopped as part of "willPresentScreen".
 Sent just before the application will background or terminate because the
 user clicked on an ad that will launch another application (such as the App
 Store).
+
+### didReceiveInAppPurchase
+
+Called when the user clicks on the buy button of an in-app purchase ad. After the receiver handles the purchase, it must 
+call the GADInAppPurchase object's reportPurchaseStatus: method.
+

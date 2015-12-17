@@ -1,6 +1,6 @@
 # Change Log
 <pre>
-v1.9.0 	[MOD-2182] Updating Admob SDK to 7.6.0, support iOS 9
+v2.0.0 	[MOD-2182] Updating Admob SDK to 7.6.0, support iOS 9, support for new API's'
 
 v1.9.0 	[TIMOB-18092] ti.admob added 64bit support for iOS #15 
 

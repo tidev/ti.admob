@@ -1,6 +1,7 @@
 var Admob = require('ti.admob');
 var win = Ti.UI.createWindow({
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    orientationModes: [Ti.UI.PORTRAIT, Ti.UI.LANDSCAPE_LEFT, Ti.UI.LANDSCAPE_RIGHT]
 });
 
 /*
@@ -9,22 +10,27 @@ var win = Ti.UI.createWindow({
 var ad;
 win.add(ad = Admob.createView({
     top: 0,
-    left: 0,
-    width: 320,
     height: 50,
-    adUnitId: '<<YOUR AD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
+    debugEnabled: true, // If enabled, a dummy value for `adUnitId` will be used to test
+    adUnitId: '<<YOUR ADD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
     adBackgroundColor: 'black',
-    // You can get your device's id for testDevices by looking in the console log after the app launched
-    testDevices: [Admob.SIMULATOR_ID],
+    testDevices: [Admob.SIMULATOR_ID], // You can get your device's id by looking in the console log
     dateOfBirth: new Date(1985, 10, 1, 12, 1, 1),
-    gender: 'male',
-    keywords: ''
+    gender: Admob.GENDER_MALE, // GENDER_MALE or GENDER_FEMALE, default: undefined
+    contentURL: 'https://admob.com', // URL string for a webpage whose content matches the app content.
+    requestAgent: 'Titanium Mobile App', // String that identifies the ad request's origin.
+    extras: {  // Object of additional infos
+        "version": 1.0,
+        "name": "My App"
+    },
+    tagForChildDirectedTreatment: false, // http:///business.ftc.gov/privacy-and-security/childrens-privacy for more infos
+    keywords: ['keyword1', 'keyword2']
 }));
 ad.addEventListener('didReceiveAd', function() {
     alert('Did receive ad!');
 });
-ad.addEventListener('didFailToReceiveAd', function() {
-    alert('Failed to receive ad!');
+ad.addEventListener('didFailToReceiveAd', function(e) {
+    alert('Failed to receive ad: ' + e.error);
 });
 ad.addEventListener('willPresentScreen', function() {
     alert('Presenting screen!');
@@ -38,6 +44,10 @@ ad.addEventListener('didDismissScreen', function() {
 ad.addEventListener('willLeaveApplication', function() {
     alert('Leaving the app!');
 });
+ad.addEventListener('didReceiveInAppPurchase', function(e) {
+    alert('Did receive an inApp purchase!');
+    Ti.API.warn(e);
+});
 
 /*
  And we'll try to get the user's location for this second ad!
@@ -48,20 +58,18 @@ Ti.Geolocation.purpose = 'To show you local ads, of course!';
 Ti.Geolocation.getCurrentPosition(function reportPosition(e) {
     if (!e.success || e.error) {
         // aw, shucks...
-    }
-    else {
+    } else {
         win.add(Admob.createView({
             top: 100,
-            left: 0,
-            width: 320,
             height: 50,
+            debugEnabled: true,
             adUnitId: '<<YOUR AD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
             adBackgroundColor: 'black',
             // You can get your device's id for testDevices by looking in the console log after the app launched
             testDevices: [Admob.SIMULATOR_ID],
             dateOfBirth: new Date(1985, 10, 1, 12, 1, 1),
-            gender: 'female',
-            keywords: '',
+            gender: Admob.GENDER_FEMALE,
+            keywords: ['test1', 'test2'],
             location: e.coords
         }));
     }

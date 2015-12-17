@@ -16,7 +16,7 @@
 -(GADRequest*)request
 {
     if (request == nil) {
-        request = [GADRequest request];
+        request = [[GADRequest request] retain];
     }
     
     return request;
@@ -45,6 +45,7 @@
 
 -(void)frameSizeChanged:(CGRect)frame bounds:(CGRect)bounds
 {
+    [[self bannerView] setAdSize:GADAdSizeFromCGSize(bounds.size)];
     [self loadRequest:nil];
 }
 
@@ -79,12 +80,6 @@
     }
     
     [[self bannerView] setAdUnitID:[TiUtils stringValue:value]];
-}
-
-- (void)setAutoloadEnabled:(id)value
-{
-    ENSURE_TYPE(value, NSNumber);
-    [[self bannerView] setAutoloadEnabled:[TiUtils boolValue:value]];
 }
 
 - (void)setKeywords_:(id)value
