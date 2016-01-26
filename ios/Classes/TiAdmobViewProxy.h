@@ -8,10 +8,10 @@
 #import "TiViewProxy.h"
 #import "TiAdmobView.h"
 
-@interface TiAdmobViewProxy : TiViewProxy {
+@interface TiAdmobViewProxy : TiViewProxy {}
 
-@private
+- (TiAdmobView*)admobView;
 
-}
+- (void)receive:(id)unused;
 
 @end

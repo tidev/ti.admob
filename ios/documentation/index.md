@@ -57,22 +57,18 @@ A constant to be passed to the `gender` property to specify a gender if used.
 
 Creates and returns a [Ti.Admob.View][] object which displays ads.
 
-### Ti.Admob.loadRequest()
-
-Loads the ad manually. Note: Ads are loaded automatically be default. Use this method to perform a
-custom refresh of your ad.
-
 #### Arguments
 
 parameters[object]: a dictionary object of properties defined in [Ti.Admob.View][].
 
 #### Example:
 
-	Admob.createView({
+	var ad = Admob.createView({
 		top: 0, 
 		width: 320, // Will calculate the width internally to fit its container if not specified
         height: 50,
         debugEnabled: true, // If enabled, a dummy value for `adUnitId` will be used to test
+        adType: Admob.AD_TYPE_BANNER, // One of `AD_TYPE_BANNER` (default) or `AD_TYPE_INTERSTITIAL`
 		adUnitId: '<<YOUR ADD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
 		adBackgroundColor: 'black', 
 		testDevices: [Admob.SIMULATOR_ID], // You can get your device's id by looking in the console log
@@ -84,6 +80,12 @@ parameters[object]: a dictionary object of properties defined in [Ti.Admob.View]
         tagForChildDirectedTreatment: false, // http:///business.ftc.gov/privacy-and-security/childrens-privacy for more infos
 		keywords: ['keyword1', 'keyword2']
 	});
+
+### Interstitials
+
+To receive an interstitional ad, you need to call `ad.receive()` instead of adding it to the viewe hierarchy. 
+It fires the `didReceiveAd` event if the  ad was successfully received, the `didFailToReceiveAd` event otherwise. Please check 
+the example for a detailed example of different banner types.
 
 ## Usage
 

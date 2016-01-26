@@ -6,6 +6,7 @@
  */
 
 #import "TiAdmobView.h"
+#import "TiAdmobTypes.h"
 #import "TiApp.h"
 #import "TiUtils.h"
 
@@ -13,7 +14,7 @@
 
 #pragma mark - Ad Lifecycle
 
--(GADRequest*)request
+- (GADRequest*)request
 {
     if (request == nil) {
         request = [[GADRequest request] retain];
@@ -22,7 +23,26 @@
     return request;
 }
 
--(GADBannerView*)bannerView
+- (GADInterstitial*)interstitial
+{
+    if (interstitial == nil) {
+        id debugEnabled = [[self proxy] valueForKey:@"debugEnabled"];
+        id adUnitId = [[self proxy] valueForKey:@"adUnitId"];
+        
+        if (debugEnabled != nil && [TiUtils boolValue:debugEnabled def:NO] == YES) {
+            adUnitId = [self exampleAdId];
+        }
+
+        [self setBackgroundColor:[UIColor redColor]];
+        
+        interstitial = [[GADInterstitial alloc] initWithAdUnitID:[TiUtils stringValue:adUnitId]];
+        [interstitial setDelegate:self];
+    }
+    
+    return interstitial;
+}
+
+- (GADBannerView*)bannerView
 {
     if (bannerView == nil) {
         // Create the view with dynamic width and height specification.
@@ -43,40 +63,59 @@
     return bannerView;
 }
 
--(void)frameSizeChanged:(CGRect)frame bounds:(CGRect)bounds
+- (void)frameSizeChanged:(CGRect)frame bounds:(CGRect)bounds
 {
-    [[self bannerView] setAdSize:GADAdSizeFromCGSize(bounds.size)];
-    [self loadRequest:nil];
+    id adType = [[self proxy] valueForKey:@"adType"];
+    ENSURE_TYPE_OR_NIL(adType, NSNumber);
+    
+    if ([TiUtils intValue:adType def:TiAdmobAdTypeBanner] == TiAdmobAdTypeBanner) {
+        [[self bannerView] setAdSize:GADAdSizeFromCGSize(bounds.size)];
+    }
+
+    [self initialize];
 }
 
--(void)dealloc
+- (void)dealloc
 {
     if (bannerView != nil) {
         [bannerView removeFromSuperview];
     }
     
-    RELEASE_TO_NIL(bannerView);
     RELEASE_TO_NIL(request);
+    RELEASE_TO_NIL(bannerView);
+    RELEASE_TO_NIL(interstitial);
     
     [super dealloc];
 }
 
 #pragma mark - Public API's
 
-- (void)loadRequest:(id)unused
+- (void)initialize
 {
-    [[self bannerView] loadRequest:[self request]];
+    ENSURE_UI_THREAD_0_ARGS
+    id adType = [[self proxy] valueForKey:@"adType"];
+    ENSURE_TYPE_OR_NIL(adType, NSNumber);
+    
+    if ([TiUtils intValue:adType def:TiAdmobAdTypeBanner] == TiAdmobAdTypeBanner) {
+        [[self bannerView] loadRequest:[self request]];
+    } else {
+        [[self interstitial] loadRequest:[self request]];
+    }
 }
 
 - (void)setAdUnitId_:(id)value
 {
     ENSURE_TYPE(value, NSString);
     
+    id adType = [[self proxy] valueForKey:@"adType"];
     id debugEnabled = [[self proxy] valueForKey:@"debugEnabled"];
     
-    if (debugEnabled != nil && [TiUtils boolValue:debugEnabled] == YES) {
-        [[self bannerView] setAdUnitID:@"ca-app-pub-0123456789012345/0123456789"]; // Provided test id by Google
+    if (adType != nil && [TiUtils boolValue:adType def:TiAdmobAdTypeBanner] == TiAdmobAdTypeInterstitial) {
         return;
+    }
+    
+    if (debugEnabled != nil && [TiUtils boolValue:debugEnabled] == YES) {
+        value = [self exampleAdId];
     }
     
     [[self bannerView] setAdUnitID:[TiUtils stringValue:value]];
@@ -108,6 +147,11 @@
 
 - (void)setAdBackgroundColor_:(id)value
 {
+    id adType = [[self proxy] valueForKey:@"adType"];
+    if (adType != nil && [TiUtils boolValue:adType def:TiAdmobAdTypeBanner] == TiAdmobAdTypeInterstitial) {
+        return;
+    }
+
     [[self bannerView] setBackgroundColor:[[TiUtils colorValue:value] _color]];
 }
 
@@ -172,6 +216,13 @@
                             accuracy:[[args valueForKey:@"accuracy"] floatValue]];
 }
 
+- (void)showInterstitial
+{
+    if ([[self interstitial] isReady]) {
+        [[self interstitial] presentFromRootViewController:[[[TiApp app] controller] topPresentedController]];
+    }
+}
+
 #pragma mark - Deprecated / removed API's
 
 - (void)setPublisherId_:(id)value
@@ -202,6 +253,11 @@
     }
     
     return kGADAdSizeFluid;
+}
+
+- (NSString*)exampleAdId
+{
+    return @"ca-app-pub-0123456789012345/0123456789";
 }
 
 #pragma mark - Ad Delegate
@@ -244,5 +300,38 @@
     }];
 }
 
+#pragma mark - Interstitial Delegate
+
+- (void)interstitialDidReceiveAd:(GADInterstitial *)ad
+{
+    [self.proxy fireEvent:@"didReceiveAd" withObject:@{@"isReady": NUMBOOL([[self interstitial] isReady])}];
+    [self showInterstitial];
+}
+
+- (void)interstitial:(GADInterstitial *)ad didFailToReceiveAdWithError:(GADRequestError *)error
+{
+    [self.proxy fireEvent:@"didFailToReceiveAd" withObject:@{@"error":error.localizedDescription}];
+}
+
+- (void)interstitialWillPresentScreen:(GADInterstitial *)ad
+{
+    [self.proxy fireEvent:@"willPresentScreen"];
+}
+
+- (void)interstitialWillDismissScreen:(GADInterstitial *)ad
+{
+    [self.proxy fireEvent:@"willDismissScreen"];
+}
+
+- (void)interstitialDidDismissScreen:(GADInterstitial *)ad
+{
+    [self performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+    [self.proxy fireEvent:@"didDismissScreen"];
+}
+
+- (void)interstitialWillLeaveApplication:(GADInterstitial *)ad
+{
+    [self.proxy fireEvent:@"willLeaveApplication"];
+}
 
 @end

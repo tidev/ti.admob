@@ -8,39 +8,46 @@
 #import "TiUIView.h"
 #import <GoogleMobileAds/GoogleMobileAds.h>
 
-@interface TiAdmobView : TiUIView<GADBannerViewDelegate,GADInAppPurchaseDelegate> {
-
-@private
+@interface TiAdmobView : TiUIView<GADBannerViewDelegate, GADInterstitialDelegate, GADInAppPurchaseDelegate> {
     GADBannerView *bannerView;
+    GADInterstitial *interstitial;
     GADRequest *request;
 }
 
--(void)loadRequest:(id)unused;
+- (void)initialize;
 
--(void)setAdUnitId_:(id)value;
+- (void)showInterstitial;
 
--(void)setKeywords_:(id)value;
+- (void)setAdUnitId_:(id)value;
 
--(void)setDateOfBirth_:(id)value;
+- (void)setKeywords_:(id)value;
 
--(void)setTestDevices_:(id)value;
+- (void)setDateOfBirth_:(id)value;
 
--(void)setAdBackgroundColor_:(id)value;
+- (void)setTestDevices_:(id)value;
 
--(void)setTagForChildDirectedTreatment_:(id)value;
+- (void)setAdBackgroundColor_:(id)value;
 
--(void)setRequestAgent_:(id)value;
+- (void)setTagForChildDirectedTreatment_:(id)value;
 
--(void)setContentURL_:(id)value;
+- (void)setRequestAgent_:(id)value;
 
--(void)setExtras_:(id)args;
+- (void)setContentURL_:(id)value;
 
--(void)setGender_:(id)value;
+- (void)setExtras_:(id)args;
 
--(void)setLocation_:(id)args;
+- (void)setGender_:(id)value;
 
--(void)setPublisherId_:(id)value;
+- (void)setLocation_:(id)args;
 
--(void)setTesting_:(id)value;
+- (void)setPublisherId_:(id)value;
+
+- (void)setTesting_:(id)value;
+
+- (GADBannerView*)bannerView;
+
+- (GADInterstitial*)interstitial;
+
+- (GADRequest*)request;
 
 @end

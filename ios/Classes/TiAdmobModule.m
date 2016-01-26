@@ -6,6 +6,7 @@
  */
 
 #import "TiAdmobModule.h"
+#import "TiAdmobTypes.h"
 #import "TiBase.h"
 #import "TiHost.h"
 #import "TiUtils.h"
@@ -68,5 +69,7 @@
 MAKE_SYSTEM_STR(SIMULATOR_ID, kGADSimulatorID);
 MAKE_SYSTEM_PROP(GENDER_MALE, kGADGenderMale);
 MAKE_SYSTEM_PROP(GENDER_FEMALE, kGADGenderFemale);
+MAKE_SYSTEM_PROP(AD_TYPE_BANNER, TiAdmobAdTypeBanner);
+MAKE_SYSTEM_PROP(AD_TYPE_INTERSTITIAL, TiAdmobAdTypeInterstitial)
 
 @end

@@ -5,19 +5,9 @@
  * Please see the LICENSE included with this distribution for details.
  */
 
-#import "TiAdmobViewProxy.h"
-#import "TiUtils.h"
+#import <Foundation/Foundation.h>
 
-@implementation TiAdmobViewProxy
-
-- (TiAdmobView*)admobView
-{
-    return (TiAdmobView*)[self view];
-}
-
-- (void)receive:(id)unused
-{    
-    [[self admobView] initialize];
-}
-
-@end
+NS_ENUM(NSUInteger, TiAdmobAdType) {
+    TiAdmobAdTypeBanner = 0,
+    TiAdmobAdTypeInterstitial
+};
