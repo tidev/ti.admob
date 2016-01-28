@@ -12,8 +12,8 @@ ad will be loaded from the server automatically:
 * 468x60
 * 728x90
 
-Note: Starting in 2.0.0, you just need to specify a height and and apropiate ad is selected by the Admob SDK.
-See the example for more infos.
+Note: Starting in 2.0.0, you just need to specify a height and an appropriate ad is selected by the Admob SDK.
+See the example.js for more infos.
 
 ## Properties
 
@@ -45,7 +45,7 @@ for determining ad delivery.
 
 ### string gender
 
-The user's gender for the purpose of determining ad delivery. This should be one of the constants GENDER_MALE or GENDER_FEMALE.
+The user's gender for the purpose of determining ad delivery. This should be one of the constants `GENDER_MALE` or `GENDER_FEMALE`.
 
 ### Array[String] keywords
 
