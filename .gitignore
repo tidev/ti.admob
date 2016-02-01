@@ -16,3 +16,4 @@ xcuserdata
 profile
 *.moved-aside
 DerivedData
+ios/admob.xcodeproj/project.xcworkspace/xcuserdata/*

@@ -13,7 +13,7 @@
 		249BE67411B47B3800AF41CF /* TiAdmobView.m in Sources */ = {isa = PBXBuildFile; fileRef = 249BE67211B47B3800AF41CF /* TiAdmobView.m */; };
 		24DD6CF91134B3F500162E58 /* TiAdmobModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DD6CF71134B3F500162E58 /* TiAdmobModule.h */; };
 		24DD6CFA1134B3F500162E58 /* TiAdmobModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DD6CF81134B3F500162E58 /* TiAdmobModule.m */; };
-		3A1034741C217B0A00F16663 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A1034731C217B0A00F16663 /* GoogleMobileAds.framework */; };
+		3AEA89BF1C5F727300FBA64B /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEA89BD1C5F71A100FBA64B /* GoogleMobileAds.framework */; };
 		3AF5B7731C233383002E3DC7 /* TiAdmobTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AF5B7711C233383002E3DC7 /* TiAdmobTypes.h */; };
 		AA747D9F0F9514B9006C5449 /* TiAdmob_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* TiAdmob_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
@@ -35,7 +35,7 @@
 		24DD6CF71134B3F500162E58 /* TiAdmobModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiAdmobModule.h; path = Classes/TiAdmobModule.h; sourceTree = "<group>"; };
 		24DD6CF81134B3F500162E58 /* TiAdmobModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiAdmobModule.m; path = Classes/TiAdmobModule.m; sourceTree = "<group>"; };
 		24DD6D1B1134B66800162E58 /* titanium.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = titanium.xcconfig; sourceTree = "<group>"; };
-		3A1034731C217B0A00F16663 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = platform/ios/GoogleMobileAds.framework; sourceTree = SOURCE_ROOT; };
+		3AEA89BD1C5F71A100FBA64B /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = platform/GoogleMobileAds.framework; sourceTree = SOURCE_ROOT; };
 		3AF5B7711C233383002E3DC7 /* TiAdmobTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiAdmobTypes.h; path = Classes/TiAdmobTypes.h; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* TiAdmob_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiAdmob_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -56,7 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A1034741C217B0A00F16663 /* GoogleMobileAds.framework in Frameworks */,
+				3AEA89BF1C5F727300FBA64B /* GoogleMobileAds.framework in Frameworks */,
 				CE6C17A01982D1170017C788 /* AdSupport.framework in Frameworks */,
 				DAD5D7CF12527E11009CF986 /* AudioToolbox.framework in Frameworks */,
 				CE6C17A21982D12D0017C788 /* AVFoundation.framework in Frameworks */,
@@ -135,7 +135,7 @@
 		CE6C17AB1982D1C90017C788 /* AdMob iOS SDK */ = {
 			isa = PBXGroup;
 			children = (
-				3A1034731C217B0A00F16663 /* GoogleMobileAds.framework */,
+				3AEA89BD1C5F71A100FBA64B /* GoogleMobileAds.framework */,
 			);
 			name = "AdMob iOS SDK";
 			path = GoogleMobileAdsSdkiOS;
@@ -226,6 +226,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS",
 					"$(PROJECT_DIR)/platform/ios",
+					"$(PROJECT_DIR)/platform",
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -279,6 +280,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS",
 					"$(PROJECT_DIR)/platform/ios",
+					"$(PROJECT_DIR)/platform",
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_MODEL_TUNING = G5;
