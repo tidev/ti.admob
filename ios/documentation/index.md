@@ -87,6 +87,10 @@ To receive an interstitional ad, you need to call `ad.receive()` instead of addi
 It fires the `didReceiveAd` event if the  ad was successfully received, the `didFailToReceiveAd` event otherwise. Please check 
 the example for a detailed example of different banner types.
 
+### iAd
+
+Starting in 2.1.0 you can use the included iAd adapter to turn on the iAd mediation in your Admob account.
+
 ## Usage
 
 See example.
