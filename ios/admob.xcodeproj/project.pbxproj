@@ -13,6 +13,8 @@
 		249BE67411B47B3800AF41CF /* TiAdmobView.m in Sources */ = {isa = PBXBuildFile; fileRef = 249BE67211B47B3800AF41CF /* TiAdmobView.m */; };
 		24DD6CF91134B3F500162E58 /* TiAdmobModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DD6CF71134B3F500162E58 /* TiAdmobModule.h */; };
 		24DD6CFA1134B3F500162E58 /* TiAdmobModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DD6CF81134B3F500162E58 /* TiAdmobModule.m */; };
+		3A4F268F1C68DDF7003E06CF /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4F268E1C68DDF7003E06CF /* iAd.framework */; };
+		3AC840121C60A7F3002A52E3 /* libAdapterIAd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AC840101C60A7E1002A52E3 /* libAdapterIAd.a */; };
 		3AEA89BF1C5F727300FBA64B /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEA89BD1C5F71A100FBA64B /* GoogleMobileAds.framework */; };
 		3AF5B7731C233383002E3DC7 /* TiAdmobTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AF5B7711C233383002E3DC7 /* TiAdmobTypes.h */; };
 		AA747D9F0F9514B9006C5449 /* TiAdmob_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* TiAdmob_Prefix.pch */; };
@@ -35,6 +37,8 @@
 		24DD6CF71134B3F500162E58 /* TiAdmobModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiAdmobModule.h; path = Classes/TiAdmobModule.h; sourceTree = "<group>"; };
 		24DD6CF81134B3F500162E58 /* TiAdmobModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiAdmobModule.m; path = Classes/TiAdmobModule.m; sourceTree = "<group>"; };
 		24DD6D1B1134B66800162E58 /* titanium.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = titanium.xcconfig; sourceTree = "<group>"; };
+		3A4F268E1C68DDF7003E06CF /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		3AC840101C60A7E1002A52E3 /* libAdapterIAd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAdapterIAd.a; path = platform/libAdapterIAd.a; sourceTree = "<group>"; };
 		3AEA89BD1C5F71A100FBA64B /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = platform/GoogleMobileAds.framework; sourceTree = SOURCE_ROOT; };
 		3AF5B7711C233383002E3DC7 /* TiAdmobTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiAdmobTypes.h; path = Classes/TiAdmobTypes.h; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* TiAdmob_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiAdmob_Prefix.pch; sourceTree = SOURCE_ROOT; };
@@ -56,6 +60,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A4F268F1C68DDF7003E06CF /* iAd.framework in Frameworks */,
+				3AC840121C60A7F3002A52E3 /* libAdapterIAd.a in Frameworks */,
 				3AEA89BF1C5F727300FBA64B /* GoogleMobileAds.framework in Frameworks */,
 				CE6C17A01982D1170017C788 /* AdSupport.framework in Frameworks */,
 				DAD5D7CF12527E11009CF986 /* AudioToolbox.framework in Frameworks */,
@@ -94,6 +100,8 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A4F268E1C68DDF7003E06CF /* iAd.framework */,
+				3AC8400F1C60A67D002A52E3 /* iAd Adapter */,
 				CE6C17AB1982D1C90017C788 /* AdMob iOS SDK */,
 				CE6C17A91982D1870017C788 /* SystemConfiguration.framework */,
 				CE6C17A71982D1780017C788 /* StoreKit.framework */,
@@ -130,6 +138,14 @@
 				24DD6D1B1134B66800162E58 /* titanium.xcconfig */,
 			);
 			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		3AC8400F1C60A67D002A52E3 /* iAd Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				3AC840101C60A7E1002A52E3 /* libAdapterIAd.a */,
+			);
+			name = "iAd Adapter";
 			sourceTree = "<group>";
 		};
 		CE6C17AB1982D1C90017C788 /* AdMob iOS SDK */ = {
@@ -255,6 +271,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS",
+					"$(PROJECT_DIR)/platform",
 				);
 				OTHER_CFLAGS = (
 					"-DDEBUG",
@@ -310,6 +327,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS",
+					"$(PROJECT_DIR)/platform",
 				);
 				OTHER_CFLAGS = "-DTI_POST_1_2";
 				OTHER_LDFLAGS = "-ObjC";
