@@ -8,8 +8,9 @@ package ti.admob;
 
 import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.annotations.Kroll;
-import org.appcelerator.titanium.TiContext.OnLifecycleEvent;
+import org.appcelerator.titanium.TiLifecycle.OnLifecycleEvent;
 import org.appcelerator.titanium.proxy.TiViewProxy;
+import org.appcelerator.titanium.TiBaseActivity;
 import org.appcelerator.kroll.common.Log;
 import org.appcelerator.titanium.view.TiUIView;
 
@@ -34,6 +35,7 @@ public class ViewProxy extends TiViewProxy implements OnLifecycleEvent {
 	@Override
 	public TiUIView createView(Activity activity) {
 		adMob = new View(this);
+		((TiBaseActivity)activity).addOnLifecycleEventListener(this);
 		return adMob;
 	}
 

@@ -17,3 +17,8 @@ profile
 *.moved-aside
 DerivedData
 ios/admob.xcodeproj/project.xcworkspace/xcuserdata/*
+.DS_Store
+.project
+android/libs
+android/build.properties
+android/dist
