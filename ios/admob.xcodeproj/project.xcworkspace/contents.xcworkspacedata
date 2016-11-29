@@ -2,6 +2,10 @@
 <Workspace
    version = "1.0">
    <FileRef
+<<<<<<< HEAD
       location = "self:admob.xcodeproj">
+=======
+      location = "self:">
+>>>>>>> 0cb9f3e55d7d042b924b4c160420a7524da3b082
    </FileRef>
 </Workspace>
