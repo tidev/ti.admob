@@ -1,15 +1,16 @@
 /**
  * Appcelerator Titanium Mobile
- * Copyright (c) 2010-2013 by Appcelerator, Inc. All Rights Reserved.
+ * Copyright (c) 2010-2015 by Appcelerator, Inc. All Rights Reserved.
  * Licensed under the terms of the Apache Public License
  * Please see the LICENSE included with this distribution for details.
  */
 
 #import "TiAdmobModule.h"
+#import "TiAdmobTypes.h"
 #import "TiBase.h"
 #import "TiHost.h"
 #import "TiUtils.h"
-#import "GADRequest.h"
+#import <GoogleMobileAds/GoogleMobileAds.h>
 
 @implementation TiAdmobModule
 
@@ -65,6 +66,10 @@
 
 #pragma mark Constants
 
-MAKE_SYSTEM_STR(SIMULATOR_ID,GAD_SIMULATOR_ID);
+MAKE_SYSTEM_STR(SIMULATOR_ID, kGADSimulatorID);
+MAKE_SYSTEM_PROP(GENDER_MALE, kGADGenderMale);
+MAKE_SYSTEM_PROP(GENDER_FEMALE, kGADGenderFemale);
+MAKE_SYSTEM_PROP(AD_TYPE_BANNER, TiAdmobAdTypeBanner);
+MAKE_SYSTEM_PROP(AD_TYPE_INTERSTITIAL, TiAdmobAdTypeInterstitial)
 
 @end
