@@ -1,5 +1,7 @@
 # Change Log
 <pre>
+v3.0.1  Update Google Play Services to v9.6.1 (revison 33) [TIMOB-23860]
+
 v2.1.7  Added option for enabling smart-banner
 
 v2.1.6  Strip Google Play Services jar to reduce method count [TIMOB-18082]
