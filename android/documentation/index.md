@@ -50,7 +50,7 @@ parameters[object]: a dictionary object of properties.
 
 #### Example:
 
-	var adMobView = Admob.createAdMobView({
+	var adMobView = Admob.createView({
 	    publisherId: "<<YOUR PUBLISHER ID HERE>>",
 	    testing:false, // default is false
 	    top: 0, //optional
