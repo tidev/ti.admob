@@ -2,6 +2,6 @@
 // PLACE ANY BUILD DEFINITIONS IN THIS FILE AND THEY WILL BE 
 // PICKED UP DURING THE APP BUILD FOR YOUR MODULE
 //
-FRAMEWORK_SEARCH_PATHS=$(SRCROOT)/../../modules/iphone/ti.admob/2.1.0/platform "~/Library/Application\ Support/Titanium/modules/iphone/ti.admob/2.1.0/platform"
+FRAMEWORK_SEARCH_PATHS=$(SRCROOT)/../../modules/iphone/ti.admob/2.1.1/platform "~/Library/Application\ Support/Titanium/modules/iphone/ti.admob/2.1.1/platform" "/Library/Application\ Support/Titanium/modules/iphone/ti.admob/2.1.1/platform"
 
 OTHER_LDFLAGS=$(inherited) -framework AdSupport -framework iAd -framework AudioToolbox -framework AVFoundation -framework CoreGraphics -framework CoreTelephony -framework MessageUI -framework StoreKit -framework SystemConfiguration -framework GoogleMobileAds
