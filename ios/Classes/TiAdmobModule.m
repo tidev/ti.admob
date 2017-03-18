@@ -34,7 +34,7 @@
 	// you *must* call the superclass
 	[super startup];
 	
-	NSLog(@"[INFO] AdMob module loaded",self);
+	NSLog(@"[DEBUG] Ti.AdMob loaded",self);
 }
 
 -(void)shutdown:(id)sender

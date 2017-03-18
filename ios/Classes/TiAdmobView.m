@@ -185,6 +185,8 @@
     GADExtras *extras = [[GADExtras alloc] init];
     [extras setAdditionalParameters:args];
     [[self request] registerAdNetworkExtras:extras];
+
+    RELEASE_TO_NIL(extras);
 }
 
 - (void)setGender_:(id)value
