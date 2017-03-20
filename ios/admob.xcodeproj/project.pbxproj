@@ -27,6 +27,15 @@
 		CE6C17AA1982D1870017C788 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6C17A91982D1870017C788 /* SystemConfiguration.framework */; };
 		DAD5D7CF12527E11009CF986 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD5D7CE12527E11009CF986 /* AudioToolbox.framework */; };
 		DAD5D7D512527E2F009CF986 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD5D7D412527E2F009CF986 /* MessageUI.framework */; };
+		DB07E8B81E8010000008C1E1 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8B61E8010000008C1E1 /* CoreMedia.framework */; };
+		DB07E8B91E8010000008C1E1 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8B71E8010000008C1E1 /* CoreMotion.framework */; };
+		DB07E8BB1E80100D0008C1E1 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8BA1E80100D0008C1E1 /* CoreVideo.framework */; };
+		DB07E8BD1E80101A0008C1E1 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8BC1E80101A0008C1E1 /* GLKit.framework */; };
+		DB07E8BF1E80101F0008C1E1 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8BE1E80101F0008C1E1 /* JavaScriptCore.framework */; };
+		DB07E8C01E80103C0008C1E1 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD5D7D112527E1A009CF986 /* MediaPlayer.framework */; };
+		DB07E8C21E80104D0008C1E1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8C11E80104D0008C1E1 /* MobileCoreServices.framework */; };
+		DB07E8C41E8010560008C1E1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8C31E8010560008C1E1 /* OpenGLES.framework */; };
+		DB07E8C61E8010680008C1E1 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8C51E8010680008C1E1 /* SafariServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +62,14 @@
 		DAD5D7CE12527E11009CF986 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		DAD5D7D112527E1A009CF986 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		DAD5D7D412527E2F009CF986 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		DB07E8B61E8010000008C1E1 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		DB07E8B71E8010000008C1E1 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		DB07E8BA1E80100D0008C1E1 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		DB07E8BC1E80101A0008C1E1 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		DB07E8BE1E80101F0008C1E1 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		DB07E8C11E80104D0008C1E1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		DB07E8C31E8010560008C1E1 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		DB07E8C51E8010680008C1E1 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,16 +79,25 @@
 			files = (
 				3A4F268F1C68DDF7003E06CF /* iAd.framework in Frameworks */,
 				3AC840121C60A7F3002A52E3 /* libAdapterIAd.a in Frameworks */,
-				3AEA89BF1C5F727300FBA64B /* GoogleMobileAds.framework in Frameworks */,
 				CE6C17A01982D1170017C788 /* AdSupport.framework in Frameworks */,
 				DAD5D7CF12527E11009CF986 /* AudioToolbox.framework in Frameworks */,
 				CE6C17A21982D12D0017C788 /* AVFoundation.framework in Frameworks */,
 				CE6C17A41982D13A0017C788 /* CoreGraphics.framework in Frameworks */,
+				DB07E8B81E8010000008C1E1 /* CoreMedia.framework in Frameworks */,
+				DB07E8B91E8010000008C1E1 /* CoreMotion.framework in Frameworks */,
 				CE6C17A61982D1660017C788 /* CoreTelephony.framework in Frameworks */,
+				DB07E8BB1E80100D0008C1E1 /* CoreVideo.framework in Frameworks */,
+				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
+				DB07E8BD1E80101A0008C1E1 /* GLKit.framework in Frameworks */,
+				DB07E8BF1E80101F0008C1E1 /* JavaScriptCore.framework in Frameworks */,
+				DB07E8C01E80103C0008C1E1 /* MediaPlayer.framework in Frameworks */,
 				DAD5D7D512527E2F009CF986 /* MessageUI.framework in Frameworks */,
+				DB07E8C21E80104D0008C1E1 /* MobileCoreServices.framework in Frameworks */,
+				DB07E8C41E8010560008C1E1 /* OpenGLES.framework in Frameworks */,
+				DB07E8C61E8010680008C1E1 /* SafariServices.framework in Frameworks */,
 				CE6C17A81982D1780017C788 /* StoreKit.framework in Frameworks */,
 				CE6C17AA1982D1870017C788 /* SystemConfiguration.framework in Frameworks */,
-				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
+				3AEA89BF1C5F727300FBA64B /* GoogleMobileAds.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +126,14 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DB07E8C51E8010680008C1E1 /* SafariServices.framework */,
+				DB07E8C31E8010560008C1E1 /* OpenGLES.framework */,
+				DB07E8C11E80104D0008C1E1 /* MobileCoreServices.framework */,
+				DB07E8BE1E80101F0008C1E1 /* JavaScriptCore.framework */,
+				DB07E8BC1E80101A0008C1E1 /* GLKit.framework */,
+				DB07E8BA1E80100D0008C1E1 /* CoreVideo.framework */,
+				DB07E8B61E8010000008C1E1 /* CoreMedia.framework */,
+				DB07E8B71E8010000008C1E1 /* CoreMotion.framework */,
 				3A4F268E1C68DDF7003E06CF /* iAd.framework */,
 				3AC8400F1C60A67D002A52E3 /* iAd Adapter */,
 				CE6C17AB1982D1C90017C788 /* AdMob iOS SDK */,
