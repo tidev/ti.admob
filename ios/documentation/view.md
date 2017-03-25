@@ -19,7 +19,7 @@ See the example.js for more infos.
 
 ### string adUnitId
 
-The ad Unit ID for admob.
+The ad Unit ID for Admob.
 
 ### string adBackgroundColor
 
@@ -45,7 +45,7 @@ for determining ad delivery.
 
 ### string gender
 
-The user's gender for the purpose of determining ad delivery. This should be one of the constants `GENDER_MALE` or `GENDER_FEMALE`.
+The user's gender for the purpose of determining ad delivery. This should be one of the constants `GENDER_MALE`, `GENDER_FEMALE` or `GENDER_UNKNOWN`.
 
 ### Array[String] keywords
 
@@ -103,7 +103,8 @@ Sets a testing value for `adUnitId` to test ads without an admob account.
  Sent when an ad request loaded an ad. This is a good opportunity to add this
  view to the hierarchy if it has not yet been added. If the ad was received
  as a part of the server-side auto refreshing, you can examine the
- hasAutoRefreshed property of the view.
+ hasAutoRefreshed property of the view. Use the `adUnitId` property of the callback
+ to identify the ad that was loaded.
 
 ### didFailToReceiveAd
 

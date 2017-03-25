@@ -9,14 +9,14 @@ var win = Ti.UI.createWindow({
  */
 var ad1 = Admob.createView({
     height: 50,
-    top: 0,
+    bottom: 0,
     debugEnabled: true, // If enabled, a dummy value for `adUnitId` will be used to test
     adType: Admob.AD_TYPE_BANNER,
     adUnitId: '<<YOUR ADD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
     adBackgroundColor: 'black',
     testDevices: [Admob.SIMULATOR_ID], // You can get your device's id by looking in the console log
     dateOfBirth: new Date(1985, 10, 1, 12, 1, 1),
-    gender: Admob.GENDER_MALE, // GENDER_MALE or GENDER_FEMALE, default: undefined
+    gender: Admob.GENDER_MALE, // GENDER_MALE, GENDER_FEMALE or GENDER_UNKNOWN, default: GENDER_UNKNOWN
     contentURL: 'https://admob.com', // URL string for a webpage whose content matches the app content.
     requestAgent: 'Titanium Mobile App', // String that identifies the ad request's origin.
     extras: {
@@ -28,27 +28,27 @@ var ad1 = Admob.createView({
 });
 win.add(ad1);
 
-ad1.addEventListener('didReceiveAd', function() {
-    alert('Did receive ad!');
+ad1.addEventListener('didReceiveAd', function(e) {
+    Ti.API.info('Did receive ad: ' + e.adUnitId + '!');
 });
 ad1.addEventListener('didFailToReceiveAd', function(e) {
-    alert('Failed to receive ad: ' + e.error);
+    Ti.API.error('Failed to receive ad: ' + e.error);
 });
 ad1.addEventListener('willPresentScreen', function() {
-    alert('Presenting screen!');
+    Ti.API.info('Presenting screen!');
 });
 ad1.addEventListener('willDismissScreen', function() {
-    alert('Dismissing screen!');
+    Ti.API.info('Dismissing screen!');
 });
 ad1.addEventListener('didDismissScreen', function() {
-    alert('Dismissed screen!');
+    Ti.API.info('Dismissed screen!');
 });
 ad1.addEventListener('willLeaveApplication', function() {
-    alert('Leaving the app!');
+    Ti.API.info('Leaving the app!');
 });
 ad1.addEventListener('didReceiveInAppPurchase', function(e) {
-    alert('Did receive an inApp purchase!');
-    Ti.API.warn(e);
+    Ti.API.info('Did receive an In-App purchase: ' + e.productId + '!');
+    Ti.API.info(e);
 });
 
 var btn = Ti.UI.createButton({
@@ -68,11 +68,11 @@ btn.addEventListener('click', function() {
     ad2.receive();
 
     ad2.addEventListener('didReceiveAd', function(e) {
-        alert('Did receive ad!');
+        Ti.API.info('Did receive ad!');
     });
 
     ad2.addEventListener('didFailToReceiveAd', function(e) {
-        alert('Failed to receive ad: ' + e.error);
+        Ti.API.error('Failed to receive ad: ' + e.error);
     });
 });
 
@@ -82,7 +82,7 @@ win.add(Ti.UI.createLabel({
     text: 'Loading the ads now! ' +
         'Note that there may be a several minute delay ' +
         'if you have not viewed an ad in over 24 hours.',
-    bottom: 40,
+    top: 40,
     textAlign: 'center'
 }));
 win.open();
