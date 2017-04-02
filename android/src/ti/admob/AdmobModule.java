@@ -26,6 +26,7 @@ public class AdmobModule extends KrollModule {
 	public static String PUBLISHER_ID;
 
 	// *
+	public static String PROPERTY_SMART_BANNER = "smartBanner";
 	public static String PROPERTY_COLOR_BG = "adBackgroundColor";
 	public static String PROPERTY_COLOR_BG_TOP = "backgroundTopColor";
 	public static String PROPERTY_COLOR_BORDER = "borderColor";

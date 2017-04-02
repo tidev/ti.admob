@@ -53,6 +53,7 @@ parameters[object]: a dictionary object of properties.
 	var adMobView = Admob.createView({
 	    publisherId: "<<YOUR PUBLISHER ID HERE>>",
 	    testing:false, // default is false
+	    smartBanner: true, // default is false
 	    top: 0, //optional
 	    left: 0, // optional
 	    right: 0, // optional
