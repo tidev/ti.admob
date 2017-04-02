@@ -13,6 +13,6 @@ copyright: Copyright (c) 2010-Present by Appcelerator, Inc.
 # these should not be edited
 name: admob
 moduleid: ti.admob
-guid: 0d005e93-9980-4739-9e41-fd1129c8ff32
+guid: 0d005e93-99  80-4739-9e41-fd1129c8ff32
 platform: iphone
 minsdk: 5.1.0

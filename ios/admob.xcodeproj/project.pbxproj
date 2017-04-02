@@ -82,6 +82,7 @@
 				CE6C17A01982D1170017C788 /* AdSupport.framework in Frameworks */,
 				DAD5D7CF12527E11009CF986 /* AudioToolbox.framework in Frameworks */,
 				CE6C17A21982D12D0017C788 /* AVFoundation.framework in Frameworks */,
+				5E43BA371A7906590075781C /* libGoogleAdMobAds.a in Frameworks */,
 				CE6C17A41982D13A0017C788 /* CoreGraphics.framework in Frameworks */,
 				DB07E8B81E8010000008C1E1 /* CoreMedia.framework in Frameworks */,
 				DB07E8B91E8010000008C1E1 /* CoreMotion.framework in Frameworks */,
@@ -189,6 +190,52 @@
 			);
 			name = "AdMob iOS SDK";
 			path = GoogleMobileAdsSdkiOS;
+			sourceTree = "<group>";
+		};
+		5E43B9FB1A7906580075781C /* Add-ons */ = {
+			isa = PBXGroup;
+			children = (
+				5E43B9FC1A7906580075781C /* DoubleClick */,
+				5E43BA041A7906580075781C /* Mediation */,
+				5E43BA0B1A7906580075781C /* Search */,
+			);
+			path = "Add-ons";
+			sourceTree = "<group>";
+		};
+		5E43B9FC1A7906580075781C /* DoubleClick */ = {
+			isa = PBXGroup;
+			children = (
+				5E43B9FD1A7906580075781C /* DFPBannerView.h */,
+				5E43B9FE1A7906580075781C /* DFPExtras.h */,
+				5E43B9FF1A7906580075781C /* DFPInterstitial.h */,
+				5E43BA001A7906580075781C /* DFPSwipeableBannerView.h */,
+				5E43BA011A7906580075781C /* GADAdSizeDelegate.h */,
+				5E43BA021A7906580075781C /* GADAppEventDelegate.h */,
+				5E43BA031A7906580075781C /* GADSwipeableBannerViewDelegate.h */,
+			);
+			path = DoubleClick;
+			sourceTree = "<group>";
+		};
+		5E43BA041A7906580075781C /* Mediation */ = {
+			isa = PBXGroup;
+			children = (
+				5E43BA051A7906580075781C /* GADCustomEventBanner.h */,
+				5E43BA061A7906580075781C /* GADCustomEventBannerDelegate.h */,
+				5E43BA071A7906580075781C /* GADCustomEventExtras.h */,
+				5E43BA081A7906580075781C /* GADCustomEventInterstitial.h */,
+				5E43BA091A7906580075781C /* GADCustomEventInterstitialDelegate.h */,
+				5E43BA0A1A7906580075781C /* GADCustomEventRequest.h */,
+			);
+			path = Mediation;
+			sourceTree = "<group>";
+		};
+		5E43BA0B1A7906580075781C /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				5E43BA0C1A7906580075781C /* GADSearchBannerView.h */,
+				5E43BA0D1A7906580075781C /* GADSearchRequest.h */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
