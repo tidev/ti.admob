@@ -56,13 +56,13 @@ parameters[object]: a dictionary object of properties.
 	    top: 0, //optional
 	    left: 0, // optional
 	    right: 0, // optional
-	    bottom: 0 // optional
+	    bottom: 0, // optional
 	    adBackgroundColor:"FF8800", // optional
 	    backgroundColorTop: "738000", //optional - Gradient background color at top
 	    borderColor: "#000000", // optional - Border color
 	    textColor: "#000000", // optional - Text color
 	    urlColor: "#00FF00", // optional - URL color
-	    linkColor: "#0000FF" //optional -  Link text color
+	    linkColor: "#0000FF", //optional -  Link text color
 	    primaryTextColor: "blue", // deprecated -- now maps to textColor
 	    secondaryTextColor: "green" // deprecated -- now maps to linkColor
 	});
