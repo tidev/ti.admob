@@ -40,7 +40,21 @@ Returns a number value indicating the availability of Google Play Services which
 
 Possible values include `SUCCESS`, `SERVICE_MISSING`, `SERVICE_VERSION_UPDATE_REQUIRED`, `SERVICE_DISABLED`, and `SERVICE_INVALID`.
 
-### createAdMobView({ . . . })
+### showInterstitial({ ... })
+
+Attempts to show an interstitial ad.
+
+#### Arguments
+
+parameters[object]: a dictionary object of properties.
+
+#### Example:
+
+Admob.showInterstitial({
+    adUnitId: "<<YOUR AD-UNIT ID HERE>>",
+});
+
+### createAdMobView({ ... })
 
 Returns a view with an ad initialized by default.
 
