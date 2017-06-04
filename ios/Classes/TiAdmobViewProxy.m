@@ -16,8 +16,13 @@
 }
 
 - (void)receive:(id)unused
-{    
+{
     [[self admobView] initialize];
+}
+
+- (void)showRewardBased:(id)unused
+{
+    [TiAdmobView showRewardBased];
 }
 
 @end

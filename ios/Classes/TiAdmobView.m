@@ -97,8 +97,11 @@
     
     if ([TiUtils intValue:adType def:TiAdmobAdTypeBanner] == TiAdmobAdTypeBanner) {
         [[self bannerView] loadRequest:[self request]];
-    } else {
+    } else if ([TiUtils intValue:adType def:TiAdmobAdTypeBanner] == TiAdmobAdTypeInterstitial) {
         [[self interstitial] loadRequest:[self request]];
+    } else {
+        [GADRewardBasedVideoAd sharedInstance].delegate = self;
+        [[GADRewardBasedVideoAd sharedInstance] loadRequest:[GADRequest request] withAdUnitID: [[self proxy] valueForKey:@"adUnitId"] userID: nil];
     }
 }
 
@@ -109,7 +112,7 @@
     id adType = [[self proxy] valueForKey:@"adType"];
     id debugEnabled = [[self proxy] valueForKey:@"debugEnabled"];
     
-    if (adType != nil && [TiUtils boolValue:adType def:TiAdmobAdTypeBanner] == TiAdmobAdTypeInterstitial) {
+    if (adType != nil && [TiUtils boolValue:adType def:TiAdmobAdTypeBanner] != TiAdmobAdTypeBanner) {
         return;
     }
     
@@ -147,7 +150,7 @@
 - (void)setAdBackgroundColor_:(id)value
 {
     id adType = [[self proxy] valueForKey:@"adType"];
-    if (adType != nil && [TiUtils boolValue:adType def:TiAdmobAdTypeBanner] == TiAdmobAdTypeInterstitial) {
+    if (adType != nil && [TiUtils boolValue:adType def:TiAdmobAdTypeBanner] != TiAdmobAdTypeBanner) {
         return;
     }
 
@@ -221,6 +224,13 @@
 {
     if ([[self interstitial] isReady]) {
         [[self interstitial] presentFromRootViewController:[[[TiApp app] controller] topPresentedController]];
+    }
+}
+
++ (void)showRewardBased
+{
+    if ([[GADRewardBasedVideoAd sharedInstance] isReady]) {
+        [[GADRewardBasedVideoAd sharedInstance] presentFromRootViewController:[[[TiApp app] controller] topPresentedController]];
     }
 }
 
@@ -352,5 +362,38 @@
 {
     [self.proxy fireEvent:@"willLeaveApplication" withObject:[TiAdmobView dictionaryFromInterstitial:ad]];
 }
+
+#pragma mark - RewardBased Delegate
+
+- (void)rewardBasedVideoAd:(GADRewardBasedVideoAd *)rewardBasedVideoAd
+   didRewardUserWithReward:(GADAdReward *)reward {
+    [self.proxy fireEvent:@"receiveReward" withObject:@{@"rewardType": reward.type , @"rewardAmount": reward.amount}];
+}
+
+- (void)rewardBasedVideoAdDidReceiveAd:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
+    [self.proxy fireEvent:@"receiveAd" withObject:@{@"isReady": NUMBOOL([[GADRewardBasedVideoAd sharedInstance] isReady])}];
+}
+
+- (void)rewardBasedVideoAdDidOpen:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
+    [self.proxy fireEvent:@"open"];
+}
+
+- (void)rewardBasedVideoAdDidStartPlaying:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
+    [self.proxy fireEvent:@"startPlaying"];
+}
+
+- (void)rewardBasedVideoAdDidClose:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
+    [self.proxy fireEvent:@"closed"];
+}
+
+- (void)rewardBasedVideoAdWillLeaveApplication:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
+    [self.proxy fireEvent:@"willLeaveApplication"];
+}
+
+- (void)rewardBasedVideoAd:(GADRewardBasedVideoAd *)rewardBasedVideoAd
+    didFailToLoadWithError:(NSError *)error {
+    [self.proxy fireEvent:@"failedToLoad" withObject:@{@"error":error.localizedDescription}];
+}
+
 
 @end
