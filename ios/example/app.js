@@ -78,6 +78,43 @@ btn.addEventListener('click', function() {
 
 win.add(btn);
 
+var btnra = Ti.UI.createButton({
+    title: 'Show rewarded ads'
+});
+
+btnra.addEventListener('click', function() {
+    var ad3 = Admob.createView({
+        debugEnabled: true, // If enabled, a dummy value for `adUnitId` will be used to test
+        adType: Admob.AD_TYPE_REWARDBASED,
+        adUnitId: '<<YOUR ADD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
+    });
+    ad3.receive();
+
+    ad3.addEventListener("receiveReward", function(e) {
+      Ti.API.debug("received " + e.rewardAmount + " " + e.rewardType);
+    });
+    ad.addEventListener("receiveAd", function(e) {
+      ad3.showRewardBased();
+    });
+    ad.addEventListener("open", function(e) {
+      Ti.API.debug("rewarded ad is now open");
+    });
+    ad.addEventListener("startPlaying", function(e) {
+      Ti.API.debug("rewarded ad started playing");
+    });
+    ad.addEventListener("closed", function(e) {
+      Ti.API.debug("rewarded ad is closed");
+    });
+    ad.addEventListener("willLeaveApplication", function(e) {
+      Ti.API.debug("will leave application");
+    });
+    ad.addEventListener("failedToLoad", function(e) {
+      Ti.API.debug("failed to load ad ",e);
+    });
+});
+
+win.add(btnra);
+
 win.add(Ti.UI.createLabel({
     text: 'Loading the ads now! ' +
         'Note that there may be a several minute delay ' +
