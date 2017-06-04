@@ -72,7 +72,7 @@ parameters[object]: a dictionary object of properties defined in [Ti.Admob.View]
 		width: 320, // Will calculate the width internally to fit its container if not specified
         height: 50,
         debugEnabled: true, // If enabled, a dummy value for `adUnitId` will be used to test
-        adType: Admob.AD_TYPE_BANNER, // One of `AD_TYPE_BANNER` (default) or `AD_TYPE_INTERSTITIAL`
+        adType: Admob.AD_TYPE_BANNER, // One of `AD_TYPE_BANNER` (default), `AD_TYPE_INTERSTITIAL` or `AD_TYPE_REWARDBASED`
 		adUnitId: '<<YOUR ADD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
 		adBackgroundColor: 'black', 
 		testDevices: [Admob.SIMULATOR_ID], // You can get your device's id by looking in the console log
@@ -87,8 +87,8 @@ parameters[object]: a dictionary object of properties defined in [Ti.Admob.View]
 
 ### Interstitials
 
-To receive an interstitional ad, you need to call `ad.receive()` instead of adding it to the viewe hierarchy. 
-It fires the `didReceiveAd` event if the  ad was successfully received, the `didFailToReceiveAd` event otherwise. Please check 
+To receive an interstitional or reward based ad, you need to call `ad.receive()` instead of adding it to the view hierarchy. 
+For interstitional ads, it fires the `didReceiveAd` event if the  ad was successfully received, the `didFailToReceiveAd` event otherwise. For reward based ad, `receiveAd` event is fired on successful retrieval. Please check 
 the example for a detailed example of different banner types.
 
 ### iAd
