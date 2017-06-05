@@ -93,22 +93,22 @@ btnra.addEventListener('click', function() {
     ad3.addEventListener("receiveReward", function(e) {
       Ti.API.debug("received " + e.rewardAmount + " " + e.rewardType);
     });
-    ad.addEventListener("receiveAd", function(e) {
+    ad3.addEventListener("receiveAd", function(e) {
       ad3.showRewardBased();
     });
-    ad.addEventListener("open", function(e) {
+    ad3.addEventListener("open", function(e) {
       Ti.API.debug("rewarded ad is now open");
     });
-    ad.addEventListener("startPlaying", function(e) {
+    ad3.addEventListener("startPlaying", function(e) {
       Ti.API.debug("rewarded ad started playing");
     });
-    ad.addEventListener("closed", function(e) {
+    ad3.addEventListener("closed", function(e) {
       Ti.API.debug("rewarded ad is closed");
     });
-    ad.addEventListener("willLeaveApplication", function(e) {
+    ad3.addEventListener("willLeaveApplication", function(e) {
       Ti.API.debug("will leave application");
     });
-    ad.addEventListener("failedToLoad", function(e) {
+    ad3.addEventListener("failedToLoad", function(e) {
       Ti.API.debug("failed to load ad ",e);
     });
 });
