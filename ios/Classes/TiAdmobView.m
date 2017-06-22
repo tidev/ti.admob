@@ -101,7 +101,7 @@
         [[self interstitial] loadRequest:[self request]];
     } else {
         [GADRewardBasedVideoAd sharedInstance].delegate = self;
-        [[GADRewardBasedVideoAd sharedInstance] loadRequest:[GADRequest request] withAdUnitID: [[self proxy] valueForKey:@"adUnitId"] userID: nil];
+        [[GADRewardBasedVideoAd sharedInstance] loadRequest:[GADRequest request] withAdUnitID: [[self proxy] valueForKey:@"adUnitId"] userID: [[self proxy] valueForKey:@"userID"]];
     }
 }
 
@@ -227,7 +227,7 @@
     }
 }
 
-+ (void)showRewardBased
++ (void)showRewardBasedAd
 {
     if ([[GADRewardBasedVideoAd sharedInstance] isReady]) {
         [[GADRewardBasedVideoAd sharedInstance] presentFromRootViewController:[[[TiApp app] controller] topPresentedController]];
@@ -383,7 +383,7 @@
 }
 
 - (void)rewardBasedVideoAdDidClose:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
-    [self.proxy fireEvent:@"closed"];
+    [self.proxy fireEvent:@"close"];
 }
 
 - (void)rewardBasedVideoAdWillLeaveApplication:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
