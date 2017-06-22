@@ -20,9 +20,9 @@
     [[self admobView] initialize];
 }
 
-- (void)showRewardBased:(id)unused
+- (void)showRewardBasedAd:(id)unused
 {
-    [TiAdmobView showRewardBased];
+    [TiAdmobView showRewardBasedAd];
 }
 
 @end
