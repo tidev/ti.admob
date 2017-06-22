@@ -72,7 +72,7 @@ parameters[object]: a dictionary object of properties defined in [Ti.Admob.View]
 		width: 320, // Will calculate the width internally to fit its container if not specified
         height: 50,
         debugEnabled: true, // If enabled, a dummy value for `adUnitId` will be used to test
-        adType: Admob.AD_TYPE_BANNER, // One of `AD_TYPE_BANNER` (default), `AD_TYPE_INTERSTITIAL` or `AD_TYPE_REWARDBASED`
+        adType: Admob.AD_TYPE_BANNER, // One of `AD_TYPE_BANNER` (default), `AD_TYPE_INTERSTITIAL` or `AD_TYPE_REWARD_BASED`
         adUnitId: '<<YOUR ADD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
         adBackgroundColor: 'black', 
         testDevices: [Admob.SIMULATOR_ID], // You can get your device's id by looking in the console log
