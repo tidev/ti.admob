@@ -1,7 +1,8 @@
 var Admob = require('ti.admob');
 var win = Ti.UI.createWindow({
     backgroundColor: 'white',
-    orientationModes: [Ti.UI.PORTRAIT, Ti.UI.LANDSCAPE_LEFT, Ti.UI.LANDSCAPE_RIGHT]
+    orientationModes: [Ti.UI.PORTRAIT, Ti.UI.LANDSCAPE_LEFT, Ti.UI.LANDSCAPE_RIGHT],
+    layout: 'vertical'
 });
 
 /*
@@ -77,6 +78,43 @@ btn.addEventListener('click', function() {
 });
 
 win.add(btn);
+
+var btnra = Ti.UI.createButton({
+    title: 'Show rewarded ads'
+});
+
+btnra.addEventListener('click', function() {
+    var ad3 = Admob.createView({
+        debugEnabled: true, // If enabled, a dummy value for `adUnitId` will be used to test
+        adType: Admob.AD_TYPE_REWARD_BASED,
+        adUnitId: '<<YOUR ADD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
+    });
+    ad3.receive();
+
+    ad3.addEventListener("receiveReward", function(e) {
+      Ti.API.debug("received " + e.rewardAmount + " " + e.rewardType);
+    });
+    ad3.addEventListener("receiveAd", function(e) {
+      ad3.showRewardBasedAd();
+    });
+    ad3.addEventListener("open", function(e) {
+      Ti.API.debug("rewarded ad is now open");
+    });
+    ad3.addEventListener("startPlaying", function(e) {
+      Ti.API.debug("rewarded ad started playing");
+    });
+    ad3.addEventListener("close", function(e) {
+      Ti.API.debug("rewarded ad is closed");
+    });
+    ad3.addEventListener("willLeaveApplication", function(e) {
+      Ti.API.debug("will leave application");
+    });
+    ad3.addEventListener("failedToLoad", function(e) {
+      Ti.API.debug("failed to load ad ",e);
+    });
+});
+
+win.add(btnra);
 
 win.add(Ti.UI.createLabel({
     text: 'Loading the ads now! ' +

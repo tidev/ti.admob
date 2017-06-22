@@ -72,23 +72,23 @@ parameters[object]: a dictionary object of properties defined in [Ti.Admob.View]
 		width: 320, // Will calculate the width internally to fit its container if not specified
         height: 50,
         debugEnabled: true, // If enabled, a dummy value for `adUnitId` will be used to test
-        adType: Admob.AD_TYPE_BANNER, // One of `AD_TYPE_BANNER` (default) or `AD_TYPE_INTERSTITIAL`
-		adUnitId: '<<YOUR ADD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
-		adBackgroundColor: 'black', 
-		testDevices: [Admob.SIMULATOR_ID], // You can get your device's id by looking in the console log
-		dateOfBirth: new Date(1985, 10, 1, 12, 1, 1),
+        adType: Admob.AD_TYPE_BANNER, // One of `AD_TYPE_BANNER` (default), `AD_TYPE_INTERSTITIAL` or `AD_TYPE_REWARD_BASED`
+        adUnitId: '<<YOUR ADD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
+        adBackgroundColor: 'black', 
+        testDevices: [Admob.SIMULATOR_ID], // You can get your device's id by looking in the console log
+        dateOfBirth: new Date(1985, 10, 1, 12, 1, 1),
         gender: Admob.GENDER_MALE, // GENDER_MALE or GENDER_FEMALE, default: undefined
         contentURL: 'https://admob.com', // URL string for a webpage whose content matches the app content.
         requestAgent: 'Titanium Mobile App', // String that identifies the ad request's origin.
         extras: {"version": 1.0, "name": "My App"}, // Object of additional infos
         tagForChildDirectedTreatment: false, // http:///business.ftc.gov/privacy-and-security/childrens-privacy for more infos
-		keywords: ['keyword1', 'keyword2']
+	keywords: ['keyword1', 'keyword2']
 	});
 
 ### Interstitials
 
-To receive an interstitional ad, you need to call `ad.receive()` instead of adding it to the viewe hierarchy. 
-It fires the `didReceiveAd` event if the  ad was successfully received, the `didFailToReceiveAd` event otherwise. Please check 
+To receive an interstitional or reward based ad, you need to call `ad.receive()` instead of adding it to the view hierarchy. 
+For interstitional ads, it fires the `didReceiveAd` event if the  ad was successfully received, the `didFailToReceiveAd` event otherwise. For reward based ad, `receiveAd` event is fired on successful retrieval. Please check 
 the example for a detailed example of different banner types.
 
 ### iAd
