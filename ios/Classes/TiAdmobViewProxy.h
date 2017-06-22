@@ -14,6 +14,6 @@
 
 - (void)receive:(id)unused;
 
-- (void)showRewardBased:(id)unused;
+- (void)showRewardBasedAd:(id)unused;
 
 @end
