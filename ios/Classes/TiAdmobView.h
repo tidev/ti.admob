@@ -18,7 +18,7 @@
 
 - (void)showInterstitial;
 
-+ (void)showRewardBased;
++ (void)showRewardBasedAd;
 
 - (void)setAdUnitId_:(id)value;
 
