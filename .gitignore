@@ -22,3 +22,4 @@ ios/admob.xcodeproj/project.xcworkspace/xcuserdata/*
 android/libs
 android/build.properties
 android/dist
+/android/java-sources.txt
