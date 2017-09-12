@@ -2,13 +2,13 @@
 # this is your module manifest and used by Titanium
 # during compilation, packaging, distribution, etc.
 #
-version: 3.0.1
+version: 3.1.0
 apiversion: 3
 architectures: armeabi-v7a x86
 description: Titanium Admob module for Android
-author: Brian Kurzius
+author: Brian Kurzius, Axway Appcelerator
 license: Apache License, Version 2.0
-copyright: Copyright (c) 2011 by Studio Classics
+copyright: Copyright (c) 2011 by Studio Classics, 2012-present by Axway Appcelerator
 
 
 # these should not be edited
@@ -16,4 +16,4 @@ name: admob
 moduleid: ti.admob
 guid: 0d005e93-9980-4739-9e41-fd1129c8ff32
 platform: android
-minsdk: 6.0.0
+minsdk: 6.2.0
