@@ -1,4 +1,4 @@
-Titanium AdMob Module [![Build Status](https://travis-ci.org/appcelerator-modules/ti.admob.svg)](https://travis-ci.org/appcelerator-modules/ti.admob)
+Titanium AdMob Module
 ============
 
 Use the Google Admob Module in Appcelerator Titanium.
@@ -14,6 +14,10 @@ Use the Google Admob Module in Appcelerator Titanium.
 * Hans Knöchel
 
 Interested in contributing? Read the [contributors/committer's](https://wiki.appcelerator.org/display/community/Home) guide.
+
+## Issues
+
+Report issues to [Appcelerator JIRA](https://jira.appcelerator.org).
 
 ## Legal
 
