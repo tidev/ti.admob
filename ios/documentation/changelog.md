@@ -1,5 +1,7 @@
 # Change Log
 <pre>
+v2.2.0 Update Admob iOS SDK to 7.27.0
+
 v2.1.0 	[MOD-2196] Support the iAd adapter
 
 v2.0.0 	[MOD-2182] Updating Admob SDK to 7.6.0, support iOS 9, support for new API's'

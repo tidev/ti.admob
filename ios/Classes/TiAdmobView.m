@@ -124,7 +124,7 @@
 {
     if ([value isKindOfClass:[NSString class]]) {
         [[self request] setKeywords:@[[TiUtils stringValue:value]]];
-        NSLog(@"[WARN] Ti.Admob: The property `keywords` for string values is deprecated. Please use an array of string values instead.");
+        NSLog(@"[WARN] Ti.Admob: The property `keywords` with string values is deprecated. Please use an array of string values instead.");
     } else if ([value isKindOfClass:[NSArray class]]) {
         [[self request] setKeywords:value];
     } else {
@@ -280,36 +280,68 @@
 
 - (void)adViewDidReceiveAd:(GADBannerView *)view
 {
+    if (![[self proxy] _hasListeners:@"didReceiveAd"]) {
+        return;
+    }
+  
     [self.proxy fireEvent:@"didReceiveAd" withObject:[TiAdmobView dictionaryFromBannerView:view]];
 }
 
 - (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error
 {
+    if (![[self proxy] _hasListeners:@"didFailToReceiveAd"]) {
+        return;
+    }
+  
     [self.proxy fireEvent:@"didFailToReceiveAd" withObject:@{@"adUnitId": view.adUnitID, @"error":error.localizedDescription}];
 }
 
 - (void)adViewWillPresentScreen:(GADBannerView *)adView
 {
+    if (![[self proxy] _hasListeners:@"willPresentScreen"]) {
+        return;
+    }
+  
+
     [self.proxy fireEvent:@"willPresentScreen" withObject:[TiAdmobView dictionaryFromBannerView:adView]];
 }
 
 - (void)adViewWillDismissScreen:(GADBannerView *)adView
 {
+    if (![[self proxy] _hasListeners:@"willDismissScreen"]) {
+        return;
+    }
+  
+
     [self.proxy fireEvent:@"willDismissScreen" withObject:[TiAdmobView dictionaryFromBannerView:adView]];
 }
 
 - (void)adViewDidDismissScreen:(GADBannerView *)adView
 {
+    if (![[self proxy] _hasListeners:@"didDismissScreen"]) {
+        return;
+    }
+
     [self.proxy fireEvent:@"didDismissScreen" withObject:[TiAdmobView dictionaryFromBannerView:adView]];
 }
 
 - (void)adViewWillLeaveApplication:(GADBannerView *)adView
 {
+    if (![[self proxy] _hasListeners:@"willLeaveApplication"]) {
+        return;
+    }
+
     [self.proxy fireEvent:@"willLeaveApplication" withObject:[TiAdmobView dictionaryFromBannerView:adView]];
 }
 
 - (void)didReceiveInAppPurchase:(GADInAppPurchase *)purchase
 {
+    if (![[self proxy] _hasListeners:@"didReceiveInAppPurchase"]) {
+        return;
+    }
+
+    DebugLog(@"[WARN] Ti.Admob: The GADInAppPurchase class has been deprecated by Google and will be removed in the future.");
+
     [self.proxy fireEvent:@"didReceiveInAppPurchase" withObject:@{
         @"productId": purchase.productID,
         @"quantity": [NSNumber numberWithInteger:purchase.quantity]
@@ -320,22 +352,38 @@
 
 - (void)interstitialDidReceiveAd:(GADInterstitial *)ad
 {
+    if (![[self proxy] _hasListeners:@"didReceiveAd"]) {
+        return;
+    }
+  
     [self.proxy fireEvent:@"didReceiveAd" withObject:[TiAdmobView dictionaryFromInterstitial:ad]];
     [self showInterstitial];
 }
 
 - (void)interstitial:(GADInterstitial *)ad didFailToReceiveAdWithError:(GADRequestError *)error
 {
+    if (![[self proxy] _hasListeners:@"didFailToReceiveAd"]) {
+        return;
+    }
+  
     [self.proxy fireEvent:@"didFailToReceiveAd" withObject:@{@"adUnitId": ad.adUnitID, @"error":error.localizedDescription}];
 }
 
 - (void)interstitialWillPresentScreen:(GADInterstitial *)ad
 {
+    if (![[self proxy] _hasListeners:@"willPresentScreen"]) {
+        return;
+    }
+
     [self.proxy fireEvent:@"willPresentScreen" withObject:[TiAdmobView dictionaryFromInterstitial:ad]];
 }
 
 - (void)interstitialWillDismissScreen:(GADInterstitial *)ad
 {
+    if (![[self proxy] _hasListeners:@"willDismissScreen"]) {
+        return;
+    }
+  
     [self.proxy fireEvent:@"willDismissScreen" withObject:[TiAdmobView dictionaryFromInterstitial:ad]];
 }
 
@@ -345,11 +393,19 @@
         [self removeFromSuperview];
     }, NO);
 
+    if (![[self proxy] _hasListeners:@"didDismissScreen"]) {
+        return;
+    }
+
     [self.proxy fireEvent:@"didDismissScreen" withObject:[TiAdmobView dictionaryFromInterstitial:ad]];
 }
 
 - (void)interstitialWillLeaveApplication:(GADInterstitial *)ad
 {
+    if (![[self proxy] _hasListeners:@"willLeaveApplication"]) {
+        return;
+    }
+  
     [self.proxy fireEvent:@"willLeaveApplication" withObject:[TiAdmobView dictionaryFromInterstitial:ad]];
 }
 
