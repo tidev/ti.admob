@@ -93,6 +93,8 @@ the example for a detailed example of different banner types.
 
 ### iAd
 
+⚠️ Removed by the Admob SDK 7.x and Ti.Admob 2.2.0
+
 Starting in 2.1.0 you can use the included iAd adapter to turn on the iAd mediation in your Admob account.
 
 ## Usage

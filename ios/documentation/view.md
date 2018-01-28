@@ -139,6 +139,8 @@ Store).
 
 ### didReceiveInAppPurchase
 
+⚠️ Deprecated by the Admob SDK 7.x and Ti.Admob 2.2.0
+
 Called when the user clicks on the buy button of an in-app purchase ad. After the receiver handles the purchase, it must 
 call the GADInAppPurchase object's reportPurchaseStatus: method.
 
