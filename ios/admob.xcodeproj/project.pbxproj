@@ -14,7 +14,6 @@
 		24DD6CF91134B3F500162E58 /* TiAdmobModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DD6CF71134B3F500162E58 /* TiAdmobModule.h */; };
 		24DD6CFA1134B3F500162E58 /* TiAdmobModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DD6CF81134B3F500162E58 /* TiAdmobModule.m */; };
 		3A4F268F1C68DDF7003E06CF /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4F268E1C68DDF7003E06CF /* iAd.framework */; };
-		3AC840121C60A7F3002A52E3 /* libAdapterIAd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AC840101C60A7E1002A52E3 /* libAdapterIAd.a */; };
 		3AEA89BF1C5F727300FBA64B /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AEA89BD1C5F71A100FBA64B /* GoogleMobileAds.framework */; };
 		3AF5B7731C233383002E3DC7 /* TiAdmobTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AF5B7711C233383002E3DC7 /* TiAdmobTypes.h */; };
 		AA747D9F0F9514B9006C5449 /* TiAdmob_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* TiAdmob_Prefix.pch */; };
@@ -78,7 +77,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A4F268F1C68DDF7003E06CF /* iAd.framework in Frameworks */,
-				3AC840121C60A7F3002A52E3 /* libAdapterIAd.a in Frameworks */,
 				CE6C17A01982D1170017C788 /* AdSupport.framework in Frameworks */,
 				DAD5D7CF12527E11009CF986 /* AudioToolbox.framework in Frameworks */,
 				CE6C17A21982D12D0017C788 /* AVFoundation.framework in Frameworks */,

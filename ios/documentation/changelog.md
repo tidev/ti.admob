@@ -1,6 +1,6 @@
 # Change Log
 <pre>
-v2.2.0 Update Admob iOS SDK to 7.27.0
+v2.2.0 Update Admob iOS SDK to 7.27.0, remove iAd adapter due to Google removal
 
 v2.1.0 	[MOD-2196] Support the iAd adapter
 
