@@ -51,6 +51,10 @@ A constant to be passed to the `gender` property to specify a gender if used.
 
 A constant to be passed to the `gender` property to specify a gender if used. 
 
+### Number GENDER_UNKNOWN
+
+A constant to be passed to the `gender` property to specify a gender if used. 
+
 ## Functions
 
 ### Ti.Admob.createView({...})
@@ -64,7 +68,7 @@ parameters[object]: a dictionary object of properties defined in [Ti.Admob.View]
 #### Example:
 
 	var ad = Admob.createView({
-		top: 0, 
+		bottom: 0, 
 		width: 320, // Will calculate the width internally to fit its container if not specified
         height: 50,
         debugEnabled: true, // If enabled, a dummy value for `adUnitId` will be used to test
@@ -89,6 +93,8 @@ the example for a detailed example of different banner types.
 
 ### iAd
 
+⚠️ Removed by the Admob SDK 7.x and Ti.Admob 2.2.0
+
 Starting in 2.1.0 you can use the included iAd adapter to turn on the iAd mediation in your Admob account.
 
 ## Usage
@@ -109,6 +115,6 @@ Please direct all questions, feedback, and concerns to [info@appcelerator.com](m
 
 ## License
 
-Copyright(c) 2010-2015 by Appcelerator, Inc. All Rights Reserved. Please see the LICENSE file included in the distribution for further details.
+Copyright(c) 2010-Present by Appcelerator, Inc. All Rights Reserved. Please see the LICENSE file included in the distribution for further details.
 
 [Ti.Admob.View]: view.html
