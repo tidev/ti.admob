@@ -50,8 +50,8 @@ parameters[object]: a dictionary object of properties.
 
 #### Example:
 
-	var adMobView = Admob.createAdMobView({
-	    publisherId: "<<YOUR PUBLISHER ID HERE>>",
+	var adMobView = Admob.createView({
+	    adUnitId: "<<YOUR AD UNIT ID HERE>>",
 	    testing:false, // default is false
 	    top: 0, //optional
 	    left: 0, // optional
@@ -134,4 +134,6 @@ Please direct all questions, feedback, and concerns to [info@appcelerator.com](m
 Brian Kurzius | bkurzius@gmail.com
 
 ## License
-Copyright 2011 Brian Kurzius, Studio Classics. Please see the LICENSE file included in the distribution for further details.
+Copyright 2011, Brian Kurzius, Studio Classics.
+Copyright 2014 - Present, Appcelerator.
+Please see the LICENSE file included in the distribution for further details.
