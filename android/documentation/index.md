@@ -18,7 +18,7 @@ started with using this module in your application.
 Add this to the &lt;android /&gt; node in tiapp.xml: 
 
 	<android>
-	    <tool-api-level>14</tool-api-level>
+		<tool-api-level>14</tool-api-level>
 	</android>
 
 ## Accessing the Admob Module
@@ -51,20 +51,20 @@ parameters[object]: a dictionary object of properties.
 #### Example:
 
 	var adMobView = Admob.createView({
-	    publisherId: "<<YOUR PUBLISHER ID HERE>>",
-	    testing:false, // default is false
-	    top: 0, //optional
-	    left: 0, // optional
-	    right: 0, // optional
-	    bottom: 0 // optional
-	    adBackgroundColor:"FF8800", // optional
-	    backgroundColorTop: "738000", //optional - Gradient background color at top
-	    borderColor: "#000000", // optional - Border color
-	    textColor: "#000000", // optional - Text color
-	    urlColor: "#00FF00", // optional - URL color
-	    linkColor: "#0000FF" //optional -  Link text color
-	    primaryTextColor: "blue", // deprecated -- now maps to textColor
-	    secondaryTextColor: "green" // deprecated -- now maps to linkColor
+		publisherId: "<<YOUR PUBLISHER ID HERE>>",
+		testing:false, // default is false
+		top: 0, //optional
+		left: 0, // optional
+		right: 0, // optional
+		bottom: 0 // optional
+		adBackgroundColor:"FF8800", // optional
+		backgroundColorTop: "738000", //optional - Gradient background color at top
+		borderColor: "#000000", // optional - Border color
+		textColor: "#000000", // optional - Text color
+		urlColor: "#00FF00", // optional - URL color
+		linkColor: "#0000FF" //optional -  Link text color
+		primaryTextColor: "blue", // deprecated -- now maps to textColor
+		secondaryTextColor: "green" // deprecated -- now maps to linkColor
 	});
 
 ### Admob.AD_RECEIVED
@@ -74,7 +74,7 @@ returns the constant for AD_RECEIVED -- for use in an event listener
 #### Example:
 
 	adMobView.addEventListener(Admob.AD_RECEIVED,function(){
-	    alert("ad was just received");
+		alert("ad was just received");
 	});
 
 ### Admob.AD_NOT_RECEIVED
@@ -84,7 +84,7 @@ returns the constant for AD_NOT_RECEIVED -- for use in an event listener
 #### Example:
 
 	adMobView.addEventListener(Admob.AD_NOT_RECEIVED,function(){
-	    alert("ad was not received");
+		alert("ad was not received");
 	});
 
 ### AdMobView.requestAd();
@@ -102,6 +102,31 @@ Calls for a test ad if needed. This works independently from the testing flag ab
 #### Example:
 
 	adMobView.requestTestAd();
+
+### getAndroidAdID(callback)
+
+Gets the user Android Advertising ID. Since this works in a background thread in native
+Android a callback is called when the value is fetched. The callback parameter is a key/value
+pair with key `aaID` and a String value with the id.
+
+#### Example:
+
+	Admob.getAndroidAdID(function (data) {
+		Ti.API.info('AAID is ' + data.aaID);
+	});
+
+### isLimitAdTrackingEnabled(callback)
+
+Checks whether the user has opted out from ad tracking in the device's settings. Since
+this works in a background thread in native Android a callback is called when the value
+is fetched. The callback parameter is a key/value pair with key `sLimitAdTrackingEnabled`
+and a boolean value for the user's setting.
+
+#### Example:
+
+	Admob.isLimitAdTrackingEnabled(function (data) {
+		Ti.API.info('Ad tracking is limited: ' + data.isLimitAdTrackingEnabled);
+	});
 
 ## Constants
 

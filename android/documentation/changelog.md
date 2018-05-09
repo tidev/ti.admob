@@ -1,5 +1,8 @@
 # Change Log
 <pre>
+
+v4.0.1 Expose getId() and isAdTrackingLimited() from AdvertisingIdClient.Info.
+
 v3.0.1  Update Google Play Services to v9.6.1 (revison 33) [TIMOB-23860]
 
 v2.1.6  Strip Google Play Services jar to reduce method count [TIMOB-18082]

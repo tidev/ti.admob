@@ -73,7 +73,35 @@ adRequestBtn2.addEventListener("click",function(){
     adMobView.requestTestAd();
 });
 
+var getAAID = Ti.UI.createButton({
+    title: "Get AAID",
+    top: "40%",
+    height: "10%",
+    width: "80%"
+});
+
+var getIsAdTrackingLimited = Ti.UI.createButton({
+    title: "Is Ad tracking limited",
+    top: "55%",
+    height: "10%",
+    width: "80%"
+});
+
+getAAID.addEventListener('click', function() {
+    Admob.getAndroidAdID(function (data) {
+        Ti.API.info('AAID is ' + data.aaID);
+    });
+});
+
+getIsAdTrackingLimited.addEventListener('click', function() {
+    Admob.isLimitAdTrackingEnabled(function (data) {
+        Ti.API.info('Ad tracking is limited: ' + data.isLimitAdTrackingEnabled);
+    });
+})
+
 win.add(adMobView);
 win.add(adRequestBtn);
 win.add(adRequestBtn2);
+win.add(getAAID);
+win.add(getIsAdTrackingLimited)
 win.open();
