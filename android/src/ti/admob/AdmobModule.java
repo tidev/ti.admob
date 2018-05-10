@@ -34,7 +34,7 @@ public class AdmobModule extends KrollModule {
 	@Kroll.constant
 	public static final String AD_NOT_RECEIVED = "ad_not_received";
 
-	private final String ANDROID_ADVERTISING_ID = "aaID";
+	private final String ANDROID_ADVERTISING_ID = "androidAdId";
 	private final String IS_LIMIT_AD_TRACKING_ENABLED = "isLimitAdTrackingEnabled";
 
 	public static Boolean TESTING = false;
@@ -50,8 +50,6 @@ public class AdmobModule extends KrollModule {
 
 	public static String PROPERTY_COLOR_TEXT_DEPRECATED = "primaryTextColor";
 	public static String PROPERTY_COLOR_LINK_DEPRECATED = "secondaryTextColor";
-
-	private KrollFunction aaInfoCallback;
 
 	public AdmobModule() {
 		super();
@@ -87,20 +85,18 @@ public class AdmobModule extends KrollModule {
 	@Kroll.method
 	public void isLimitAdTrackingEnabled(KrollFunction callback) {
 		if (callback != null) {
-			this.aaInfoCallback = callback;
-			new getAndroidAdvertisingIDInfo().execute(IS_LIMIT_AD_TRACKING_ENABLED);
+			new getAndroidAdvertisingIDInfo(callback).execute(IS_LIMIT_AD_TRACKING_ENABLED);
 		}
 	}
 
 	@Kroll.method
-	public void getAndroidAdID(KrollFunction callback) {
+	public void getAndroidAdId(KrollFunction callback) {
 		if (callback != null) {
-			this.aaInfoCallback = callback;
-			new getAndroidAdvertisingIDInfo().execute(ANDROID_ADVERTISING_ID);
+			new getAndroidAdvertisingIDInfo(callback).execute(ANDROID_ADVERTISING_ID);
 		}
 	}
 
-	private void invokeAIDCleintInfoCallback(AdvertisingIdClient.Info aaClientIDInfo, String responseKey) {
+	private void invokeAIDClientInfoCallback(AdvertisingIdClient.Info aaClientIDInfo, String responseKey, KrollFunction callback) {
 		KrollDict callbackDictionary = new KrollDict();
 		Object responseValue = null;
 		switch (responseKey) {
@@ -112,12 +108,17 @@ public class AdmobModule extends KrollModule {
 				break;
 		}
 		callbackDictionary.put(responseKey, responseValue);
-		this.aaInfoCallback.callAsync(getKrollObject(), callbackDictionary);
+		callback.callAsync(getKrollObject(), callbackDictionary);
 	}
 
 	private class getAndroidAdvertisingIDInfo extends AsyncTask<String, Integer, String> {
 
 		private AdvertisingIdClient.Info aaClientIDInfo = null;
+		private KrollFunction aaInfoCallback;
+
+		public getAndroidAdvertisingIDInfo(KrollFunction infoCallback) {
+			this.aaInfoCallback = infoCallback;
+		}
 
 		@Override
 		protected String doInBackground(String... responseKey) {
@@ -133,7 +134,7 @@ public class AdmobModule extends KrollModule {
 		@Override
 		protected void onPostExecute(String responseKey) {
 			if (aaClientIDInfo != null) {
-				invokeAIDCleintInfoCallback(aaClientIDInfo, responseKey);
+				invokeAIDClientInfoCallback(aaClientIDInfo, responseKey, aaInfoCallback);
 			}
 		}
 	}

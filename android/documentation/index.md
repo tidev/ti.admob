@@ -103,11 +103,11 @@ Calls for a test ad if needed. This works independently from the testing flag ab
 
 	adMobView.requestTestAd();
 
-### getAndroidAdID(callback)
+### getAndroidAdId(callback)
 
 Gets the user Android Advertising ID. Since this works in a background thread in native
 Android a callback is called when the value is fetched. The callback parameter is a key/value
-pair with key `aaID` and a String value with the id.
+pair with key `androidAdId` and a String value with the id.
 
 #### Example:
 
@@ -119,7 +119,7 @@ pair with key `aaID` and a String value with the id.
 
 Checks whether the user has opted out from ad tracking in the device's settings. Since
 this works in a background thread in native Android a callback is called when the value
-is fetched. The callback parameter is a key/value pair with key `sLimitAdTrackingEnabled`
+is fetched. The callback parameter is a key/value pair with key `isLimitAdTrackingEnabled`
 and a boolean value for the user's setting.
 
 #### Example:
