@@ -87,6 +87,54 @@ reports SDK related exceptions and calls the recorded original exception handler
 Disables automated in app purchase (IAP) reporting. Must be called before any IAP transaction is
 initiated. IAP reporting is used to track IAP ad conversions. Do not disable reporting if you use IAP ads.
 
+### `requestConsentInfoUpdateForPublisherIdentifiers(args)`
+
+Requests consent information update for the provided publisher identifiers. All publisher
+identifiers used in the application should be specified in this call. Consent status is reset to
+unknown when the ad provider list changes.
+
+### `showConsentForm(args)`
+
+Shows a consent modal form. Arguments:
+
+- `shouldOfferPersonalizedAds` (Boolean)
+Indicates whether the consent form should show a personalized ad option. Defaults to `true`.
+- `shouldOfferNonPersonalizedAds` (Boolean)
+Indicates whether the consent form should show a non-personalized ad option. Defaults to `true`.
+- `shouldOfferAdFree` (Boolean)
+Indicates whether the consent form should show an ad-free app option. Defaults to `false`.
+- `callback` (Function)
+Callback to be triggered once the form completes.
+
+### `reset()`
+
+Resets consent information to default state and clears ad providers.
+
+### `setTagForUnderAgeOfConsent(true|false)`
+
+Sets whether the user is tagged for under age of consent.
+
+### `isTaggedForUnderAgeOfConsent()` (Boolean)
+
+Indicates whether the user is tagged for under age of consent.
+
+## Properties
+
+### `consentStatus` (`CONSENT_STATUS_UNKNOWN`, `CONSENT_STATUS_NON_PERSONALIZED` or `CONSENT_STATUS_PERSONALIZED`)
+
+### `adProviders` (Array)
+
+Array of ad providers.
+
+### `debugIdentifiers` (Array)
+
+Array of advertising identifier UUID strings. Debug features are enabled for devices with these
+identifiers. Debug features are always enabled for simulators.
+
+### `debugGeography` (`DEBUG_GEOGRAPHY_DISABLED`, `DEBUG_GEOGRAPHY_EEA` or `DEBUG_GEOGRAPHY_NOT_EEA`)
+
+Debug geography. Used for debug devices only.
+
 ### Interstitials
 
 To receive an interstitional ad, you need to call `ad.receive()` instead of adding it to the viewe hierarchy. 

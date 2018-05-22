@@ -13,4 +13,24 @@
 
 - (void)disableAutomatedInAppPurchaseReporting:(id)unused;
 
+- (void)requestConsentInfoUpdateForPublisherIdentifiers:(id)args;
+
+- (void)showConsentForm:(id)args;
+
+- (NSNumber *)consentStatus;
+
+- (NSArray *)adProviders;
+
+- (NSArray *)debugIdentifiers;
+
+- (void)setDebugIdentifiers:(id)debugIdentifiers;
+
+- (NSNumber *)debugGeography;
+
+- (void)reset:(__unused id)unused;
+
+- (void)setTagForUnderAgeOfConsent:(id)tagForUnderAgeOfConsent;
+
+- (NSNumber *)isTaggedForUnderAgeOfConsent:(__unused id)unused;
+
 @end
