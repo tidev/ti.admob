@@ -1,6 +1,7 @@
 /**
  * Copyright (c) 2011 by Studio Classics. All Rights Reserved.
- * Author: Brian Kurzius
+ * Copyright (c) 2017-present by Axway Appcelerator. All Rights Reserved.
+ * Author: Brian Kurzius, Axway Appcelerator
  * Licensed under the terms of the Apache Public License
  * Please see the LICENSE included with this distribution for details.
  */
@@ -68,5 +69,4 @@ public class AdmobModule extends KrollModule {
 		Log.d(TAG, "setTesting(): " + testing);
 		TESTING = testing;
 	}
-
 }

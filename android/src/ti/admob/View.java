@@ -1,11 +1,18 @@
 /**
  * Copyright (c) 2011 by Studio Classics. All Rights Reserved.
- * Author: Brian Kurzius
+ * Copyright (c) 2017-present by Axway Appcelerator. All Rights Reserved.
+ * Author: Brian Kurzius, Axway Appcelerator
  * Licensed under the terms of the Apache Public License
  * Please see the LICENSE included with this distribution for details.
  */
 package ti.admob;
 
+import java.io.IOException;
+import java.util.Map;
+
+import org.appcelerator.titanium.TiBlob;
+import org.appcelerator.titanium.io.TiBaseFile;
+import org.appcelerator.titanium.util.TiConvert;
 import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.common.Log;
 import org.appcelerator.titanium.proxy.TiViewProxy;
@@ -18,6 +25,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.mediation.admob.AdMobExtras;
+import com.google.ads.mediation.admob.AdMobAdapter;
 
 public class View extends TiUIView {
 	private static final String TAG = "AdMobView";
@@ -31,6 +39,7 @@ public class View extends TiUIView {
 	String prop_color_text;
 	String prop_color_link;
 	String prop_color_url;
+	Bundle extras;
 
 	public View(final TiViewProxy proxy) {
 		super(proxy);
@@ -151,8 +160,16 @@ public class View extends TiUIView {
 	}
 
 	// pass the method the TESTING flag
-	public void requestAd() {
+	public void requestAd(KrollDict parameters) {
 		Log.d(TAG, "requestAd()");
+
+		if (parameters != null) {
+			// Pass additional extras if existing
+			if (parameters.containsKeyAndNotNull("extras")) {
+				extras = mapToBundle(parameters.getKrollDict("extras"));
+			}
+		}
+
 		// pass the module TESTING flag
 		loadAd(AdmobModule.TESTING);
 	}
@@ -183,6 +200,9 @@ public class View extends TiUIView {
 			bundle.putString("color_link", prop_color_link);
 		if (prop_color_url != null)
 			bundle.putString("color_url", prop_color_url);
+		if (extras != null)
+			bundle.putAll(extras);
+
 		return bundle;
 	}
 
@@ -204,4 +224,30 @@ public class View extends TiUIView {
 		return color;
 	}
 
+	private Bundle mapToBundle(Map<String, Object> map) {
+		if (map == null) {
+			return new Bundle();
+		}
+
+		Bundle bundle = new Bundle(map.size());
+
+		for (String key : map.keySet()) {
+			Object val = map.get(key);
+			if (val == null) {
+				bundle.putString(key, null);
+			} else if (val instanceof TiBlob) {
+				bundle.putByteArray(key, ((TiBlob) val).getBytes());
+			} else if (val instanceof TiBaseFile) {
+				try {
+					bundle.putByteArray(key, ((TiBaseFile) val).read().getBytes());
+				} catch (IOException e) {
+					Log.e(TAG, "Unable to put '" + key + "' value into bundle: " + e.getLocalizedMessage(), e);
+				}
+			} else {
+				bundle.putString(key, TiConvert.toString(val));
+			}
+		}
+
+		return bundle;
+	}
 }
