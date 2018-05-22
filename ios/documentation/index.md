@@ -28,24 +28,6 @@ var Admob = require('ti.admob');
 ## Doubleclick for Publishers Developer Docs
 <https://developers.google.com/mobile-ads-sdk/>
 
-## Constants
-
-### String `SIMULATOR_ID`
-
-A constant to be passed in an array to the `testDevices` property to get test ads on the simulator.
-
-### Number ``GENDER_MALE`
-
-A constant to be passed to the `gender` property to specify a gender if used. **Deprecated by the AdMob SDK**.
-
-### Number `GENDER_FEMALE`
-
-A constant to be passed to the `gender` property to specify a gender if used. **Deprecated by the AdMob SDK**.
-
-### Number `GENDER_UNKNOWN`
-
-A constant to be passed to the `gender` property to specify a gender if used. **Deprecated by the AdMob SDK**.
-
 ## Methods
 
 ### `Ti.Admob.createView(args)`
@@ -149,6 +131,49 @@ the example for a detailed example of different banner types.
 ⚠️ Removed by the Admob SDK 7.x and Ti.Admob 2.2.0
 
 Starting in 2.1.0 you can use the included iAd adapter to turn on the iAd mediation in your Admob account.
+
+
+## Constants
+
+### Number `CONSENT_STATUS_UNKNOWN`
+
+Returned by `consentStatus` if the consent status is unknown.
+
+### Number `CONSENT_STATUS_NON_PERSONALIZED`
+
+Returned by `consentStatus` if the consent status is not personalized.
+
+### Number `CONSENT_STATUS_PERSONALIZED`
+
+Returned by `consentStatus` if the consent status is personalized.
+
+### Number `DEBUG_GEOGRAPHY_DISABLED`
+
+Returned by `debugGeography` if geography debugging is disabled.
+
+### Number `DEBUG_GEOGRAPHY_EEA`
+
+Returned by `debugGeography` if geography appears as in EEA for debug devices.
+
+### Number `DEBUG_GEOGRAPHY_NOT_EEA`
+
+Returned by `debugGeography` if geography appears as not in EEA for debug devices.
+
+### String `SIMULATOR_ID`
+
+A constant to be passed in an array to the `testDevices` property to get test ads on the simulator.
+
+### Number `GENDER_MALE`
+
+A constant to be passed to the `gender` property to specify a gender if used. **Deprecated by the AdMob SDK**.
+
+### Number `GENDER_FEMALE`
+
+A constant to be passed to the `gender` property to specify a gender if used. **Deprecated by the AdMob SDK**.
+
+### Number `GENDER_UNKNOWN`
+
+A constant to be passed to the `gender` property to specify a gender if used. **Deprecated by the AdMob SDK**.
 
 ## Usage
 

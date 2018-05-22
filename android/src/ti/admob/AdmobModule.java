@@ -17,8 +17,12 @@ import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.KrollObject;
 import org.appcelerator.titanium.TiApplication;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import java.net.URL;
 import java.net.MalformedURLException;
+
 import android.net.Uri;
 import android.content.Context;
 
@@ -30,6 +34,7 @@ import com.google.ads.consent.ConsentFormListener;
 import com.google.ads.consent.ConsentInfoUpdateListener;
 import com.google.ads.consent.ConsentStatus;
 import com.google.ads.consent.DebugGeography;
+import com.google.ads.consent.AdProvider;
 
 @Kroll.module(name = "Admob", id = "ti.admob")
 public class AdmobModule extends KrollModule {
@@ -75,6 +80,10 @@ public class AdmobModule extends KrollModule {
 	@Kroll.constant public static final int CONSENT_STATUS_UNKNOWN = 0;
 	@Kroll.constant public static final int CONSENT_STATUS_NON_PERSONALIZED = 1;
 	@Kroll.constant public static final int CONSENT_STATUS_PERSONALIZED = 2;
+
+	@Kroll.constant public static final int DEBUG_GEOGRAPHY_DISABLED = 0;
+	@Kroll.constant public static final int DEBUG_GEOGRAPHY_EEA = 1;
+	@Kroll.constant public static final int DEBUG_GEOGRAPHY_NOT_EEA = 3;
 
 	@Kroll.method
 	public int isGooglePlayServicesAvailable() {
@@ -249,5 +258,26 @@ public class AdmobModule extends KrollModule {
 	public void reset() {
 		Context appContext = TiApplication.getInstance().getApplicationContext();
 		ConsentInformation.getInstance(appContext).reset();
+	}
+
+	@Kroll.getProperty
+	@Kroll.method
+	public KrollDict[] getAdProviders() {
+		Context appContext = TiApplication.getInstance().getApplicationContext();
+		List<AdProvider> adProviders = ConsentInformation.getInstance(appContext).getAdProviders();
+		KrollDict[] result = new KrollDict[adProviders.size()];
+
+		for (int i = 0; i < adProviders.size(); i++) {
+			AdProvider adProvider = adProviders.get(i);
+			KrollDict dict = new KrollDict();
+			
+			dict.put("identifier", adProvider.getId());
+			dict.put("name", adProvider.getName());
+			dict.put("privacyPolicyURL", adProvider.getPrivacyPolicyUrl());
+			
+			result[i] = dict;
+		}
+
+		return result;
 	}
 }

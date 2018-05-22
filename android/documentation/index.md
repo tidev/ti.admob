@@ -34,7 +34,7 @@ The "Admob" variable is now a reference to the Module object.
 
 ## Functions
 
-### number isGooglePlayServicesAvailable()
+### Number isGooglePlayServicesAvailable()
 
 Returns a number value indicating the availability of Google Play Services which are for push notifications.
 
@@ -147,23 +147,48 @@ Indicates whether the user is tagged for under age of consent.
 
 ### `consentStatus` (`CONSENT_STATUS_UNKNOWN`, `CONSENT_STATUS_NON_PERSONALIZED` or `CONSENT_STATUS_PERSONALIZED`)
 
+### `adProviders` (Array)
+
+Array of ad providers.
+
+### `debugGeography` (`DEBUG_GEOGRAPHY_DISABLED`, `DEBUG_GEOGRAPHY_EEA` or `DEBUG_GEOGRAPHY_NOT_EEA`)
+
+Debug geography. Used for debug devices only.
+
 ## Constants
 
-### number `SUCCESS`
-Returned by `isGooglePlayServicesAvailable()` if the connection to Google Play services was successful.
+### Number `SUCCESS`
+Returned by `isGooglePlayServicesAvailable()` if the connection to Google Play Services was successful.
 
-### number `SERVICE_MISSING`
-Returned by `isGooglePlayServicesAvailable()` if Google Play services is missing on this device.
+### Number `SERVICE_MISSING`
+Returned by `isGooglePlayServicesAvailable()` if Google Play Services is missing on this device.
 
-### number `SERVICE_VERSION_UPDATE_REQUIRED`
-Returned by `isGooglePlayServicesAvailable()` if the installed version of Google Play services is out of date.
+### Number `SERVICE_VERSION_UPDATE_REQUIRED`
+Returned by `isGooglePlayServicesAvailable()` if the installed version of Google Play Services is out of date.
 
-### number `SERVICE_DISABLED`
-Returned by `isGooglePlayServicesAvailable()` if the installed version of Google Play services has been disabled on this device.
+### Number `SERVICE_DISABLED`
+Returned by `isGooglePlayServicesAvailable()` if the installed version of Google Play Services has been disabled on this device.
 
-### number `SERVICE_INVALID`
-Returned by `isGooglePlayServicesAvailable()` if the version of the Google Play services installed on this device is not authentic.
+### Number `SERVICE_INVALID`
+Returned by `isGooglePlayServicesAvailable()` if the version of the Google Play Services installed on this device is not authentic.
 
+### Number `CONSENT_STATUS_UNKNOWN`
+Returned by `consentStatus` if the consent status is unknown.
+
+### Number `CONSENT_STATUS_NON_PERSONALIZED`
+Returned by `consentStatus` if the consent status is not personalized.
+
+### Number `CONSENT_STATUS_PERSONALIZED`
+Returned by `consentStatus` if the consent status is personalized.
+
+### Number `DEBUG_GEOGRAPHY_DISABLED`
+Returned by `debugGeography` if geography debugging is disabled.
+
+### Number `DEBUG_GEOGRAPHY_EEA`
+Returned by `debugGeography` if geography appears as in EEA for debug devices.
+
+### Number `DEBUG_GEOGRAPHY_NOT_EEA`
+Returned by `debugGeography` if geography appears as not in EEA for debug devices.
 
 ## Module History
 
