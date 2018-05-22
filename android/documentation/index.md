@@ -135,6 +135,14 @@ Callback to be triggered once the form completes.
 
 Resets consent information to default state and clears ad providers.
 
+### `setTagForUnderAgeOfConsent(true|false)`
+
+Sets whether the user is tagged for under age of consent.
+
+### `isTaggedForUnderAgeOfConsent()` (Boolean)
+
+Indicates whether the user is tagged for under age of consent.
+
 ## Properties
 
 ### `consentStatus` (`CONSENT_STATUS_UNKNOWN`, `CONSENT_STATUS_NON_PERSONALIZED` or `CONSENT_STATUS_PERSONALIZED`)

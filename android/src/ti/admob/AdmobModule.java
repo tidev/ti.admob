@@ -210,6 +210,19 @@ public class AdmobModule extends KrollModule {
 		form.load();
 	}
 
+	@Kroll.setProperty
+	@Kroll.method
+	public void setTagForUnderAgeOfConsent(Boolean underAgeOfConsent) {
+		Context appContext = TiApplication.getInstance().getApplicationContext();
+		ConsentInformation.getInstance(appContext).setTagForUnderAgeOfConsent(underAgeOfConsent);
+	}
+
+	@Kroll.method
+	public Boolean isTaggedForUnderAgeOfConsent() {
+		Context appContext = TiApplication.getInstance().getApplicationContext();
+		return ConsentInformation.getInstance(appContext).isTaggedForUnderAgeOfConsent();
+	}
+
 	@Kroll.getProperty
 	@Kroll.method
 	public int getConsentStatus() {
