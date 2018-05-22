@@ -124,16 +124,18 @@
 {
     if ([value isKindOfClass:[NSString class]]) {
         [[self request] setKeywords:@[[TiUtils stringValue:value]]];
-        NSLog(@"[WARN] Ti.Admob: The property `keywords` with string values is deprecated. Please use an array of string values instead.");
+        NSLog(@"[WARN] Ti.AdMob: The property `keywords` with string values is deprecated. Please use an array of string values instead.");
     } else if ([value isKindOfClass:[NSArray class]]) {
         [[self request] setKeywords:value];
     } else {
-        NSLog(@"[ERROR] Ti.Admob: The property `keywords` must be either a String or an Array.");
+        NSLog(@"[ERROR] Ti.AdMob: The property `keywords` must be either a String or an Array.");
     }
 }
 
 - (void)setDateOfBirth_:(id)value
 {
+    NSLog(@"[WARN] Ti.AdMmob: The \"birthday\" property has been deprecated by AdMob.");
+
     ENSURE_TYPE(value, NSDate);
     [[self request] setBirthday:value];
 }
@@ -171,7 +173,7 @@
     ENSURE_TYPE(value, NSString);
     
     if ([self validateUrl:value] == NO) {
-        NSLog(@"[WARN] Ti.Admob: The value of the property `contentURL` looks invalid.");
+        NSLog(@"[WARN] Ti.AdMob: The value of the property `contentURL` looks invalid.");
     }
     
     [[self request] setContentURL:[TiUtils stringValue:value]];
@@ -190,9 +192,9 @@
 
 - (void)setGender_:(id)value
 {
+    NSLog(@"[WARN] Ti.AdMob: The \"gender\" property has been deprecated by AdMob.");
+
     if ([value isKindOfClass:[NSString class]]) {
-        NSLog(@"[WARN] Ti.Admob: String values for `gender` are deprecated in 2.0.0, use the `GENDER_MALE`, `GENDER_FEMALE` or `GENDER_UNKNOWN` constant instead.");
-        
         if ([value isEqualToString:@"male"]) {
             [[self request] setGender:kGADGenderMale];
         } else if ([value isEqualToString:@"female"]) {
@@ -228,12 +230,12 @@
 
 - (void)setPublisherId_:(id)value
 {
-    NSLog(@"[ERROR] Ti.Admob: The property `publisherId` has been removed in 2.0.0, use `adUnitId` instead.");
+    NSLog(@"[ERROR] Ti.AdMob: The property `publisherId` has been removed in 2.0.0, use `adUnitId` instead.");
 }
 
 - (void)setTesting_:(id)value
 {
-    NSLog(@"[ERROR] Ti.Admob: The property `testing` has been removed in 2.0.0, use `testDevices` instead.");
+    NSLog(@"[ERROR] Ti.AdMob: The property `testing` has been removed in 2.0.0, use `testDevices` instead.");
 }
 
 #pragma mark - Utilities

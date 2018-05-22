@@ -8,7 +8,9 @@
 #import "TiModule.h"
 
 @interface TiAdmobModule : TiModule 
-{
-}
+
+- (void)disableSDKCrashReporting:(id)unused;
+
+- (void)disableAutomatedInAppPurchaseReporting:(id)unused;
 
 @end

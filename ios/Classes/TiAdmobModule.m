@@ -37,31 +37,16 @@
 	NSLog(@"[DEBUG] Ti.AdMob loaded",self);
 }
 
--(void)shutdown:(id)sender
+#pragma mark Public API's
+
+- (void)disableSDKCrashReporting:(id)unused
 {
-	// this method is called when the module is being unloaded
-	// typically this is during shutdown. make sure you don't do too
-	// much processing here or the app will be quit forceably
-	
-	// you *must* call the superclass
-	[super shutdown:sender];
+  [GADMobileAds disableSDKCrashReporting];
 }
 
-#pragma mark Cleanup 
-
--(void)dealloc
+- (void)disableAutomatedInAppPurchaseReporting:(id)unused
 {
-	// release any resources that have been retained by the module
-	[super dealloc];
-}
-
-#pragma mark Internal Memory Management
-
--(void)didReceiveMemoryWarning:(NSNotification*)notification
-{
-	// optionally release any resources that can be dynamically
-	// reloaded once memory is available - such as caches
-	[super didReceiveMemoryWarning:notification];
+  [GADMobileAds disableAutomatedInAppPurchaseReporting];
 }
 
 #pragma mark Constants

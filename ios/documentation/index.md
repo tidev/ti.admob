@@ -17,49 +17,40 @@ The Google AdMob Ads SDK has the following requirements:
 * Xcode 6.4 or later.
 * Runtime of iOS 7.1 or later.
 
-The SDK also requires that the following frameworks are available when you build your application:
-
-* AdSupport
-* AudioToolbox
-* AVFoundation
-* CoreGraphics
-* CoreTelephony
-* MessageUI
-* StoreKit
-* SystemConfiguration
-
 ## Accessing the Ti.Admob Module
 
 To access this module from JavaScript, you would do the following:
 
-	var Admob = require('ti.admob');
+```js
+var Admob = require('ti.admob');
+```
 
 ## Doubleclick for Publishers Developer Docs
 <https://developers.google.com/mobile-ads-sdk/>
 
 ## Constants
 
-### String SIMULATOR_ID
+### String `SIMULATOR_ID`
 
 A constant to be passed in an array to the `testDevices` property to get test ads on the simulator.
 
-### Number GENDER_MALE
+### Number ``GENDER_MALE`
 
-A constant to be passed to the `gender` property to specify a gender if used.
+A constant to be passed to the `gender` property to specify a gender if used. **Deprecated by the AdMob SDK**.
 
-### Number GENDER_FEMALE
+### Number `GENDER_FEMALE`
 
-A constant to be passed to the `gender` property to specify a gender if used. 
+A constant to be passed to the `gender` property to specify a gender if used. **Deprecated by the AdMob SDK**.
 
-### Number GENDER_UNKNOWN
+### Number `GENDER_UNKNOWN`
 
-A constant to be passed to the `gender` property to specify a gender if used. 
+A constant to be passed to the `gender` property to specify a gender if used. **Deprecated by the AdMob SDK**.
 
-## Functions
+## Methods
 
-### Ti.Admob.createView({...})
+### `Ti.Admob.createView(args)`
 
-Creates and returns a [Ti.Admob.View][] object which displays ads.
+Creates and returns a [Ti.Admob.View][] object which displays ads. See the [AdView docs](./view.md) for details.
 
 #### Arguments
 
@@ -67,23 +58,34 @@ parameters[object]: a dictionary object of properties defined in [Ti.Admob.View]
 
 #### Example:
 
-	var ad = Admob.createView({
-		bottom: 0, 
-		width: 320, // Will calculate the width internally to fit its container if not specified
-        height: 50,
-        debugEnabled: true, // If enabled, a dummy value for `adUnitId` will be used to test
-        adType: Admob.AD_TYPE_BANNER, // One of `AD_TYPE_BANNER` (default) or `AD_TYPE_INTERSTITIAL`
-		adUnitId: '<<YOUR ADD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
-		adBackgroundColor: 'black', 
-		testDevices: [Admob.SIMULATOR_ID], // You can get your device's id by looking in the console log
-		dateOfBirth: new Date(1985, 10, 1, 12, 1, 1),
-        gender: Admob.GENDER_MALE, // GENDER_MALE or GENDER_FEMALE, default: undefined
-        contentURL: 'https://admob.com', // URL string for a webpage whose content matches the app content.
-        requestAgent: 'Titanium Mobile App', // String that identifies the ad request's origin.
-        extras: {"version": 1.0, "name": "My App"}, // Object of additional infos
-        tagForChildDirectedTreatment: false, // http:///business.ftc.gov/privacy-and-security/childrens-privacy for more infos
-		keywords: ['keyword1', 'keyword2']
-	});
+```js
+  var ad = Admob.createView({
+    bottom: 0, 
+    width: 320, // Will calculate the width internally to fit its container if not specified
+    height: 50,
+    debugEnabled: true, // If enabled, a dummy value for `adUnitId` will be used to test
+    adType: Admob.AD_TYPE_BANNER, // One of `AD_TYPE_BANNER` (default) or `AD_TYPE_INTERSTITIAL`
+    adUnitId: '<<YOUR ADD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
+    adBackgroundColor: 'black', 
+    testDevices: [Admob.SIMULATOR_ID], // You can get your device's id by looking in the console log
+    contentURL: 'https://admob.com', // URL string for a webpage whose content matches the app content.
+    requestAgent: 'Titanium Mobile App', // String that identifies the ad request's origin.
+    extras: { 'npa': "1", 'version': 1.0, 'name': 'My App' }, // Object of additional infos. NOTE: npa=1 disables personalized ads (!)
+    tagForChildDirectedTreatment: false, // http:///business.ftc.gov/privacy-and-security/childrens-privacy for more infos
+    keywords: ['keyword1', 'keyword2']
+  });
+```
+
+### `disableSDKCrashReporting()`
+
+Disables automated SDK crash reporting. If not called, the SDK records the original exception
+handler if available and registers a new exception handler. The new exception handler only
+reports SDK related exceptions and calls the recorded original exception handler.
+
+### `disableAutomatedInAppPurchaseReporting()`
+
+Disables automated in app purchase (IAP) reporting. Must be called before any IAP transaction is
+initiated. IAP reporting is used to track IAP ad conversions. Do not disable reporting if you use IAP ads.
 
 ### Interstitials
 

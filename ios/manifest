@@ -15,4 +15,4 @@ name: admob
 moduleid: ti.admob
 guid: 0d005e93-9980-4739-9e41-fd1129c8ff32
 platform: iphone
-minsdk: 6.2.2
+minsdk: 6.3.0
