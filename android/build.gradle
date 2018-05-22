@@ -1,0 +1,18 @@
+apply plugin: 'java'
+
+repositories {
+	jcenter()
+  maven {
+  	url "https://maven.google.com"
+  }
+}
+
+dependencies {
+	implementation 'com.google.android.ads.consent:consent-library:1.0.1'
+}
+
+task getDeps(type: Copy) {
+	from sourceSets.main.runtimeClasspath
+	exclude 'support-*'
+	into 'lib'
+}
