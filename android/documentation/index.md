@@ -109,6 +109,36 @@ Calls for a test ad if needed. This works independently from the testing flag ab
 adMobView.requestTestAd();
 ```
 
+### `requestConsentInfoUpdateForPublisherIdentifiers(args)`
+
+Requests consent information update for the provided publisher identifiers. All publisher
+identifiers used in the application should be specified in this call. Consent status is reset to
+unknown when the ad provider list changes.
+
+- `publisherIdentifiers` (Array<String>)
+- `callback` (Function)
+
+### `showConsentForm(args)`
+
+Shows a consent modal form. Arguments:
+
+- `shouldOfferPersonalizedAds` (Boolean)
+Indicates whether the consent form should show a personalized ad option. Defaults to `true`.
+- `shouldOfferNonPersonalizedAds` (Boolean)
+Indicates whether the consent form should show a non-personalized ad option. Defaults to `true`.
+- `shouldOfferAdFree` (Boolean)
+Indicates whether the consent form should show an ad-free app option. Defaults to `false`.
+- `callback` (Function)
+Callback to be triggered once the form completes.
+
+### `reset()`
+
+Resets consent information to default state and clears ad providers.
+
+## Properties
+
+### `consentStatus` (`CONSENT_STATUS_UNKNOWN`, `CONSENT_STATUS_NON_PERSONALIZED` or `CONSENT_STATUS_PERSONALIZED`)
+
 ## Constants
 
 ### number `SUCCESS`

@@ -38,12 +38,6 @@ public class AdmobModule extends KrollModule {
 
 	private ConsentForm form = null;
 
-	@Kroll.constant
-	public static final String AD_RECEIVED = "ad_received";
-
-	@Kroll.constant
-	public static final String AD_NOT_RECEIVED = "ad_not_received";
-
 	public static Boolean TESTING = false;
 	public static String PUBLISHER_ID;
 
@@ -65,12 +59,21 @@ public class AdmobModule extends KrollModule {
 		Log.d(TAG, "adMob module instantiated");
 	}
 
-	// Response from isGooglePlayServicesAvailable()
+	// Events for receiving ads
+	@Kroll.constant public static final String AD_RECEIVED = "ad_received";
+	@Kroll.constant public static final String AD_NOT_RECEIVED = "ad_not_received";
+
+	// Response from "isGooglePlayServicesAvailable()""
 	@Kroll.constant public static final int SUCCESS = 0;
 	@Kroll.constant public static final int SERVICE_MISSING = 1;
 	@Kroll.constant public static final int SERVICE_VERSION_UPDATE_REQUIRED = 2;
 	@Kroll.constant public static final int SERVICE_DISABLED = 3;
 	@Kroll.constant public static final int SERVICE_INVALID = 9;
+
+	// Response from "consentStatus"
+	@Kroll.constant public static final int CONSENT_STATUS_UNKNOWN = 0;
+	@Kroll.constant public static final int CONSENT_STATUS_NON_PERSONALIZED = 1;
+	@Kroll.constant public static final int CONSENT_STATUS_PERSONALIZED = 2;
 
 	@Kroll.method
 	public int isGooglePlayServicesAvailable() {
@@ -95,35 +98,36 @@ public class AdmobModule extends KrollModule {
 	public void requestConsentInfoUpdateForPublisherIdentifiers(KrollDict args) {
 		Log.e(TAG, "Not implemented due to missing docs so far.");
 
-        // String[] publisherIdentifiers = (String[]) args.get("publisherIdentifiers");
-		// final KrollFunction callback = (KrollFunction) args.get("callback");
+        String[] publisherIdentifiers = (String[]) args.get("publisherIdentifiers");
+		final KrollFunction callback = (KrollFunction) args.get("callback");
+		Context appContext = TiApplication.getInstance().getApplicationContext();
 
-		// ConsentInformation consentInformation = ConsentInformation.getInstance();
-        // consentInformation.requestConsentInfoUpdate(publisherIdentifiers, new ConsentInfoUpdateListener() {
-        //     @Override
-        //     public void onConsentInfoUpdate(ConsentStatus consentStatus) {
-		// 		Log.d(TAG, "consent info updated");
+		ConsentInformation consentInformation = ConsentInformation.getInstance(appContext);
+        consentInformation.requestConsentInfoUpdate(publisherIdentifiers, new ConsentInfoUpdateListener() {
+            @Override
+            public void onConsentInfoUpdated(ConsentStatus consentStatus) {
+				Log.d(TAG, "consent info updated");
 
-		// 		KrollObject krollObject = getKrollObject();
-		// 		KrollDict event = new KrollDict();
+				KrollObject krollObject = getKrollObject();
+				KrollDict event = new KrollDict();
 	
-		// 		event.put("consentStatus", consentStatus.ordinal());
+				event.put("consentStatus", consentStatus.ordinal());
 	
-		// 		callback.callAsync(krollObject, event);
-		// 	}
+				callback.callAsync(krollObject, event);
+			}
 
-        //     @Override
-        //     public void onFailedToUpdateConsent(String errorReason) {
-		// 		Log.d(TAG, "consent info failed");
+            @Override
+            public void onFailedToUpdateConsentInfo(String errorReason) {
+				Log.d(TAG, "consent info failed");
 
-		// 		KrollObject krollObject = getKrollObject();
-		// 		KrollDict event = new KrollDict();
+				KrollObject krollObject = getKrollObject();
+				KrollDict event = new KrollDict();
 	
-		// 		event.put("error", errorReason);
+				event.put("error", errorReason);
 	
-		// 		callback.callAsync(krollObject, event);
-		// 	}
-        // });
+				callback.callAsync(krollObject, event);
+			}
+        });
 	}
 
 	@Kroll.method
@@ -204,5 +208,18 @@ public class AdmobModule extends KrollModule {
 
 		form = formBuilder.build();
 		form.load();
+	}
+
+	@Kroll.getProperty
+	@Kroll.method
+	public int getConsentStatus() {
+		Context appContext = TiApplication.getInstance().getApplicationContext();
+		return ConsentInformation.getInstance(appContext).getConsentStatus().ordinal();
+	}
+
+	@Kroll.method
+	public void reset() {
+		Context appContext = TiApplication.getInstance().getApplicationContext();
+		ConsentInformation.getInstance(appContext).reset();
 	}
 }

@@ -93,6 +93,9 @@ Requests consent information update for the provided publisher identifiers. All 
 identifiers used in the application should be specified in this call. Consent status is reset to
 unknown when the ad provider list changes.
 
+- `publisherIdentifiers` (Array<String>)
+- `callback` (Function)
+
 ### `showConsentForm(args)`
 
 Shows a consent modal form. Arguments:
