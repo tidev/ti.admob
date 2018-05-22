@@ -35,10 +35,15 @@ public class AdmobModule extends KrollModule {
 	// Standard Debugging variables
 	private static final String TAG = "AdmobModule";
 	public static String MODULE_NAME = "AndroidAdMobModule";
+
+	private ConsentForm form = null;
+
 	@Kroll.constant
 	public static final String AD_RECEIVED = "ad_received";
+
 	@Kroll.constant
 	public static final String AD_NOT_RECEIVED = "ad_not_received";
+
 	public static Boolean TESTING = false;
 	public static String PUBLISHER_ID;
 
@@ -144,10 +149,13 @@ public class AdmobModule extends KrollModule {
 			return;
 		}
 
-		ConsentForm.Builder form = new ConsentForm.Builder(appContext, privacyUrl).withListener(new ConsentFormListener() {
+		ConsentForm.Builder formBuilder = new ConsentForm.Builder(appContext, privacyUrl).withListener(new ConsentFormListener() {
 			@Override
 			public void onConsentFormLoaded() {
 				Log.d(TAG, "consent form loaded");
+				if (form != null) {
+					form.show();
+				}
 			}
 
 			@Override
@@ -183,17 +191,18 @@ public class AdmobModule extends KrollModule {
 		});
 
 		if (shouldOfferPersonalizedAds) {
-			form = form.withPersonalizedAdsOption();
+			formBuilder = formBuilder.withPersonalizedAdsOption();
 		}
 
 		if (shouldOfferNonPersonalizedAds) {
-			form = form.withNonPersonalizedAdsOption();
+			formBuilder = formBuilder.withNonPersonalizedAdsOption();
 		}
 
 		if (shouldOfferAdFree) {
-			form = form.withAdFreeOption();
+			formBuilder = formBuilder.withAdFreeOption();
 		}
 
-		form.build();
+		form = formBuilder.build();
+		form.load();
 	}
 }
