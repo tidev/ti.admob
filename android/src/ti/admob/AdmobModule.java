@@ -29,6 +29,7 @@ import com.google.ads.consent.ConsentForm;
 import com.google.ads.consent.ConsentFormListener;
 import com.google.ads.consent.ConsentInfoUpdateListener;
 import com.google.ads.consent.ConsentStatus;
+import com.google.ads.consent.DebugGeography;
 
 @Kroll.module(name = "Admob", id = "ti.admob")
 public class AdmobModule extends KrollModule {
@@ -228,6 +229,20 @@ public class AdmobModule extends KrollModule {
 	public int getConsentStatus() {
 		Context appContext = TiApplication.getInstance().getApplicationContext();
 		return ConsentInformation.getInstance(appContext).getConsentStatus().ordinal();
+	}
+
+	@Kroll.getProperty
+	@Kroll.method
+	public int getDebugGeography() {
+		Context appContext = TiApplication.getInstance().getApplicationContext();
+		return ConsentInformation.getInstance(appContext).getDebugGeography().ordinal();
+	}
+
+	@Kroll.setProperty
+	@Kroll.method
+	public void setDebugGeography(int debugGeography) {
+		Context appContext = TiApplication.getInstance().getApplicationContext();
+		ConsentInformation.getInstance(appContext).setDebugGeography(DebugGeography.values()[debugGeography]);
 	}
 
 	@Kroll.method
