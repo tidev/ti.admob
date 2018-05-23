@@ -7,7 +7,7 @@
 
 #import "TiModule.h"
 
-@interface TiAdmobModule : TiModule 
+@interface TiAdmobModule : TiModule
 
 - (void)disableSDKCrashReporting:(id)unused;
 
@@ -27,7 +27,7 @@
 
 - (NSNumber *)debugGeography;
 
-- (void)reset:(__unused id)unused;
+- (void)resetConsent:(__unused id)unused;
 
 - (void)setTagForUnderAgeOfConsent:(id)tagForUnderAgeOfConsent;
 

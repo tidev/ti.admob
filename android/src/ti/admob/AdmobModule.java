@@ -19,12 +19,12 @@ import org.appcelerator.titanium.TiApplication;
 
 import java.util.List;
 import java.util.ArrayList;
-
 import java.net.URL;
 import java.net.MalformedURLException;
 
 import android.net.Uri;
 import android.content.Context;
+import android.app.Activity;
 
 import com.google.android.gms.common.GooglePlayServicesUtil;
 
@@ -37,14 +37,15 @@ import com.google.ads.consent.DebugGeography;
 import com.google.ads.consent.AdProvider;
 
 @Kroll.module(name = "Admob", id = "ti.admob")
-public class AdmobModule extends KrollModule {
+public class AdmobModule extends KrollModule
+{
 	// Standard Debugging variables
 	private static final String TAG = "AdmobModule";
 	public static String MODULE_NAME = "AndroidAdMobModule";
 
 	private ConsentForm form = null;
 
-	public static Boolean TESTING = false;
+	public static boolean TESTING = false;
 	public static String PUBLISHER_ID;
 
 	// *
@@ -60,100 +61,139 @@ public class AdmobModule extends KrollModule {
 
 	// */
 
-	public AdmobModule() {
+	public AdmobModule()
+	{
 		super();
 		Log.d(TAG, "adMob module instantiated");
 	}
 
 	// Events for receiving ads
-	@Kroll.constant public static final String AD_RECEIVED = "ad_received";
-	@Kroll.constant public static final String AD_NOT_RECEIVED = "ad_not_received";
+	@Kroll.constant
+	public static final String AD_RECEIVED = "ad_received";
+	@Kroll.constant
+	public static final String AD_NOT_RECEIVED = "ad_not_received";
 
 	// Response from "isGooglePlayServicesAvailable()""
-	@Kroll.constant public static final int SUCCESS = 0;
-	@Kroll.constant public static final int SERVICE_MISSING = 1;
-	@Kroll.constant public static final int SERVICE_VERSION_UPDATE_REQUIRED = 2;
-	@Kroll.constant public static final int SERVICE_DISABLED = 3;
-	@Kroll.constant public static final int SERVICE_INVALID = 9;
+	@Kroll.constant
+	public static final int SUCCESS = 0;
+	@Kroll.constant
+	public static final int SERVICE_MISSING = 1;
+	@Kroll.constant
+	public static final int SERVICE_VERSION_UPDATE_REQUIRED = 2;
+	@Kroll.constant
+	public static final int SERVICE_DISABLED = 3;
+	@Kroll.constant
+	public static final int SERVICE_INVALID = 9;
 
 	// Response from "consentStatus"
-	@Kroll.constant public static final int CONSENT_STATUS_UNKNOWN = 0;
-	@Kroll.constant public static final int CONSENT_STATUS_NON_PERSONALIZED = 1;
-	@Kroll.constant public static final int CONSENT_STATUS_PERSONALIZED = 2;
+	@Kroll.constant
+	public static final int CONSENT_STATUS_UNKNOWN = 0;
+	@Kroll.constant
+	public static final int CONSENT_STATUS_NON_PERSONALIZED = 1;
+	@Kroll.constant
+	public static final int CONSENT_STATUS_PERSONALIZED = 2;
 
-	@Kroll.constant public static final int DEBUG_GEOGRAPHY_DISABLED = 0;
-	@Kroll.constant public static final int DEBUG_GEOGRAPHY_EEA = 1;
-	@Kroll.constant public static final int DEBUG_GEOGRAPHY_NOT_EEA = 3;
+	@Kroll.constant
+	public static final int DEBUG_GEOGRAPHY_DISABLED = 0;
+	@Kroll.constant
+	public static final int DEBUG_GEOGRAPHY_EEA = 1;
+	@Kroll.constant
+	public static final int DEBUG_GEOGRAPHY_NOT_EEA = 3;
 
 	@Kroll.method
-	public int isGooglePlayServicesAvailable() {
+	public int isGooglePlayServicesAvailable()
+	{
 		return GooglePlayServicesUtil.isGooglePlayServicesAvailable(TiApplication.getAppRootOrCurrentActivity());
 	}
 
-	// use this to set the publisher id
-	// must be done before the call to instantiate the view
+	// clang-format off
+	@Kroll.setProperty
 	@Kroll.method
-	public void setPublisherId(String pubId) {
+	public void setPublisherId(String pubId)
+	// clang-format on
+	{
 		Log.d(TAG, "setPublisherId(): " + pubId);
 		PUBLISHER_ID = pubId;
 	}
 
 	@Kroll.method
-	public void setTesting(Boolean testing) {
+	public void setTesting(boolean testing)
+	{
 		Log.d(TAG, "setTesting(): " + testing);
 		TESTING = testing;
 	}
 
 	@Kroll.method
-	public void requestConsentInfoUpdateForPublisherIdentifiers(KrollDict args) {
+	public void requestConsentInfoUpdateForPublisherIdentifiers(KrollDict args)
+	{
 		Log.e(TAG, "Not implemented due to missing docs so far.");
 
-        String[] publisherIdentifiers = (String[]) args.get("publisherIdentifiers");
-		final KrollFunction callback = (KrollFunction) args.get("callback");
+		String[] publisherIdentifiers = (String[]) args.get("publisherIdentifiers");
+		final KrollFunction callback;
+		{
+			Object value = args.get("callback");
+			if (value instanceof KrollFunction) {
+				callback = (KrollFunction) value;
+			} else {
+				throw new RuntimeException("The 'callback' property is required and must be set to a function.");
+			}
+		}
+
 		Context appContext = TiApplication.getInstance().getApplicationContext();
 
 		ConsentInformation consentInformation = ConsentInformation.getInstance(appContext);
-        consentInformation.requestConsentInfoUpdate(publisherIdentifiers, new ConsentInfoUpdateListener() {
-            @Override
-            public void onConsentInfoUpdated(ConsentStatus consentStatus) {
+		consentInformation.requestConsentInfoUpdate(publisherIdentifiers, new ConsentInfoUpdateListener() {
+			@Override
+			public void onConsentInfoUpdated(ConsentStatus consentStatus)
+			{
 				Log.d(TAG, "consent info updated");
 
 				KrollObject krollObject = getKrollObject();
 				KrollDict event = new KrollDict();
-	
+
 				event.put("consentStatus", consentStatus.ordinal());
-	
+
 				callback.callAsync(krollObject, event);
 			}
 
-            @Override
-            public void onFailedToUpdateConsentInfo(String errorReason) {
+			@Override
+			public void onFailedToUpdateConsentInfo(String errorReason)
+			{
 				Log.d(TAG, "consent info failed");
 
 				KrollObject krollObject = getKrollObject();
 				KrollDict event = new KrollDict();
-	
+
 				event.put("error", errorReason);
-	
+
 				callback.callAsync(krollObject, event);
 			}
-        });
+		});
 	}
 
 	@Kroll.method
-	public void showConsentForm(KrollDict args) {
+	public void showConsentForm(KrollDict args)
+	{
 		URL privacyUrl = null;
-		Context appContext = TiApplication.getInstance().getApplicationContext();
+		Context currentActivity = TiApplication.getInstance().getCurrentActivity();
 
-		final KrollFunction callback = (KrollFunction) args.get("callback");
-		Boolean shouldOfferPersonalizedAds = args.optBoolean("shouldOfferPersonalizedAds", true);
-		Boolean shouldOfferNonPersonalizedAds = args.optBoolean("shouldOfferNonPersonalizedAds", true);
-		Boolean shouldOfferAdFree = args.optBoolean("shouldOfferAdFree", false);
+		final KrollFunction callback;
+		{
+			Object value = args.get("callback");
+			if (value instanceof KrollFunction) {
+				callback = (KrollFunction) value;
+			} else {
+				throw new RuntimeException("The 'callback' property is required and must be set to a function.");
+			}
+		}
+
+		boolean shouldOfferPersonalizedAds = args.optBoolean("shouldOfferPersonalizedAds", true);
+		boolean shouldOfferNonPersonalizedAds = args.optBoolean("shouldOfferNonPersonalizedAds", true);
+		boolean shouldOfferAdFree = args.optBoolean("shouldOfferAdFree", false);
 
 		try {
 			privacyUrl = new URL(args.getString("privacyURL"));
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
 			KrollObject krollObject = getKrollObject();
 			KrollDict event = new KrollDict();
 
@@ -163,46 +203,51 @@ public class AdmobModule extends KrollModule {
 			return;
 		}
 
-		ConsentForm.Builder formBuilder = new ConsentForm.Builder(appContext, privacyUrl).withListener(new ConsentFormListener() {
-			@Override
-			public void onConsentFormLoaded() {
-				Log.d(TAG, "consent form loaded");
-				if (form != null) {
-					form.show();
+		ConsentForm.Builder formBuilder =
+			new ConsentForm.Builder(currentActivity, privacyUrl).withListener(new ConsentFormListener() {
+				@Override
+				public void onConsentFormLoaded()
+				{
+					Log.d(TAG, "consent form loaded");
+					if (form != null) {
+						form.show();
+					}
 				}
-			}
 
-			@Override
-			public void onConsentFormOpened() {
-				Log.d(TAG, "consent form opened");
-			}
+				@Override
+				public void onConsentFormOpened()
+				{
+					Log.d(TAG, "consent form opened");
+				}
 
-			@Override
-			public void onConsentFormClosed(ConsentStatus consentStatus, Boolean userPrefersAdFree) {
-				Log.d(TAG, "consent form closed");
+				@Override
+				public void onConsentFormClosed(ConsentStatus consentStatus, Boolean userPrefersAdFree)
+				{
+					Log.d(TAG, "consent form closed");
 
-				KrollObject krollObject = getKrollObject();
-				KrollDict event = new KrollDict();
-	
-				event.put("userPrefersAdFree", userPrefersAdFree);
-				event.put("consentStatus", consentStatus.ordinal());
-				event.put("error", null);
-	
-				callback.callAsync(krollObject, event);
-			}
+					KrollObject krollObject = getKrollObject();
+					KrollDict event = new KrollDict();
 
-			@Override
-			public void onConsentFormError(String errorDescription) {
-				Log.d(TAG, "consent form error: " + errorDescription);
+					event.put("userPrefersAdFree", userPrefersAdFree);
+					event.put("consentStatus", consentStatus.ordinal());
+					event.put("error", null);
 
-				KrollObject krollObject = getKrollObject();
-				KrollDict event = new KrollDict();
-	
-				event.put("error", errorDescription);
-	
-				callback.callAsync(krollObject, event);
-			}
-		});
+					callback.callAsync(krollObject, event);
+				}
+
+				@Override
+				public void onConsentFormError(String errorDescription)
+				{
+					Log.d(TAG, "consent form error: " + errorDescription);
+
+					KrollObject krollObject = getKrollObject();
+					KrollDict event = new KrollDict();
+
+					event.put("error", errorDescription);
+
+					callback.callAsync(krollObject, event);
+				}
+			});
 
 		if (shouldOfferPersonalizedAds) {
 			formBuilder = formBuilder.withPersonalizedAdsOption();
@@ -217,52 +262,75 @@ public class AdmobModule extends KrollModule {
 		}
 
 		form = formBuilder.build();
-		form.load();
+		runOnMainThread(new Runnable() {
+			@Override
+			public void run()
+			{
+				form.load();
+			}
+		});
 	}
 
+	// clang-format off
 	@Kroll.setProperty
 	@Kroll.method
-	public void setTagForUnderAgeOfConsent(Boolean underAgeOfConsent) {
+	public void setTagForUnderAgeOfConsent(boolean underAgeOfConsent)
+	// clang-format on
+	{
 		Context appContext = TiApplication.getInstance().getApplicationContext();
 		ConsentInformation.getInstance(appContext).setTagForUnderAgeOfConsent(underAgeOfConsent);
 	}
 
 	@Kroll.method
-	public Boolean isTaggedForUnderAgeOfConsent() {
+	public boolean isTaggedForUnderAgeOfConsent()
+	{
 		Context appContext = TiApplication.getInstance().getApplicationContext();
 		return ConsentInformation.getInstance(appContext).isTaggedForUnderAgeOfConsent();
 	}
 
+	// clang-format off
 	@Kroll.getProperty
 	@Kroll.method
-	public int getConsentStatus() {
+	public int getConsentStatus()
+	// clang-format on
+	{
 		Context appContext = TiApplication.getInstance().getApplicationContext();
 		return ConsentInformation.getInstance(appContext).getConsentStatus().ordinal();
 	}
 
+	// clang-format off
 	@Kroll.getProperty
 	@Kroll.method
-	public int getDebugGeography() {
+	public int getDebugGeography()
+	// clang-format on
+	{
 		Context appContext = TiApplication.getInstance().getApplicationContext();
 		return ConsentInformation.getInstance(appContext).getDebugGeography().ordinal();
 	}
 
+	// clang-format off
 	@Kroll.setProperty
 	@Kroll.method
-	public void setDebugGeography(int debugGeography) {
+	public void setDebugGeography(int debugGeography)
+	// clang-format on
+	{
 		Context appContext = TiApplication.getInstance().getApplicationContext();
 		ConsentInformation.getInstance(appContext).setDebugGeography(DebugGeography.values()[debugGeography]);
 	}
 
 	@Kroll.method
-	public void reset() {
+	public void resetConsent()
+	{
 		Context appContext = TiApplication.getInstance().getApplicationContext();
 		ConsentInformation.getInstance(appContext).reset();
 	}
 
+	// clang-format off
 	@Kroll.getProperty
 	@Kroll.method
-	public KrollDict[] getAdProviders() {
+	public KrollDict[] getAdProviders()
+	// clang-format on
+	{
 		Context appContext = TiApplication.getInstance().getApplicationContext();
 		List<AdProvider> adProviders = ConsentInformation.getInstance(appContext).getAdProviders();
 		KrollDict[] result = new KrollDict[adProviders.size()];
@@ -270,11 +338,11 @@ public class AdmobModule extends KrollModule {
 		for (int i = 0; i < adProviders.size(); i++) {
 			AdProvider adProvider = adProviders.get(i);
 			KrollDict dict = new KrollDict();
-			
+
 			dict.put("identifier", adProvider.getId());
 			dict.put("name", adProvider.getName());
 			dict.put("privacyPolicyURL", adProvider.getPrivacyPolicyUrl());
-			
+
 			result[i] = dict;
 		}
 

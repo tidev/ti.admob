@@ -131,7 +131,7 @@ Indicates whether the consent form should show an ad-free app option. Defaults t
 - `callback` (Function)
 Callback to be triggered once the form completes.
 
-### `reset()`
+### `resetConsent()`
 
 Resets consent information to default state and clears ad providers.
 

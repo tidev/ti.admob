@@ -18,61 +18,71 @@ import org.appcelerator.titanium.view.TiUIView;
 import android.app.Activity;
 
 @Kroll.proxy(creatableInModule = AdmobModule.class)
-public class ViewProxy extends TiViewProxy implements OnLifecycleEvent {
+public class ViewProxy extends TiViewProxy implements OnLifecycleEvent
+{
 	private View adMob;
 	private static final String TAG = "AdMobViewProxy";
 
-	public ViewProxy() {
+	public ViewProxy()
+	{
 		super();
 	}
 
 	@Override
-	protected KrollDict getLangConversionTable() {
+	protected KrollDict getLangConversionTable()
+	{
 		KrollDict table = new KrollDict();
 		table.put("title", "titleid");
 		return table;
 	}
 
 	@Override
-	public TiUIView createView(Activity activity) {
+	public TiUIView createView(Activity activity)
+	{
 		adMob = new View(this);
-		((TiBaseActivity)activity).addOnLifecycleEventListener(this);
+		((TiBaseActivity) activity).addOnLifecycleEventListener(this);
 		return adMob;
 	}
 
 	@Kroll.method
-	public void requestAd(@Kroll.argument(optional = true) KrollDict parameters) {
+	public void requestAd(@Kroll.argument(optional = true) KrollDict parameters)
+	{
 		Log.d(TAG, "requestAd()");
 		adMob.requestAd(parameters);
 	}
 
 	@Kroll.method
-	public void requestTestAd() {
+	public void requestTestAd()
+	{
 		Log.d(TAG, "requestTestAd(): ");
 		adMob.requestTestAd();
 	}
 
 	@Override
-	public void onDestroy(Activity activity) {
+	public void onDestroy(Activity activity)
+	{
 		adMob.destroy();
 	}
 
 	@Override
-	public void onPause(Activity activity) {
+	public void onPause(Activity activity)
+	{
 		adMob.pause();
 	}
 
 	@Override
-	public void onResume(Activity activity) {
+	public void onResume(Activity activity)
+	{
 		adMob.resume();
 	}
 
 	@Override
-	public void onStart(Activity activity) {
+	public void onStart(Activity activity)
+	{
 	}
 
 	@Override
-	public void onStop(Activity activity) {
+	public void onStop(Activity activity)
+	{
 	}
-
 }

@@ -17,26 +17,26 @@
 @implementation TiAdmobModule
 
 // this is generated for your module, please do not change it
--(id)moduleGUID
+- (id)moduleGUID
 {
-	return @"0d005e93-9980-4739-9e41-fd1129c8ff32";
+  return @"0d005e93-9980-4739-9e41-fd1129c8ff32";
 }
 
 // this is generated for your module, please do not change it
--(NSString*)moduleId
+- (NSString *)moduleId
 {
-	return @"ti.admob";
+  return @"ti.admob";
 }
 
 #pragma mark Lifecycle
 
--(void)startup
+- (void)startup
 {
-	// this method is called when the module is first loaded
-	// you *must* call the superclass
-	[super startup];
-	
-	NSLog(@"[DEBUG] Ti.AdMob loaded",self);
+  // this method is called when the module is first loaded
+  // you *must* call the superclass
+  [super startup];
+
+  NSLog(@"[DEBUG] Ti.AdMob loaded", self);
 }
 
 #pragma mark Public API's
@@ -55,17 +55,20 @@
 {
   ENSURE_SINGLE_ARG(args, NSDictionary);
 
-  NSArray<NSString * > *publisherIdentifiers = [args objectForKey:@"publisherIdentifiers"];
+  NSArray<NSString *> *publisherIdentifiers = [args objectForKey:@"publisherIdentifiers"];
   KrollCallback *callback = [args objectForKey:@"callback"];
-  
-  [[PACConsentInformation sharedInstance] requestConsentInfoUpdateForPublisherIdentifiers:publisherIdentifiers completionHandler:^(NSError * _Nullable error) {
-    if (error != nil) {
-      [callback call:@[@{ @"success": @NO, @"error": error.localizedDescription }] thisObject:self];
-      return;
-    }
-    
-    [callback call:@[@{ @"success": @YES }] thisObject:self];
-  }];
+
+  [[PACConsentInformation sharedInstance] requestConsentInfoUpdateForPublisherIdentifiers:publisherIdentifiers
+                                                                        completionHandler:^(NSError *_Nullable error) {
+                                                                          if (error != nil) {
+                                                                            [callback call:@[ @{ @"success" : @NO,
+                                                                              @"error" : error.localizedDescription } ]
+                                                                                thisObject:self];
+                                                                            return;
+                                                                          }
+
+                                                                          [callback call:@[ @{ @"success" : @YES } ] thisObject:self];
+                                                                        }];
 }
 
 - (void)showConsentForm:(id)args
@@ -74,21 +77,24 @@
 
   NSURL *privacyURL = [TiUtils toURL:[args objectForKey:@"privacyURL"] proxy:self];
   KrollCallback *callback = [args objectForKey:@"callback"];
-  
+
   PACConsentForm *form = [[PACConsentForm alloc] initWithApplicationPrivacyPolicyURL:privacyURL];
   form.shouldOfferPersonalizedAds = [TiUtils boolValue:@"shouldOfferPersonalizedAds" properties:args def:YES];
   form.shouldOfferNonPersonalizedAds = [TiUtils boolValue:@"shouldOfferNonPersonalizedAds" properties:args def:YES];
   form.shouldOfferAdFree = [TiUtils boolValue:@"shouldOfferAdFree" properties:args def:NO];
-  
-  [form loadWithCompletionHandler:^(NSError * _Nullable error) {
+
+  [form loadWithCompletionHandler:^(NSError *_Nullable error) {
     if (error != nil) {
-      [callback call:@[@{ @"error": error.localizedDescription }] thisObject:self];
+      [callback call:@[ @{ @"error" : error.localizedDescription } ] thisObject:self];
       return;
     }
 
-    [form presentFromViewController:[[[TiApp app] controller] topPresentedController] dismissCompletion:^(NSError * _Nullable error, BOOL userPrefersAdFree) {
-      [callback call:@[@{ @"userPrefersAdFree": @(userPrefersAdFree), @"error": NULL_IF_NIL(error.localizedDescription) }] thisObject:self];
-    }];
+    [form presentFromViewController:[[[TiApp app] controller] topPresentedController]
+                  dismissCompletion:^(NSError *_Nullable error, BOOL userPrefersAdFree) {
+                    [callback call:@[ @{ @"userPrefersAdFree" : @(userPrefersAdFree),
+                      @"error" : NULL_IF_NIL(error.localizedDescription) } ]
+                        thisObject:self];
+                  }];
   }];
 }
 
@@ -101,11 +107,13 @@
 {
   NSArray *adProviders = [[PACConsentInformation sharedInstance] adProviders];
   NSMutableArray *result = [NSMutableArray arrayWithCapacity:adProviders.count];
-  
+
   for (PACAdProvider *adProvider in adProviders) {
-    [result addObject:@{ @"identifier": adProvider.identifier, @"name": adProvider.name, @"privacyPolicyURL": adProvider.privacyPolicyURL }];
+    [result addObject:@{ @"identifier" : adProvider.identifier,
+      @"name" : adProvider.name,
+      @"privacyPolicyURL" : adProvider.privacyPolicyURL }];
   }
-  
+
   return result;
 }
 
@@ -124,7 +132,7 @@
   return @([[PACConsentInformation sharedInstance] debugGeography]);
 }
 
-- (void)reset:(id)unused
+- (void)resetConsent:(id)unused
 {
   [[PACConsentInformation sharedInstance] reset];
 }

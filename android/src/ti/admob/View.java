@@ -27,7 +27,8 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.mediation.admob.AdMobExtras;
 import com.google.ads.mediation.admob.AdMobAdapter;
 
-public class View extends TiUIView {
+public class View extends TiUIView
+{
 	private static final String TAG = "AdMobView";
 	AdView adView;
 	int prop_top;
@@ -41,14 +42,16 @@ public class View extends TiUIView {
 	String prop_color_url;
 	Bundle extras;
 
-	public View(final TiViewProxy proxy) {
+	public View(final TiViewProxy proxy)
+	{
 		super(proxy);
 		Log.d(TAG, "Creating an adMob ad view");
 		// get the publisher id that was set in the module
 		Log.d(TAG, "AdmobModule.PUBLISHER_ID: " + AdmobModule.PUBLISHER_ID);
 	}
 
-	private void createAdView() {
+	private void createAdView()
+	{
 		Log.d(TAG, "createAdView()");
 		// create the adView
 		adView = new AdView(proxy.getActivity());
@@ -56,12 +59,14 @@ public class View extends TiUIView {
 		adView.setAdUnitId(AdmobModule.PUBLISHER_ID);
 		// set the listener
 		adView.setAdListener(new AdListener() {
-			public void onAdLoaded() {
+			public void onAdLoaded()
+			{
 				Log.d(TAG, "onAdLoaded()");
 				proxy.fireEvent(AdmobModule.AD_RECEIVED, new KrollDict());
 			}
-			
-			public void onAdFailedToLoad(int errorCode) {
+
+			public void onAdFailedToLoad(int errorCode)
+			{
 				Log.d(TAG, "onAdFailedToLoad(): " + errorCode);
 				proxy.fireEvent(AdmobModule.AD_NOT_RECEIVED, new KrollDict());
 			}
@@ -74,9 +79,11 @@ public class View extends TiUIView {
 	}
 
 	// load the adMob ad
-	public void loadAd(final Boolean testing) {
+	public void loadAd(final Boolean testing)
+	{
 		proxy.getActivity().runOnUiThread(new Runnable() {
-			public void run() {
+			public void run()
+			{
 				final AdRequest.Builder adRequestBuilder = new AdRequest.Builder();
 				Log.d(TAG, "requestAd(Boolean testing) -- testing:" + testing);
 				if (testing) {
@@ -90,11 +97,11 @@ public class View extends TiUIView {
 				adView.loadAd(adRequestBuilder.build());
 			}
 		});
-		
 	}
 
 	@Override
-	public void processProperties(KrollDict d) {
+	public void processProperties(KrollDict d)
+	{
 		super.processProperties(d);
 		Log.d(TAG, "process properties");
 		if (d.containsKey("publisherId")) {
@@ -132,11 +139,13 @@ public class View extends TiUIView {
 		// check for deprecated color values
 
 		if (d.containsKey(AdmobModule.PROPERTY_COLOR_TEXT_DEPRECATED)) {
-			Log.d(TAG, "has PROPERTY_COLOR_TEXT_DEPRECATED: " + d.getString(AdmobModule.PROPERTY_COLOR_TEXT_DEPRECATED));
+			Log.d(TAG,
+				  "has PROPERTY_COLOR_TEXT_DEPRECATED: " + d.getString(AdmobModule.PROPERTY_COLOR_TEXT_DEPRECATED));
 			prop_color_text = convertColorProp(d.getString(AdmobModule.PROPERTY_COLOR_TEXT_DEPRECATED));
 		}
 		if (d.containsKey(AdmobModule.PROPERTY_COLOR_LINK_DEPRECATED)) {
-			Log.d(TAG, "has PROPERTY_COLOR_LINK_DEPRECATED: " + d.getString(AdmobModule.PROPERTY_COLOR_LINK_DEPRECATED));
+			Log.d(TAG,
+				  "has PROPERTY_COLOR_LINK_DEPRECATED: " + d.getString(AdmobModule.PROPERTY_COLOR_LINK_DEPRECATED));
 			prop_color_link = convertColorProp(d.getString(AdmobModule.PROPERTY_COLOR_LINK_DEPRECATED));
 		}
 
@@ -144,23 +153,27 @@ public class View extends TiUIView {
 		this.createAdView();
 	}
 
-	public void pause() {
+	public void pause()
+	{
 		Log.d(TAG, "pause");
 		adView.pause();
 	}
 
-	public void resume() {
+	public void resume()
+	{
 		Log.d(TAG, "resume");
 		adView.resume();
 	}
 
-	public void destroy() {
+	public void destroy()
+	{
 		Log.d(TAG, "destroy");
 		adView.destroy();
 	}
 
 	// pass the method the TESTING flag
-	public void requestAd(KrollDict parameters) {
+	public void requestAd(KrollDict parameters)
+	{
 		Log.d(TAG, "requestAd()");
 
 		if (parameters != null) {
@@ -175,7 +188,8 @@ public class View extends TiUIView {
 	}
 
 	// pass true to requestAd(Boolean testing) -- this overrides how the module was set
-	public void requestTestAd() {
+	public void requestTestAd()
+	{
 		Log.d(TAG, "requestTestAd()");
 		loadAd(true);
 	}
@@ -184,7 +198,8 @@ public class View extends TiUIView {
 
 	// create the adRequest extra props
 	// http://code.google.com/mobile/ads/docs/bestpractices.html#adcolors
-	private Bundle createAdRequestProperties() {
+	private Bundle createAdRequestProperties()
+	{
 		Bundle bundle = new Bundle();
 		if (prop_color_bg != null) {
 			Log.d(TAG, "color_bg: " + prop_color_bg);
@@ -207,7 +222,8 @@ public class View extends TiUIView {
 	}
 
 	// modifies the color prop -- removes # and changes constants into hex values
-	private String convertColorProp(String color) {
+	private String convertColorProp(String color)
+	{
 		color = color.replace("#", "");
 		if (color.equals("white"))
 			color = "FFFFFF";
@@ -224,7 +240,8 @@ public class View extends TiUIView {
 		return color;
 	}
 
-	private Bundle mapToBundle(Map<String, Object> map) {
+	private Bundle mapToBundle(Map<String, Object> map)
+	{
 		if (map == null) {
 			return new Bundle();
 		}

@@ -5,12 +5,13 @@
  * Please see the LICENSE included with this distribution for details.
  */
 
-#import "TiViewProxy.h"
 #import "TiAdmobView.h"
+#import "TiViewProxy.h"
 
-@interface TiAdmobViewProxy : TiViewProxy {}
+@interface TiAdmobViewProxy : TiViewProxy {
+}
 
-- (TiAdmobView*)admobView;
+- (TiAdmobView *)admobView;
 
 - (void)receive:(id)unused;
 
