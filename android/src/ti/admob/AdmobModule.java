@@ -127,9 +127,7 @@ public class AdmobModule extends KrollModule
 	@Kroll.method
 	public void requestConsentInfoUpdateForPublisherIdentifiers(KrollDict args)
 	{
-		Object[] proxyPublisherIdentifiers = (Object[]) args.get("proxyIdentifiers");
-		String[] publisherIdentifiers =
-			Arrays.copyOf(proxyPublisherIdentifiers, proxyPublisherIdentifiers.length, String[].class);
+		String[] publisherIdentifiers = args.getStringArray("publisherIdentifiers");
 		final KrollFunction callback;
 		{
 			Object value = args.get("callback");
