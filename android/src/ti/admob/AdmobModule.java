@@ -18,6 +18,7 @@ import org.appcelerator.kroll.KrollObject;
 import org.appcelerator.titanium.TiApplication;
 
 import java.util.List;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.net.URL;
 import java.net.MalformedURLException;
@@ -126,9 +127,9 @@ public class AdmobModule extends KrollModule
 	@Kroll.method
 	public void requestConsentInfoUpdateForPublisherIdentifiers(KrollDict args)
 	{
-		Log.e(TAG, "Not implemented due to missing docs so far.");
-
-		String[] publisherIdentifiers = (String[]) args.get("publisherIdentifiers");
+		Object[] proxyPublisherIdentifiers = (Object[]) args.get("proxyIdentifiers");
+		String[] publisherIdentifiers =
+			Arrays.copyOf(proxyPublisherIdentifiers, proxyPublisherIdentifiers.length, String[].class);
 		final KrollFunction callback;
 		{
 			Object value = args.get("callback");
