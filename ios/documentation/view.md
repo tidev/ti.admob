@@ -40,10 +40,14 @@ Add the id to the array passed to `testDevices`.
 
 ### Date dateOfBirth
 
+**Deprecated as part of the AdMob SDK**
+
 A date object representing the user's date of birth that should be used
-for determining ad delivery.
+for determining ad delivery. 
 
 ### string gender
+
+**Deprecated as part of the AdMob SDK**
 
 The user's gender for the purpose of determining ad delivery. This should be one of the constants `GENDER_MALE`, `GENDER_FEMALE` or `GENDER_UNKNOWN`.
 
@@ -64,7 +68,9 @@ A dictionary with the location of the user for location-based ads:
 Ad networks may have additional parameters they accept. To pass these parameters to them, create the ad network extras 
 object for that network, fill in the parameters, and register it here. The ad network should have a header defining the 
 interface for the `extras` object to create. All networks will have access to the basic settings you've set in this 
-GADRequest (gender, birthday, testing mode, etc.). If you register an extras object that is the same class as one you have
+GADRequest (gender, birthday, testing mode, etc.). If you register an extras object that is the same class as one you have.
+
+**Important**: You can pass `{ 'npa: '1' }` to disable personalized ads. This is required to conform to [GDPR](https://www.eugdpr.org/).
 
 ### String contentURL
 

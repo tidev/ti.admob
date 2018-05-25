@@ -10,14 +10,14 @@
 
 @implementation TiAdmobViewProxy
 
-- (TiAdmobView*)admobView
+- (TiAdmobView *)admobView
 {
-    return (TiAdmobView*)[self view];
+  return (TiAdmobView *)[self view];
 }
 
 - (void)receive:(id)unused
-{    
-    [[self admobView] initialize];
+{
+  [[self admobView] initialize];
 }
 
 @end

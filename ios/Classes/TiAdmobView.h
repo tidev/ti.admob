@@ -8,10 +8,10 @@
 #import "TiUIView.h"
 #import <GoogleMobileAds/GoogleMobileAds.h>
 
-@interface TiAdmobView : TiUIView<GADBannerViewDelegate, GADInterstitialDelegate, GADInAppPurchaseDelegate> {
-    GADBannerView *bannerView;
-    GADInterstitial *interstitial;
-    GADRequest *request;
+@interface TiAdmobView : TiUIView <GADBannerViewDelegate, GADInterstitialDelegate, GADInAppPurchaseDelegate> {
+  GADBannerView *bannerView;
+  GADInterstitial *interstitial;
+  GADRequest *request;
 }
 
 - (void)initialize;
@@ -44,10 +44,10 @@
 
 - (void)setTesting_:(id)value;
 
-- (GADBannerView*)bannerView;
+- (GADBannerView *)bannerView;
 
-- (GADInterstitial*)interstitial;
+- (GADInterstitial *)interstitial;
 
-- (GADRequest*)request;
+- (GADRequest *)request;
 
 @end
