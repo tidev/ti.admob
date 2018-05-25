@@ -88,7 +88,7 @@ var getIsAdTrackingLimited = Ti.UI.createButton({
 });
 
 getAAID.addEventListener('click', function() {
-    Admob.getAndroidAdID(function (data) {
+    Admob.getAndroidAdId(function (data) {
         Ti.API.info('AAID is ' + data.aaID);
     });
 });
