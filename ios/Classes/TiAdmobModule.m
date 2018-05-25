@@ -75,6 +75,11 @@
 {
   ENSURE_SINGLE_ARG(args, NSDictionary);
 
+  if ([args objectForKey:@"privacyURL"] == nil) {
+    [self throwException:NSLocalizedString(@"Missing \"privacyURL\" argument", nil) subreason:@"Cannot show consent form" location:CODELOCATION];
+    return;
+  }
+
   NSURL *privacyURL = [TiUtils toURL:[args objectForKey:@"privacyURL"] proxy:self];
   KrollCallback *callback = [args objectForKey:@"callback"];
 
@@ -83,19 +88,22 @@
   form.shouldOfferNonPersonalizedAds = [TiUtils boolValue:@"shouldOfferNonPersonalizedAds" properties:args def:YES];
   form.shouldOfferAdFree = [TiUtils boolValue:@"shouldOfferAdFree" properties:args def:NO];
 
-  [form loadWithCompletionHandler:^(NSError *_Nullable error) {
-    if (error != nil) {
-      [callback call:@[ @{ @"error" : error.localizedDescription } ] thisObject:self];
-      return;
-    }
-
-    [form presentFromViewController:[[[TiApp app] controller] topPresentedController]
-                  dismissCompletion:^(NSError *_Nullable error, BOOL userPrefersAdFree) {
-                    [callback call:@[ @{ @"userPrefersAdFree" : @(userPrefersAdFree),
-                      @"error" : NULL_IF_NIL(error.localizedDescription) } ]
-                        thisObject:self];
-                  }];
-  }];
+  TiThreadPerformOnMainThread(^{
+    [form loadWithCompletionHandler:^(NSError *_Nullable error) {
+      if (error != nil) {
+        [callback call:@[ @{ @"error" : error.localizedDescription } ] thisObject:self];
+        return;
+      }
+      
+      [form presentFromViewController:[[[TiApp app] controller] topPresentedController]
+                    dismissCompletion:^(NSError *_Nullable error, BOOL userPrefersAdFree) {
+                      [callback call:@[@{
+                        @"userPrefersAdFree" : @(userPrefersAdFree),
+                        @"error" : NULL_IF_NIL(error.localizedDescription)
+                      }] thisObject:self];
+                    }];
+    }];
+  }, NO);
 }
 
 - (NSNumber *)consentStatus
@@ -119,7 +127,7 @@
 
 - (NSArray *)debugIdentifiers
 {
-  return [[PACConsentInformation sharedInstance] debugIdentifiers];
+  return [[PACConsentInformation sharedInstance] debugIdentifiers] ?: @[];
 }
 
 - (void)setDebugIdentifiers:(id)debugIdentifiers
