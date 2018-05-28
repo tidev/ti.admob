@@ -1,9 +1,9 @@
 # Change Log
 
 <pre>
-v4.1.0  Conform to GDPR by exposing the `extras` object to `requestAd()` [MOD-2423]
+v4.2.0 Expose getId() and isAdTrackingLimited() from AdvertisingIdClient.Info.
 
-v4.0.1 Expose getId() and isAdTrackingLimited() from AdvertisingIdClient.Info.
+v4.1.0  Conform to GDPR by exposing the `extras` object to `requestAd()` [MOD-2423]
 
 v4.0.0  Support Titanium SDK 7.0.0 and Android 64-Bit, use Ti.PlayServices
 

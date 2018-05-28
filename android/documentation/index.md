@@ -163,7 +163,7 @@ pair with key `androidAdId` and a String value with the id.
 
 #### Example:
 
-	Admob.getAndroidAdID(function (data) {
+	Admob.getAndroidAdId(function (data) {
 		Ti.API.info('AAID is ' + data.aaID);
 	});
 
