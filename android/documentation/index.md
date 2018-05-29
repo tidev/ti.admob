@@ -155,6 +155,31 @@ Array of ad providers.
 
 Debug geography. Used for debug devices only.
 
+### getAndroidAdId(callback)
+
+Gets the user Android Advertising ID. Since this works in a background thread in native
+Android a callback is called when the value is fetched. The callback parameter is a key/value
+pair with key `androidAdId` and a String value with the id.
+
+#### Example:
+
+	Admob.getAndroidAdId(function (data) {
+		Ti.API.info('AAID is ' + data.aaID);
+	});
+
+### isLimitAdTrackingEnabled(callback)
+
+Checks whether the user has opted out from ad tracking in the device's settings. Since
+this works in a background thread in native Android a callback is called when the value
+is fetched. The callback parameter is a key/value pair with key `isLimitAdTrackingEnabled`
+and a boolean value for the user's setting.
+
+#### Example:
+
+	Admob.isLimitAdTrackingEnabled(function (data) {
+		Ti.API.info('Ad tracking is limited: ' + data.isLimitAdTrackingEnabled);
+	});
+
 ## Constants
 
 ### Number `SUCCESS`
