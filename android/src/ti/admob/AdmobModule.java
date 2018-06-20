@@ -56,11 +56,6 @@ public class AdmobModule extends KrollModule
 	private static final String TAG = "AdmobModule";
 	public static String MODULE_NAME = "AndroidAdMobModule";
 
-	@Kroll.constant
-	public static final String AD_RECEIVED = "ad_received";
-	@Kroll.constant
-	public static final String AD_NOT_RECEIVED = "ad_not_received";
-
 	private final String ANDROID_ADVERTISING_ID = "androidAdId";
 	private final String IS_LIMIT_AD_TRACKING_ENABLED = "isLimitAdTrackingEnabled";
 
