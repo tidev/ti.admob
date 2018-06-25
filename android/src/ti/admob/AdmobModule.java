@@ -8,10 +8,22 @@
 
 package ti.admob;
 
+import android.os.AsyncTask;
+
+import java.io.IOException;
+
+import com.google.android.gms.ads.identifier.AdvertisingIdClient;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+
+import org.appcelerator.kroll.KrollDict;
+import org.appcelerator.kroll.KrollFunction;
 import org.appcelerator.kroll.KrollModule;
 import org.appcelerator.kroll.annotations.Kroll;
 import org.appcelerator.kroll.common.Log;
 import org.appcelerator.titanium.TiApplication;
+
 import org.appcelerator.kroll.KrollFunction;
 import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.KrollObject;
@@ -44,9 +56,13 @@ public class AdmobModule extends KrollModule
 	private static final String TAG = "AdmobModule";
 	public static String MODULE_NAME = "AndroidAdMobModule";
 
+	private final String ANDROID_ADVERTISING_ID = "androidAdId";
+	private final String IS_LIMIT_AD_TRACKING_ENABLED = "isLimitAdTrackingEnabled";
+
+	public static Boolean TESTING = false;
+
 	private ConsentForm form = null;
 
-	public static boolean TESTING = false;
 	public static String PUBLISHER_ID;
 
 	// *
@@ -59,8 +75,6 @@ public class AdmobModule extends KrollModule
 
 	public static String PROPERTY_COLOR_TEXT_DEPRECATED = "primaryTextColor";
 	public static String PROPERTY_COLOR_LINK_DEPRECATED = "secondaryTextColor";
-
-	// */
 
 	public AdmobModule()
 	{
@@ -125,6 +139,62 @@ public class AdmobModule extends KrollModule
 	}
 
 	@Kroll.method
+	public void isLimitAdTrackingEnabled(KrollFunction callback) {
+		if (callback != null) {
+			new getAndroidAdvertisingIDInfo(callback).execute(IS_LIMIT_AD_TRACKING_ENABLED);
+		}
+	}
+
+	@Kroll.method
+	public void getAndroidAdId(KrollFunction callback) {
+		if (callback != null) {
+			new getAndroidAdvertisingIDInfo(callback).execute(ANDROID_ADVERTISING_ID);
+		}
+	}
+
+	private void invokeAIDClientInfoCallback(AdvertisingIdClient.Info aaClientIDInfo, String responseKey, KrollFunction callback) {
+		KrollDict callbackDictionary = new KrollDict();
+		Object responseValue = null;
+		switch (responseKey) {
+			case ANDROID_ADVERTISING_ID:
+				responseValue = aaClientIDInfo.getId();
+				break;
+			case IS_LIMIT_AD_TRACKING_ENABLED:
+				responseValue = aaClientIDInfo.isLimitAdTrackingEnabled();
+				break;
+		}
+		callbackDictionary.put(responseKey, responseValue);
+		callback.callAsync(getKrollObject(), callbackDictionary);
+	}
+
+	private class getAndroidAdvertisingIDInfo extends AsyncTask<String, Integer, String> {
+
+		private AdvertisingIdClient.Info aaClientIDInfo = null;
+		private KrollFunction aaInfoCallback;
+
+		public getAndroidAdvertisingIDInfo(KrollFunction infoCallback) {
+			this.aaInfoCallback = infoCallback;
+		}
+
+		@Override
+		protected String doInBackground(String... responseKey) {
+			try {
+				aaClientIDInfo = AdvertisingIdClient.getAdvertisingIdInfo(TiApplication.getInstance().getApplicationContext());
+				return responseKey[0];
+			} catch (IOException | GooglePlayServicesNotAvailableException | GooglePlayServicesRepairableException e) {
+				e.printStackTrace();
+				return null;
+			}
+		}
+
+		@Override
+		protected void onPostExecute(String responseKey) {
+			if (aaClientIDInfo != null) {
+				invokeAIDClientInfoCallback(aaClientIDInfo, responseKey, aaInfoCallback);
+			}
+		}
+	}
+
 	public void requestConsentInfoUpdateForPublisherIdentifiers(KrollDict args)
 	{
 		String[] publisherIdentifiers = args.getStringArray("publisherIdentifiers");
@@ -347,4 +417,5 @@ public class AdmobModule extends KrollModule
 
 		return result;
 	}
+
 }
