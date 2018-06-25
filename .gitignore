@@ -22,3 +22,6 @@ ios/admob.xcodeproj/project.xcworkspace/xcuserdata/*
 android/libs
 android/build.properties
 android/dist
+ios/ti.admob-iphone-*.zip
+/android/java-sources.txt
+/android/.gradle

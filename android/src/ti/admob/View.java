@@ -1,11 +1,18 @@
 /**
  * Copyright (c) 2011 by Studio Classics. All Rights Reserved.
- * Author: Brian Kurzius
+ * Copyright (c) 2017-present by Axway Appcelerator. All Rights Reserved.
+ * Author: Brian Kurzius, Axway Appcelerator
  * Licensed under the terms of the Apache Public License
  * Please see the LICENSE included with this distribution for details.
  */
 package ti.admob;
 
+import java.io.IOException;
+import java.util.Map;
+
+import org.appcelerator.titanium.TiBlob;
+import org.appcelerator.titanium.io.TiBaseFile;
+import org.appcelerator.titanium.util.TiConvert;
 import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.common.Log;
 import org.appcelerator.titanium.proxy.TiViewProxy;
@@ -18,8 +25,10 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.mediation.admob.AdMobExtras;
+import com.google.ads.mediation.admob.AdMobAdapter;
 
-public class View extends TiUIView {
+public class View extends TiUIView
+{
 	private static final String TAG = "AdMobView";
 	AdView adView;
 	AdSize prop_adSize = AdSize.BANNER;
@@ -34,12 +43,15 @@ public class View extends TiUIView {
 	String prop_color_text;
 	String prop_color_link;
 	String prop_color_url;
+	Bundle extras;
 
-	public View(final TiViewProxy proxy) {
+	public View(final TiViewProxy proxy)
+	{
 		super(proxy);
 	}
 
-	private void createAdView() {
+	private void createAdView()
+	{
 		Log.d(TAG, "createAdView()");
 
 		adView = new AdView(proxy.getActivity());
@@ -48,12 +60,14 @@ public class View extends TiUIView {
 
 		// set the listener
 		adView.setAdListener(new AdListener() {
-			public void onAdLoaded() {
+			public void onAdLoaded()
+			{
 				Log.d(TAG, "onAdLoaded()");
 				proxy.fireEvent(AdmobModule.AD_RECEIVED, new KrollDict());
 			}
-			
-			public void onAdFailedToLoad(int errorCode) {
+
+			public void onAdFailedToLoad(int errorCode)
+			{
 				Log.d(TAG, "onAdFailedToLoad(): " + errorCode);
 				proxy.fireEvent(AdmobModule.AD_NOT_RECEIVED, new KrollDict());
 			}
@@ -66,9 +80,11 @@ public class View extends TiUIView {
 	}
 
 	// load the adMob ad
-	public void loadAd(final Boolean testing) {
+	public void loadAd(final Boolean testing)
+	{
 		proxy.getActivity().runOnUiThread(new Runnable() {
-			public void run() {
+			public void run()
+			{
 				final AdRequest.Builder adRequestBuilder = new AdRequest.Builder();
 				Log.d(TAG, "requestAd(Boolean testing) -- testing:" + testing);
 				if (testing) {
@@ -82,11 +98,11 @@ public class View extends TiUIView {
 				adView.loadAd(adRequestBuilder.build());
 			}
 		});
-		
 	}
 
 	@Override
-	public void processProperties(KrollDict d) {
+	public void processProperties(KrollDict d)
+	{
 		super.processProperties(d);
 		Log.d(TAG, "process properties");
 		if (d.containsKey(AdmobModule.PROPERTY_AD_UNIT_ID)) {
@@ -133,11 +149,13 @@ public class View extends TiUIView {
 		// check for deprecated color values
 
 		if (d.containsKey(AdmobModule.PROPERTY_COLOR_TEXT_DEPRECATED)) {
-			Log.d(TAG, "has PROPERTY_COLOR_TEXT_DEPRECATED: " + d.getString(AdmobModule.PROPERTY_COLOR_TEXT_DEPRECATED));
+			Log.d(TAG,
+				  "has PROPERTY_COLOR_TEXT_DEPRECATED: " + d.getString(AdmobModule.PROPERTY_COLOR_TEXT_DEPRECATED));
 			prop_color_text = convertColorProp(d.getString(AdmobModule.PROPERTY_COLOR_TEXT_DEPRECATED));
 		}
 		if (d.containsKey(AdmobModule.PROPERTY_COLOR_LINK_DEPRECATED)) {
-			Log.d(TAG, "has PROPERTY_COLOR_LINK_DEPRECATED: " + d.getString(AdmobModule.PROPERTY_COLOR_LINK_DEPRECATED));
+			Log.d(TAG,
+				  "has PROPERTY_COLOR_LINK_DEPRECATED: " + d.getString(AdmobModule.PROPERTY_COLOR_LINK_DEPRECATED));
 			prop_color_link = convertColorProp(d.getString(AdmobModule.PROPERTY_COLOR_LINK_DEPRECATED));
 		}
 
@@ -145,29 +163,42 @@ public class View extends TiUIView {
 		this.createAdView();
 	}
 
-	public void pause() {
+	public void pause()
+	{
 		Log.d(TAG, "pause");
 		adView.pause();
 	}
 
-	public void resume() {
+	public void resume()
+	{
 		Log.d(TAG, "resume");
 		adView.resume();
 	}
 
-	public void destroy() {
+	public void destroy()
+	{
 		Log.d(TAG, "destroy");
 		adView.destroy();
 	}
 
 	// pass the method the TESTING flag
-	public void requestAd() {
+	public void requestAd(KrollDict parameters)
+	{
 		Log.d(TAG, "requestAd()");
+
+		if (parameters != null) {
+			// Pass additional extras if existing
+			if (parameters.containsKeyAndNotNull("extras")) {
+				extras = mapToBundle(parameters.getKrollDict("extras"));
+			}
+		}
+
 		loadAd(prop_debugEnabled);
 	}
 
 	// pass true to requestAd(Boolean testing) -- this overrides how the module was set
-	public void requestTestAd() {
+	public void requestTestAd()
+	{
 		Log.d(TAG, "requestTestAd()");
 		loadAd(true);
 	}
@@ -176,7 +207,8 @@ public class View extends TiUIView {
 
 	// create the adRequest extra props
 	// http://code.google.com/mobile/ads/docs/bestpractices.html#adcolors
-	private Bundle createAdRequestProperties() {
+	private Bundle createAdRequestProperties()
+	{
 		Bundle bundle = new Bundle();
 		if (prop_color_bg != null) {
 			Log.d(TAG, "color_bg: " + prop_color_bg);
@@ -192,11 +224,15 @@ public class View extends TiUIView {
 			bundle.putString("color_link", prop_color_link);
 		if (prop_color_url != null)
 			bundle.putString("color_url", prop_color_url);
+		if (extras != null)
+			bundle.putAll(extras);
+
 		return bundle;
 	}
 
 	// modifies the color prop -- removes # and changes constants into hex values
-	private String convertColorProp(String color) {
+	private String convertColorProp(String color)
+	{
 		color = color.replace("#", "");
 		if (color.equals("white"))
 			color = "FFFFFF";
@@ -213,4 +249,31 @@ public class View extends TiUIView {
 		return color;
 	}
 
+	private Bundle mapToBundle(Map<String, Object> map)
+	{
+		if (map == null) {
+			return new Bundle();
+		}
+
+		Bundle bundle = new Bundle(map.size());
+
+		for (String key : map.keySet()) {
+			Object val = map.get(key);
+			if (val == null) {
+				bundle.putString(key, null);
+			} else if (val instanceof TiBlob) {
+				bundle.putByteArray(key, ((TiBlob) val).getBytes());
+			} else if (val instanceof TiBaseFile) {
+				try {
+					bundle.putByteArray(key, ((TiBaseFile) val).read().getBytes());
+				} catch (IOException e) {
+					Log.e(TAG, "Unable to put '" + key + "' value into bundle: " + e.getLocalizedMessage(), e);
+				}
+			} else {
+				bundle.putString(key, TiConvert.toString(val));
+			}
+		}
+
+		return bundle;
+	}
 }
