@@ -2,10 +2,10 @@
 
 ## Description
 
-Allows for the display of AdMob in Titanium Android applications. 
+Allows for the display of AdMob in Titanium Android applications.
 
-Please note that if your androidManifest has screen support set to: android:anyDensity="false", any banner ads will display too small on high density devices. 
-It is not clear at this point if this is a bug with AdMob or Titanium. 
+Please note that if your androidManifest has screen support set to: android:anyDensity="false", any banner ads will display too small on high density devices.
+It is not clear at this point if this is a bug with AdMob or Titanium.
 In any event, you will either need to NOT set your screen support -- or set android:anyDensity="true" and adjust your app layout accordingly
 
 ## Getting Started
@@ -26,7 +26,7 @@ To access this module from JavaScript, you would do the following (recommended):
 var Admob = require('ti.admob');
 ```
 
-The "Admob" variable is now a reference to the Module object.	
+The "Admob" variable is now a reference to the Module object.
 
 ## Doubleclick for Publishers Developer Docs
 
@@ -179,6 +179,10 @@ and a boolean value for the user's setting.
 	Admob.isLimitAdTrackingEnabled(function (data) {
 		Ti.API.info('Ad tracking is limited: ' + data.isLimitAdTrackingEnabled);
 	});
+
+### Support the Facebook Audience Network adapter
+
+Starting in 4.3.0 you can use the included Facebook Audience Network adapter to turn on the mediation in your Admob account. Here you do not have to do anything :) You only need to configure mediation in your AdMob and Facebbok accounts by following the official guide: https://developers.google.com/admob/android/mediation/facebook
 
 ## Constants
 

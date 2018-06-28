@@ -1,13 +1,18 @@
 # Change Log
 
 <pre>
-v4.2.0 Expose getId() and isAdTrackingLimited() from AdvertisingIdClient.Info.
+v4.3.0  Support the Facebook Audience Network adapter
+        Android integration guide: https://developers.google.com/admob/android/mediation/facebook
+        
+v4.2.1  Fix Kroll annotation for requestConsentInfoUpdateForPublisherIdentifiers.
+
+v4.2.0  Expose getId() and isAdTrackingLimited() from AdvertisingIdClient.Info.
 
 v4.1.0  Conform to GDPR by exposing the `extras` object to `requestAd()` [MOD-2423]
 
 v4.0.0  Support Titanium SDK 7.0.0 and Android 64-Bit, use Ti.PlayServices
 
-v3.0.2  Bump Google Play Services to 10.2.0 [TIMOB-24722] 
+v3.0.2  Bump Google Play Services to 10.2.0 [TIMOB-24722]
 
 v3.0.1  Update Google Play Services to v9.6.1 (revison 33) [TIMOB-23860]
 

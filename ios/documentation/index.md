@@ -42,13 +42,13 @@ parameters[object]: a dictionary object of properties defined in [Ti.Admob.View]
 
 ```js
   var ad = Admob.createView({
-    bottom: 0, 
+    bottom: 0,
     width: 320, // Will calculate the width internally to fit its container if not specified
     height: 50,
     debugEnabled: true, // If enabled, a dummy value for `adUnitId` will be used to test
     adType: Admob.AD_TYPE_BANNER, // One of `AD_TYPE_BANNER` (default) or `AD_TYPE_INTERSTITIAL`
     adUnitId: '<<YOUR ADD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
-    adBackgroundColor: 'black', 
+    adBackgroundColor: 'black',
     testDevices: [Admob.SIMULATOR_ID], // You can get your device's id by looking in the console log
     contentURL: 'https://admob.com', // URL string for a webpage whose content matches the app content.
     requestAgent: 'Titanium Mobile App', // String that identifies the ad request's origin.
@@ -122,8 +122,8 @@ Debug geography. Used for debug devices only.
 
 ### Interstitials
 
-To receive an interstitional ad, you need to call `ad.receive()` instead of adding it to the viewe hierarchy. 
-It fires the `didReceiveAd` event if the  ad was successfully received, the `didFailToReceiveAd` event otherwise. Please check 
+To receive an interstitional ad, you need to call `ad.receive()` instead of adding it to the viewe hierarchy.
+It fires the `didReceiveAd` event if the  ad was successfully received, the `didFailToReceiveAd` event otherwise. Please check
 the example for a detailed example of different banner types.
 
 ### iAd
@@ -132,6 +132,9 @@ the example for a detailed example of different banner types.
 
 Starting in 2.1.0 you can use the included iAd adapter to turn on the iAd mediation in your Admob account.
 
+### Support the Facebook Audience Network adapter
+
+Starting in 2.4.0 you can use the included Facebook Audience Network adapter to turn on the mediation in your Admob account. Here you do not have to do anything :) You only need to configure mediation in your AdMob and Facebbok accounts by following the official guide: https://developers.google.com/admob/ios/mediation/facebook
 
 ## Constants
 
