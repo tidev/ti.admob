@@ -1,6 +1,8 @@
 # Change Log
 
 <pre>
+v4.2.1 Fix Kroll annotation for requestConsentInfoUpdateForPublisherIdentifiers.
+
 v4.2.0 Expose getId() and isAdTrackingLimited() from AdvertisingIdClient.Info.
 
 v4.1.0  Conform to GDPR by exposing the `extras` object to `requestAd()` [MOD-2423]

@@ -195,6 +195,7 @@ public class AdmobModule extends KrollModule
 		}
 	}
 
+	@Kroll.method
 	public void requestConsentInfoUpdateForPublisherIdentifiers(KrollDict args)
 	{
 		String[] publisherIdentifiers = args.getStringArray("publisherIdentifiers");
