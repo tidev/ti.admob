@@ -15,6 +15,8 @@
 		24DD6CFA1134B3F500162E58 /* TiAdmobModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DD6CF81134B3F500162E58 /* TiAdmobModule.m */; };
 		3A4F268F1C68DDF7003E06CF /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4F268E1C68DDF7003E06CF /* iAd.framework */; };
 		3AF5B7731C233383002E3DC7 /* TiAdmobTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AF5B7711C233383002E3DC7 /* TiAdmobTypes.h */; };
+		5E32C3FB20E2957400A17A2B /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E32C3F920E2957400A17A2B /* FBAudienceNetwork.framework */; };
+		5E32C3FC20E2957400A17A2B /* FacebookAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E32C3FA20E2957400A17A2B /* FacebookAdapter.framework */; };
 		AA747D9F0F9514B9006C5449 /* TiAdmob_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* TiAdmob_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		CE6C17A01982D1170017C788 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6C179F1982D1170017C788 /* AdSupport.framework */; };
@@ -48,6 +50,8 @@
 		24DD6D1B1134B66800162E58 /* titanium.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = titanium.xcconfig; sourceTree = "<group>"; };
 		3A4F268E1C68DDF7003E06CF /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		3AF5B7711C233383002E3DC7 /* TiAdmobTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiAdmobTypes.h; path = Classes/TiAdmobTypes.h; sourceTree = "<group>"; };
+		5E32C3F920E2957400A17A2B /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBAudienceNetwork.framework; path = platform/FBAudienceNetwork.framework; sourceTree = "<group>"; };
+		5E32C3FA20E2957400A17A2B /* FacebookAdapter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookAdapter.framework; path = platform/FacebookAdapter.framework; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* TiAdmob_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiAdmob_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CE6C179F1982D1170017C788 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -84,12 +88,14 @@
 				DAD5D7CF12527E11009CF986 /* AudioToolbox.framework in Frameworks */,
 				CE6C17A21982D12D0017C788 /* AVFoundation.framework in Frameworks */,
 				CE6C17A41982D13A0017C788 /* CoreGraphics.framework in Frameworks */,
+				5E32C3FB20E2957400A17A2B /* FBAudienceNetwork.framework in Frameworks */,
 				DB07E8B81E8010000008C1E1 /* CoreMedia.framework in Frameworks */,
 				DB07E8B91E8010000008C1E1 /* CoreMotion.framework in Frameworks */,
 				CE6C17A61982D1660017C788 /* CoreTelephony.framework in Frameworks */,
 				DB07E8BB1E80100D0008C1E1 /* CoreVideo.framework in Frameworks */,
 				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
 				DB07E8BD1E80101A0008C1E1 /* GLKit.framework in Frameworks */,
+				5E32C3FC20E2957400A17A2B /* FacebookAdapter.framework in Frameworks */,
 				DB07E8BF1E80101F0008C1E1 /* JavaScriptCore.framework in Frameworks */,
 				DB07E8C01E80103C0008C1E1 /* MediaPlayer.framework in Frameworks */,
 				DAD5D7D512527E2F009CF986 /* MessageUI.framework in Frameworks */,
@@ -126,6 +132,8 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5E32C3FA20E2957400A17A2B /* FacebookAdapter.framework */,
+				5E32C3F920E2957400A17A2B /* FBAudienceNetwork.framework */,
 				DB28410320B413750099933A /* PersonalizedAdConsent.framework */,
 				DB2840FA20B408760099933A /* GoogleMobileAds.framework */,
 				DB07E8C51E8010680008C1E1 /* SafariServices.framework */,

@@ -2,16 +2,17 @@
 
 ## Description
 
-Allows for the display of AdMob in Titanium Android applications. 
+Allows for the display of AdMob in Titanium Android applications.
 
-Please note that if your androidManifest has screen support set to: android:anyDensity="false", any banner ads will display too small on high density devices. 
-It is not clear at this point if this is a bug with AdMob or Titanium. 
+Please note that if your androidManifest has screen support set to: android:anyDensity="false", any banner ads will 
+display too small on high density devices.
+It is not clear at this point if this is a bug with AdMob or Titanium.
 In any event, you will either need to NOT set your screen support -- or set android:anyDensity="true" and adjust your app layout accordingly
 
 ## Getting Started
 
-View the [Using Titanium Modules](http://docs.appcelerator.com/titanium/latest/#!/guide/Using_Titanium_Modules) document for instructions on getting
-started with using this module in your application.
+View the [Using Titanium Modules](http://docs.appcelerator.com/titanium/latest/#!/guide/Using_Titanium_Modules) document 
+for instructions on getting started with using this module in your application.
 
 ## Requirements
 
@@ -26,7 +27,7 @@ To access this module from JavaScript, you would do the following (recommended):
 var Admob = require('ti.admob');
 ```
 
-The "Admob" variable is now a reference to the Module object.	
+The "Admob" variable is now a reference to the Module object.
 
 ## Doubleclick for Publishers Developer Docs
 
@@ -38,7 +39,8 @@ The "Admob" variable is now a reference to the Module object.
 
 Returns a number value indicating the availability of Google Play Services which are for push notifications.
 
-Possible values include `SUCCESS`, `SERVICE_MISSING`, `SERVICE_VERSION_UPDATE_REQUIRED`, `SERVICE_DISABLED`, and `SERVICE_INVALID`.
+Possible values include `SUCCESS`, `SERVICE_MISSING`, `SERVICE_VERSION_UPDATE_REQUIRED`, `SERVICE_DISABLED`,
+and `SERVICE_INVALID`.
 
 ### `createAdMobView(args)`
 
@@ -154,6 +156,37 @@ Array of ad providers.
 ### `debugGeography` (`DEBUG_GEOGRAPHY_DISABLED`, `DEBUG_GEOGRAPHY_EEA` or `DEBUG_GEOGRAPHY_NOT_EEA`)
 
 Debug geography. Used for debug devices only.
+
+### getAndroidAdId(callback)
+
+Gets the user Android Advertising ID. Since this works in a background thread in native
+Android a callback is called when the value is fetched. The callback parameter is a key/value
+pair with key `androidAdId` and a String value with the id.
+
+#### Example:
+
+	Admob.getAndroidAdId(function (data) {
+		Ti.API.info('AAID is ' + data.aaID);
+	});
+
+### isLimitAdTrackingEnabled(callback)
+
+Checks whether the user has opted out from ad tracking in the device's settings. Since
+this works in a background thread in native Android a callback is called when the value
+is fetched. The callback parameter is a key/value pair with key `isLimitAdTrackingEnabled`
+and a boolean value for the user's setting.
+
+#### Example:
+
+	Admob.isLimitAdTrackingEnabled(function (data) {
+		Ti.API.info('Ad tracking is limited: ' + data.isLimitAdTrackingEnabled);
+	});
+
+### Support the Facebook Audience Network adapter
+
+Starting in 4.3.0 you can use the included Facebook Audience Network adapter to turn on the mediation in your AdMob account.
+Here you do not have to do anything 😙. You only need to configure mediation in your AdMob and Facebook accounts by 
+following the [official guide](https://developers.google.com/admob/android/mediation/facebook).
 
 ## Constants
 
