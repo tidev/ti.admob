@@ -53,8 +53,8 @@ parameters[object]: a dictionary object of properties.
 #### Example:
 
 	var adMobView = Admob.createView({
-	    publisherId: '<<YOUR PUBLISHER ID HERE>>',
-	    testing: false, // default is false
+	    adUnitId: 'ENTER_YOUR_AD_UNIT_ID_HERE',
+	    testing:false, // default is false
 	    top: 0, // optional
 	    left: 0, // optional
 	    right: 0, // optional
@@ -79,12 +79,41 @@ returns the constant for AD_RECEIVED -- for use in an event listener
 
 ### `Admob.AD_NOT_RECEIVED`
 
-returns the constant for AD_NOT_RECEIVED -- for use in an event listener
+returns whenever the ad was not successfully loaded. The callback contains the
+error code in its parameter under the key `errorCode`
+Error codes for Android can be checked here:
+https://developers.google.com/android/reference/com/google/android/gms/ads/AdRequest#ERROR_CODE_INTERNAL_ERROR
 
 #### Example:
 
-	adMobView.addEventListener(Admob.AD_NOT_RECEIVED, function () {
-	    alert('ad was not received');
+	adMobView.addEventListener(Admob.AD_NOT_RECEIVED, function (e) {
+	    alert('ad was not received. error code is ' + e.errorCode);
+	});
+
+### `Admob.AD_OPENED`
+
+returns the constant for AD_OPENED -- for use in an event listener
+
+#### Example:
+
+	adMobView.addEventListener(Admob.AD_OPENED, function () {
+	    alert('ad was just opened');
+	});
+
+### `Admob.AD_CLOSED`
+
+#### Example:
+
+	adMobView.addEventListener(Admob.AD_CLOSED, function () {
+	    alert('ad was just closed');
+	});
+
+### `Admob.AD_LEFT_APPLICATION`
+
+#### Example:
+
+	adMobView.addEventListener(Admob.AD_LEFT_APPLICATION, function () {
+	    alert('user just left the application through the ad');
 	});
 
 ### `AdMobView.requestAd(args)`
@@ -231,13 +260,76 @@ View the [change log](changelog.html) for this module.
 
 Please direct all questions, feedback, and concerns to [info@appcelerator.com](mailto:info@appcelerator.com?subject=Android%20Admob%20Module).
 
+### Interstitial ads
+
+Starting from 4.4.0 this module now supports Interstitial ads for Android.
+
+Interstitial ads are full screen ads that are usually shown between natural steps of an application's interface flow.
+For instance doing different tasks in your application or between reading different articles.
+
+For best user experience Interstitial ads should be loaded prior showing the to the user. Interstitial ad instances can
+be used for showing one ad per loading, but they can be used multiple times. A good way of reusing an Interstitial ad is
+to show an ad, load a new after it has been closed one, and await for the proper time to show the recently loaded. 
+
+#### Properties
+
+##### adUnitId
+
+Id for this add. This property can be set in the creation dictionary or after creating the Interstitial ad instance.
+
+#### Methods
+
+##### setAdUnitId(String id)
+
+Sets the adUnitId property.
+
+##### getAdUnitId()
+
+Gets the adUnitId property.
+
+##### load()
+
+Loads an ad for this Interstitial ad instance.
+
+##### show()
+
+Shows an Interstitial ad if there is one successfully loaded. 
+
+#### Example:
+
+	// Create an Interstitial ad with a testing AdUnitId
+	var interstitialAd = Admob.createInterstitialAd({ adUnitId:"ca-app-pub-3940256099942544/1033173712" });
+
+	// Add all listeners for the add.
+	interstitialAd.addEventListener(Admob.AD_CLOSED, function () {
+	    Ti.API.info('Interstitial Ad closed!');
+	});
+	interstitialAd.addEventListener(Admob.AD_RECEIVED, function () {
+	    // When a new Interstitial ad is loaded, show it.
+	    Ti.API.info('Interstitial Ad loaded!');
+	    interstitialAd.show();
+	});
+	interstitialAd.addEventListener(Admob.AD_CLICKED, function () {
+	    Ti.API.info('Interstitial Ad clicked!');
+	});
+	interstitialAd.addEventListener(Admob.AD_NOT_RECEIVED, function (e) {
+	    Ti.API.info('Interstitial Ad not received! Error code = ' + e.errorCode);
+	});
+	interstitialAd.addEventListener(Admob.AD_OPENED, function () {
+	    Ti.API.info('Interstitial Ad opened!');
+	});
+	interstitialAd.addEventListener(Admob.AD_LEFT_APPLICATION, function () {
+	    Ti.API.info('Interstitial Ad left application!');
+	});
+	interstitialAd.load();
+
 ## Author
 
 Brian Kurzius | bkurzius@gmail.com
 Axway Appcelerator
 
 ## License
-Copyright 2011 Brian Kurzius, Studio Classics.
-Copyright 2017-present, Axway Appcelerator.
+Copyright 2011, Brian Kurzius, Studio Classics.
+Copyright 2014 - Present, Appcelerator.
 
 Please see the LICENSE file included in the distribution for further details.

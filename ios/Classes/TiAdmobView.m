@@ -97,8 +97,16 @@
 
   if ([TiUtils intValue:adType def:TiAdmobAdTypeBanner] == TiAdmobAdTypeBanner) {
     [[self bannerView] loadRequest:[self request]];
-  } else {
+  } else if ([TiUtils intValue:adType] == TiAdmobAdTypeInterstitial) {
     [[self interstitial] loadRequest:[self request]];
+  } else if ([TiUtils intValue:adType] == TiAdmobAdTypeRewardedVideo) {
+    id debugEnabled = [self.proxy valueForKey:@"debugEnabled"];
+    id adUnitId = [self.proxy valueForKey:@"adUnitId"];
+    if (debugEnabled != nil && [TiUtils boolValue:debugEnabled def:NO]) {
+      adUnitId = self.exampleAdId;
+    }
+    GADRewardBasedVideoAd.sharedInstance.delegate = self;
+    [GADRewardBasedVideoAd.sharedInstance loadRequest:self.request withAdUnitID:adUnitId];
   }
 }
 
@@ -149,7 +157,7 @@
 - (void)setAdBackgroundColor_:(id)value
 {
   id adType = [[self proxy] valueForKey:@"adType"];
-  if (adType != nil && [TiUtils boolValue:adType def:TiAdmobAdTypeBanner] == TiAdmobAdTypeInterstitial) {
+  if (adType != nil && [TiUtils boolValue:adType def:TiAdmobAdTypeBanner] != TiAdmobAdTypeBanner) {
     return;
   }
 
@@ -261,7 +269,7 @@
 
 - (NSString *)exampleAdId
 {
-  return @"ca-app-pub-0123456789012345/0123456789";
+  return @"ca-app-pub-3940256099942544/1712485313";
 }
 
 + (NSDictionary *)dictionaryFromBannerView:(GADBannerView *)bannerView
@@ -412,6 +420,48 @@
   }
 
   [self.proxy fireEvent:@"willLeaveApplication" withObject:[TiAdmobView dictionaryFromInterstitial:ad]];
+}
+
+#pragma mark - Reward Based VideoAd Delegate
+
+- (void)rewardBasedVideoAd:(GADRewardBasedVideoAd *)rewardBasedVideoAd didRewardUserWithReward:(GADAdReward *)reward {
+  [self.proxy fireEvent:@"adrewarded" withObject:@{ @"type" : reward.type, @"amount" : reward.amount }];
+}
+
+- (void)rewardBasedVideoAdDidReceiveAd:(GADRewardBasedVideoAd *)rewardBasedVideoAd
+{
+  [self.proxy fireEvent:@"adloaded" withObject:nil];
+}
+
+- (void)rewardBasedVideoAdDidOpen:(GADRewardBasedVideoAd *)rewardBasedVideoAd
+{
+  [self.proxy fireEvent:@"adopened" withObject:nil];
+}
+
+- (void)rewardBasedVideoAdDidStartPlaying:(GADRewardBasedVideoAd *)rewardBasedVideoAd
+{
+  [self.proxy fireEvent:@"videostarted" withObject:nil];
+}
+
+- (void)rewardBasedVideoAdDidCompletePlaying:(GADRewardBasedVideoAd *)rewardBasedVideoAd
+{
+  [self.proxy fireEvent:@"videocompleted" withObject:nil];
+}
+
+- (void)rewardBasedVideoAdDidClose:(GADRewardBasedVideoAd *)rewardBasedVideoAd
+{
+  [self.proxy fireEvent:@"adclosed" withObject:nil];
+}
+
+- (void)rewardBasedVideoAdWillLeaveApplication:(GADRewardBasedVideoAd *)rewardBasedVideoAd
+{
+  [self.proxy fireEvent:@"adleftapplication" withObject:nil];
+}
+
+- (void)rewardBasedVideoAd:(GADRewardBasedVideoAd *)rewardBasedVideoAd didFailToLoadWithError:(NSError *)error
+{
+  NSString *message = [TiUtils messageFromError:error];
+  [self.proxy fireEvent:@"adfailedtoload" withObject:@{ @"message" : message }];
 }
 
 @end

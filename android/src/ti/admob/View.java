@@ -31,6 +31,9 @@ public class View extends TiUIView
 {
 	private static final String TAG = "AdMobView";
 	AdView adView;
+	AdSize prop_adSize = AdSize.BANNER;
+	String prop_adUnitId;
+	Boolean prop_debugEnabled = false;
 	int prop_top;
 	int prop_left;
 	int prop_right;
@@ -45,37 +48,23 @@ public class View extends TiUIView
 	public View(final TiViewProxy proxy)
 	{
 		super(proxy);
-		Log.d(TAG, "Creating an adMob ad view");
-		// get the publisher id that was set in the module
-		Log.d(TAG, "AdmobModule.PUBLISHER_ID: " + AdmobModule.PUBLISHER_ID);
 	}
 
 	private void createAdView()
 	{
 		Log.d(TAG, "createAdView()");
-		// create the adView
-		adView = new AdView(proxy.getActivity());
-		adView.setAdSize(AdSize.BANNER);
-		adView.setAdUnitId(AdmobModule.PUBLISHER_ID);
-		// set the listener
-		adView.setAdListener(new AdListener() {
-			public void onAdLoaded()
-			{
-				Log.d(TAG, "onAdLoaded()");
-				proxy.fireEvent(AdmobModule.AD_RECEIVED, new KrollDict());
-			}
 
-			public void onAdFailedToLoad(int errorCode)
-			{
-				Log.d(TAG, "onAdFailedToLoad(): " + errorCode);
-				proxy.fireEvent(AdmobModule.AD_NOT_RECEIVED, new KrollDict());
-			}
-		});
+		adView = new AdView(proxy.getActivity());
+		adView.setAdSize(prop_adSize);
+		adView.setAdUnitId(prop_adUnitId);
+
+		// set the listener
+		adView.setAdListener(new CommonAdListener(proxy, TAG));
 		adView.setPadding(prop_left, prop_top, prop_right, 0);
 		// Add the AdView to your view hierarchy.
 		// The view will have no size until the ad is loaded.
 		setNativeView(adView);
-		loadAd(AdmobModule.TESTING);
+		loadAd(prop_debugEnabled);
 	}
 
 	// load the adMob ad
@@ -104,13 +93,11 @@ public class View extends TiUIView
 	{
 		super.processProperties(d);
 		Log.d(TAG, "process properties");
-		if (d.containsKey("publisherId")) {
-			Log.d(TAG, "has publisherId: " + d.getString("publisherId"));
-			AdmobModule.PUBLISHER_ID = d.getString("publisherId");
+		if (d.containsKey(AdmobModule.PROPERTY_AD_UNIT_ID)) {
+			prop_adUnitId = d.getString(AdmobModule.PROPERTY_AD_UNIT_ID);
 		}
-		if (d.containsKey("testing")) {
-			Log.d(TAG, "has testing param: " + d.getBoolean("testing"));
-			AdmobModule.TESTING = d.getBoolean("testing");
+		if (d.containsKey(AdmobModule.PROPERTY_DEBUG_ENABLED)) {
+			prop_debugEnabled = d.getBoolean(AdmobModule.PROPERTY_DEBUG_ENABLED);
 		}
 		if (d.containsKey(AdmobModule.PROPERTY_COLOR_BG)) {
 			Log.d(TAG, "has PROPERTY_COLOR_BG: " + d.getString(AdmobModule.PROPERTY_COLOR_BG));
@@ -183,8 +170,7 @@ public class View extends TiUIView
 			}
 		}
 
-		// pass the module TESTING flag
-		loadAd(AdmobModule.TESTING);
+		loadAd(prop_debugEnabled);
 	}
 
 	// pass true to requestAd(Boolean testing) -- this overrides how the module was set

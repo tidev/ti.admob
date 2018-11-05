@@ -65,14 +65,17 @@ public class AdmobModule extends KrollModule
 
 	public static String PUBLISHER_ID;
 
-	// *
+	// properties
+	public static String PROPERTY_AD_UNIT_ID = "adUnitId";
+	public static String PROPERTY_DEBUG_ENABLED = "debugEnabled";
+	public static String PROPERTY_TESTING = "testing";
+	public static String PROPERTY_PUBLISHER_ID = "publisherId";
 	public static String PROPERTY_COLOR_BG = "adBackgroundColor";
 	public static String PROPERTY_COLOR_BG_TOP = "backgroundTopColor";
 	public static String PROPERTY_COLOR_BORDER = "borderColor";
 	public static String PROPERTY_COLOR_TEXT = "textColor";
 	public static String PROPERTY_COLOR_LINK = "linkColor";
 	public static String PROPERTY_COLOR_URL = "urlColor";
-
 	public static String PROPERTY_COLOR_TEXT_DEPRECATED = "primaryTextColor";
 	public static String PROPERTY_COLOR_LINK_DEPRECATED = "secondaryTextColor";
 
@@ -87,6 +90,12 @@ public class AdmobModule extends KrollModule
 	public static final String AD_RECEIVED = "ad_received";
 	@Kroll.constant
 	public static final String AD_NOT_RECEIVED = "ad_not_received";
+	@Kroll.constant
+	public static final String AD_CLOSED = "ad_closed";
+	@Kroll.constant
+	public static final String AD_OPENED = "ad_opened";
+	@Kroll.constant
+	public static final String AD_LEFT_APPLICATION = "ad_left_application";
 
 	// Response from "isGooglePlayServicesAvailable()""
 	@Kroll.constant
