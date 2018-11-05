@@ -28,6 +28,16 @@ public class ViewProxy extends TiViewProxy implements OnLifecycleEvent
 		super();
 	}
 
+	@Kroll.method @Kroll.setProperty
+	public void setPublisherId(String id) {
+		Log.w(TAG, AdmobModule.PROPERTY_PUBLISHER_ID + " has been deprecated. Please use adUnitId.");
+	}
+
+	@Kroll.method @Kroll.setProperty
+	public void setTesting(Boolean test) {
+		Log.w(TAG, AdmobModule.PROPERTY_TESTING + " has been deprecated. Please use debugEnabled.");
+	}
+
 	@Override
 	protected KrollDict getLangConversionTable()
 	{

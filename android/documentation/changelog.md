@@ -1,6 +1,9 @@
 # Change Log
 
 <pre>
+
+v4.4.0  Maintain API parity with iOS module and introduce Interstitial ads support on Android.
+
 v4.3.0  Support the Facebook Audience Network adapter
         Android integration guide: https://developers.google.com/admob/android/mediation/facebook
         
