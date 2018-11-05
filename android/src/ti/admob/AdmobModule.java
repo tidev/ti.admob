@@ -65,20 +65,8 @@ public class AdmobModule extends KrollModule
 
 	public static String PUBLISHER_ID;
 
-	// constants
-	@Kroll.constant public static final int AD_TYPE_BANNER = 0;
-	@Kroll.constant public static final int AD_TYPE_INTERSTITIAL = 1;
-	@Kroll.constant public static final String AD_RECEIVED = "ad_received";
-	@Kroll.constant public static final String AD_NOT_RECEIVED = "ad_not_received";
-	@Kroll.constant public static final int SUCCESS = 0;
-	@Kroll.constant public static final int SERVICE_MISSING = 1;
-	@Kroll.constant public static final int SERVICE_VERSION_UPDATE_REQUIRED = 2;
-	@Kroll.constant public static final int SERVICE_DISABLED = 3;
-	@Kroll.constant public static final int SERVICE_INVALID = 9;
-
 	// properties
 	public static String PROPERTY_AD_UNIT_ID = "adUnitId";
-	public static String PROPERTY_AD_TYPE = "adType";
 	public static String PROPERTY_DEBUG_ENABLED = "debugEnabled";
 	public static String PROPERTY_TESTING = "testing";
 	public static String PROPERTY_PUBLISHER_ID = "publisherId";
@@ -102,6 +90,12 @@ public class AdmobModule extends KrollModule
 	public static final String AD_RECEIVED = "ad_received";
 	@Kroll.constant
 	public static final String AD_NOT_RECEIVED = "ad_not_received";
+	@Kroll.constant
+	public static final String AD_CLOSED = "ad_closed";
+	@Kroll.constant
+	public static final String AD_OPENED = "ad_opened";
+	@Kroll.constant
+	public static final String AD_LEFT_APPLICATION = "ad_left_application";
 
 	// Response from "isGooglePlayServicesAvailable()""
 	@Kroll.constant

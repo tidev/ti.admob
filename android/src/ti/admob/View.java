@@ -59,19 +59,7 @@ public class View extends TiUIView
 		adView.setAdUnitId(prop_adUnitId);
 
 		// set the listener
-		adView.setAdListener(new AdListener() {
-			public void onAdLoaded()
-			{
-				Log.d(TAG, "onAdLoaded()");
-				proxy.fireEvent(AdmobModule.AD_RECEIVED, new KrollDict());
-			}
-
-			public void onAdFailedToLoad(int errorCode)
-			{
-				Log.d(TAG, "onAdFailedToLoad(): " + errorCode);
-				proxy.fireEvent(AdmobModule.AD_NOT_RECEIVED, new KrollDict());
-			}
-		});
+		adView.setAdListener(new CommonAdListener(proxy, TAG));
 		adView.setPadding(prop_left, prop_top, prop_right, 0);
 		// Add the AdView to your view hierarchy.
 		// The view will have no size until the ad is loaded.
@@ -107,17 +95,6 @@ public class View extends TiUIView
 		Log.d(TAG, "process properties");
 		if (d.containsKey(AdmobModule.PROPERTY_AD_UNIT_ID)) {
 			prop_adUnitId = d.getString(AdmobModule.PROPERTY_AD_UNIT_ID);
-		}
-		if (d.containsKey(AdmobModule.PROPERTY_AD_TYPE)) {
-			int type = d.getInt(AdmobModule.PROPERTY_AD_TYPE);
-			switch (type) {
-				case AdmobModule.AD_TYPE_BANNER:
-					prop_adSize = AdSize.BANNER;
-					break;
-				case AdmobModule.AD_TYPE_INTERSTITIAL:
-					prop_adSize = AdSize.FLUID;
-					break;
-			}
 		}
 		if (d.containsKey(AdmobModule.PROPERTY_DEBUG_ENABLED)) {
 			prop_debugEnabled = d.getBoolean(AdmobModule.PROPERTY_DEBUG_ENABLED);
