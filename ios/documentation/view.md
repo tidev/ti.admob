@@ -27,12 +27,12 @@ The background color used for the ad.
 
 ### Array[String] testDevices
 
-An array of test device ids. Adding the id of a test device to this array 
-will allow that device to be served test ads. 
+An array of test device ids. Adding the id of a test device to this array
+will allow that device to be served test ads.
 
-Use the module constant `SIMULATOR_ID` to use the simulator as a test device. 
-If you do not know the id for your device, launch your app and request an ad 
-like you normally would, then look in the console for the id. 
+Use the module constant `SIMULATOR_ID` to use the simulator as a test device.
+If you do not know the id for your device, launch your app and request an ad
+like you normally would, then look in the console for the id.
 
 eg. <Google> To get test ads on this device, set the property `debugEnabled` to true
 
@@ -43,7 +43,7 @@ Add the id to the array passed to `testDevices`.
 **Deprecated as part of the AdMob SDK**
 
 A date object representing the user's date of birth that should be used
-for determining ad delivery. 
+for determining ad delivery.
 
 ### string gender
 
@@ -65,9 +65,9 @@ A dictionary with the location of the user for location-based ads:
 
 ### object extras
 
-Ad networks may have additional parameters they accept. To pass these parameters to them, create the ad network extras 
-object for that network, fill in the parameters, and register it here. The ad network should have a header defining the 
-interface for the `extras` object to create. All networks will have access to the basic settings you've set in this 
+Ad networks may have additional parameters they accept. To pass these parameters to them, create the ad network extras
+object for that network, fill in the parameters, and register it here. The ad network should have a header defining the
+interface for the `extras` object to create. All networks will have access to the basic settings you've set in this
 GADRequest (gender, birthday, testing mode, etc.). If you register an extras object that is the same class as one you have.
 
 **Important**: You can pass `{ 'npa: '1' }` to disable personalized ads. This is required to conform to [GDPR](https://www.eugdpr.org/).
@@ -78,24 +78,24 @@ URL string for a webpage whose content matches the app content. This webpage con
 
 ### String requestAgent
 
-String that identifies the ad request's origin. Third party libraries that reference the Mobile. Ads SDK should set this property 
-to denote the platform from which the ad request originated. For example, a third party ad network called "CoolAds network" that 
+String that identifies the ad request's origin. Third party libraries that reference the Mobile. Ads SDK should set this property
+to denote the platform from which the ad request originated. For example, a third party ad network called "CoolAds network" that
 is mediating requests to the Mobile Ads SDK should set this property as "CoolAds".
 
 ### Boolean tagForChildDirectedTreatment
 
-This property allows you to specify whether you would like your app to be treated as child-directed for purposes of the 
+This property allows you to specify whether you would like your app to be treated as child-directed for purposes of the
 Children's Online Privacy Protection Act (COPPA), http:///business.ftc.gov/privacy-and-security/childrens-privacy.
 
-If you call this method with YES, you are indicating that your app should be treated as child-directed for purposes of the 
-Children's Online Privacy Protection Act (COPPA). If you call this method with NO, you are indicating that your app should 
-not be treated as child-directed for purposes of the Children's Online Privacy Protection Act (COPPA). If you do not call this 
+If you call this method with YES, you are indicating that your app should be treated as child-directed for purposes of the
+Children's Online Privacy Protection Act (COPPA). If you call this method with NO, you are indicating that your app should
+not be treated as child-directed for purposes of the Children's Online Privacy Protection Act (COPPA). If you do not call this
 method, ad requests will include no indication of how you would like your app treated with respect to COPPA.
 
-By setting this method, you certify that this notification is accurate and you are authorized to act on behalf of the owner of 
+By setting this method, you certify that this notification is accurate and you are authorized to act on behalf of the owner of
 the app. You understand that abuse of this setting may result in termination of your Google account.
 
-It may take some time for this designation to be fully implemented in applicable Google services. This designation will 
+It may take some time for this designation to be fully implemented in applicable Google services. This designation will
 only apply to ad requests for which you have set this method.
 
 ### Boolean debugEnabled
@@ -147,6 +147,45 @@ Store).
 
 ⚠️ Deprecated by the Admob SDK 7.x and Ti.Admob 2.2.0
 
-Called when the user clicks on the buy button of an in-app purchase ad. After the receiver handles the purchase, it must 
+Called when the user clicks on the buy button of an in-app purchase ad. After the receiver handles the purchase, it must
 call the GADInAppPurchase object's reportPurchaseStatus: method.
 
+### adrewarded
+
+Fired when the reward based video ad has rewarded the user.
+
+#### Parameters
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `reward` | `Object` | Reward information for rewarded video ads. |
+| `reward.type` | `String` | Type of the reward. |
+| `reward.amount` | `Number` | Amount rewarded to the user. |
+
+### adloaded
+
+Fired when a reward based video ad was received. From this point on you can open the video using `showRewardedVideo()`.
+
+### adopened
+
+Fired when the reward based video ad opened.
+
+### videostarted
+
+Fired when the reward based video ad started playing.
+
+### videocompleted
+
+Fired when the reward based video ad completed playing.
+
+### adclosed
+
+Fired when the reward based video ad closed.
+
+### adleftapplication
+
+Fires when the reward based video ad will leave the application.
+
+### adfailedtoload
+
+Fired when the reward based video ad failed to load.

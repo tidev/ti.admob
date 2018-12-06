@@ -120,11 +120,42 @@ identifiers. Debug features are always enabled for simulators.
 
 Debug geography. Used for debug devices only.
 
+## Supported Ads
+
+Other than the default banner ad, ti.admob has support for the following ad types and features:
+
 ### Interstitials
 
 To receive an interstitional ad, you need to call `ad.receive()` instead of adding it to the viewe hierarchy.
 It fires the `didReceiveAd` event if the  ad was successfully received, the `didFailToReceiveAd` event otherwise. Please check
 the example for a detailed example of different banner types.
+
+### Rewarded Video
+
+Since version 2.5.0 you can use Admob Rewarded Video ads. This is similar to interstitials with the addition of getting a reward after watching an ad video.
+
+You create a rewarded video ad by specifying `Admob.AD_TYPE_REWARDED_VIDEO` as the `adType`. The first video will be automatically pre-loaded after creating the view and calling `receive`. To know when a video is completely loaded you can use the `adloaded` event. To show a rewarded video add call the `showRewardedVideo` method. Loading another video can be started with the `loadRewardedVideo(adUnitId)` method on the same instance.
+
+```js
+var rewardedVideo = Admob.createView({
+  adType: Admob.AD_TYPE_REWARDED_VIDEO,
+  adUnitId: '<<YOUR ADD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
+});
+rewardedVideo.receive()
+rewardedVideo.addEventListener('adloaded', function(e) {
+  rewardedVideo.showRewardedVideo();
+});
+rewardedVideo.addEventListener('adrewarded', function (reward) {
+  Ti.API.debug(`Received reward! type: ${reward.type}, amount: ${reward.amount}`);
+  // pre load next rewarded video
+  // rewardedVideo.loadRewardedVideo('add-unit-id');
+});
+rewardedVideo.addEventListener('adclosed', function(e) {
+  Ti.API.debug('No gold for you!');
+});
+```
+
+Please see the examples for a complete implementation.
 
 ### iAd
 
