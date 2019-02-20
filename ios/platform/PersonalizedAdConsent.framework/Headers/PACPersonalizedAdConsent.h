@@ -34,7 +34,7 @@ typedef NS_ENUM(NSInteger, PACConsentStatus) {
 typedef NS_ENUM(NSInteger, PACDebugGeography) {
   PACDebugGeographyDisabled = 0,  ///< Disable geography debugging.
   PACDebugGeographyEEA = 1,       ///< Geography appears as in EEA for debug devices.
-  PACDebugGeographyNotEEA = 2,    ///< Geography appears as not in EEA for debug devices.
+  PACDebugGeographyNotEEA = 2,    ///< c
 };
 
 /// Ad provider information.
