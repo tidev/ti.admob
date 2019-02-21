@@ -14,7 +14,7 @@ const bannerView = AdMob.createBannerView({
 
 ### height
 
-> `height: Number`
+> `height :Number`
 
 The height of this ad size in pixels.
 
@@ -22,7 +22,7 @@ The height of this ad size in pixels.
 
 ### width
 
-> `width: Number`
+> `width :Number`
 
 The width of this ad size in pixels.
 

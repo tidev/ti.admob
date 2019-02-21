@@ -49,8 +49,6 @@ Debug geography. Used for debug devices only.
 
 Indicates whether the user is tagged for under age of consent.
 
----
-
 ## Methods
 
 ### createBannerView
@@ -118,6 +116,8 @@ This method should be called as early as possible, and only once per application
 | --- | --- | --- |
 | `options.appId` | `String` | The Google AdMob application code. |
 
+---
+
 ### isGooglePlayServicesAvailable
 
 **Android only**
@@ -127,6 +127,8 @@ This method should be called as early as possible, and only once per application
 Returns a number value indicating the availability of Google Play Services which are for push notifications.
 
 Possible values include `SUCCESS`, `SERVICE_MISSING`, `SERVICE_VERSION_UPDATE_REQUIRED`, `SERVICE_DISABLED`, and `SERVICE_INVALID`.
+
+---
 
 ### requestConsentInfoUpdateForPublisherIdentifiers
 

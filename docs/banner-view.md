@@ -20,15 +20,17 @@ win.open();
 
 ### adSize
 
-> `adSize: AdSize`
+> `adSize :AdSize`
 
-The size of the banner ad.
+The size of the banner ad. Use one of the AD_SIZE_* constants. Also see [AdSize](ad-size.md).
+
+Defaults to [AD_SIZE_BANNER](admob-module.md#ad_size_banner).
 
 ---
 
 ### adUnitId
 
-> `adUnitId: String`
+> `adUnitId :String`
 
 Ad unit id used for displaying this banner.
 
@@ -46,9 +48,9 @@ Starts loading the ad. You can customize the request by specifiying any of the f
 | --- | --- | --- |
 | `options.keywords` | `Array<String>` | Keywords for targeting purposes. |
 | `options.extras` | `Object` | Extra parameters to pass to a specific ad network adapter. |
-| `options.contentUrl` | `Object` | Content URL for targeting purposes.. |
+| `options.contentUrl` | `Object` | Content URL for targeting purposes. |
 | `options.tagForChildDirectedTreatment` | `Boolean` | This option allows you to specify whether you would like your app to be treated as child-directed for purposes of the Children’s Online Privacy Protection Act (COPPA) - https//business.ftc.gov/privacy-and-security/childrens-privacy. |
-| `options.requestAgent` | `String` | Request agent string to identify the ad request's origin.. |
+| `options.requestAgent` | `String` | Request agent string to identify the ad request's origin. |
 | `options.testDevices` | `Array<String>` | Test ads will be returned for devices with device IDs specified in this array. Use AdMob.SIMULATOR_ID to add the simulator. |
 
 ## Events
