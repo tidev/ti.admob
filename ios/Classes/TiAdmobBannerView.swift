@@ -13,19 +13,19 @@ import GoogleMobileAds
 @objc(TiAdmobBannerView)
 class TiAdmobBannerView : TiUIView {
   var bannerView: GADBannerView!
-  
+
   override func configurationSet() {
     super.configurationSet()
-    
+
     guard let proxy = proxy as? TiAdmobBannerViewProxy else {
       return;
     }
-    
+
     if (proxy.adUnitId == "") {
       self.throwException("Ad unit ID missing", subreason: "", location: CODELOCATION)
       return
     }
-    
+
     bannerView = GADBannerView(adSize: proxy.adSize.adSize)
     bannerView.adUnitID = proxy.adUnitId
     bannerView.rootViewController = TiApp.controller()

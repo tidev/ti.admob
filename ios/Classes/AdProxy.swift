@@ -16,7 +16,7 @@ protocol AdProxy {
 extension AdProxy {
   func createRequest(_ options: [String: Any]) -> GADRequest {
     let request = GADRequest();
-    
+
     if let keywords = options["keywords"] as? [String] {
       request.keywords = keywords
     }
@@ -28,8 +28,8 @@ extension AdProxy {
     if let contentUrl = options["contentUrl"] as? String {
       request.contentURL = contentUrl
     }
-    if let tagForChildDirectedTreatment = options["tagForChildDirectedTreatment"] as? Bool {
-      request.tag(forChildDirectedTreatment: tagForChildDirectedTreatment)
+    if let tagForChildDirectedTreatment = options["tagForChildDirectedTreatment"] as? NSNumber {
+      request.tag(forChildDirectedTreatment: tagForChildDirectedTreatment.boolValue)
     }
     if let requestAgent = options["requestAgent"] as? String {
       request.requestAgent = requestAgent
@@ -37,7 +37,7 @@ extension AdProxy {
     if let testDevices = options["testDevices"] as? [String] {
       request.testDevices = testDevices
     }
-    
+
     return request
   }
 }
