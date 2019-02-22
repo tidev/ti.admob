@@ -12,7 +12,8 @@
 		4A3E78B5221C6F1300ACE31B /* TiAdmobBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3E78B4221C6F1300ACE31B /* TiAdmobBannerView.swift */; };
 		4A3E78B7221C6F2200ACE31B /* TiAdmobBannerViewProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3E78B6221C6F2200ACE31B /* TiAdmobBannerViewProxy.swift */; };
 		4AC8B1A0221D6A14005A8AA5 /* TiAdmobAdSizeProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC8B19F221D6A14005A8AA5 /* TiAdmobAdSizeProxy.swift */; };
-		DB24E03C20766AC90033B2B1 /* TiAdmobExampleProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB24E03B20766AC90033B2B1 /* TiAdmobExampleProxy.swift */; };
+		4AC8B1A2221E0BBB005A8AA5 /* AdProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC8B1A1221E0BBB005A8AA5 /* AdProxy.swift */; };
+		4AC8B1A4221E0CDB005A8AA5 /* TiAdmobInterstitialAdProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC8B1A3221E0CDB005A8AA5 /* TiAdmobInterstitialAdProxy.swift */; };
 		DB34CDE0207B998A005F8E8C /* TiAdmobModuleAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34CDDE207B998A005F8E8C /* TiAdmobModuleAssets.m */; };
 		DB34CDE1207B998A005F8E8C /* TiAdmobModuleAssets.h in Headers */ = {isa = PBXBuildFile; fileRef = DB34CDDF207B998A005F8E8C /* TiAdmobModuleAssets.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB34CDE6207B9EBD005F8E8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB34CDE5207B9EBD005F8E8C /* Foundation.framework */; };
@@ -28,7 +29,8 @@
 		4A3E78B4221C6F1300ACE31B /* TiAdmobBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TiAdmobBannerView.swift; path = Classes/TiAdmobBannerView.swift; sourceTree = "<group>"; };
 		4A3E78B6221C6F2200ACE31B /* TiAdmobBannerViewProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TiAdmobBannerViewProxy.swift; path = Classes/TiAdmobBannerViewProxy.swift; sourceTree = "<group>"; };
 		4AC8B19F221D6A14005A8AA5 /* TiAdmobAdSizeProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TiAdmobAdSizeProxy.swift; path = Classes/TiAdmobAdSizeProxy.swift; sourceTree = "<group>"; };
-		DB24E03B20766AC90033B2B1 /* TiAdmobExampleProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TiAdmobExampleProxy.swift; path = Classes/TiAdmobExampleProxy.swift; sourceTree = "<group>"; };
+		4AC8B1A1221E0BBB005A8AA5 /* AdProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AdProxy.swift; path = Classes/AdProxy.swift; sourceTree = "<group>"; };
+		4AC8B1A3221E0CDB005A8AA5 /* TiAdmobInterstitialAdProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TiAdmobInterstitialAdProxy.swift; path = Classes/TiAdmobInterstitialAdProxy.swift; sourceTree = "<group>"; };
 		DB34CDDE207B998A005F8E8C /* TiAdmobModuleAssets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiAdmobModuleAssets.m; path = Classes/TiAdmobModuleAssets.m; sourceTree = SOURCE_ROOT; };
 		DB34CDDF207B998A005F8E8C /* TiAdmobModuleAssets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiAdmobModuleAssets.h; path = Classes/TiAdmobModuleAssets.h; sourceTree = SOURCE_ROOT; };
 		DB34CDE5207B9EBD005F8E8C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -79,10 +81,11 @@
 		DB258CA51F0964F6000D0D8D /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				4AC8B1A1221E0BBB005A8AA5 /* AdProxy.swift */,
 				4AC8B19F221D6A14005A8AA5 /* TiAdmobAdSizeProxy.swift */,
 				4A3E78B4221C6F1300ACE31B /* TiAdmobBannerView.swift */,
 				4A3E78B6221C6F2200ACE31B /* TiAdmobBannerViewProxy.swift */,
-				DB24E03B20766AC90033B2B1 /* TiAdmobExampleProxy.swift */,
+				4AC8B1A3221E0CDB005A8AA5 /* TiAdmobInterstitialAdProxy.swift */,
 				DB52E2421E9CD0F800AAAEE0 /* TiAdmobModule.swift */,
 			);
 			name = Sources;
@@ -218,8 +221,9 @@
 			files = (
 				4A3E78B7221C6F2200ACE31B /* TiAdmobBannerViewProxy.swift in Sources */,
 				4AC8B1A0221D6A14005A8AA5 /* TiAdmobAdSizeProxy.swift in Sources */,
-				DB24E03C20766AC90033B2B1 /* TiAdmobExampleProxy.swift in Sources */,
+				4AC8B1A2221E0BBB005A8AA5 /* AdProxy.swift in Sources */,
 				DB34CDE0207B998A005F8E8C /* TiAdmobModuleAssets.m in Sources */,
+				4AC8B1A4221E0CDB005A8AA5 /* TiAdmobInterstitialAdProxy.swift in Sources */,
 				4A3E78B5221C6F1300ACE31B /* TiAdmobBannerView.swift in Sources */,
 				DB52E2431E9CD0F800AAAEE0 /* TiAdmobModule.swift in Sources */,
 			);

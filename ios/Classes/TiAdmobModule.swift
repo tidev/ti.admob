@@ -50,6 +50,11 @@ class TiAdmobModule: TiModule {
     
     GADMobileAds.configure(withApplicationID: appId)
   }
+  
+  @objc(createInterstitialAd:)
+  public func createInterstitialAd(args: [Any]?) -> TiAdmobInterstitialAdProxy {
+    return TiAdmobInterstitialAdProxy()._init(withPageContext: self.pageContext, args: args)
+  }
 }
 
 // MARK: GDPR compliance

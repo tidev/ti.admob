@@ -55,7 +55,7 @@ Indicates whether the user is tagged for under age of consent.
 
 > createBannerView(options) → BannerView
 
-Returns a view with a banner ad.
+Creates a new [banner ad](banner-view.md) view.
 
 **Parameters**
 
@@ -63,6 +63,20 @@ Returns a view with a banner ad.
 | --- | --- | --- |
 | `options.adUnitId` | `String` | The ad unit ID |
 | `options.adSize` | `AdSize` | The desired size of this banner. Defaults to AdMob.AD_SIZE_BANNER (320x50). |
+
+---
+
+### createInterstitialAd
+
+> createInterstitialAd(options) → InterstitalAd
+
+Creates a new [interstitial ad](interstitial-ad.md).
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `options.adUnitId` | `String` | The ad unit ID |
 
 ---
 

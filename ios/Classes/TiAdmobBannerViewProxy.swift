@@ -11,7 +11,7 @@ import TitaniumKit
 import GoogleMobileAds
 
 @objc(TiAdmobBannerViewProxy)
-class TiAdmobBannerViewProxy : TiUIViewProxy {
+class TiAdmobBannerViewProxy : TiUIViewProxy, AdProxy {
   @objc public var adSize = TiAdmobAdSizeProxy(kGADAdSizeBanner)
   
   @objc public var adUnitId = ""
@@ -22,34 +22,12 @@ class TiAdmobBannerViewProxy : TiUIViewProxy {
       return
     }
     
-    guard let args = args, let options = args.first as? NSDictionary else {
+    guard let args = args, let options = args.first as? [String: Any] else {
       view.bannerView.load(GADRequest())
       return;
     }
     
-    let request = GADRequest();
-    
-    if let keywords = options["keywords"] as? [String] {
-      request.keywords = keywords
-    }
-    // @todo how to deal with extras?
-    /*
-    if let extras = options["extras"] as? [String: Any] {
-      request.register(T##extras: GADAdNetworkExtras##GADAdNetworkExtras)
-    }
-    */
-    if let contentUrl = options["contentUrl"] as? String {
-      request.contentURL = contentUrl
-    }
-    if let tagForChildDirectedTreatment = options["tagForChildDirectedTreatment"] as? Bool {
-      request.tag(forChildDirectedTreatment: tagForChildDirectedTreatment)
-    }
-    if let requestAgent = options["requestAgent"] as? String {
-      request.requestAgent = requestAgent
-    }
-    if let testDevices = options["testDevices"] as? [String] {
-      request.testDevices = testDevices
-    }
+    let request = createRequest(options)
     
     view.bannerView.load(request)
   }
