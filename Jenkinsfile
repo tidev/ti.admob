@@ -1,6 +1,6 @@
-@Library('pipeline-library') _
+#!groovy
+library 'pipeline-library'
 
 buildModule {
-	nodeVersion = '8.9.1'
-	sdkVersion = '7.2.0.GA'
+	sdkVersion = '8.1.0.v20190501103405' // use a master build with ARM64 support
 }
