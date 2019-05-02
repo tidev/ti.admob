@@ -71,6 +71,8 @@ parameters[object]: a dictionary object of properties.
 
 returns the constant for AD_RECEIVED -- for use in an event listener
 
+Warning: This constant has been deprecated since version 4.5.0
+
 #### Example:
 
 	adMobView.addEventListener(Admob.AD_RECEIVED, function () {
@@ -84,6 +86,8 @@ error code in its parameter under the key `errorCode`
 Error codes for Android can be checked here:
 https://developers.google.com/android/reference/com/google/android/gms/ads/AdRequest#ERROR_CODE_INTERNAL_ERROR
 
+Warning: This constant has been deprecated since version 4.5.0
+
 #### Example:
 
 	adMobView.addEventListener(Admob.AD_NOT_RECEIVED, function (e) {
@@ -94,6 +98,8 @@ https://developers.google.com/android/reference/com/google/android/gms/ads/AdReq
 
 returns the constant for AD_OPENED -- for use in an event listener
 
+Warning: This constant has been deprecated since version 4.5.0
+
 #### Example:
 
 	adMobView.addEventListener(Admob.AD_OPENED, function () {
@@ -102,6 +108,8 @@ returns the constant for AD_OPENED -- for use in an event listener
 
 ### `Admob.AD_CLOSED`
 
+Warning: This constant has been deprecated since version 4.5.0
+
 #### Example:
 
 	adMobView.addEventListener(Admob.AD_CLOSED, function () {
@@ -109,6 +117,8 @@ returns the constant for AD_OPENED -- for use in an event listener
 	});
 
 ### `Admob.AD_LEFT_APPLICATION`
+
+Warning: This constant has been deprecated since version 4.5.0
 
 #### Example:
 
@@ -322,6 +332,101 @@ Shows an Interstitial ad if there is one successfully loaded.
 	    Ti.API.info('Interstitial Ad left application!');
 	});
 	interstitialAd.load();
+
+
+### Rewarded Video Ads
+
+In version 4.5.0 support for Admob Rewarded Video Ads was added. This is a similar type of ad to the Interstitial with the
+addition of getting a reward after watching an ad video.
+
+Since videos are pretty heavy to load it is recommended that the Rewarded Video Ad is fully loaded before showing it to the
+user. Similar to the Interstitial ads the Reward Video Ads are using one instance of the class to load and show a single ad
+multiple times. Meaning that you can load an add, show it at a proper time for your UX and after you get the closed/rewarded
+event you can load another video through the same instance and wait for the best time to show it to the user.
+
+#### Methods
+
+##### loadAd(String adUnitId)
+
+Loads an ad with the provided adUnitId
+
+##### show()
+
+Shows the most recent ad if it was successfully loaded.
+
+#### Events
+
+##### adloaded
+
+Fired when a rewarded video ad was successfully loaded.
+
+##### adrewarded
+
+Fired when the user was rewarded for watching an ad. This event contains a
+dictionary with the properties "type" and "amount" which determine the reward.
+
+##### adfailedtoload
+
+Fired if the video reward ad was unable to load.
+
+##### adleftapplication
+
+Fired when the user has left the application, for instance to visit the Play Store.
+
+##### adclosed
+
+Fired when the user has closed the rewarded video ad.
+
+##### adopened
+
+Fired when the rewarded video ad has been opened.
+
+##### videostarted
+
+Fired when the video of the rewarded ad has begun playing.
+
+#### Example
+
+	var Admob = require('ti.admob'),
+	    win = Titanium.UI.createWindow({ layout: 'vertical'}),
+	    rewardedVideo = Admob.createRewardedVideo(),
+	    buttonLoadAd = Ti.UI.createButton({ title: 'Load Ad'}),
+	    buttonShowAd = Ti.UI.createButton({ title: 'Show Ad', enabled: false, touchEnabled: false}),
+	    buttonClaimReward = Ti.UI.createButton({ title: 'Claim Reward', enabled: false, touchEnabled: false}),
+	    reward;
+
+	buttonLoadAd.addEventListener('click', function () {
+	    rewardedVideo.loadAd('ca-app-pub-3940256099942544/5224354917');
+	})
+
+	buttonShowAd.addEventListener('click', function () {
+	    rewardedVideo.show();
+	});
+
+	buttonClaimReward.addEventListener('click', function () {
+	    alert('You have received ' + reward.amount + ' ' + reward.type);
+	    buttonClaimReward.enabled = false;
+	    buttonClaimReward.touchEnabled = false;
+	});
+
+	rewardedVideo.addEventListener('adloaded', function () {
+	    buttonShowAd.enabled = true;
+	    buttonShowAd.touchEnabled = true;
+	});
+
+	rewardedVideo.addEventListener('adrewarded', function (rewardItem) {
+	    reward = rewardItem;
+	    buttonClaimReward.enabled = true;
+	    buttonClaimReward.touchEnabled = true;
+	});
+
+	rewardedVideo.addEventListener('adclosed', function () {
+	    buttonShowAd.enabled = false;
+	    buttonShowAd.touchEnabled = false;
+	});
+
+	win.add([buttonLoadAd, buttonShowAd, buttonClaimReward]);
+	win.open();
 
 ## Author
 

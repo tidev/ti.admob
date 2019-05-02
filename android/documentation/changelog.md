@@ -2,6 +2,8 @@
 
 <pre>
 
+v4.5.0  Added support for Rewarded Video Ads. 
+
 v4.4.0  Maintain API parity with iOS module and introduce Interstitial ads support on Android.
 
 v4.3.0  Support the Facebook Audience Network adapter
