@@ -2,7 +2,7 @@
 
 <pre>
 
-v5.0.0 Update APIs to match the Swift version of the iOS part of the module. Set Titanium 8.0.0 as minimum.
+v4.5.0 Update APIs to match the Swift version of the iOS part of the module. Set Titanium 8.0.0 as minimum.
 
 v4.4.0  Maintain API parity with iOS module and introduce Interstitial ads support on Android.
 

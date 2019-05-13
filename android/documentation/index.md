@@ -46,108 +46,6 @@ The "Admob" variable is now a reference to the Module object.
 
 <https://developers.google.com/mobile-ads-sdk/>
 
-## Constants
-
-### Number `SUCCESS`
-Returned by `isGooglePlayServicesAvailable()` if the connection to Google Play Services was successful.
-
-### Number `SERVICE_MISSING`
-Returned by `isGooglePlayServicesAvailable()` if Google Play Services is missing on this device.
-
-### Number `SERVICE_VERSION_UPDATE_REQUIRED`
-Returned by `isGooglePlayServicesAvailable()` if the installed version of Google Play Services is out of date.
-
-### Number `SERVICE_DISABLED`
-Returned by `isGooglePlayServicesAvailable()` if the installed version of Google Play Services has been disabled on this device.
-
-### Number `SERVICE_INVALID`
-Returned by `isGooglePlayServicesAvailable()` if the version of the Google Play Services installed on this device is not authentic.
-
-### Number `CONSENT_STATUS_UNKNOWN`
-Returned by `consentStatus` if the consent status is unknown.
-
-### Number `CONSENT_STATUS_NON_PERSONALIZED`
-Returned by `consentStatus` if the consent status is not personalized.
-
-### Number `CONSENT_STATUS_PERSONALIZED`
-Returned by `consentStatus` if the consent status is personalized.
-
-### Number `DEBUG_GEOGRAPHY_DISABLED`
-Returned by `debugGeography` if geography debugging is disabled.
-
-### Number `DEBUG_GEOGRAPHY_EEA`
-Returned by `debugGeography` if geography appears as in EEA for debug devices.
-
-### Number `DEBUG_GEOGRAPHY_NOT_EEA`
-Returned by `debugGeography` if geography appears as not in EEA for debug devices.
-
-### `Admob.AD_RECEIVED`
-DEPRECATED since 5.0.0
-returns the constant for AD_RECEIVED -- for use in an event listener
-
-#### Example:
-
-	adMobView.addEventListener(Admob.AD_RECEIVED, function () {
-	    alert('ad was just received');
-	});
-
-### `Admob.AD_NOT_RECEIVED`
-DEPRECATED since 5.0.0
-returns whenever the ad was not successfully loaded. The callback contains the
-error code in its parameter under the key `errorCode`
-Error codes for Android can be checked here:
-https://developers.google.com/android/reference/com/google/android/gms/ads/AdRequest#ERROR_CODE_INTERNAL_ERROR
-
-#### Example:
-
-	adMobView.addEventListener(Admob.AD_NOT_RECEIVED, function (e) {
-	    alert('ad was not received. error code is ' + e.errorCode);
-	});
-
-### `Admob.AD_OPENED`
-DEPRECATED since 5.0.0
-returns the constant for AD_OPENED -- for use in an event listener
-
-#### Example:
-
-	adMobView.addEventListener(Admob.AD_OPENED, function () {
-	    alert('ad was just opened');
-	});
-
-### `Admob.AD_CLOSED`
-DEPRECATED since 5.0.0
-#### Example:
-
-	adMobView.addEventListener(Admob.AD_CLOSED, function () {
-	    alert('ad was just closed');
-	});
-
-### `Admob.AD_LEFT_APPLICATION`
-DEPRECATED since 5.0.0
-#### Example:
-
-	adMobView.addEventListener(Admob.AD_LEFT_APPLICATION, function () {
-	    alert('user just left the application through the ad');
-	});
-
-### Admob.AD_SIZE_BANNER
-
-### Admob.AD_SIZE_FLUID
-
-### Admob.AD_SIZE_FULL_BANNER
-
-### Admob.AD_SIZE_LARGE_BANNER
-
-### Admob.AD_SIZE_LEADERBOARD
-
-### Admob.AD_SIZE_MEDIUM_RECTANGLE
-
-### Admob.AD_SIZE_SEARCH
-
-### Admob.AD_SIZE_SMART_BANNER
-
-### Admob.AD_SIZE_WIDE_SKYSCRAPER
-
 ## Functions
 
 ### initialize(admobApplicationID)
@@ -162,7 +60,8 @@ Possible values include `SUCCESS`, `SERVICE_MISSING`, `SERVICE_VERSION_UPDATE_RE
 and `SERVICE_INVALID`.
 
 ### `createView(args)`
-DEPRECATED since 5.0.0
+
+DEPRECATED since 4.5.0. Use `createBannerView` instead.
 Returns a view with an ad initialized by default.
 
 #### Arguments
@@ -187,11 +86,26 @@ parameters[object]: a dictionary object of properties.
 	});
 
 ### `AdMobView.requestAd(args)`
-DEPRECATED since 5.0.0
+
+DEPRECATED since 4.5.0. Use `load()` instead.
 Calls for a new ad if needed. Pass optional `args` to configure extras.
 
 #### Example:
 
+```js
+    bannerView.load({
+        extras: {
+            adBackgroundColor:"FF8855", // optional
+            backgroundColorTop: "738000", //optional - Gradient background color at top
+            borderColor: "#000000", // optional - Border color
+            textColor: "#000000", // optional - Text color
+            urlColor: "#00FF00", // optional - URL color
+            linkColor: "#0000FF" //optional -  Link text color
+        }
+    });
+```
+
+Deprecated:
 ```js
 adMobView.requestAd({
     extras: {
@@ -201,7 +115,9 @@ adMobView.requestAd({
 ```
 
 ### `AdMobView.requestTestAd()`
-DEPRECATED since 5.0.0
+
+DEPRECATED since 4.5.0. Use `load()` with the `testDevices` property instead. More details about this can be found on this link:
+https://developers.google.com/admob/android/test-ads#enable_test_devices
 Calls for a test ad if needed. This works independently from the testing flag above.
 
 #### Example:
@@ -237,11 +153,13 @@ Callback to be triggered once the form completes.
 Resets consent information to default state and clears ad providers.
 
 ### `setTagForUnderAgeOfConsent(true|false)`
-DEPRECATED since 5.0.0
+
+DEPRECATED since 4.5.0. Use directly `isTaggedForUnderAgeOfConsent` instead.
 Sets whether the user is tagged for under age of consent.
 
 ### `isTaggedForUnderAgeOfConsent()` (Boolean)
-DEPRECATED since 5.0.0
+
+DEPRECATED since 4.5.0. Use directly `isTaggedForUnderAgeOfConsent` instead.
 Indicates whether the user is tagged for under age of consent.
 
 ## Properties
@@ -283,11 +201,148 @@ and a boolean value for the user's setting.
 		Ti.API.info('Ad tracking is limited: ' + data.isLimitAdTrackingEnabled);
 	});
 
-### Support the Facebook Audience Network adapter
+## Constants
+
+### Number `SUCCESS`
+Returned by `isGooglePlayServicesAvailable()` if the connection to Google Play Services was successful.
+
+### Number `SERVICE_MISSING`
+Returned by `isGooglePlayServicesAvailable()` if Google Play Services is missing on this device.
+
+### Number `SERVICE_VERSION_UPDATE_REQUIRED`
+Returned by `isGooglePlayServicesAvailable()` if the installed version of Google Play Services is out of date.
+
+### Number `SERVICE_DISABLED`
+Returned by `isGooglePlayServicesAvailable()` if the installed version of Google Play Services has been disabled on this device.
+
+### Number `SERVICE_INVALID`
+Returned by `isGooglePlayServicesAvailable()` if the version of the Google Play Services installed on this device is not authentic.
+
+### Number `CONSENT_STATUS_UNKNOWN`
+Returned by `consentStatus` if the consent status is unknown.
+
+### Number `CONSENT_STATUS_NON_PERSONALIZED`
+Returned by `consentStatus` if the consent status is not personalized.
+
+### Number `CONSENT_STATUS_PERSONALIZED`
+Returned by `consentStatus` if the consent status is personalized.
+
+### Number `DEBUG_GEOGRAPHY_DISABLED`
+Returned by `debugGeography` if geography debugging is disabled.
+
+### Number `DEBUG_GEOGRAPHY_EEA`
+Returned by `debugGeography` if geography appears as in EEA for debug devices.
+
+### Number `DEBUG_GEOGRAPHY_NOT_EEA`
+Returned by `debugGeography` if geography appears as not in EEA for debug devices.
+
+### `Admob.AD_RECEIVED`
+
+DEPRECATED since 4.5.0. Use `load` instead.
+returns the constant for AD_RECEIVED -- for use in an event listener
+
+#### Example:
+
+	adMobView.addEventListener('load', function () {
+	    alert('ad was just received');
+	});
+
+Deprecated:
+	adMobView.addEventListener(Admob.AD_RECEIVED, function () {
+	    alert('ad was just received');
+	});
+
+### `Admob.AD_NOT_RECEIVED`
+
+DEPRECATED since 4.5.0. Use `fail` instead.
+returns whenever the ad was not successfully loaded. The callback contains the
+error code in its parameter under the key `errorCode`
+Error codes for Android can be checked here:
+https://developers.google.com/android/reference/com/google/android/gms/ads/AdRequest#ERROR_CODE_INTERNAL_ERROR
+
+#### Example:
+
+	adMobView.addEventListener('fail', function (e) {
+	    alert('ad was not received. error code is ' + e.errorCode);
+	});
+
+Deprecated:
+	adMobView.addEventListener(Admob.AD_NOT_RECEIVED, function (e) {
+	    alert('ad was not received. error code is ' + e.errorCode);
+	});
+
+### `Admob.AD_OPENED`
+
+DEPRECATED since 4.5.0. Use `open` instead.
+returns the constant for AD_OPENED -- for use in an event listener
+
+#### Example:
+
+	adMobView.addEventListener('open', function () {
+	    alert('ad was just opened');
+	});
+
+Deprecated:
+	adMobView.addEventListener(Admob.AD_OPENED, function () {
+	    alert('ad was just opened');
+	});
+
+### `Admob.AD_CLOSED`
+
+DEPRECATED since 4.5.0. Use `close` instead.
+
+#### Example:
+
+	adMobView.addEventListener('closed', function () {
+	    alert('ad was just closed');
+	});
+
+Deprecated:
+	adMobView.addEventListener(Admob.AD_CLOSED, function () {
+	    alert('ad was just closed');
+	});
+
+### `Admob.AD_LEFT_APPLICATION`
+
+DEPRECATED since 4.5.0. Use `leftapp` instead. 
+
+#### Example:
+
+	adMobView.addEventListener('leftapp', function () {
+	    alert('user just left the application through the ad');
+	});
+
+Deprecated:
+	adMobView.addEventListener(Admob.AD_LEFT_APPLICATION, function () {
+	    alert('user just left the application through the ad');
+	});
+
+### Admob.AD_SIZE_BANNER
+
+### Admob.AD_SIZE_FLUID
+
+### Admob.AD_SIZE_FULL_BANNER
+
+### Admob.AD_SIZE_LARGE_BANNER
+
+### Admob.AD_SIZE_LEADERBOARD
+
+### Admob.AD_SIZE_MEDIUM_RECTANGLE
+
+### Admob.AD_SIZE_SEARCH
+
+### Admob.AD_SIZE_SMART_BANNER
+
+### Admob.AD_SIZE_WIDE_SKYSCRAPER
+
+## Support the Facebook Audience Network adapter
 
 Starting in 4.3.0 you can use the included Facebook Audience Network adapter to turn on the mediation in your AdMob account.
 Here you do not have to do anything 😙. You only need to configure mediation in your AdMob and Facebook accounts by 
 following the [official guide](https://developers.google.com/admob/android/mediation/facebook).
+
+WARNING! From version 4.5.0 the Facebook Audience Network adapter is deprecated. Once it is removed in a future release, it would depend
+on users to add it manually to the module when they need it.
 
 ## Module History
 

@@ -51,14 +51,14 @@ public class BannerViewProxy extends TiViewProxy implements OnLifecycleEvent
 	public void requestAd(@Kroll.argument(optional = true) KrollDict parameters)
 	{
 		adMob.requestAd(parameters);
-		Log.w(TAG, "requestAd() had been deprecated. Use load() instead.");
+		Log.w(TAG, "requestAd() has been deprecated. Use load() instead.");
 	}
 
 	@Kroll.method
 	public void requestTestAd()
 	{
 		adMob.requestTestAd();
-		Log.w(TAG, "requestAd() had been deprecated. Use load() with 'debugIdentifiers' property instead.");
+		Log.w(TAG, "requestAd() has been deprecated. Use load() with 'debugIdentifiers' property instead.");
 	}
 
 	@Kroll.method
