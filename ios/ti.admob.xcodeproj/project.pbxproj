@@ -11,6 +11,9 @@
 		4A3E78B3221C38E900ACE31B /* PersonalizedAdConsent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A3E78B1221C38E900ACE31B /* PersonalizedAdConsent.framework */; };
 		4A3E78B5221C6F1300ACE31B /* TiAdmobBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3E78B4221C6F1300ACE31B /* TiAdmobBannerView.swift */; };
 		4A3E78B7221C6F2200ACE31B /* TiAdmobBannerViewProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3E78B6221C6F2200ACE31B /* TiAdmobBannerViewProxy.swift */; };
+		4A48DD0F22BAB56D007FCA0E /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A48DD0C22BAB56D007FCA0E /* GoogleAppMeasurement.framework */; };
+		4A48DD1022BAB56D007FCA0E /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A48DD0D22BAB56D007FCA0E /* GoogleUtilities.framework */; };
+		4A48DD1122BAB56D007FCA0E /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A48DD0E22BAB56D007FCA0E /* nanopb.framework */; };
 		4AC8B1A0221D6A14005A8AA5 /* TiAdmobAdSizeProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC8B19F221D6A14005A8AA5 /* TiAdmobAdSizeProxy.swift */; };
 		4AC8B1A2221E0BBB005A8AA5 /* AdProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC8B1A1221E0BBB005A8AA5 /* AdProxy.swift */; };
 		4AC8B1A4221E0CDB005A8AA5 /* TiAdmobInterstitialAdProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC8B1A3221E0CDB005A8AA5 /* TiAdmobInterstitialAdProxy.swift */; };
@@ -20,7 +23,6 @@
 		DB52E2401E9CCF8D00AAAEE0 /* TiAdmob_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = DB52E23F1E9CCF8D00AAAEE0 /* TiAdmob_Prefix.pch */; };
 		DB52E2431E9CD0F800AAAEE0 /* TiAdmobModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB52E2421E9CD0F800AAAEE0 /* TiAdmobModule.swift */; };
 		DB75E5161E9CD59000809B2D /* TiAdmob.h in Headers */ = {isa = PBXBuildFile; fileRef = DB75E5151E9CD58100809B2D /* TiAdmob.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DBB66221208481A800EAD6D9 /* TitaniumKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB6621E2084819D00EAD6D9 /* TitaniumKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,9 @@
 		4A3E78B1221C38E900ACE31B /* PersonalizedAdConsent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PersonalizedAdConsent.framework; path = platform/PersonalizedAdConsent.framework; sourceTree = "<group>"; };
 		4A3E78B4221C6F1300ACE31B /* TiAdmobBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TiAdmobBannerView.swift; path = Classes/TiAdmobBannerView.swift; sourceTree = "<group>"; };
 		4A3E78B6221C6F2200ACE31B /* TiAdmobBannerViewProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TiAdmobBannerViewProxy.swift; path = Classes/TiAdmobBannerViewProxy.swift; sourceTree = "<group>"; };
+		4A48DD0C22BAB56D007FCA0E /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = platform/GoogleAppMeasurement.framework; sourceTree = "<group>"; };
+		4A48DD0D22BAB56D007FCA0E /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = platform/GoogleUtilities.framework; sourceTree = "<group>"; };
+		4A48DD0E22BAB56D007FCA0E /* nanopb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = nanopb.framework; path = platform/nanopb.framework; sourceTree = "<group>"; };
 		4AC8B19F221D6A14005A8AA5 /* TiAdmobAdSizeProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TiAdmobAdSizeProxy.swift; path = Classes/TiAdmobAdSizeProxy.swift; sourceTree = "<group>"; };
 		4AC8B1A1221E0BBB005A8AA5 /* AdProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AdProxy.swift; path = Classes/AdProxy.swift; sourceTree = "<group>"; };
 		4AC8B1A3221E0CDB005A8AA5 /* TiAdmobInterstitialAdProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TiAdmobInterstitialAdProxy.swift; path = Classes/TiAdmobInterstitialAdProxy.swift; sourceTree = "<group>"; };
@@ -47,9 +52,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A48DD0F22BAB56D007FCA0E /* GoogleAppMeasurement.framework in Frameworks */,
+				4A48DD1022BAB56D007FCA0E /* GoogleUtilities.framework in Frameworks */,
+				4A48DD1122BAB56D007FCA0E /* nanopb.framework in Frameworks */,
 				4A3E78B2221C38E900ACE31B /* GoogleMobileAds.framework in Frameworks */,
 				4A3E78B3221C38E900ACE31B /* PersonalizedAdConsent.framework in Frameworks */,
-				DBB66221208481A800EAD6D9 /* TitaniumKit.framework in Frameworks */,
 				DB34CDE6207B9EBD005F8E8C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,14 +64,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4A3E78AF221C377800ACE31B /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				DBB6621E2084819D00EAD6D9 /* TitaniumKit.framework */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 		DB258CA41F0964DE000D0D8D /* Misc */ = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +93,9 @@
 		DB34CDE2207B9D6A005F8E8C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A48DD0C22BAB56D007FCA0E /* GoogleAppMeasurement.framework */,
+				4A48DD0D22BAB56D007FCA0E /* GoogleUtilities.framework */,
+				4A48DD0E22BAB56D007FCA0E /* nanopb.framework */,
 				4A3E78B0221C38E900ACE31B /* GoogleMobileAds.framework */,
 				4A3E78B1221C38E900ACE31B /* PersonalizedAdConsent.framework */,
 				DB34CDE5207B9EBD005F8E8C /* Foundation.framework */,
@@ -107,7 +109,6 @@
 				DB52E22C1E9CCD7000AAAEE0 /* TiAdmob */,
 				DB52E22B1E9CCD7000AAAEE0 /* Products */,
 				DB34CDE2207B9D6A005F8E8C /* Frameworks */,
-				4A3E78AF221C377800ACE31B /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -183,6 +184,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = DB52E2201E9CCD7000AAAEE0;
@@ -194,15 +196,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		DBB6621E2084819D00EAD6D9 /* TitaniumKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = TitaniumKit.framework;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		DB52E2281E9CCD7000AAAEE0 /* Resources */ = {
