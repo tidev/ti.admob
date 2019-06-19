@@ -44,7 +44,7 @@ class TiAdmobModule: TiModule {
 
   @objc(initialize:)
   public func initialize(args: [Any]?) {
-    guard let args = args, let options = args.first as? NSDictionary, let appId = options["appId"] as? String else {
+    guard let args = args, let options = args.first as? [String:Any], let appId = options["appId"] as? String else {
       return;
     }
 
@@ -118,8 +118,8 @@ extension TiAdmobModule {
   }
 
   @objc(requestConsentInfoUpdateForPublisherIdentifiers:)
-  public func requestConsentInfoUpdateForPublisherIdentifiers(args: Array<Any>?) {
-    guard let args = args, let options = args.first as? NSDictionary else {
+  public func requestConsentInfoUpdateForPublisherIdentifiers(args: [Any]?) {
+    guard let args = args, let options = args.first as? [String:Any] else {
       return;
     }
 
@@ -143,7 +143,7 @@ extension TiAdmobModule {
 
   @objc(showConsentForm:)
   public func showConsentForm(args: [Any]?) {
-    guard let args = args, let options = args.first as? NSDictionary else {
+    guard let args = args, let options = args.first as? [String:Any] else {
       return;
     }
 
@@ -153,9 +153,9 @@ extension TiAdmobModule {
     }
 
     let form = PACConsentForm.init(applicationPrivacyPolicyURL: privacyUrl)!
-    form.shouldOfferPersonalizedAds = TiUtils.boolValue("shouldOfferPersonlizedAds", properties: options as? [AnyHashable : Any], def: true)
-    form.shouldOfferNonPersonalizedAds = TiUtils.boolValue("shouldOfferNonPersonalizedAds", properties: options as? [AnyHashable : Any], def: true)
-    form.shouldOfferAdFree = TiUtils.boolValue("shouldOfferAdFree", properties: options as? [AnyHashable : Any], def: false)
+    form.shouldOfferPersonalizedAds = TiUtils.boolValue("shouldOfferPersonlizedAds", properties: options, def: true)
+    form.shouldOfferNonPersonalizedAds = TiUtils.boolValue("shouldOfferNonPersonalizedAds", properties: options, def: true)
+    form.shouldOfferAdFree = TiUtils.boolValue("shouldOfferAdFree", properties: options, def: false)
 
     form.load { (error) in
       guard let callback = options["callback"] as? KrollCallback else {
