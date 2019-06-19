@@ -124,7 +124,7 @@ extension TiAdmobModule {
       return;
     }
 
-    guard let publisherIdentifiers = options["publisherIdentifier"] as? [String] else {
+    guard let publisherIdentifiers = options["publisherIdentifiers"] as? [String] else {
       return;
     }
 
