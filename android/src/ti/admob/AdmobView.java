@@ -7,12 +7,6 @@
  */
 package ti.admob;
 
-import java.io.IOException;
-import java.util.Map;
-
-import org.appcelerator.titanium.TiBlob;
-import org.appcelerator.titanium.io.TiBaseFile;
-import org.appcelerator.titanium.util.TiConvert;
 import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.common.Log;
 import org.appcelerator.titanium.proxy.TiViewProxy;
@@ -27,12 +21,14 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.mediation.admob.AdMobExtras;
 import com.google.ads.mediation.admob.AdMobAdapter;
 
-public class View extends TiUIView
+public class AdmobView extends TiUIView
 {
 	private static final String TAG = "AdMobView";
-	AdView adView;
-	AdSize prop_adSize = AdSize.BANNER;
+	private AdView adView;
+
+	AdmobSizeProxy prop_adSize = AdmobSizeEnum.BANNER.getAdmobSizeProxy();
 	String prop_adUnitId;
+	// Put these in extras bundle of laod
 	Boolean prop_debugEnabled = false;
 	int prop_top;
 	int prop_left;
@@ -43,9 +39,10 @@ public class View extends TiUIView
 	String prop_color_text;
 	String prop_color_link;
 	String prop_color_url;
+	// -------------------------------------
 	Bundle extras;
 
-	public View(final TiViewProxy proxy)
+	public AdmobView(final TiViewProxy proxy)
 	{
 		super(proxy);
 	}
@@ -55,8 +52,9 @@ public class View extends TiUIView
 		Log.d(TAG, "createAdView()");
 
 		adView = new AdView(proxy.getActivity());
-		adView.setAdSize(prop_adSize);
+
 		adView.setAdUnitId(prop_adUnitId);
+		adView.setAdSize(prop_adSize.getAdSize());
 
 		// set the listener
 		adView.setAdListener(new CommonAdListener(proxy, TAG));
@@ -64,11 +62,11 @@ public class View extends TiUIView
 		// Add the AdView to your view hierarchy.
 		// The view will have no size until the ad is loaded.
 		setNativeView(adView);
-		loadAd(prop_debugEnabled);
+		loadAd(prop_debugEnabled, null);
 	}
 
-	// load the adMob ad
-	public void loadAd(final Boolean testing)
+	//Deprecated in 5.0.0. Should be remove in 6.0.0
+	private void loadAd(final Boolean testing, Bundle extrasBundle)
 	{
 		proxy.getActivity().runOnUiThread(new Runnable() {
 			public void run()
@@ -88,56 +86,68 @@ public class View extends TiUIView
 		});
 	}
 
+	public void nativeLoadAd(final KrollDict options) {
+		proxy.getActivity().runOnUiThread(new Runnable() {
+			public void run()
+			{
+				final AdRequest.Builder adRequestBuilder = AdmobModule.createRequestBuilderWithOptions(options);
+				adView.loadAd(adRequestBuilder.build());
+			}
+		});
+	}
+
 	@Override
 	public void processProperties(KrollDict d)
 	{
 		super.processProperties(d);
-		Log.d(TAG, "process properties");
 		if (d.containsKey(AdmobModule.PROPERTY_AD_UNIT_ID)) {
 			prop_adUnitId = d.getString(AdmobModule.PROPERTY_AD_UNIT_ID);
 		}
+		if(d.containsKey(AdmobModule.PROPERTY_AD_SIZE)) {
+			//KrollDict prop = d.getKrollDict(AdmobModule.PROPERTY_AD_SIZE);
+			prop_adSize = AdmobSizeEnum.fromModuleConst(d.getInt(AdmobModule.PROPERTY_AD_SIZE)).getAdmobSizeProxy();
+		}
 		if (d.containsKey(AdmobModule.PROPERTY_DEBUG_ENABLED)) {
+			warnForDeprecatedProperty(AdmobModule.PROPERTY_DEBUG_ENABLED);
 			prop_debugEnabled = d.getBoolean(AdmobModule.PROPERTY_DEBUG_ENABLED);
 		}
 		if (d.containsKey(AdmobModule.PROPERTY_COLOR_BG)) {
+			warnForDeprecatedProperty(AdmobModule.PROPERTY_COLOR_BG);
 			Log.d(TAG, "has PROPERTY_COLOR_BG: " + d.getString(AdmobModule.PROPERTY_COLOR_BG));
-			prop_color_bg = convertColorProp(d.getString(AdmobModule.PROPERTY_COLOR_BG));
+			prop_color_bg = AdmobModule.convertColorProp(d.getString(AdmobModule.PROPERTY_COLOR_BG));
 		}
 		if (d.containsKey(AdmobModule.PROPERTY_COLOR_BG_TOP)) {
+			warnForDeprecatedProperty(AdmobModule.PROPERTY_COLOR_BG_TOP);
 			Log.d(TAG, "has PROPERTY_COLOR_BG_TOP: " + d.getString(AdmobModule.PROPERTY_COLOR_BG_TOP));
-			prop_color_bg_top = convertColorProp(d.getString(AdmobModule.PROPERTY_COLOR_BG_TOP));
+			prop_color_bg_top = AdmobModule.convertColorProp(d.getString(AdmobModule.PROPERTY_COLOR_BG_TOP));
 		}
 		if (d.containsKey(AdmobModule.PROPERTY_COLOR_BORDER)) {
+			warnForDeprecatedProperty(AdmobModule.PROPERTY_COLOR_BORDER);
 			Log.d(TAG, "has PROPERTY_COLOR_BORDER: " + d.getString(AdmobModule.PROPERTY_COLOR_BORDER));
-			prop_color_border = convertColorProp(d.getString(AdmobModule.PROPERTY_COLOR_BORDER));
+			prop_color_border = AdmobModule.convertColorProp(d.getString(AdmobModule.PROPERTY_COLOR_BORDER));
 		}
 		if (d.containsKey(AdmobModule.PROPERTY_COLOR_TEXT)) {
+			warnForDeprecatedProperty(AdmobModule.PROPERTY_COLOR_TEXT);
 			Log.d(TAG, "has PROPERTY_COLOR_TEXT: " + d.getString(AdmobModule.PROPERTY_COLOR_TEXT));
-			prop_color_text = convertColorProp(d.getString(AdmobModule.PROPERTY_COLOR_TEXT));
+			prop_color_text = AdmobModule.convertColorProp(d.getString(AdmobModule.PROPERTY_COLOR_TEXT));
 		}
 		if (d.containsKey(AdmobModule.PROPERTY_COLOR_LINK)) {
+			warnForDeprecatedProperty(AdmobModule.PROPERTY_COLOR_LINK);
 			Log.d(TAG, "has PROPERTY_COLOR_LINK: " + d.getString(AdmobModule.PROPERTY_COLOR_LINK));
-			prop_color_link = convertColorProp(d.getString(AdmobModule.PROPERTY_COLOR_LINK));
+			prop_color_link = AdmobModule.convertColorProp(d.getString(AdmobModule.PROPERTY_COLOR_LINK));
 		}
 		if (d.containsKey(AdmobModule.PROPERTY_COLOR_URL)) {
+			warnForDeprecatedProperty(AdmobModule.PROPERTY_COLOR_URL);
 			Log.d(TAG, "has PROPERTY_COLOR_URL: " + d.getString(AdmobModule.PROPERTY_COLOR_URL));
-			prop_color_url = convertColorProp(d.getString(AdmobModule.PROPERTY_COLOR_URL));
-		}
-		// check for deprecated color values
-
-		if (d.containsKey(AdmobModule.PROPERTY_COLOR_TEXT_DEPRECATED)) {
-			Log.d(TAG,
-				  "has PROPERTY_COLOR_TEXT_DEPRECATED: " + d.getString(AdmobModule.PROPERTY_COLOR_TEXT_DEPRECATED));
-			prop_color_text = convertColorProp(d.getString(AdmobModule.PROPERTY_COLOR_TEXT_DEPRECATED));
-		}
-		if (d.containsKey(AdmobModule.PROPERTY_COLOR_LINK_DEPRECATED)) {
-			Log.d(TAG,
-				  "has PROPERTY_COLOR_LINK_DEPRECATED: " + d.getString(AdmobModule.PROPERTY_COLOR_LINK_DEPRECATED));
-			prop_color_link = convertColorProp(d.getString(AdmobModule.PROPERTY_COLOR_LINK_DEPRECATED));
+			prop_color_url = AdmobModule.convertColorProp(d.getString(AdmobModule.PROPERTY_COLOR_URL));
 		}
 
 		// now create the adView
 		this.createAdView();
+	}
+
+	private void warnForDeprecatedProperty(String property) {
+		Log.w(TAG, "You are using " + property + " which is deprecated. Instead use the <extras> parameter in load() method.");
 	}
 
 	public void pause()
@@ -159,6 +169,8 @@ public class View extends TiUIView
 	}
 
 	// pass the method the TESTING flag
+	// Deprecated in 5.0.0. Should be removed in 6.0.0
+	// Use nativeLoadAd() instead.
 	public void requestAd(KrollDict parameters)
 	{
 		Log.d(TAG, "requestAd()");
@@ -166,24 +178,27 @@ public class View extends TiUIView
 		if (parameters != null) {
 			// Pass additional extras if existing
 			if (parameters.containsKeyAndNotNull("extras")) {
-				extras = mapToBundle(parameters.getKrollDict("extras"));
+				extras = AdmobModule.mapToBundle(parameters.getKrollDict("extras"));
 			}
 		}
 
-		loadAd(prop_debugEnabled);
+		loadAd(prop_debugEnabled, null);
 	}
 
 	// pass true to requestAd(Boolean testing) -- this overrides how the module was set
+	// Deprecated in 5.0.0. Should be removed in 6.0.0.
+	// Use the test parameter for nativeLoadAd() options instead.
 	public void requestTestAd()
 	{
 		Log.d(TAG, "requestTestAd()");
-		loadAd(true);
+		loadAd(true, null);
 	}
 
 	// helper methods
 
-	// create the adRequest extra props
 	// http://code.google.com/mobile/ads/docs/bestpractices.html#adcolors
+	// Deprecated in 5.0.0. Should be removed in the next major version.
+	// Use createAdRequestExtrasBundleFromDictionary() instead.
 	private Bundle createAdRequestProperties()
 	{
 		Bundle bundle = new Bundle();
@@ -207,50 +222,4 @@ public class View extends TiUIView
 		return bundle;
 	}
 
-	// modifies the color prop -- removes # and changes constants into hex values
-	private String convertColorProp(String color)
-	{
-		color = color.replace("#", "");
-		if (color.equals("white"))
-			color = "FFFFFF";
-		if (color.equals("red"))
-			color = "FF0000";
-		if (color.equals("blue"))
-			color = "0000FF";
-		if (color.equals("green"))
-			color = "008000";
-		if (color.equals("yellow"))
-			color = "FFFF00";
-		if (color.equals("black"))
-			color = "000000";
-		return color;
-	}
-
-	private Bundle mapToBundle(Map<String, Object> map)
-	{
-		if (map == null) {
-			return new Bundle();
-		}
-
-		Bundle bundle = new Bundle(map.size());
-
-		for (String key : map.keySet()) {
-			Object val = map.get(key);
-			if (val == null) {
-				bundle.putString(key, null);
-			} else if (val instanceof TiBlob) {
-				bundle.putByteArray(key, ((TiBlob) val).getBytes());
-			} else if (val instanceof TiBaseFile) {
-				try {
-					bundle.putByteArray(key, ((TiBaseFile) val).read().getBytes());
-				} catch (IOException e) {
-					Log.e(TAG, "Unable to put '" + key + "' value into bundle: " + e.getLocalizedMessage(), e);
-				}
-			} else {
-				bundle.putString(key, TiConvert.toString(val));
-			}
-		}
-
-		return bundle;
-	}
 }

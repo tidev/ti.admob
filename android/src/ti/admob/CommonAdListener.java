@@ -15,6 +15,8 @@ import org.appcelerator.kroll.common.Log;
 
 public class CommonAdListener extends AdListener {
 
+	private final static String TAG = "AdEventListener";
+
 	private KrollProxy sourceProxy;
 	private String sourceTag;
 
@@ -26,7 +28,9 @@ public class CommonAdListener extends AdListener {
 	@Override
 	public void onAdLoaded() {
 		Log.d(this.sourceTag, "onAdLoaded()");
+		warnForDeprecatedConstant(AdmobModule.AD_RECEIVED, AdmobModule.EVENT_AD_LOAD);
 		this.sourceProxy.fireEvent(AdmobModule.AD_RECEIVED, new KrollDict());
+		this.sourceProxy.fireEvent(AdmobModule.EVENT_AD_LOAD, new KrollDict());
 	}
 
 	@Override
@@ -36,24 +40,36 @@ public class CommonAdListener extends AdListener {
 		Log.d(this.sourceTag, "onAdFailedToLoad(): " + errorCode);
 		KrollDict eventData = new KrollDict();
 		eventData.put("errorCode", String.valueOf(errorCode));
+		warnForDeprecatedConstant(AdmobModule.AD_NOT_RECEIVED, AdmobModule.EVENT_AD_FAIL);
 		this.sourceProxy.fireEvent(AdmobModule.AD_NOT_RECEIVED, eventData);
+		this.sourceProxy.fireEvent(AdmobModule.EVENT_AD_FAIL, eventData);
 	}
 
 	@Override
 	public void onAdClosed() {
 		super.onAdClosed();
+		warnForDeprecatedConstant(AdmobModule.AD_CLOSED, AdmobModule.EVENT_AD_CLOSED);
 		this.sourceProxy.fireEvent(AdmobModule.AD_CLOSED, new KrollDict());
+		this.sourceProxy.fireEvent(AdmobModule.EVENT_AD_CLOSED, new KrollDict());
 	}
 
 	@Override
 	public void onAdOpened() {
 		super.onAdOpened();
+		warnForDeprecatedConstant(AdmobModule.AD_OPENED, AdmobModule.EVENT_AD_OPENED);
 		this.sourceProxy.fireEvent(AdmobModule.AD_OPENED, new KrollDict());
+		this.sourceProxy.fireEvent(AdmobModule.EVENT_AD_OPENED, new KrollDict());
 	}
 
 	@Override
 	public void onAdLeftApplication() {
 		super.onAdLeftApplication();
+		warnForDeprecatedConstant(AdmobModule.AD_LEFT_APPLICATION, AdmobModule.EVENT_AD_LEFT_APP);
 		this.sourceProxy.fireEvent(AdmobModule.AD_LEFT_APPLICATION, new KrollDict());
+		this.sourceProxy.fireEvent(AdmobModule.EVENT_AD_LEFT_APP, new KrollDict());
+	}
+
+	private void warnForDeprecatedConstant(String deprecatedConstant, String newConstant) {
+		Log.w(TAG, "\"" + deprecatedConstant + "\" is deprecated. Use \"" + newConstant + "\" instead.");
 	}
 }
