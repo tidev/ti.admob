@@ -144,6 +144,24 @@ Possible values include `SUCCESS`, `SERVICE_MISSING`, `SERVICE_VERSION_UPDATE_RE
 
 ---
 
+### isLimitAdTrackingEnabled
+
+**Android only**
+
+> `isLimitAdTrackingEnabled(callback) → void`
+
+Checks whether the user has opted out from ad tracking in the device's settings.
+
+Since this works in a background thread in native Android a callback is called when the value is fetched. The callback parameter is a key/value pair with key `isLimitAdTrackingEnabled` and a boolean value for the user's setting.
+
+**Parameters**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `callback` | `Function` |  |
+
+---
+
 ### requestConsentInfoUpdateForPublisherIdentifiers
 
 > `requestConsentInfoUpdateForPublisherIdentifiers(options) → void`
@@ -336,7 +354,6 @@ Returned by `isGooglePlayServicesAvailable()` if the version of the Google Play 
 
 ## Parity Info
 
-- AdmobModule.adProviders: iOS is missing the `identifier` property on returned items
 - AdmobModule.debugIdentifiers: currently iOS only. Can be added to Android via https://developers.google.com/admob/android/eu-consent#testing
 - AdmobModule.isTaggedForUnderAgeOfConsent: property on iOS, method on Android
 - AdmobModule.SIMULATOR_ID constant is missing on Android (https://developers.google.com/android/reference/com/google/android/gms/ads/AdRequest.html#DEVICE_ID_EMULATOR)
