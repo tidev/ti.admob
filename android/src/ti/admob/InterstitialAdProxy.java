@@ -7,6 +7,8 @@
 
 package ti.admob;
 
+import android.os.Bundle;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 
@@ -14,6 +16,8 @@ import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.KrollProxy;
 import org.appcelerator.kroll.annotations.Kroll;
 import org.appcelerator.kroll.common.Log;
+
+import com.google.ads.mediation.admob.AdMobAdapter;
 
 @Kroll.proxy(creatableInModule = AdmobModule.class)
 public class InterstitialAdProxy extends KrollProxy {
@@ -56,9 +60,10 @@ public class InterstitialAdProxy extends KrollProxy {
 	}
 
 	@Kroll.method
-	public void load()
+	public void load(@Kroll.argument(optional = true) KrollDict options)
 	{
-		this.interstitialAd.loadAd(new AdRequest.Builder().build());
+		AdRequest.Builder adRequestBuilder = AdmobModule.createRequestBuilderWithOptions(options);
+		interstitialAd.loadAd(adRequestBuilder.build());
 	}
 
 	@Kroll.method
