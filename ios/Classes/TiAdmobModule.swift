@@ -105,16 +105,17 @@ extension TiAdmobModule {
       PACConsentInformation.sharedInstance.debugGeography = PACDebugGeography(rawValue: newValue.intValue) ?? PACDebugGeography.disabled
     }
   }
-
+  
+  @objc(setTagForUnderAgeOfConsent:)
+  public func setTagForUnderAgeOfConsent(arg: Any?) {
+    if let value = arg as? NSNumber {
+      PACConsentInformation.sharedInstance.isTaggedForUnderAgeOfConsent = value.boolValue
+    }
+  }
+  
   @objc
-  public var tagForUnderAgeOfConsent: NSNumber {
-    @objc(isTaggedForUnderAgeOfConsent)
-    get {
-      return NSNumber(value: PACConsentInformation.sharedInstance.isTaggedForUnderAgeOfConsent)
-    }
-    set {
-      PACConsentInformation.sharedInstance.isTaggedForUnderAgeOfConsent = newValue.boolValue
-    }
+  public func isTaggedForUnderAgeOfConsent() -> NSNumber {
+    return NSNumber(value: PACConsentInformation.sharedInstance.isTaggedForUnderAgeOfConsent)
   }
 
   @objc(requestConsentInfoUpdateForPublisherIdentifiers:)
