@@ -44,11 +44,7 @@ class TiAdmobModule: TiModule {
 
   @objc(initialize:)
   public func initialize(args: [Any]?) {
-    guard let args = args, let options = args.first as? [String:Any], let appId = options["appId"] as? String else {
-      return;
-    }
-
-    GADMobileAds.configure(withApplicationID: appId)
+    GADMobileAds.sharedInstance().start(completionHandler: nil)
   }
 
   @objc(createInterstitialAd:)

@@ -4,7 +4,7 @@ The root AdmobModule which serves as the entry point to create the different ad 
 
 ```js
 const AdMob = require('ti.admob');
-AdMob.initialize({ 'appId': 'ca-app-pub-3940256099942544~1458002511' });
+AdMob.initialize();
 ```
 
 ## Properties
@@ -118,17 +118,11 @@ Gets the user Android Advertising ID. Since this works in a background thread in
 
 ### initialize
 
-> `initialize(options) → void`
+> `initialize() → void`
 
-Initialize the Mobile Ads SDK. The SDK will configure itself and initialize integrated features such as Google Analytics.
+Starts the Google Mobile Ads SDK.
 
-This method should be called as early as possible, and only once per application launch.
-
-**Parameters**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `options.appId` | `String` | The Google AdMob application code. |
+This method should be called as early as possible to reduce latency on the session’s first ad request, and only once per application launch.
 
 ---
 
