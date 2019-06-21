@@ -77,7 +77,7 @@ AdMob.initialize('YOUR_ADMOB_APP_ID');
 
 ## Implement ad formats
 
-All ad formats can be created in a similar fashion. You create a new ad with one of the `create*` factory methods and then call `load()` on the returned instance to start loading a new ad. See the below example how to create a simple banner ad.
+Now that the module is imported and initialized, you're ready to imlpement an ad. All ad formats can be created in a similar fashion. You create a new ad with one of the `create*` factory methods and then call `load()` on the returned instance to start loading a new ad. See the below example how to create a simple banner ad.
 
 ```js
 const AdMob = require('ti.admob');
@@ -101,6 +101,8 @@ Available ad formats are:
 
 - [BannerView](./docs/banner-view.md)
 - [InterstitalAd](./docs/interstitial-ad.md)
+
+Refer to the examples in the above types for more info how to implement each ad format.
 
 ## API Reference
 
