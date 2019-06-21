@@ -29,7 +29,7 @@ Copy the module to your local project or install it globally and enable it in yo
 
 You need to configure both Android and iOS with your AdMob [App ID](https://support.google.com/admob/answer/7356431).
 
-> ❗️ **Warning:** Properly configuring your app with your AdMob App ID is required in the latest Google Mobile Ads SDK. Failure to add add this results in a crash with the message: **"The Google Mobile Ads SDK was initialized incorrectly."**
+> ❗️ **Warning:** Properly configuring your app with your AdMob App ID is required in the latest Google Mobile Ads SDK. Failure to add this results in a crash with the message: **"The Google Mobile Ads SDK was initialized incorrectly."**
 
 #### Android
 
@@ -75,11 +75,7 @@ const AdMob = require('ti.admob');
 AdMob.initialize('YOUR_ADMOB_APP_ID');
 ```
 
-## API Reference
-
-See the [API docs](./docs/README.md) for a reference all available types.
-
-## Implement ad formts
+## Implement ad formats
 
 All ad formats can be created in a similar fashion. You create a new ad with one of the `create*` factory methods and then call `load()` on the returned instance to start loading a new ad. See the below example how to create a simple banner ad.
 
@@ -101,10 +97,14 @@ win.add(bannerView);
 win.open();
 ```
 
-Available add formats are:
+Available ad formats are:
 
 - [BannerView](./docs/banner-view.md)
 - [InterstitalAd](./docs/interstitial-ad.md)
+
+## API Reference
+
+See the [API docs](./docs/README.md) for a reference all available types.
 
 ## Contributors
 
