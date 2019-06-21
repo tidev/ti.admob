@@ -554,6 +554,10 @@ public class AdmobModule extends KrollModule
 	private static Bundle createAdRequestExtrasBundleFromDictionary(KrollDict extrasDictionary)
 	{
 		Bundle bundle = new Bundle();
+		// There is no "extras" key in the options dictionary.
+		if (extrasDictionary == null) {
+			return bundle;
+		}
 		if (extrasDictionary.containsKey(AdmobModule.PROPERTY_COLOR_BG)) {
 			bundle.putString("color_bg", convertColorProp(extrasDictionary.getString(AdmobModule.PROPERTY_COLOR_BG)));
 		}

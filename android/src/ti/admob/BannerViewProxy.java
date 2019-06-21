@@ -29,6 +29,7 @@ public class BannerViewProxy extends TiViewProxy implements OnLifecycleEvent
 	public BannerViewProxy()
 	{
 		super();
+		this.adMob = new AdmobView(this);
 	}
 
 	@Override
@@ -42,47 +43,46 @@ public class BannerViewProxy extends TiViewProxy implements OnLifecycleEvent
 	@Override
 	public TiUIView createView(Activity activity)
 	{
-		adMob = new AdmobView(this);
 		((TiBaseActivity) activity).addOnLifecycleEventListener(this);
-		return adMob;
+		return this.adMob;
 	}
 
 	@Kroll.method
 	public void requestAd(@Kroll.argument(optional = true) KrollDict parameters)
 	{
-		adMob.requestAd(parameters);
+		this.adMob.requestAd(parameters);
 		Log.w(TAG, "requestAd() has been deprecated. Use load() instead.");
 	}
 
 	@Kroll.method
 	public void requestTestAd()
 	{
-		adMob.requestTestAd();
+		this.adMob.requestTestAd();
 		Log.w(TAG, "requestAd() has been deprecated. Use load() with 'debugIdentifiers' property instead.");
 	}
 
 	@Kroll.method
 	public void load(@Kroll.argument(optional = true) KrollDict options) {
 		// Load ad with options...
-		adMob.nativeLoadAd(options);
+		this.adMob.nativeLoadAd(options);
 	}
 
 	@Override
 	public void onDestroy(Activity activity)
 	{
-		adMob.destroy();
+		this.adMob.destroy();
 	}
 
 	@Override
 	public void onPause(Activity activity)
 	{
-		adMob.pause();
+		this.adMob.pause();
 	}
 
 	@Override
 	public void onResume(Activity activity)
 	{
-		adMob.resume();
+		this.adMob.resume();
 	}
 
 	@Override

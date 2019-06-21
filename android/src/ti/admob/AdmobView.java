@@ -24,7 +24,7 @@ import com.google.ads.mediation.admob.AdMobAdapter;
 public class AdmobView extends TiUIView
 {
 	private static final String TAG = "AdMobView";
-	private AdView adView;
+	private final AdView adView;
 
 	AdmobSizeProxy prop_adSize = AdmobSizeEnum.BANNER.getAdmobSizeProxy();
 	String prop_adUnitId;
@@ -45,13 +45,12 @@ public class AdmobView extends TiUIView
 	public AdmobView(final TiViewProxy proxy)
 	{
 		super(proxy);
+		adView = new AdView(proxy.getActivity());
 	}
 
 	private void createAdView()
 	{
 		Log.d(TAG, "createAdView()");
-
-		adView = new AdView(proxy.getActivity());
 
 		adView.setAdUnitId(prop_adUnitId);
 		adView.setAdSize(prop_adSize.getAdSize());
@@ -62,7 +61,6 @@ public class AdmobView extends TiUIView
 		// Add the AdView to your view hierarchy.
 		// The view will have no size until the ad is loaded.
 		setNativeView(adView);
-		loadAd(prop_debugEnabled, null);
 	}
 
 	//Deprecated in 5.0.0. Should be remove in 6.0.0
