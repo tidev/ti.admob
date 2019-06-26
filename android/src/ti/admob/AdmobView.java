@@ -8,59 +8,41 @@
 package ti.admob;
 
 import org.appcelerator.kroll.KrollDict;
+import org.appcelerator.kroll.KrollProxy;
 import org.appcelerator.kroll.common.Log;
 import org.appcelerator.titanium.proxy.TiViewProxy;
 import org.appcelerator.titanium.view.TiUIView;
 
 import android.os.Bundle;
 
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.mediation.admob.AdMobExtras;
-import com.google.ads.mediation.admob.AdMobAdapter;
 
 public class AdmobView extends TiUIView
 {
 	private static final String TAG = "AdMobView";
 	private final AdView adView;
+	private boolean prop_debugEnabled;
 
-	AdmobSizeProxy prop_adSize = AdmobSizeEnum.BANNER.getAdmobSizeProxy();
-	String prop_adUnitId;
-	// Put these in extras bundle of laod
-	Boolean prop_debugEnabled = false;
-	int prop_top;
-	int prop_left;
-	int prop_right;
-	String prop_color_bg;
-	String prop_color_bg_top;
-	String prop_color_border;
-	String prop_color_text;
-	String prop_color_link;
-	String prop_color_url;
-	// -------------------------------------
 	Bundle extras;
 
 	public AdmobView(final TiViewProxy proxy)
 	{
 		super(proxy);
 		adView = new AdView(proxy.getActivity());
-	}
-
-	private void createAdView()
-	{
-		Log.d(TAG, "createAdView()");
-
-		adView.setAdUnitId(prop_adUnitId);
-		adView.setAdSize(prop_adSize.getAdSize());
-
-		// set the listener
-		adView.setAdListener(new CommonAdListener(proxy, TAG));
-		adView.setPadding(prop_left, prop_top, prop_right, 0);
 		// Add the AdView to your view hierarchy.
 		// The view will have no size until the ad is loaded.
 		setNativeView(adView);
+	}
+
+	public AdView getAdView() {
+		return this.adView;
+	}
+
+	public void setDebugEnabled(boolean value) {
+		this.prop_debugEnabled = value;
 	}
 
 	//Deprecated in 5.0.0. Should be remove in 6.0.0
@@ -74,7 +56,7 @@ public class AdmobView extends TiUIView
 				if (testing) {
 					adRequestBuilder.addTestDevice(AdRequest.DEVICE_ID_EMULATOR);
 				}
-				Bundle bundle = createAdRequestProperties();
+				Bundle bundle = ((BannerViewProxy)proxy).createAdRequestProperties();
 				if (bundle.size() > 0) {
 					Log.d(TAG, "extras.size() > 0 -- set ad properties");
 					adRequestBuilder.addNetworkExtras(new AdMobExtras(bundle));
@@ -95,57 +77,15 @@ public class AdmobView extends TiUIView
 	}
 
 	@Override
-	public void processProperties(KrollDict d)
+	public void propertyChanged(String key, Object oldValue, Object newValue, KrollProxy proxy)
 	{
-		super.processProperties(d);
-		if (d.containsKey(AdmobModule.PROPERTY_AD_UNIT_ID)) {
-			prop_adUnitId = d.getString(AdmobModule.PROPERTY_AD_UNIT_ID);
+		super.propertyChanged(key, oldValue, newValue, proxy);
+		if (key.equals(AdmobModule.PROPERTY_AD_UNIT_ID) && newValue != null) {
+			this.adView.setAdUnitId(newValue.toString());
 		}
-		if(d.containsKey(AdmobModule.PROPERTY_AD_SIZE)) {
-			//KrollDict prop = d.getKrollDict(AdmobModule.PROPERTY_AD_SIZE);
-			prop_adSize = AdmobSizeEnum.fromModuleConst(d.getInt(AdmobModule.PROPERTY_AD_SIZE)).getAdmobSizeProxy();
+		if (key.equals(AdmobModule.PROPERTY_AD_SIZE) && newValue != null) {
+			this.adView.setAdSize(((AdmobSizeProxy)newValue).getAdSize());
 		}
-		if (d.containsKey(AdmobModule.PROPERTY_DEBUG_ENABLED)) {
-			warnForDeprecatedProperty(AdmobModule.PROPERTY_DEBUG_ENABLED);
-			prop_debugEnabled = d.getBoolean(AdmobModule.PROPERTY_DEBUG_ENABLED);
-		}
-		if (d.containsKey(AdmobModule.PROPERTY_COLOR_BG)) {
-			warnForDeprecatedProperty(AdmobModule.PROPERTY_COLOR_BG);
-			Log.d(TAG, "has PROPERTY_COLOR_BG: " + d.getString(AdmobModule.PROPERTY_COLOR_BG));
-			prop_color_bg = AdmobModule.convertColorProp(d.getString(AdmobModule.PROPERTY_COLOR_BG));
-		}
-		if (d.containsKey(AdmobModule.PROPERTY_COLOR_BG_TOP)) {
-			warnForDeprecatedProperty(AdmobModule.PROPERTY_COLOR_BG_TOP);
-			Log.d(TAG, "has PROPERTY_COLOR_BG_TOP: " + d.getString(AdmobModule.PROPERTY_COLOR_BG_TOP));
-			prop_color_bg_top = AdmobModule.convertColorProp(d.getString(AdmobModule.PROPERTY_COLOR_BG_TOP));
-		}
-		if (d.containsKey(AdmobModule.PROPERTY_COLOR_BORDER)) {
-			warnForDeprecatedProperty(AdmobModule.PROPERTY_COLOR_BORDER);
-			Log.d(TAG, "has PROPERTY_COLOR_BORDER: " + d.getString(AdmobModule.PROPERTY_COLOR_BORDER));
-			prop_color_border = AdmobModule.convertColorProp(d.getString(AdmobModule.PROPERTY_COLOR_BORDER));
-		}
-		if (d.containsKey(AdmobModule.PROPERTY_COLOR_TEXT)) {
-			warnForDeprecatedProperty(AdmobModule.PROPERTY_COLOR_TEXT);
-			Log.d(TAG, "has PROPERTY_COLOR_TEXT: " + d.getString(AdmobModule.PROPERTY_COLOR_TEXT));
-			prop_color_text = AdmobModule.convertColorProp(d.getString(AdmobModule.PROPERTY_COLOR_TEXT));
-		}
-		if (d.containsKey(AdmobModule.PROPERTY_COLOR_LINK)) {
-			warnForDeprecatedProperty(AdmobModule.PROPERTY_COLOR_LINK);
-			Log.d(TAG, "has PROPERTY_COLOR_LINK: " + d.getString(AdmobModule.PROPERTY_COLOR_LINK));
-			prop_color_link = AdmobModule.convertColorProp(d.getString(AdmobModule.PROPERTY_COLOR_LINK));
-		}
-		if (d.containsKey(AdmobModule.PROPERTY_COLOR_URL)) {
-			warnForDeprecatedProperty(AdmobModule.PROPERTY_COLOR_URL);
-			Log.d(TAG, "has PROPERTY_COLOR_URL: " + d.getString(AdmobModule.PROPERTY_COLOR_URL));
-			prop_color_url = AdmobModule.convertColorProp(d.getString(AdmobModule.PROPERTY_COLOR_URL));
-		}
-
-		// now create the adView
-		this.createAdView();
-	}
-
-	private void warnForDeprecatedProperty(String property) {
-		Log.w(TAG, "You are using " + property + " which is deprecated. Instead use the <extras> parameter in load() method.");
 	}
 
 	public void pause()
@@ -190,34 +130,6 @@ public class AdmobView extends TiUIView
 	{
 		Log.d(TAG, "requestTestAd()");
 		loadAd(true, null);
-	}
-
-	// helper methods
-
-	// http://code.google.com/mobile/ads/docs/bestpractices.html#adcolors
-	// Deprecated in 5.0.0. Should be removed in the next major version.
-	// Use createAdRequestExtrasBundleFromDictionary() instead.
-	private Bundle createAdRequestProperties()
-	{
-		Bundle bundle = new Bundle();
-		if (prop_color_bg != null) {
-			Log.d(TAG, "color_bg: " + prop_color_bg);
-			bundle.putString("color_bg", prop_color_bg);
-		}
-		if (prop_color_bg_top != null)
-			bundle.putString("color_bg_top", prop_color_bg_top);
-		if (prop_color_border != null)
-			bundle.putString("color_border", prop_color_border);
-		if (prop_color_text != null)
-			bundle.putString("color_text", prop_color_text);
-		if (prop_color_link != null)
-			bundle.putString("color_link", prop_color_link);
-		if (prop_color_url != null)
-			bundle.putString("color_url", prop_color_url);
-		if (extras != null)
-			bundle.putAll(extras);
-
-		return bundle;
 	}
 
 }

@@ -8,10 +8,6 @@
 
 package ti.admob;
 
-import android.os.AsyncTask;
-
-import java.io.IOException;
-
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
@@ -20,11 +16,9 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 
-import org.appcelerator.kroll.KrollDict;
-import org.appcelerator.kroll.KrollFunction;
-import org.appcelerator.kroll.KrollModule;
 import org.appcelerator.kroll.annotations.Kroll;
 import org.appcelerator.kroll.common.Log;
+import org.appcelerator.kroll.KrollModule;
 import org.appcelerator.kroll.KrollFunction;
 import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.KrollObject;
@@ -38,16 +32,12 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.List;
 import java.util.Arrays;
-import java.util.ArrayList;
 import java.net.URL;
-import java.net.MalformedURLException;
 
-import android.net.Uri;
 import android.content.Context;
 import android.app.Activity;
 import android.os.Bundle;
-
-import com.google.android.gms.common.GooglePlayServicesUtil;
+import android.os.AsyncTask;
 
 import com.google.ads.consent.ConsentInformation;
 import com.google.ads.consent.ConsentForm;
