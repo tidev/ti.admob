@@ -94,7 +94,7 @@
         [callback call:@[ @{ @"error" : error.localizedDescription } ] thisObject:self];
         return;
       }
-      
+
       [form presentFromViewController:[[[TiApp app] controller] topPresentedController]
                     dismissCompletion:^(NSError *_Nullable error, BOOL userPrefersAdFree) {
                       [callback call:@[@{
@@ -171,6 +171,7 @@ MAKE_SYSTEM_PROP(GENDER_MALE, kGADGenderMale);
 MAKE_SYSTEM_PROP(GENDER_FEMALE, kGADGenderFemale);
 MAKE_SYSTEM_PROP(GENDER_UNKNOWN, kGADGenderUnknown);
 MAKE_SYSTEM_PROP(AD_TYPE_BANNER, TiAdmobAdTypeBanner);
-MAKE_SYSTEM_PROP(AD_TYPE_INTERSTITIAL, TiAdmobAdTypeInterstitial)
+MAKE_SYSTEM_PROP(AD_TYPE_INTERSTITIAL, TiAdmobAdTypeInterstitial);
+MAKE_SYSTEM_PROP(AD_TYPE_REWARDED_VIDEO, TiAdmobAdTypeRewardedVideo);
 
 @end
