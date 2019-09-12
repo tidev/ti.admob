@@ -15,4 +15,7 @@
 
 - (void)receive:(id)unused;
 
+- (void)showRewardedVideo:(id)args;
+- (void)loadRewardedVideo:(id)adUnitId;
+
 @end

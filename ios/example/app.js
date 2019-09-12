@@ -78,6 +78,37 @@ btn.addEventListener('click', function() {
 
 win.add(btn);
 
+var rewardedVideoButton = Ti.UI.createButton({
+    title: 'Show Rewarded Video Ad',
+    center: {
+        y: '55%'
+    }
+});
+rewardedVideoButton.addEventListener('click', function() {
+    rewardedVideoButton.title = 'Loading Rewarded Video ...';
+
+    var rewardedVideo = Admob.createView({
+        debugEnabled: true,
+        adType: Admob.AD_TYPE_REWARDED_VIDEO,
+    });
+    rewardedVideo.receive();
+    rewardedVideo.addEventListener('adloaded', function() {
+        rewardedVideo.showRewardedVideo();
+    });
+    rewardedVideo.addEventListener('adrewarded', function (reward) {
+        Ti.API.debug(`Received reward! type: ${reward.type}, amount: ${reward.amount}`);
+        // pre load next rewarded video
+        // rewardedVideo.loadRewardedVideo('ad-unit-id');
+    });
+    rewardedVideo.addEventListener('adclosed', function() {
+        Ti.API.debug('No gold for you!');
+    });
+    rewardedVideo.addEventListener('adfailedtoload', function(error) {
+        Ti.API.debug('Rewarded video ad failed to load: ' + error.message);
+    });
+});
+win.add(rewardedVideoButton);
+
 win.add(Ti.UI.createLabel({
     text: 'Loading the ads now! ' +
         'Note that there may be a several minute delay ' +

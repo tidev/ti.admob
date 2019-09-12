@@ -1,5 +1,9 @@
 # Change Log
 <pre>
+v2.4.2  Added support for Rewarded Video Ads.
+        Update AdMob SDK to 7.47.0
+        Update Audience Network SDK 5.4.0
+
 v2.4.0  Support the Facebook Audience Network adapter
         iOS integration guide: https://developers.google.com/admob/ios/mediation/facebook
 
