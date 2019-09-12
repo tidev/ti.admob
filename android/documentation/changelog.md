@@ -1,9 +1,11 @@
 # Change Log
 
 <pre>
+v4.3.1  Added support for Rewarded Video Ads by exposing the `extras.npa` object to `loadAd()` (works only with ti.playservices 11.0.40)
+
 v4.3.0  Support the Facebook Audience Network adapter
         Android integration guide: https://developers.google.com/admob/android/mediation/facebook
-        
+
 v4.2.1  Fix Kroll annotation for requestConsentInfoUpdateForPublisherIdentifiers.
 
 v4.2.0  Expose getId() and isAdTrackingLimited() from AdvertisingIdClient.Info.

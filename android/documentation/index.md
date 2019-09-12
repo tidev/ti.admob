@@ -4,14 +4,14 @@
 
 Allows for the display of AdMob in Titanium Android applications.
 
-Please note that if your androidManifest has screen support set to: android:anyDensity="false", any banner ads will 
+Please note that if your androidManifest has screen support set to: android:anyDensity="false", any banner ads will
 display too small on high density devices.
 It is not clear at this point if this is a bug with AdMob or Titanium.
 In any event, you will either need to NOT set your screen support -- or set android:anyDensity="true" and adjust your app layout accordingly
 
 ## Getting Started
 
-View the [Using Titanium Modules](http://docs.appcelerator.com/titanium/latest/#!/guide/Using_Titanium_Modules) document 
+View the [Using Titanium Modules](http://docs.appcelerator.com/titanium/latest/#!/guide/Using_Titanium_Modules) document
 for instructions on getting started with using this module in your application.
 
 ## Requirements
@@ -185,7 +185,7 @@ and a boolean value for the user's setting.
 ### Support the Facebook Audience Network adapter
 
 Starting in 4.3.0 you can use the included Facebook Audience Network adapter to turn on the mediation in your AdMob account.
-Here you do not have to do anything 😙. You only need to configure mediation in your AdMob and Facebook accounts by 
+Here you do not have to do anything 😙. You only need to configure mediation in your AdMob and Facebook accounts by
 following the [official guide](https://developers.google.com/admob/android/mediation/facebook).
 
 ## Constants
@@ -230,6 +230,102 @@ View the [change log](changelog.html) for this module.
 ## Feedback and Support
 
 Please direct all questions, feedback, and concerns to [info@appcelerator.com](mailto:info@appcelerator.com?subject=Android%20Admob%20Module).
+
+### Rewarded Video Ads
+
+⚠️ Works only with ti.playservices 11.0.40.
+
+In version 4.3.1 support for Admob Rewarded Video Ads was added. This is a similar type of ad to the Interstitial with the
+addition of getting a reward after watching an ad video.
+
+Since videos are pretty heavy to load it is recommended that the Rewarded Video Ad is fully loaded before showing it to the
+user. Similar to the Interstitial ads the Reward Video Ads are using one instance of the class to load and show a single ad
+multiple times. Meaning that you can load an add, show it at a proper time for your UX and after you get the closed/rewarded
+event you can load another video through the same instance and wait for the best time to show it to the user.
+
+#### Methods
+
+##### loadAd(String adUnitId, [optional] Object extras)
+
+Loads an ad with the provided adUnitId. You can set extras object: `{npa:1}` (disable personalized ads) or `{npa:0}` (enable personalized ads)
+
+##### show()
+
+Shows the most recent ad if it was successfully loaded.
+
+#### Events
+
+##### adloaded
+
+Fired when a rewarded video ad was successfully loaded.
+
+##### adrewarded
+
+Fired when the user was rewarded for watching an ad. This event contains a
+dictionary with the properties "type" and "amount" which determine the reward.
+
+##### adfailedtoload
+
+Fired if the video reward ad was unable to load.
+
+##### adleftapplication
+
+Fired when the user has left the application, for instance to visit the Play Store.
+
+##### adclosed
+
+Fired when the user has closed the rewarded video ad.
+
+##### adopened
+
+Fired when the rewarded video ad has been opened.
+
+##### videostarted
+
+Fired when the video of the rewarded ad has begun playing.
+
+#### Example
+
+	var Admob = require('ti.admob'),
+	    win = Titanium.UI.createWindow({ layout: 'vertical'}),
+	    rewardedVideo = Admob.createRewardedVideo(),
+	    buttonLoadAd = Ti.UI.createButton({ title: 'Load Ad'}),
+	    buttonShowAd = Ti.UI.createButton({ title: 'Show Ad', enabled: false, touchEnabled: false}),
+	    buttonClaimReward = Ti.UI.createButton({ title: 'Claim Reward', enabled: false, touchEnabled: false}),
+	    reward;
+
+	buttonLoadAd.addEventListener('click', function () {
+	    rewardedVideo.loadAd('ca-app-pub-3940256099942544/5224354917',{npa:0});
+	})
+
+	buttonShowAd.addEventListener('click', function () {
+	    rewardedVideo.show();
+	});
+
+	buttonClaimReward.addEventListener('click', function () {
+	    alert('You have received ' + reward.amount + ' ' + reward.type);
+	    buttonClaimReward.enabled = false;
+	    buttonClaimReward.touchEnabled = false;
+	});
+
+	rewardedVideo.addEventListener('adloaded', function () {
+	    buttonShowAd.enabled = true;
+	    buttonShowAd.touchEnabled = true;
+	});
+
+	rewardedVideo.addEventListener('adrewarded', function (rewardItem) {
+	    reward = rewardItem;
+	    buttonClaimReward.enabled = true;
+	    buttonClaimReward.touchEnabled = true;
+	});
+
+	rewardedVideo.addEventListener('adclosed', function () {
+	    buttonShowAd.enabled = false;
+	    buttonShowAd.touchEnabled = false;
+	});
+
+	win.add([buttonLoadAd, buttonShowAd, buttonClaimReward]);
+	win.open();
 
 ## Author
 
