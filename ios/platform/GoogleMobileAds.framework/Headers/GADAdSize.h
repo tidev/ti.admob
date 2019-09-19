@@ -2,15 +2,12 @@
 //  GADAdSize.h
 //  Google Mobile Ads SDK
 //
-//  Copyright 2012 Google Inc. All rights reserved.
+//  Copyright 2012 Google LLC. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
 #import <GoogleMobileAds/GoogleMobileAdsDefines.h>
-
-GAD_ASSUME_NONNULL_BEGIN
+#import <UIKit/UIKit.h>
 
 /// A valid GADAdSize is considered to be one of the predefined GADAdSize constants or a GADAdSize
 /// constructed by GADAdSizeFromCGSize, GADAdSizeFullWidthPortraitWithHeight,
@@ -52,11 +49,11 @@ GAD_EXTERN GADAdSize const kGADAdSizeLeaderboard;
 GAD_EXTERN GADAdSize const kGADAdSizeSkyscraper;
 
 /// An ad size that spans the full width of the application in portrait orientation. The height is
-/// typically 50 pixels on an iPhone/iPod UI, and 90 pixels tall on an iPad UI.
+/// typically 50 points on an iPhone/iPod UI, and 90 points tall on an iPad UI.
 GAD_EXTERN GADAdSize const kGADAdSizeSmartBannerPortrait;
 
 /// An ad size that spans the full width of the application in landscape orientation. The height is
-/// typically 32 pixels on an iPhone/iPod UI, and 90 pixels tall on an iPad UI.
+/// typically 32 points on an iPhone/iPod UI, and 90 points tall on an iPad UI.
 GAD_EXTERN GADAdSize const kGADAdSizeSmartBannerLandscape;
 
 /// An ad size that spans the full width of its container, with a height dynamically determined by
@@ -97,13 +94,13 @@ GAD_EXTERN BOOL IsGADAdSizeValid(GADAdSize size);
 GAD_EXTERN BOOL GADAdSizeIsFluid(GADAdSize size);
 
 /// Returns a NSString describing the provided GADAdSize.
-GAD_EXTERN NSString *NSStringFromGADAdSize(GADAdSize size);
+GAD_EXTERN NSString *_Nonnull NSStringFromGADAdSize(GADAdSize size);
 
 /// Returns an NSValue representing the GADAdSize.
-GAD_EXTERN NSValue *NSValueFromGADAdSize(GADAdSize size);
+GAD_EXTERN NSValue *_Nonnull NSValueFromGADAdSize(GADAdSize size);
 
 /// Returns a GADAdSize from an NSValue. Returns kGADAdSizeInvalid if the value is not a GADAdSize.
-GAD_EXTERN GADAdSize GADAdSizeFromNSValue(NSValue *value);
+GAD_EXTERN GADAdSize GADAdSizeFromNSValue(NSValue *_Nonnull value);
 
 #pragma mark Deprecated Macros
 
@@ -113,5 +110,3 @@ GAD_EXTERN GADAdSize GADAdSizeFromNSValue(NSValue *value);
 #define GAD_SIZE_468x60 CGSizeFromGADAdSize(kGADAdSizeFullBanner)
 #define GAD_SIZE_728x90 CGSizeFromGADAdSize(kGADAdSizeLeaderboard)
 #define GAD_SIZE_120x600 CGSizeFromGADAdSize(kGADAdSizeSkyscraper)
-
-GAD_ASSUME_NONNULL_END

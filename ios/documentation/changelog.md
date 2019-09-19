@@ -1,5 +1,6 @@
 # Change Log
 <pre>
+v2.5.0 Updated to Admob iOS  SDK  to 7.49.0
 v2.4.0  Support the Facebook Audience Network adapter
         iOS integration guide: https://developers.google.com/admob/ios/mediation/facebook
 
