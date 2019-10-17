@@ -2,16 +2,15 @@
 //  GADRequestError.h
 //  Google Mobile Ads SDK
 //
-//  Copyright 2011 Google Inc. All rights reserved.
+//  Copyright 2011 Google LLC. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-
 #import <GoogleMobileAds/GoogleMobileAdsDefines.h>
 
 @class GADRequest;
 
-GAD_ASSUME_NONNULL_BEGIN
+NS_ASSUME_NONNULL_BEGIN
 
 /// Google AdMob Ads error domain.
 GAD_EXTERN NSString *const kGADErrorDomain;
@@ -60,11 +59,14 @@ typedef NS_ENUM(NSInteger, GADErrorCode) {
   kGADErrorInvalidArgument,
 
   /// Received invalid response.
-  kGADErrorReceivedInvalidResponse
+  kGADErrorReceivedInvalidResponse,
+
+  /// Will not send request because the rewarded ad object has already been used.
+  kGADErrorRewardedAdAlreadyUsed,
 };
 
 /// Represents the error generated due to invalid request parameters.
 @interface GADRequestError : NSError
 @end
 
-GAD_ASSUME_NONNULL_END
+NS_ASSUME_NONNULL_END

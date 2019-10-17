@@ -16,7 +16,9 @@ The Google AdMob Ads SDK has the following requirements:
 * An AdMob site ID.
 * Xcode 6.4 or later.
 * Runtime of iOS 7.1 or later.
-
+* If using module 2.5.0+, add following key in tiapp.xml, inside ios plist  section.   
+    <key>GADIsAdManagerApp</key>
+    <true/>
 ## Accessing the Ti.Admob Module
 
 To access this module from JavaScript, you would do the following:
