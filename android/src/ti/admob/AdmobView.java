@@ -80,12 +80,6 @@ public class AdmobView extends TiUIView
 	public void propertyChanged(String key, Object oldValue, Object newValue, KrollProxy proxy)
 	{
 		super.propertyChanged(key, oldValue, newValue, proxy);
-		if (key.equals(AdmobModule.PROPERTY_AD_UNIT_ID) && newValue != null) {
-			this.adView.setAdUnitId(newValue.toString());
-		}
-		if (key.equals(AdmobModule.PROPERTY_AD_SIZE) && newValue != null) {
-			this.adView.setAdSize(((AdmobSizeProxy)newValue).getAdSize());
-		}
 	}
 
 	public void pause()

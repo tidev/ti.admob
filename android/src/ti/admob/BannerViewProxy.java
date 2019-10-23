@@ -60,6 +60,7 @@ public class BannerViewProxy extends TiViewProxy implements OnLifecycleEvent
 	public TiUIView createView(Activity activity)
 	{
 		((TiBaseActivity) activity).addOnLifecycleEventListener(this);
+		createAdView();
 		return this.adMob;
 	}
 
@@ -128,7 +129,6 @@ public class BannerViewProxy extends TiViewProxy implements OnLifecycleEvent
 			Log.d(TAG, "has PROPERTY_COLOR_URL: " + properties.getString(AdmobModule.PROPERTY_COLOR_URL));
 			prop_color_url = AdmobModule.convertColorProp(properties.getString(AdmobModule.PROPERTY_COLOR_URL));
 		}
-		createAdView();
 	}
 
 	private void createAdView()
