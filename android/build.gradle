@@ -1,20 +1,10 @@
-apply plugin: 'java'
-
-repositories {
-	jcenter()
-  maven {
-  	url "https://maven.google.com"
-  }
-}
-
 dependencies {
 	implementation 'com.google.android.ads.consent:consent-library:1.0.1'
 	implementation 'com.facebook.android:audience-network-sdk:4.28.2'
 	implementation 'com.google.ads.mediation:facebook:4.28.2.0'
-}
-
-task getDeps(type: Copy) {
-	from sourceSets.main.runtimeClasspath
-	exclude 'support-*'
-	into 'lib'
+	implementation 'com.google.android.gms:play-services-base:16.1.0'
+	implementation 'com.google.android.gms:play-services-ads:17.2.0'
+	implementation 'com.google.android.gms:play-services-ads-base:17.2.0'
+	implementation 'com.google.android.gms:play-services-ads-identifier:16.0.0'
+	implementation 'com.google.android.gms:play-services-ads-lite:17.2.0'
 }

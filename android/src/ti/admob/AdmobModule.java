@@ -8,13 +8,16 @@
 
 package ti.admob;
 
+import android.app.Activity;
+import android.content.Context;
+import android.net.Uri;
+
 import android.os.AsyncTask;
+import android.os.Bundle;
 
-import java.io.IOException;
-
-import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -35,19 +38,14 @@ import org.appcelerator.titanium.io.TiBaseFile;
 import org.appcelerator.titanium.util.TiConvert;
 
 import java.io.IOException;
+
+import java.net.URL;
+import java.net.MalformedURLException;
+
 import java.util.Map;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
-import java.net.URL;
-import java.net.MalformedURLException;
-
-import android.net.Uri;
-import android.content.Context;
-import android.app.Activity;
-import android.os.Bundle;
-
-import com.google.android.gms.common.GooglePlayServicesUtil;
 
 import com.google.ads.consent.ConsentInformation;
 import com.google.ads.consent.ConsentForm;
