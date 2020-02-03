@@ -472,7 +472,7 @@ public class AdmobModule extends KrollModule
 
 			dict.put("identifier", adProvider.getId());
 			dict.put("name", adProvider.getName());
-			dict.put("privacyPolicyURL", adProvider.getPrivacyPolicyUrl());
+			dict.put("privacyPolicyURL", adProvider.getPrivacyPolicyUrlString());
 
 			result[i] = dict;
 		}
