@@ -24,7 +24,8 @@ public enum AdmobSizeEnum {
 	private final AdmobSizeProxy admobSizeProxy;
 	private final int adSizeConstantValue;
 
-	private AdmobSizeEnum(int intValue, AdSize adSizeValue) {
+	private AdmobSizeEnum(int intValue, AdSize adSizeValue)
+	{
 		this.admobSizeProxy = new AdmobSizeProxy(adSizeValue);
 		this.adSizeConstantValue = intValue;
 	}
@@ -39,8 +40,8 @@ public enum AdmobSizeEnum {
 		return null;
 	}
 
-	public AdmobSizeProxy getAdmobSizeProxy() {
+	public AdmobSizeProxy getAdmobSizeProxy()
+	{
 		return this.admobSizeProxy;
 	}
-
 }

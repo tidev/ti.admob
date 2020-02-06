@@ -21,8 +21,8 @@ public class ViewProxy extends BannerViewProxy
 
 	protected static final String TAG = "AdMobViewProxy";
 
-	public ViewProxy() {
+	public ViewProxy()
+	{
 		Log.w(TAG, "ViewProxy has been deprecated. Use createBannerView instead.");
 	}
-
 }
