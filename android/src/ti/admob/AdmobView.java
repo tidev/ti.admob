@@ -7,19 +7,17 @@
  */
 package ti.admob;
 
-import org.appcelerator.kroll.KrollDict;
-import org.appcelerator.kroll.common.Log;
-import org.appcelerator.titanium.proxy.TiViewProxy;
-import org.appcelerator.titanium.view.TiUIView;
-
 import android.os.Bundle;
-
+import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.mediation.admob.AdMobExtras;
-import com.google.ads.mediation.admob.AdMobAdapter;
+import org.appcelerator.kroll.KrollDict;
+import org.appcelerator.kroll.common.Log;
+import org.appcelerator.titanium.proxy.TiViewProxy;
+import org.appcelerator.titanium.view.TiUIView;
 
 public class AdmobView extends TiUIView
 {
@@ -86,7 +84,8 @@ public class AdmobView extends TiUIView
 		});
 	}
 
-	public void nativeLoadAd(final KrollDict options) {
+	public void nativeLoadAd(final KrollDict options)
+	{
 		proxy.getActivity().runOnUiThread(new Runnable() {
 			public void run()
 			{
@@ -103,7 +102,7 @@ public class AdmobView extends TiUIView
 		if (d.containsKey(AdmobModule.PROPERTY_AD_UNIT_ID)) {
 			prop_adUnitId = d.getString(AdmobModule.PROPERTY_AD_UNIT_ID);
 		}
-		if(d.containsKey(AdmobModule.PROPERTY_AD_SIZE)) {
+		if (d.containsKey(AdmobModule.PROPERTY_AD_SIZE)) {
 			//KrollDict prop = d.getKrollDict(AdmobModule.PROPERTY_AD_SIZE);
 			prop_adSize = AdmobSizeEnum.fromModuleConst(d.getInt(AdmobModule.PROPERTY_AD_SIZE)).getAdmobSizeProxy();
 		}
@@ -146,8 +145,10 @@ public class AdmobView extends TiUIView
 		this.createAdView();
 	}
 
-	private void warnForDeprecatedProperty(String property) {
-		Log.w(TAG, "You are using " + property + " which is deprecated. Instead use the <extras> parameter in load() method.");
+	private void warnForDeprecatedProperty(String property)
+	{
+		Log.w(TAG, "You are using " + property
+					   + " which is deprecated. Instead use the <extras> parameter in load() method.");
 	}
 
 	public void pause()
@@ -221,5 +222,4 @@ public class AdmobView extends TiUIView
 
 		return bundle;
 	}
-
 }
