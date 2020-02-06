@@ -4,6 +4,14 @@ extends: Titanium.UI.View
 platforms: [android]
 summary: A view for displaying ads delivered through Admob.
 createable: true
+properties:
+  - name: adSize
+    type: Number
+    summary: size of the ad to display
+    constants: Modules.Admob.AD_SIZE_*
+    platforms: [android]
+    default: Modules.Admob.AD_SIZE_BANNER
+
 methods:
   - name: requestAd
     summary: Calls for a new ad if needed. Pass optional `args` to configure extras.
