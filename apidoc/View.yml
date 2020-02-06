@@ -18,6 +18,20 @@ deprecated:
   notes: Replaced by <Modules.Admob.BannerView> on Android.
 
 properties:
+  - name: adSize
+    type: Number
+    summary: size of the ad to display
+    constants: Modules.Admob.AD_SIZE_*
+    platforms: [android]
+    default: Modules.Admob.AD_SIZE_BANNER
+
+  - name: height
+    type: Number
+    summary: The height of the view, which will select an appropriate ad size automatically on iOS.
+    description: |
+        Note: Starting in 2.0.0, you just need to specify a height and an appropriate ad is selected by the Admob SDK.
+    platforms: [iphone, ipad]
+
   - name: adType
     type: Number
     summary: Used to determine whetehr to display a banner ad or an interstitial ad
