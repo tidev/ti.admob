@@ -1,0 +1,284 @@
+---
+name: Modules.Admob.View
+extends: Titanium.UI.View
+summary: A view for displaying ads delivered through Admob.
+createable: true
+description: |
+    You should explicitly size the ad to one of the following predefined sizes (width x height). An appropriate
+    ad will be loaded from the server automatically:
+
+    * 320x50
+    * 300x250
+    * 468x60
+    * 728x90
+
+    Note: Starting in 2.0.0, you just need to specify a height and an appropriate ad is selected by the Admob SDK.
+deprecated:
+  since:  {android: "4.5.0"}
+  notes: Replaced by <Modules.Admob.BannerView> on Android.
+
+properties:
+  - name: adType
+    type: Number
+    summary: Used to determine whetehr to display a banner ad or an interstitial ad
+    constants: Modules.Admob.AD_TYPE_*
+    platforms: [iphone, ipad]
+    default: Modules.Admob.AD_TYPE_BANNER
+
+  - name: adUnitId
+    type: String
+    summary: The ad Unit ID for Admob.
+
+  - name: adBackgroundColor
+    type: String
+    summary: The background color used for the ad.
+
+  - name: testDevices
+    type: Array<String>
+    summary: An array of test device ids. Adding the id of a test device to this array will allow that device to be served test ads. 
+    description: |
+        Use the module constant `SIMULATOR_ID` to use the simulator as a test device. 
+        If you do not know the id for your device, launch your app and request an ad 
+        like you normally would, then look in the console for the id. 
+        
+        eg. <Google> To get test ads on this device, set the property `debugEnabled` to true
+        
+        Add the id to the array passed to `testDevices`.
+
+  - name: dateOfBirth
+    type: Date
+    summary: A date object representing the user's date of birth that should be used for determining ad delivery.
+    deprecated:
+      since: "1.0.0" # FIXME: No idea!
+
+  - name: gender
+    type: String
+    summary: The user's gender for the purpose of determining ad delivery. This should be one of the constants `GENDER_MALE`, `GENDER_FEMALE` or `GENDER_UNKNOWN`.
+    constants: Modules.Admob.GENDER_*
+    deprecated:
+      since: "1.0.0" # FIXME: No idea!
+      
+  - name: keywords
+    type: Array<String>
+    summary: An array of keywords used to determine ad delivery.
+
+  - name: location
+    type: Location
+    summary: A dictionary with the location of the user for location-based ads
+
+  - name: extras
+    type: Object
+    summary: extra parameters for ad networks
+    description: |
+        Ad networks may have additional parameters they accept. To pass these parameters to them, create the ad network extras 
+        object for that network, fill in the parameters, and register it here. The ad network should have a header defining the 
+        interface for the `extras` object to create. All networks will have access to the basic settings you've set in this 
+        GADRequest (gender, birthday, testing mode, etc.). If you register an extras object that is the same class as one you have.
+
+        **Important**: You can pass `{ 'npa: '1' }` to disable personalized ads. This is required to conform to [GDPR](https://www.eugdpr.org/).
+
+  - name: debugEnabled
+    type: Boolean
+    summary: Sets a testing value for `adUnitId` to test ads without an admob account.
+
+  - name: contentURL
+    type: String
+    summary: URL string for a webpage whose content matches the app content. This webpage content is used for targeting purposes.
+
+  - name: requestAgent
+    type: String
+    summary: String that identifies the ad request's origin.
+    description: |
+        Third party libraries that reference the Mobile. Ads SDK should set this property 
+        to denote the platform from which the ad request originated. For example, a third party ad network called "CoolAds network" that 
+        is mediating requests to the Mobile Ads SDK should set this property as "CoolAds".
+
+  - name: tagForChildDirectedTreatment
+    type: Boolean
+    summary: his property allows you to specify whether you would like your app to be treated as child-directed for purposes of the Children's Online Privacy Protection Act (COPPA), http:///business.ftc.gov/privacy-and-security/childrens-privacy.
+    description: |
+        If you call this method with `true`, you are indicating that your app should be treated as child-directed for purposes of the 
+        Children's Online Privacy Protection Act (COPPA). If you call this method with NO, you are indicating that your app should 
+        not be treated as child-directed for purposes of the Children's Online Privacy Protection Act (COPPA). If you do not call this 
+        method, ad requests will include no indication of how you would like your app treated with respect to COPPA.
+        
+        By setting this method, you certify that this notification is accurate and you are authorized to act on behalf of the owner of 
+        the app. You understand that abuse of this setting may result in termination of your Google account.
+        
+        It may take some time for this designation to be fully implemented in applicable Google services. This designation will 
+        only apply to ad requests for which you have set this method.
+
+events:
+  - name: didReceiveAd
+    summary: Sent when an ad request loaded an ad.
+    description: |
+        This is a good opportunity to add this
+        view to the hierarchy if it has not yet been added. If the ad was received
+        as a part of the server-side auto refreshing, you can examine the
+        hasAutoRefreshed property of the view. Use the `adUnitId` property of the callback
+        to identify the ad that was loaded.
+    platforms: [iphone, ipad]
+    properties:
+      - name: adUnitId
+        type: String
+        summary: Id for the add
+      - name: isReady
+        type: Boolean
+        summary: Whether the ad is ready. Populated only for interstitial ads
+        optional: true
+
+  - name: didFailToReceiveAd
+    summary: Sent when an ad request failed. Normally this is because no network connection was available or no ads were available (i.e. no fill).
+    platforms: [iphone, ipad]
+    properties:
+      - name: adUnitId
+        type: String
+        summary: add id that failed to load
+      - name: error
+        type: String
+        summary: error message
+
+  - name: willPresentScreen
+    summary: Sent just before presenting the user a full screen view, such as a browser, in response to clicking on an ad. Use this opportunity to stop animations, time sensitive interactions, etc.
+    description: |
+        Normally the user looks at the ad, dismisses it, and control returns to your
+        application by firing off `didDismissScreen`: However if the user hits the
+        Home button or clicks on an App Store link your application will end. In that case,
+        `willLeaveApplication` would fire.
+    platforms: [iphone, ipad]
+    properties:
+      - name: adUnitId
+        type: String
+        summary: Id for the add
+      - name: isReady
+        type: Boolean
+        summary: Whether the ad is ready. Populated only for interstitial ads
+        optional: true
+
+  - name: willDismissScreen
+    summary: Sent just before dismissing a full screen view.
+    platforms: [iphone, ipad]
+    properties:
+      - name: adUnitId
+        type: String
+        summary: Id for the add
+      - name: isReady
+        type: Boolean
+        summary: Whether the ad is ready. Populated only for interstitial ads
+        optional: true
+
+  - name: didDismissScreen
+    summary: Sent just after dismissing a full screen view. Use this opportunity to restart anything you may have stopped as part of `willPresentScreen`.
+    platforms: [iphone, ipad]
+    properties:
+      - name: adUnitId
+        type: String
+        summary: Id for the add
+      - name: isReady
+        type: Boolean
+        summary: Whether the ad is ready. Populated only for interstitial ads
+        optional: true
+
+  - name: willLeaveApplication
+    summary: Sent just before the application will background or terminate because the user clicked on an ad that will launch another application (such as the App Store).
+    platforms: [iphone, ipad]
+    properties:
+      - name: adUnitId
+        type: String
+        summary: Id for the add
+      - name: isReady
+        type: Boolean
+        summary: Whether the ad is ready. Populated only for interstitial ads
+        optional: true
+
+  - name: didReceiveInAppPurchase
+    summary: Called when the user clicks on the buy button of an in-app purchase ad.
+    platforms: [iphone, ipad]
+    properties:
+      - name: productId
+        type: String
+        summary: The in-app purchase product ID.
+      - name: quantity
+        type: Number
+        summary: The product quantity.
+    deprecated:
+      since: "2.2.0"
+
+  - name: ad_received
+    summary: Fired when ad is loaded
+    platforms: [android]
+    deprecated:
+      since: "4.5.0"
+      notes: Use `load` instead
+
+  - name: load
+    summary: Fired when ad is loaded
+    platforms: [android]
+
+  - name: ad_not_received
+    summary: Fired whenever the ad was not successfully loaded
+    platforms: [android]
+    properties:
+      - name: errorCode
+        type: Number
+        summary: Error codes for Android can be checked here - https://developers.google.com/android/reference/com/google/android/gms/ads/AdRequest#ERROR_CODE_INTERNAL_ERROR
+    deprecated:
+      since: "4.5.0"
+      notes: Use `fail` instead
+
+  - name: fail
+    summary: Fired whenever the ad was not successfully loaded
+    platforms: [android]
+    properties:
+      - name: errorCode
+        type: Number
+        summary: Error codes for Android can be checked here - https://developers.google.com/android/reference/com/google/android/gms/ads/AdRequest#ERROR_CODE_INTERNAL_ERROR
+
+  - name: ad_closed
+    summary: Fired when ad is closed
+    platforms: [android]
+    deprecated:
+      since: "4.5.0"
+      notes: Use `close` instead
+
+  - name: close
+    summary: Fired when ad is closed
+    platforms: [android]
+
+  - name: ad_opened
+    summary: Fired when ad is opened
+    platforms: [android]
+    deprecated:
+      since: "4.5.0"
+      notes: Use `open` instead
+    
+  - name: open
+    summary: Fired when ad is opened
+    platforms: [android]
+
+  - name: ad_left_application
+    summary: User left the application through the ad
+    platforms: [android]
+    deprecated:
+      since: "4.5.0"
+      notes: Use `leftapp` instead
+
+  - name: leftapp
+    summary: User left the application through the ad
+    platforms: [android]
+
+---
+name: Location
+summary: Simple object passed to <Modules.Admob.View.location> property
+properties:
+  - name: latitude
+    type: Number
+    summary: user's latitude
+    
+  - name: longitude
+    type: Number
+    summary: user's longitude
+
+  - name: accuracy
+    type: Number
+    summary: accuracy of the reading
