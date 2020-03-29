@@ -7,26 +7,17 @@
 
 #import <GoogleMobileAds/GADAdSize.h>
 #import <GoogleMobileAds/GADAdSizeDelegate.h>
+#import <GoogleMobileAds/GADAdValue.h>
 #import <GoogleMobileAds/GADBannerViewDelegate.h>
 #import <GoogleMobileAds/GADInAppPurchaseDelegate.h>
 #import <GoogleMobileAds/GADRequest.h>
 #import <GoogleMobileAds/GADRequestError.h>
+#import <GoogleMobileAds/GADResponseInfo.h>
 #import <GoogleMobileAds/GoogleMobileAdsDefines.h>
 #import <UIKit/UIKit.h>
 
-/// The view that displays banner ads. A minimum implementation to get an ad from within a
-/// UIViewController class is:
-///
-///   <pre>
-///   // Create and setup the ad view, specifying the size and origin at {0, 0}.
-///   GADBannerView *adView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
-///   adView.rootViewController = self;
-///   adView.adUnitID = @"ID created when registering your app";
-///   // Place the ad view onto the screen.
-///   [self.view addSubview:adView];
-///   // Request an ad without any additional targeting information.
-///   [adView loadRequest:[GADRequest request]];
-///   </pre>
+/// A view that displays banner ads. See https://developers.google.com/admob/ios/banner to get
+/// started.
 @interface GADBannerView : UIView
 
 #pragma mark Initialization
@@ -76,13 +67,14 @@
 /// enabled, you do not need to call the loadRequest: method to load ads.
 @property(nonatomic, assign, getter=isAutoloadEnabled) IBInspectable BOOL autoloadEnabled;
 
-#pragma mark Mediation
+#pragma mark Response
 
-/// The ad network class name that fetched the current ad. Returns nil while the latest ad request
-/// is in progress or if the latest ad request failed. For both standard and mediated Google AdMob
-/// ads, this property returns @"GADMAdapterGoogleAdMobAds". For ads fetched via mediation custom
-/// events, this property returns @"GADMAdapterCustomEvents".
-@property(nonatomic, readonly, nullable) NSString *adNetworkClassName;
+/// Information about the ad response that returned the current ad or an error. Nil until the first
+/// ad request succeeds or fails.
+@property(nonatomic, readonly, nullable) GADResponseInfo *responseInfo;
+
+/// Called when ad is estimated to have earned money. Available for whitelisted accounts only.
+@property(nonatomic, nullable, copy) GADPaidEventHandler paidEventHandler;
 
 #pragma mark Deprecated
 
@@ -98,6 +90,13 @@
 /// size and adjust this banner view's frame origin. However, modifying the banner view's frame size
 /// triggers the Mobile Ads SDK to request a new ad. Only update the banner view's frame origin.
 @property(nonatomic, readonly, weak, nullable)
-    UIView *mediatedAdView GAD_DEPRECATED_MSG_ATTRIBUTE("Use adNetworkClassName.");
+    UIView *mediatedAdView GAD_DEPRECATED_MSG_ATTRIBUTE("Use responseInfo.adNetworkClassName.");
+
+/// The ad network class name that fetched the current ad. Returns nil while the latest ad request
+/// is in progress or if the latest ad request failed. For both standard and mediated Google AdMob
+/// ads, this property returns @"GADMAdapterGoogleAdMobAds". For ads fetched via mediation custom
+/// events, this property returns @"GADMAdapterCustomEvents".
+@property(nonatomic, readonly, nullable) NSString *adNetworkClassName GAD_DEPRECATED_MSG_ATTRIBUTE(
+    "Use responseInfo.adNetworkClassName.");
 
 @end

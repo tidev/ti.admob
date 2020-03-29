@@ -15,6 +15,9 @@
 		24DD6CFA1134B3F500162E58 /* TiAdmobModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DD6CF81134B3F500162E58 /* TiAdmobModule.m */; };
 		3A4F268F1C68DDF7003E06CF /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4F268E1C68DDF7003E06CF /* iAd.framework */; };
 		3AF5B7731C233383002E3DC7 /* TiAdmobTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AF5B7711C233383002E3DC7 /* TiAdmobTypes.h */; };
+		5E92CCDB2431191300D16AFA /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E92CCD82431191300D16AFA /* GoogleMobileAds.framework */; };
+		5E92CCDC2431191300D16AFA /* FacebookAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E92CCD92431191300D16AFA /* FacebookAdapter.framework */; };
+		5E92CCDD2431191300D16AFA /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E92CCDA2431191300D16AFA /* FBAudienceNetwork.framework */; };
 		5E96507022DF6F3000F72BA8 /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E96506F22DF6F3000F72BA8 /* FBAudienceNetwork.framework */; };
 		5E96507222DF6F5B00F72BA8 /* FacebookAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E96507122DF6F5A00F72BA8 /* FacebookAdapter.framework */; };
 		5E96507422DF709500F72BA8 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E96507322DF709500F72BA8 /* GoogleMobileAds.framework */; };
@@ -50,6 +53,9 @@
 		24DD6D1B1134B66800162E58 /* titanium.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = titanium.xcconfig; sourceTree = "<group>"; };
 		3A4F268E1C68DDF7003E06CF /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		3AF5B7711C233383002E3DC7 /* TiAdmobTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiAdmobTypes.h; path = Classes/TiAdmobTypes.h; sourceTree = "<group>"; };
+		5E92CCD82431191300D16AFA /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = platform/GoogleMobileAds.framework; sourceTree = "<group>"; };
+		5E92CCD92431191300D16AFA /* FacebookAdapter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookAdapter.framework; path = platform/FacebookAdapter.framework; sourceTree = "<group>"; };
+		5E92CCDA2431191300D16AFA /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBAudienceNetwork.framework; path = platform/FBAudienceNetwork.framework; sourceTree = "<group>"; };
 		5E96506F22DF6F3000F72BA8 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
 		5E96507122DF6F5A00F72BA8 /* FacebookAdapter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookAdapter.framework; sourceTree = "<group>"; };
 		5E96507322DF709500F72BA8 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
@@ -99,11 +105,14 @@
 				DB07E8BF1E80101F0008C1E1 /* JavaScriptCore.framework in Frameworks */,
 				DB07E8C01E80103C0008C1E1 /* MediaPlayer.framework in Frameworks */,
 				DAD5D7D512527E2F009CF986 /* MessageUI.framework in Frameworks */,
+				5E92CCDB2431191300D16AFA /* GoogleMobileAds.framework in Frameworks */,
 				DB07E8C21E80104D0008C1E1 /* MobileCoreServices.framework in Frameworks */,
+				5E92CCDC2431191300D16AFA /* FacebookAdapter.framework in Frameworks */,
 				DB07E8C41E8010560008C1E1 /* OpenGLES.framework in Frameworks */,
 				DB07E8C61E8010680008C1E1 /* SafariServices.framework in Frameworks */,
 				CE6C17A81982D1780017C788 /* StoreKit.framework in Frameworks */,
 				CE6C17AA1982D1870017C788 /* SystemConfiguration.framework in Frameworks */,
+				5E92CCDD2431191300D16AFA /* FBAudienceNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,9 +141,12 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5E92CCD92431191300D16AFA /* FacebookAdapter.framework */,
+				5E92CCDA2431191300D16AFA /* FBAudienceNetwork.framework */,
 				5E96507322DF709500F72BA8 /* GoogleMobileAds.framework */,
 				5E96507122DF6F5A00F72BA8 /* FacebookAdapter.framework */,
 				5E96506F22DF6F3000F72BA8 /* FBAudienceNetwork.framework */,
+				5E92CCD82431191300D16AFA /* GoogleMobileAds.framework */,
 				DB28410320B413750099933A /* PersonalizedAdConsent.framework */,
 				DB07E8C51E8010680008C1E1 /* SafariServices.framework */,
 				DB07E8C31E8010560008C1E1 /* OpenGLES.framework */,
