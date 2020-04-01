@@ -12,7 +12,7 @@ var ad1 = Admob.createView({
     bottom: 0,
     debugEnabled: true, // If enabled, a dummy value for `adUnitId` will be used to test
     adType: Admob.AD_TYPE_BANNER,
-    adUnitId: '<<YOUR ADD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
+    adUnitId: 'ca-app-pub-3940256099942544/6300978111', // You can get your own at http: //www.admob.com/
     adBackgroundColor: 'black',
     testDevices: [Admob.SIMULATOR_ID], // You can get your device's id by looking in the console log
     dateOfBirth: new Date(1985, 10, 1, 12, 1, 1),

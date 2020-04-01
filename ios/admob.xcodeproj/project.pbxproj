@@ -267,9 +267,8 @@
 				DSTROOT = /tmp/TiAdmob.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS",
-					"$(PROJECT_DIR)/platform/ios",
-					"$(PROJECT_DIR)/platform",
+					"\"$(TITANIUM_SDK)/iphone/Frameworks\"",
+					/Users/ashukla/Documents/Appcelerator_Studio_Workspace/ti.admob/ios/platform,
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -286,13 +285,6 @@
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				HEADER_SEARCH_PATHS = (
-					"$(TITANIUM_BASE_SDK)",
-					"$(TITANIUM_BASE_SDK2)",
-					"~$(TITANIUM_BASE_SDK)",
-					"~$(TITANIUM_BASE_SDK2)",
-					"$(SRCROOT)/GoogleMobileAdsSdkiOS",
-				);
 				INSTALL_PATH = /usr/local/lib;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -323,9 +315,8 @@
 				DSTROOT = /tmp/TiAdmob.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS",
-					"$(PROJECT_DIR)/platform/ios",
-					"$(PROJECT_DIR)/platform",
+					"\"$(TITANIUM_SDK)/iphone/Frameworks\"",
+					/Users/ashukla/Documents/Appcelerator_Studio_Workspace/ti.admob/ios/platform,
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_MODEL_TUNING = G5;
@@ -342,13 +333,6 @@
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				HEADER_SEARCH_PATHS = (
-					"$(TITANIUM_BASE_SDK)",
-					"$(TITANIUM_BASE_SDK2)",
-					"~$(TITANIUM_BASE_SDK)",
-					"~$(TITANIUM_BASE_SDK2)",
-					"$(SRCROOT)/GoogleMobileAdsSdkiOS",
-				);
 				INSTALL_PATH = /usr/local/lib;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
