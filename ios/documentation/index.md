@@ -181,6 +181,8 @@ To add a new version of PersonalizedAdConsent you need to:
 7) Copy the entire PersonalizedAdConsent.framework folder into the ti.admob project in https://github.com/astrovic/ti.admob/tree/master/ios/platform (replacing the existing one)
 8) Now you can build the module :)
 
+<img src="http://astrovicapps.com/git_source/tiadmob/PersonalizedAdConsent.png" width="300px" style="float:left; margin-right:1em;">
+
 ## Constants
 
 ### Number `CONSENT_STATUS_UNKNOWN`
