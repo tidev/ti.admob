@@ -33,7 +33,7 @@ framework module GoogleMobileAds {
   header "GADMobileAds.h"
 
   header "GADAdFormat.h"
-  header "GADAdMetadataKeys.h"
+  header "GADAdMetadata.h"
   header "GADAdNetworkExtras.h"
   header "GADAdSize.h"
   header "GADAdValue.h"

@@ -82,6 +82,7 @@ GAD_EXTERN GADAdSize GADLandscapeAnchoredAdaptiveBannerAdSizeWithWidth(CGFloat w
 /// Returns a GADAdSize with the given width and a Google-optimized height. This is a convenience
 /// function to return GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth or
 /// GADLandscapeAnchoredAdaptiveBannerAdSizeWithWidth based on the current interface orientation.
+/// This function must be called on the main queue.
 GAD_EXTERN GADAdSize GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(CGFloat width);
 
 #pragma mark Custom Sizes

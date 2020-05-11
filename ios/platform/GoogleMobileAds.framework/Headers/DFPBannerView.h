@@ -11,7 +11,6 @@
 #import <GoogleMobileAds/GADAppEventDelegate.h>
 #import <GoogleMobileAds/GADBannerView.h>
 #import <GoogleMobileAds/GADVideoController.h>
-#import <GoogleMobileAds/GoogleMobileAdsDefines.h>
 
 /// The delegate of a GADAdLoader object must conform to this protocol to receive DFPBannerViews.
 @protocol DFPBannerAdLoaderDelegate <GADAdLoaderDelegate>

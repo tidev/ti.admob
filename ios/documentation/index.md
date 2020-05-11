@@ -167,6 +167,20 @@ Starting in 2.1.0 you can use the included iAd adapter to turn on the iAd mediat
 
 Starting in 2.4.0 you can use the included Facebook Audience Network adapter to turn on the mediation in your Admob account. Here you do not have to do anything :) You only need to configure mediation in your AdMob and Facebbok accounts by following the official guide: https://developers.google.com/admob/ios/mediation/facebook
 
+### How to update PersonalizedAdConsent
+
+Starting in 2.4.4 iOS ti.admob use PersonalizedAdConsent framework Version 1.0.5 (removed all references to the deprecated **UIWebView** by using new **WKWebView**).
+The new realeases are available on https://github.com/googleads/googleads-consent-sdk-ios/releases.
+To add a new version of PersonalizedAdConsent you need to:
+1) Download the release zip file (e.g. https://github.com/googleads/googleads-consent-sdk-ios/archive/v1.0.5.zip)
+2) Open the ti.admob project https://github.com/astrovic/ti.admob/tree/master/ios/admob.xcodeproj with Xcode
+3) Unpack the googleads-consent-sdk-ios-X-X-X.zip file and drag the PersonalizedAdConsent.xcodeproj file to Xcode, inside "admob"
+4) In the Build Phases tab, go to Link Binary With Libraries, and click on the + button.
+5) Select PersonalizedAdConsent.framework and click on the Add button.
+6) On Link Binary With Libraries, right click PersonalizedAdConsent.framework and go to Show in finder.
+7) Copy the entire PersonalizedAdConsent.framework folder into the ti.admob project in https://github.com/astrovic/ti.admob/tree/master/ios/platform (replacing the existing one)
+8) Now you can build the module :)
+
 ## Constants
 
 ### Number `CONSENT_STATUS_UNKNOWN`

@@ -12,7 +12,6 @@
 #import <GoogleMobileAds/GADNativeAd.h>
 #import <GoogleMobileAds/GADNativeAdImage.h>
 #import <GoogleMobileAds/GADVideoController.h>
-#import <GoogleMobileAds/GoogleMobileAdsDefines.h>
 #import <UIKit/UIKit.h>
 
 /// Native ad custom click handler block. |assetID| is the ID of asset that has received a click.

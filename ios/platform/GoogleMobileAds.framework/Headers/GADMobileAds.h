@@ -6,11 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import <GoogleMobileAds/GADAudioVideoManager.h>
 #import <GoogleMobileAds/GADInitializationStatus.h>
 #import <GoogleMobileAds/GADRequestConfiguration.h>
-#import <GoogleMobileAds/GoogleMobileAdsDefines.h>
 
 /// A block called with the initialization status when [GADMobileAds startWithCompletionHandler:]
 /// completes or times out.

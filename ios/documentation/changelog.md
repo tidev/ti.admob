@@ -1,7 +1,11 @@
 # Change Log
 <pre>
+v2.4.4  Update AdMob SDK to 7.59.0
+        Update PersonalizedAdConsent to 1.5.0 (Removed all references to deprecated UIWebView)
+        Update Audience Network SDK 5.8.0
+        Update Facebook Adapter 5.8.0.2
+
 v2.4.3  Update AdMob SDK to 7.57.0
-        Update AdMob SDK to 7.57.0
 
 v2.4.2  Added support for Rewarded Video Ads.
         Update AdMob SDK to 7.47.0

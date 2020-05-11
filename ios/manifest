@@ -2,10 +2,11 @@
 # this is your module manifest and used by Titanium
 # during compilation, packaging, distribution, etc.
 #
-version: 2.4.3
+version: 2.4.4
+apiversion: 2
 architectures:  armv7 i386 x86_64 arm64
 description: AdMob module for ad delivery via AdMob
-author: Jeff Haynie, Stephen Tramer, Jasper Kennis, Jon Alter and Hans Knoechel
+author: Jeff Haynie, Stephen Tramer, Jasper Kennis, Jon Alter, Hans Knoechel and Astrovic
 license: Apache License, Version 2.0
 copyright: Copyright (c) 2010-Present by Appcelerator, Inc.
 
@@ -15,4 +16,4 @@ name: admob
 moduleid: ti.admob
 guid: 0d005e93-9980-4739-9e41-fd1129c8ff32
 platform: iphone
-minsdk: 9.0.0.GA
+minsdk: 8.0.0.GA

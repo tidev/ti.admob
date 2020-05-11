@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <GoogleMobileAds/GADAdMetadataKeys.h>
+#import <GoogleMobileAds/GADAdMetadata.h>
 #import <GoogleMobileAds/GADRequest.h>
 #import <GoogleMobileAds/GADRequestError.h>
 #import <GoogleMobileAds/GADRewardBasedVideoAdDelegate.h>
