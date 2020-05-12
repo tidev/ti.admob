@@ -12,6 +12,7 @@
 #import <GoogleMobileAds/GADMediaView.h>
 #import <GoogleMobileAds/GADMuteThisAdReason.h>
 #import <GoogleMobileAds/GADNativeAdImage.h>
+#import <GoogleMobileAds/GADResponseInfo.h>
 #import <GoogleMobileAds/GADUnifiedNativeAdAssetIdentifiers.h>
 #import <GoogleMobileAds/GADUnifiedNativeAdDelegate.h>
 #import <GoogleMobileAds/GADVideoController.h>
@@ -61,10 +62,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// Dictionary of assets which aren't processed by the receiver.
 @property(nonatomic, readonly, copy, nullable) NSDictionary<NSString *, id> *extraAssets;
 
-/// The ad network class name that fetched the current ad. For both standard and mediated Google
-/// AdMob ads, this method returns @"GADMAdapterGoogleAdMobAds". For ads fetched via mediation
-/// custom events, this method returns @"GADMAdapterCustomEvents".
-@property(nonatomic, readonly, copy, nullable) NSString *adNetworkClassName;
+/// Information about the ad response that returned the ad.
+@property(nonatomic, readonly, nonnull) GADResponseInfo *responseInfo;
 
 /// Indicates whether custom Mute This Ad is available for the native ad.
 @property(nonatomic, readonly, getter=isCustomMuteThisAdAvailable) BOOL customMuteThisAdAvailable;
@@ -102,6 +101,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly, nullable)
     GADVideoController *videoController GAD_DEPRECATED_MSG_ATTRIBUTE(
         "Use the videoController property from the ad's mediaContent instead.");
+
+/// The ad network class name that fetched the current ad. For both standard and mediated Google
+/// AdMob ads, this method returns @"GADMAdapterGoogleAdMobAds". For ads fetched via mediation
+/// custom events, this method returns @"GADMAdapterCustomEvents".
+@property(nonatomic, readonly, copy, nullable)
+    NSString *adNetworkClassName GAD_DEPRECATED_MSG_ATTRIBUTE(
+        "Use responseInfo.adNetworkClassName.");
 
 @end
 

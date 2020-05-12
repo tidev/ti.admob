@@ -14,8 +14,8 @@
 @interface GADRTBMediationSignalsConfiguration : NSObject
 
 /// Array of mediation credential configurations set by the publisher on the AdMob UI. Each
-/// credential configuration is a possible source of ads for the request. Google may or may not pare
-/// down this list before sending out real-time bidding requests to partner networks.
+/// credential configuration is a possible source of ads for the request. The real-time bidding
+/// request will include a subset of these configurations.
 @property(nonatomic, readonly, nonnull) NSArray<GADMediationCredentials *> *credentials;
 
 @end
@@ -31,8 +31,7 @@
 
 #pragma mark - Banner parameters
 
-/// Requested banner ad size. The ad size is kGADAdSizeInvalid for non-banner requests. Use
-/// credentials.format to determine the request format.
+/// Requested banner ad size. The ad size is kGADAdSizeInvalid for non-banner requests.
 @property(nonatomic, readonly) GADAdSize adSize;
 
 @end

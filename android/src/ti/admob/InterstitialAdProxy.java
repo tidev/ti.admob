@@ -8,30 +8,30 @@
 package ti.admob;
 
 import android.os.Bundle;
-
+import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
-
 import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.KrollProxy;
 import org.appcelerator.kroll.annotations.Kroll;
 import org.appcelerator.kroll.common.Log;
 
-import com.google.ads.mediation.admob.AdMobAdapter;
-
 @Kroll.proxy(creatableInModule = AdmobModule.class)
-public class InterstitialAdProxy extends KrollProxy {
+public class InterstitialAdProxy extends KrollProxy
+{
 
 	private final String TAG = "InterstitialAd";
 	private InterstitialAd interstitialAd;
 
-	public InterstitialAdProxy() {
+	public InterstitialAdProxy()
+	{
 		this.interstitialAd = new InterstitialAd(getActivity());
 		this.interstitialAd.setAdListener(new CommonAdListener(this, TAG));
 	}
 
 	@Override
-	public void handleCreationDict(KrollDict dict) {
+	public void handleCreationDict(KrollDict dict)
+	{
 		super.handleCreationDict(dict);
 		if (dict.containsKeyAndNotNull(AdmobModule.PROPERTY_AD_UNIT_ID)) {
 			this.interstitialAd.setAdUnitId(dict.getString(AdmobModule.PROPERTY_AD_UNIT_ID));

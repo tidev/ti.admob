@@ -7,18 +7,14 @@
  */
 package ti.admob;
 
-import org.appcelerator.kroll.annotations.Kroll;
-import org.appcelerator.kroll.common.Log;
+import android.app.Activity;
 import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.annotations.Kroll;
-
-import org.appcelerator.titanium.proxy.TiViewProxy;
+import org.appcelerator.kroll.common.Log;
+import org.appcelerator.titanium.TiBaseActivity;
 import org.appcelerator.titanium.TiLifecycle.OnLifecycleEvent;
 import org.appcelerator.titanium.proxy.TiViewProxy;
-import org.appcelerator.titanium.TiBaseActivity;
 import org.appcelerator.titanium.view.TiUIView;
-
-import android.app.Activity;
 
 @Kroll.proxy(creatableInModule = AdmobModule.class)
 public class BannerViewProxy extends TiViewProxy implements OnLifecycleEvent
@@ -62,7 +58,8 @@ public class BannerViewProxy extends TiViewProxy implements OnLifecycleEvent
 	}
 
 	@Kroll.method
-	public void load(@Kroll.argument(optional = true) KrollDict options) {
+	public void load(@Kroll.argument(optional = true) KrollDict options)
+	{
 		// Load ad with options...
 		adMob.nativeLoadAd(options);
 	}
