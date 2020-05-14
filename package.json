@@ -13,10 +13,10 @@
     "lint:docs": "tdoc-validate -w Titanium.Proxy,Titanium.Module,Titanium.UI.View apidoc",
     "lint:ios": "clang-format-lint ios/**/*.m ios/**/*.h",
     "lint:js": "eslint .",
-    "test": "npm run lint && npm run test:unit",
     "test:unit": "karma start test/unit/karma.unit.config.js",
-    "test:android": "npm run test:unit -- --browsers android",
-    "test:ios": "npm run test:unit -- --browsers ios"
+    "test": "karma start test/unit/karma.unit.config.js",
+    "test:android": "npm test -- --browsers android",
+    "test:ios": "npm test -- --browsers ios"
   },
   "repository": {
     "type": "git",
@@ -40,12 +40,12 @@
     "eslint-config-axway": "^4.1.1",
     "eslint-plugin-jasmine": "^2.10.1",
     "husky": "^4.2.1",
-    "jasmine-core": "^3.3.0",
-    "karma": "^4.0.0",
+    "jasmine-core": "^3.5.0",
+    "karma": "^4.4.1",
     "karma-jasmine": "^2.0.1",
     "karma-junit-reporter": "^1.2.0",
     "karma-mocha-reporter": "^2.2.5",
-    "karma-titanium-launcher": "^0.7.5",
+    "karma-titanium-launcher": "^0.7.8",
     "lint-staged": "^10.0.7",
     "socket.io": "^2.2.0",
     "titanium-docgen": "^4.2.0"
