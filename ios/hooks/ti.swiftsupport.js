@@ -16,7 +16,7 @@ exports.init = init;
  */
 function init(logger, config, cli, appc) {
 	cli.on('build.ios.xcodeproject', {
-		pre: function(data) {
+		pre: function (data) {
 			var xobjs = data.args[0].hash.project.objects;
 
 			Object.keys(xobjs.PBXNativeTarget).forEach(function (targetUuid) {
