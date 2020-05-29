@@ -61,13 +61,13 @@
   [[PACConsentInformation sharedInstance] requestConsentInfoUpdateForPublisherIdentifiers:publisherIdentifiers
                                                                         completionHandler:^(NSError *_Nullable error) {
                                                                           if (error != nil) {
-                                                                            [callback call:@[ @{ @"success" : @NO,
-                                                                              @"error" : error.localizedDescription } ]
+                                                                            [callback call:@[ @{@"success" : @NO,
+                                                                              @"error" : error.localizedDescription} ]
                                                                                 thisObject:self];
                                                                             return;
                                                                           }
 
-                                                                          [callback call:@[ @{ @"success" : @YES } ] thisObject:self];
+                                                                          [callback call:@[ @{@"success" : @YES} ] thisObject:self];
                                                                         }];
 }
 
@@ -88,22 +88,25 @@
   form.shouldOfferNonPersonalizedAds = [TiUtils boolValue:@"shouldOfferNonPersonalizedAds" properties:args def:YES];
   form.shouldOfferAdFree = [TiUtils boolValue:@"shouldOfferAdFree" properties:args def:NO];
 
-  TiThreadPerformOnMainThread(^{
-    [form loadWithCompletionHandler:^(NSError *_Nullable error) {
-      if (error != nil) {
-        [callback call:@[ @{ @"error" : error.localizedDescription } ] thisObject:self];
-        return;
-      }
-      
-      [form presentFromViewController:[[[TiApp app] controller] topPresentedController]
-                    dismissCompletion:^(NSError *_Nullable error, BOOL userPrefersAdFree) {
-                      [callback call:@[@{
-                        @"userPrefersAdFree" : @(userPrefersAdFree),
-                        @"error" : NULL_IF_NIL(error.localizedDescription)
-                      }] thisObject:self];
-                    }];
-    }];
-  }, NO);
+  TiThreadPerformOnMainThread(
+      ^{
+        [form loadWithCompletionHandler:^(NSError *_Nullable error) {
+          if (error != nil) {
+            [callback call:@[ @{ @"error" : error.localizedDescription } ] thisObject:self];
+            return;
+          }
+
+          [form presentFromViewController:[[[TiApp app] controller] topPresentedController]
+                        dismissCompletion:^(NSError *_Nullable error, BOOL userPrefersAdFree) {
+                          [callback call:@[ @{
+                            @"userPrefersAdFree" : @(userPrefersAdFree),
+                            @"error" : NULL_IF_NIL(error.localizedDescription)
+                          } ]
+                              thisObject:self];
+                        }];
+        }];
+      },
+      NO);
 }
 
 - (NSNumber *)consentStatus

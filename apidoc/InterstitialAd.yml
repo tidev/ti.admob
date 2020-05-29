@@ -1,0 +1,100 @@
+---
+name: Modules.Admob.InterstitialAd
+extends: Titanium.Proxy
+summary: Interstitial ads are full screen ads that are usually shown between natural steps of an application's interface flow.
+createable: true
+description: |
+    Starting from 4.4.0 this module now supports Interstitial ads for Android.
+
+    Interstitial ads are full screen ads that are usually shown between natural steps of an application's interface flow.
+    For instance doing different tasks in your application or between reading different articles.
+
+    For best user experience Interstitial ads should be loaded prior showing the to the user. Interstitial ad instances can
+    be used for showing one ad per loading, but they can be used multiple times. A good way of reusing an Interstitial ad is
+    to show an ad, load a new after it has been closed one, and await for the proper time to show the recently loaded. 
+since: "4.4.0"
+platforms: [android]
+properties:
+  - name: adUnitId
+    type: String
+    summary: Id for this add. This property can be set in the creation dictionary or after creating the Interstitial ad instance.
+
+methods:
+  - name: load
+    summary: Loads an ad for this Interstitial ad instance.
+    parameters:
+      - name: options
+        summary: dictionary containing options for customizing the load call.
+        type: Modules.Admob.LoadOptions
+        optional: true
+    returns:
+      type: void
+
+  - name: show
+    summary: Shows an Interstitial ad if there is one successfully loaded. 
+    returns:
+      type: void
+
+events:
+  - name: ad_received
+    summary: Fired when ad is loaded
+    platforms: [android]
+    deprecated:
+      since: "4.5.0"
+      notes: Use `load` instead
+
+  - name: load
+    summary: Fired when ad is loaded
+    platforms: [android]
+
+  - name: ad_not_received
+    summary: Fired whenever the ad was not successfully loaded
+    platforms: [android]
+    properties:
+      - name: errorCode
+        type: Number
+        summary: Error codes for Android can be checked here - https://developers.google.com/android/reference/com/google/android/gms/ads/AdRequest#ERROR_CODE_INTERNAL_ERROR
+    deprecated:
+      since: "4.5.0"
+      notes: Use `fail` instead
+
+  - name: fail
+    summary: Fired whenever the ad was not successfully loaded
+    platforms: [android]
+    properties:
+      - name: errorCode
+        type: Number
+        summary: Error codes for Android can be checked here - https://developers.google.com/android/reference/com/google/android/gms/ads/AdRequest#ERROR_CODE_INTERNAL_ERROR
+
+  - name: ad_closed
+    summary: Fired when ad is closed
+    platforms: [android]
+    deprecated:
+      since: "4.5.0"
+      notes: Use `close` instead
+
+  - name: close
+    summary: Fired when ad is closed
+    platforms: [android]
+
+  - name: ad_opened
+    summary: Fired when ad is opened
+    platforms: [android]
+    deprecated:
+      since: "4.5.0"
+      notes: Use `open` instead
+    
+  - name: open
+    summary: Fired when ad is opened
+    platforms: [android]
+
+  - name: ad_left_application
+    summary: User left the application through the ad
+    platforms: [android]
+    deprecated:
+      since: "4.5.0"
+      notes: Use `leftapp` instead
+
+  - name: leftapp
+    summary: User left the application through the ad
+    platforms: [android]

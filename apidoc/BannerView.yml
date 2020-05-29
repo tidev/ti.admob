@@ -1,0 +1,109 @@
+---
+name: Modules.Admob.BannerView
+extends: Titanium.UI.View
+platforms: [android]
+summary: A view for displaying ads delivered through Admob.
+createable: true
+properties:
+  - name: adSize
+    type: Number
+    summary: size of the ad to display
+    constants: Modules.Admob.AD_SIZE_*
+    platforms: [android]
+    default: Modules.Admob.AD_SIZE_BANNER
+
+methods:
+  - name: requestAd
+    summary: Calls for a new ad if needed. Pass optional `args` to configure extras.
+    parameters:
+      - name: options
+        type: Object
+        optional: true
+        summary: Options for the ad
+    returns:
+      type: void
+    deprecated:
+      since: "4.5.0"
+      notes: Use `load()` instead
+
+  - name: requestTestAd
+    summary: Calls for a test ad if needed.
+    returns:
+      type: void
+    deprecated:
+      since: "4.5.0"
+      notes: Use load() with 'debugIdentifiers' property instead.
+
+  - name: load
+    summary: Loads an ad
+    parameters:
+      - name: options
+        type: Modules.Admob.LoadOptions
+        optional: true
+        summary: Options for the ad
+    returns:
+      type: void
+
+events:
+  - name: ad_received
+    summary: Fired when ad is loaded
+    platforms: [android]
+    deprecated:
+      since: "4.5.0"
+      notes: Use `load` instead
+
+  - name: load
+    summary: Fired when ad is loaded
+    platforms: [android]
+
+  - name: ad_not_received
+    summary: Fired whenever the ad was not successfully loaded
+    platforms: [android]
+    properties:
+      - name: errorCode
+        type: Number
+        summary: Error codes for Android can be checked here - https://developers.google.com/android/reference/com/google/android/gms/ads/AdRequest#ERROR_CODE_INTERNAL_ERROR
+    deprecated:
+      since: "4.5.0"
+      notes: Use `fail` instead
+
+  - name: fail
+    summary: Fired whenever the ad was not successfully loaded
+    platforms: [android]
+    properties:
+      - name: errorCode
+        type: Number
+        summary: Error codes for Android can be checked here - https://developers.google.com/android/reference/com/google/android/gms/ads/AdRequest#ERROR_CODE_INTERNAL_ERROR
+
+  - name: ad_closed
+    summary: Fired when ad is closed
+    platforms: [android]
+    deprecated:
+      since: "4.5.0"
+      notes: Use `close` instead
+
+  - name: close
+    summary: Fired when ad is closed
+    platforms: [android]
+
+  - name: ad_opened
+    summary: Fired when ad is opened
+    platforms: [android]
+    deprecated:
+      since: "4.5.0"
+      notes: Use `open` instead
+    
+  - name: open
+    summary: Fired when ad is opened
+    platforms: [android]
+
+  - name: ad_left_application
+    summary: User left the application through the ad
+    platforms: [android]
+    deprecated:
+      since: "4.5.0"
+      notes: Use `leftapp` instead
+
+  - name: leftapp
+    summary: User left the application through the ad
+    platforms: [android]

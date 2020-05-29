@@ -66,7 +66,8 @@ public class AdmobView extends TiUIView
 		});
 	}
 
-	public void nativeLoadAd(final KrollDict options) {
+	public void nativeLoadAd(final KrollDict options)
+	{
 		proxy.getActivity().runOnUiThread(new Runnable() {
 			public void run()
 			{

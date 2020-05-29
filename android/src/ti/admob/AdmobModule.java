@@ -8,45 +8,42 @@
 
 package ti.admob;
 
-import com.google.android.gms.ads.identifier.AdvertisingIdClient;
+import android.app.Activity;
+import android.content.Context;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import com.google.ads.consent.AdProvider;
+import com.google.ads.consent.ConsentForm;
+import com.google.ads.consent.ConsentFormListener;
+import com.google.ads.consent.ConsentInfoUpdateListener;
+import com.google.ads.consent.ConsentInformation;
+import com.google.ads.consent.ConsentStatus;
+import com.google.ads.consent.DebugGeography;
+import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
-
-import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
-
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import org.appcelerator.kroll.KrollDict;
+import org.appcelerator.kroll.KrollFunction;
+import org.appcelerator.kroll.KrollModule;
+import org.appcelerator.kroll.KrollObject;
 import org.appcelerator.kroll.annotations.Kroll;
 import org.appcelerator.kroll.common.Log;
-import org.appcelerator.kroll.KrollModule;
-import org.appcelerator.kroll.KrollFunction;
-import org.appcelerator.kroll.KrollDict;
-import org.appcelerator.kroll.KrollObject;
-
 import org.appcelerator.titanium.TiApplication;
 import org.appcelerator.titanium.TiBlob;
 import org.appcelerator.titanium.io.TiBaseFile;
 import org.appcelerator.titanium.util.TiConvert;
-
-import java.io.IOException;
-import java.util.Map;
-import java.util.List;
-import java.util.Arrays;
-import java.net.URL;
-
-import android.content.Context;
-import android.app.Activity;
-import android.os.Bundle;
-import android.os.AsyncTask;
-
-import com.google.ads.consent.ConsentInformation;
-import com.google.ads.consent.ConsentForm;
-import com.google.ads.consent.ConsentFormListener;
-import com.google.ads.consent.ConsentInfoUpdateListener;
-import com.google.ads.consent.ConsentStatus;
-import com.google.ads.consent.DebugGeography;
-import com.google.ads.consent.AdProvider;
-import com.google.ads.mediation.admob.AdMobAdapter;
 
 @Kroll.module(name = "Admob", id = "ti.admob")
 public class AdmobModule extends KrollModule
@@ -75,7 +72,6 @@ public class AdmobModule extends KrollModule
 	public static String PROPERTY_COLOR_LINK = "linkColor";
 	public static String PROPERTY_COLOR_URL = "urlColor";
 	public static String PROPERTY_IS_TAGGED_FOR_UNDER_AGE_OF_CONSENT = "isTaggedForUnderAgeOfConsent";
-
 
 	// new event constans
 	public static final String EVENT_AD_LOAD = "load";
@@ -184,20 +180,24 @@ public class AdmobModule extends KrollModule
 	}
 
 	@Kroll.method
-	public void isLimitAdTrackingEnabled(KrollFunction callback) {
+	public void isLimitAdTrackingEnabled(KrollFunction callback)
+	{
 		if (callback != null) {
 			new getAndroidAdvertisingIDInfo(callback).execute(IS_LIMIT_AD_TRACKING_ENABLED);
 		}
 	}
 
 	@Kroll.method
-	public void getAndroidAdId(KrollFunction callback) {
+	public void getAndroidAdId(KrollFunction callback)
+	{
 		if (callback != null) {
 			new getAndroidAdvertisingIDInfo(callback).execute(ANDROID_ADVERTISING_ID);
 		}
 	}
 
-	private void invokeAIDClientInfoCallback(AdvertisingIdClient.Info aaClientIDInfo, String responseKey, KrollFunction callback) {
+	private void invokeAIDClientInfoCallback(AdvertisingIdClient.Info aaClientIDInfo, String responseKey,
+											 KrollFunction callback)
+	{
 		KrollDict callbackDictionary = new KrollDict();
 		Object responseValue = null;
 		switch (responseKey) {
@@ -212,19 +212,23 @@ public class AdmobModule extends KrollModule
 		callback.callAsync(getKrollObject(), callbackDictionary);
 	}
 
-	private class getAndroidAdvertisingIDInfo extends AsyncTask<String, Integer, String> {
+	private class getAndroidAdvertisingIDInfo extends AsyncTask<String, Integer, String>
+	{
 
 		private AdvertisingIdClient.Info aaClientIDInfo = null;
 		private KrollFunction aaInfoCallback;
 
-		public getAndroidAdvertisingIDInfo(KrollFunction infoCallback) {
+		public getAndroidAdvertisingIDInfo(KrollFunction infoCallback)
+		{
 			this.aaInfoCallback = infoCallback;
 		}
 
 		@Override
-		protected String doInBackground(String... responseKey) {
+		protected String doInBackground(String... responseKey)
+		{
 			try {
-				aaClientIDInfo = AdvertisingIdClient.getAdvertisingIdInfo(TiApplication.getInstance().getApplicationContext());
+				aaClientIDInfo =
+					AdvertisingIdClient.getAdvertisingIdInfo(TiApplication.getInstance().getApplicationContext());
 				return responseKey[0];
 			} catch (IOException | GooglePlayServicesNotAvailableException | GooglePlayServicesRepairableException e) {
 				e.printStackTrace();
@@ -233,7 +237,8 @@ public class AdmobModule extends KrollModule
 		}
 
 		@Override
-		protected void onPostExecute(String responseKey) {
+		protected void onPostExecute(String responseKey)
+		{
 			if (aaClientIDInfo != null) {
 				invokeAIDClientInfoCallback(aaClientIDInfo, responseKey, aaInfoCallback);
 			}
@@ -464,7 +469,7 @@ public class AdmobModule extends KrollModule
 
 			dict.put("identifier", adProvider.getId());
 			dict.put("name", adProvider.getName());
-			dict.put("privacyPolicyURL", adProvider.getPrivacyPolicyUrl());
+			dict.put("privacyPolicyURL", adProvider.getPrivacyPolicyUrlString());
 
 			result[i] = dict;
 		}
@@ -502,7 +507,8 @@ public class AdmobModule extends KrollModule
 		return bundle;
 	}
 
-	public static AdRequest.Builder createRequestBuilderWithOptions(KrollDict options) {
+	public static AdRequest.Builder createRequestBuilderWithOptions(KrollDict options)
+	{
 		AdRequest.Builder adRequestBuilder = new AdRequest.Builder();
 		if (options == null) {
 			return adRequestBuilder;
@@ -532,7 +538,7 @@ public class AdmobModule extends KrollModule
 		}
 		// Handle testDevices
 		if (options.containsKeyAndNotNull("testDevices")) {
-			String [] testDevices = options.getStringArray("testDevices");
+			String[] testDevices = options.getStringArray("testDevices");
 			for (int i = 0; i < testDevices.length; i++) {
 				adRequestBuilder.addTestDevice(testDevices[i]);
 			}
@@ -552,16 +558,20 @@ public class AdmobModule extends KrollModule
 			bundle.putString("color_bg", convertColorProp(extrasDictionary.getString(AdmobModule.PROPERTY_COLOR_BG)));
 		}
 		if (extrasDictionary.containsKey(AdmobModule.PROPERTY_COLOR_BG_TOP)) {
-			bundle.putString("color_bg_top", convertColorProp(extrasDictionary.getString(AdmobModule.PROPERTY_COLOR_BG_TOP)));
+			bundle.putString("color_bg_top",
+							 convertColorProp(extrasDictionary.getString(AdmobModule.PROPERTY_COLOR_BG_TOP)));
 		}
 		if (extrasDictionary.containsKey(AdmobModule.PROPERTY_COLOR_BORDER)) {
-			bundle.putString("color_border", convertColorProp(extrasDictionary.getString(AdmobModule.PROPERTY_COLOR_BORDER)));
+			bundle.putString("color_border",
+							 convertColorProp(extrasDictionary.getString(AdmobModule.PROPERTY_COLOR_BORDER)));
 		}
 		if (extrasDictionary.containsKey(AdmobModule.PROPERTY_COLOR_TEXT)) {
-			bundle.putString("color_text", convertColorProp(extrasDictionary.getString(AdmobModule.PROPERTY_COLOR_TEXT)));
+			bundle.putString("color_text",
+							 convertColorProp(extrasDictionary.getString(AdmobModule.PROPERTY_COLOR_TEXT)));
 		}
 		if (extrasDictionary.containsKey(AdmobModule.PROPERTY_COLOR_LINK)) {
-			bundle.putString("color_link", convertColorProp(extrasDictionary.getString(AdmobModule.PROPERTY_COLOR_LINK)));
+			bundle.putString("color_link",
+							 convertColorProp(extrasDictionary.getString(AdmobModule.PROPERTY_COLOR_LINK)));
 		}
 		if (extrasDictionary.containsKey(AdmobModule.PROPERTY_COLOR_URL)) {
 			bundle.putString("color_url", convertColorProp(extrasDictionary.getString(AdmobModule.PROPERTY_COLOR_URL)));
@@ -587,5 +597,4 @@ public class AdmobModule extends KrollModule
 			color = "000000";
 		return color;
 	}
-
 }
