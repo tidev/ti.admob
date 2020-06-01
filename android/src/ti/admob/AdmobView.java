@@ -15,10 +15,12 @@ import org.appcelerator.titanium.view.TiUIView;
 
 import android.os.Bundle;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.mediation.admob.AdMobExtras;
+import com.google.ads.mediation.admob.AdMobAdapter;
 
 public class AdmobView extends TiUIView
 {
