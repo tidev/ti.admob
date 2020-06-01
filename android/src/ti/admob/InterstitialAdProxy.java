@@ -57,6 +57,12 @@ public class InterstitialAdProxy extends KrollProxy
 		return this.interstitialAd.getAdUnitId();
 	}
 
+	@Kroll.getProperty
+	public boolean getIsReady()
+	{
+		return this.interstitialAd.isLoaded();
+	}
+
 	@Kroll.method
 	public void load(@Kroll.argument(optional = true) KrollDict options)
 	{
