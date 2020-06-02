@@ -8,19 +8,14 @@
 package ti.admob;
 
 import android.app.Activity;
+import android.os.Bundle;
 import org.appcelerator.kroll.KrollDict;
-
-import org.appcelerator.titanium.proxy.TiViewProxy;
 import org.appcelerator.kroll.annotations.Kroll;
 import org.appcelerator.kroll.common.Log;
 import org.appcelerator.titanium.TiBaseActivity;
 import org.appcelerator.titanium.TiLifecycle.OnLifecycleEvent;
 import org.appcelerator.titanium.proxy.TiViewProxy;
 import org.appcelerator.titanium.view.TiUIView;
-
-import android.app.Activity;
-
-import android.os.Bundle;
 
 @Kroll.proxy(creatableInModule = AdmobModule.class)
 public class BannerViewProxy extends TiViewProxy implements OnLifecycleEvent
@@ -92,8 +87,9 @@ public class BannerViewProxy extends TiViewProxy implements OnLifecycleEvent
 		if (properties.containsKey(AdmobModule.PROPERTY_AD_UNIT_ID)) {
 			prop_adUnitId = properties.getString(AdmobModule.PROPERTY_AD_UNIT_ID);
 		}
-		if(properties.containsKey(AdmobModule.PROPERTY_AD_SIZE)) {
-			prop_adSize = AdmobSizeEnum.fromModuleConst(properties.getInt(AdmobModule.PROPERTY_AD_SIZE)).getAdmobSizeProxy();
+		if (properties.containsKey(AdmobModule.PROPERTY_AD_SIZE)) {
+			prop_adSize =
+				AdmobSizeEnum.fromModuleConst(properties.getInt(AdmobModule.PROPERTY_AD_SIZE)).getAdmobSizeProxy();
 		}
 		if (properties.containsKey(AdmobModule.PROPERTY_DEBUG_ENABLED)) {
 			warnForDeprecatedProperty(AdmobModule.PROPERTY_DEBUG_ENABLED);
@@ -171,8 +167,10 @@ public class BannerViewProxy extends TiViewProxy implements OnLifecycleEvent
 		return bundle;
 	}
 
-	private void warnForDeprecatedProperty(String property) {
-		Log.w(TAG, "You are using " + property + " which is deprecated. Instead use the <extras> parameter in load() method.");
+	private void warnForDeprecatedProperty(String property)
+	{
+		Log.w(TAG, "You are using " + property
+					   + " which is deprecated. Instead use the <extras> parameter in load() method.");
 	}
 
 	@Override

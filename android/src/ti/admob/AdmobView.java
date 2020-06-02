@@ -7,20 +7,18 @@
  */
 package ti.admob;
 
-import org.appcelerator.kroll.KrollDict;
-import org.appcelerator.kroll.KrollProxy;
-import org.appcelerator.kroll.common.Log;
-import org.appcelerator.titanium.proxy.TiViewProxy;
-import org.appcelerator.titanium.view.TiUIView;
-
 import android.os.Bundle;
-
+import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.mediation.admob.AdMobExtras;
-import com.google.ads.mediation.admob.AdMobAdapter;
+import org.appcelerator.kroll.KrollDict;
+import org.appcelerator.kroll.KrollProxy;
+import org.appcelerator.kroll.common.Log;
+import org.appcelerator.titanium.proxy.TiViewProxy;
+import org.appcelerator.titanium.view.TiUIView;
 
 public class AdmobView extends TiUIView
 {
@@ -39,11 +37,13 @@ public class AdmobView extends TiUIView
 		setNativeView(adView);
 	}
 
-	public AdView getAdView() {
+	public AdView getAdView()
+	{
 		return this.adView;
 	}
 
-	public void setDebugEnabled(boolean value) {
+	public void setDebugEnabled(boolean value)
+	{
 		this.prop_debugEnabled = value;
 	}
 
@@ -58,7 +58,7 @@ public class AdmobView extends TiUIView
 				if (testing) {
 					adRequestBuilder.addTestDevice(AdRequest.DEVICE_ID_EMULATOR);
 				}
-				Bundle bundle = ((BannerViewProxy)proxy).createAdRequestProperties();
+				Bundle bundle = ((BannerViewProxy) proxy).createAdRequestProperties();
 				if (bundle.size() > 0) {
 					Log.d(TAG, "extras.size() > 0 -- set ad properties");
 					adRequestBuilder.addNetworkExtras(new AdMobExtras(bundle));
@@ -128,5 +128,4 @@ public class AdmobView extends TiUIView
 		Log.d(TAG, "requestTestAd()");
 		loadAd(true, null);
 	}
-
 }
