@@ -24,7 +24,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- The FBMediaViewVideoRenderer class allows for customization of the user experience for video ads in FBMediaView. This class should be subclassed, and an instance of that subclass should be passed to the videoRenderer property of an FBMediaView instance.
+ The FBMediaViewVideoRenderer class allows for customization of the user experience for video ads in FBMediaView. This
+ class should be subclassed, and an instance of that subclass should be passed to the videoRenderer property of an
+ FBMediaView instance.
  */
 FB_CLASS_EXPORT
 @interface FBMediaViewVideoRenderer : UIView
@@ -65,7 +67,8 @@ FB_CLASS_EXPORT
 - (void)pauseVideo;
 
 /**
- Used to put the video into seek mode.  Video playback halts, and one or more calls to seekVideoToTime: can be made before calling disengageVideoSeek.
+ Used to put the video into seek mode.  Video playback halts, and one or more calls to seekVideoToTime: can be made
+ before calling disengageVideoSeek.
  */
 - (void)engageVideoSeek;
 
@@ -76,15 +79,16 @@ FB_CLASS_EXPORT
 
 /**
  Seeks the video to a particular time location.  Only works after calling `engageVideoSeek`.
- - Parameter time: The requested time location, expressed as a CMTime value.
+ @param time The requested time location, expressed as a CMTime value.
  */
 - (void)seekVideoToTime:(CMTime)time;
 
 /**
  Requests the periodic invocation of a given block during playback to report changing time.
- - Parameter interval: The time interval at which the block should be invoked during normal playback, according to progress of the player's current time.
- - Parameter queue: A serial dispatch queue onto which block should be enqueued.
- - Parameter block: The block to be invoked periodically.
+ @param interval The time interval at which the block should be invoked during normal playback, according to progress of
+ the player's current time.
+ @param queue A serial dispatch queue onto which block should be enqueued.
+ @param block The block to be invoked periodically.
  */
 - (nullable id)addPeriodicTimeObserverForInterval:(CMTime)interval
                                             queue:(dispatch_queue_t)queue
