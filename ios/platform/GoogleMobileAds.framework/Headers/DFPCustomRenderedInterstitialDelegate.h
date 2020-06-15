@@ -6,7 +6,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <GoogleMobileAds/GoogleMobileAdsDefines.h>
 
 @class DFPCustomRenderedAd;
 @class DFPInterstitial;
