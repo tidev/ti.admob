@@ -13,17 +13,7 @@
 // limitations under the License.
 
 #import <Foundation/Foundation.h>
-#import <GoogleMobileAds/GoogleMobileAds.h>
+#import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, GADFBAdFormat) {
-  GADFBAdFormatNative,        ///< Native.
-  GADFBAdFormatNativeBanner,  ///< Native Banner.
-};
-
-/// Network extras for the Facebook adapter.
-@interface GADFBNetworkExtras : NSObject <GADAdNetworkExtras>
-
-/// The native ad format to request. Has no effect when applied to non-native ad requests.
-@property(nonatomic, assign) GADFBAdFormat nativeAdFormat;
-
-@end
+#import <FacebookAdapter/GADFBExtraAssets.h>
+#import <FacebookAdapter/GADFBNetworkExtras.h>
