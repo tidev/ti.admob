@@ -51,9 +51,6 @@ FOUNDATION_EXPORT const unsigned char GoogleMobileAdsVersionString[];
 
 #import <GoogleMobileAds/DFPBannerView.h>
 #import <GoogleMobileAds/DFPBannerViewOptions.h>
-#import <GoogleMobileAds/DFPCustomRenderedAd.h>
-#import <GoogleMobileAds/DFPCustomRenderedBannerViewDelegate.h>
-#import <GoogleMobileAds/DFPCustomRenderedInterstitialDelegate.h>
 #import <GoogleMobileAds/DFPInterstitial.h>
 #import <GoogleMobileAds/DFPRequest.h>
 #import <GoogleMobileAds/GADAdSizeDelegate.h>

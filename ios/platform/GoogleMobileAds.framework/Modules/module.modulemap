@@ -68,9 +68,6 @@ framework module GoogleMobileAds {
 
   header "DFPBannerView.h"
   header "DFPBannerViewOptions.h"
-  header "DFPCustomRenderedAd.h"
-  header "DFPCustomRenderedBannerViewDelegate.h"
-  header "DFPCustomRenderedInterstitialDelegate.h"
   header "DFPInterstitial.h"
   header "DFPRequest.h"
   header "GADAdSizeDelegate.h"

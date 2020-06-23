@@ -56,9 +56,9 @@ typedef NS_ENUM(NSInteger, GADGender) {
 
 #pragma mark User Information
 
-/// The user's current location may be used to deliver more relevant ads. However do not use Core
-/// Location just for advertising, make sure it is used for more beneficial reasons as well. It is
-/// both a good idea and part of Apple's guidelines.
+/// The user's current location. Location data is not used to target Google ads; however, it may be
+/// used by 3rd party ad networks. Do not use Core Location just for advertising. Your app should
+/// have a valid use case for it as well.
 - (void)setLocationWithLatitude:(CGFloat)latitude
                       longitude:(CGFloat)longitude
                        accuracy:(CGFloat)accuracyInMeters;
