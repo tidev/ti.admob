@@ -16,6 +16,9 @@
 
 #import <UIKit/UIKit.h>
 
+/// Personalized ad consent SDK version string.
+extern NSString *_Nonnull const PACVersionString;
+
 /// Personalized ad consent error domain.
 extern NSErrorDomain _Nonnull const PACErrorDomain;
 

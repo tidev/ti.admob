@@ -8,10 +8,7 @@
 #import <GoogleMobileAds/GADAdSize.h>
 #import <GoogleMobileAds/GADCustomEventBannerDelegate.h>
 #import <GoogleMobileAds/GADCustomEventRequest.h>
-#import <GoogleMobileAds/GoogleMobileAdsDefines.h>
 #import <UIKit/UIKit.h>
-
-NS_ASSUME_NONNULL_BEGIN
 
 /// The banner custom event protocol. Your banner custom event handler must implement this protocol.
 @protocol GADCustomEventBanner <NSObject>
@@ -21,6 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// In your class, define the -delegate and -setDelegate: methods or use "@synthesize delegate". The
 /// Google Mobile Ads SDK sets this property on instances of your class.
 @property(nonatomic, weak, nullable) id<GADCustomEventBannerDelegate> delegate;
+
+/// Returns an initialized custom event banner.
+- (nonnull instancetype)init;
 
 /// Called by mediation when your custom event is scheduled to be executed. Report execution results
 /// to the delegate.
@@ -32,8 +32,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)requestBannerAd:(GADAdSize)adSize
               parameter:(nullable NSString *)serverParameter
                   label:(nullable NSString *)serverLabel
-                request:(GADCustomEventRequest *)request;
+                request:(nonnull GADCustomEventRequest *)request;
 
 @end
-
-NS_ASSUME_NONNULL_END
