@@ -16,6 +16,9 @@
 
 #import <UIKit/UIKit.h>
 
+/// Personalized ad consent SDK version string.
+extern NSString *_Nonnull const PACVersionString;
+
 /// Personalized ad consent error domain.
 extern NSErrorDomain _Nonnull const PACErrorDomain;
 
@@ -34,7 +37,7 @@ typedef NS_ENUM(NSInteger, PACConsentStatus) {
 typedef NS_ENUM(NSInteger, PACDebugGeography) {
   PACDebugGeographyDisabled = 0,  ///< Disable geography debugging.
   PACDebugGeographyEEA = 1,       ///< Geography appears as in EEA for debug devices.
-  PACDebugGeographyNotEEA = 2,    ///< c
+  PACDebugGeographyNotEEA = 2,    ///< Geography appears as not in EEA for debug devices.
 };
 
 /// Ad provider information.

@@ -9,25 +9,9 @@
 #import <GoogleMobileAds/GADNativeExpressAdViewDelegate.h>
 #import <GoogleMobileAds/GADRequest.h>
 #import <GoogleMobileAds/GADVideoController.h>
-#import <GoogleMobileAds/GoogleMobileAdsDefines.h>
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
-/// The view that displays native ads. A minimum implementation to get an ad from within a
-/// UIViewController class is:
-///
-///   <pre>
-///   // Create and setup the ad view, specifying the size and origin at {0, 0}.
-///   GADNativeExpressAdView *adView =
-///       [[GADNativeExpressAdView alloc] initWithAdSize:kGADAdSizeBanner];
-///   adView.rootViewController = self;
-///   adView.adUnitID = @"ID created when registering your app";
-///   // Place the ad view onto the screen.
-///   [self.view addSubview:adView];
-///   // Request an ad without any additional targeting information.
-///   [adView loadRequest:[GADRequest request]];
-///   </pre>
+/// A view that displays native express ads.
 GAD_DEPRECATED_ATTRIBUTE
 @interface GADNativeExpressAdView : UIView
 
@@ -42,7 +26,7 @@ GAD_DEPRECATED_ATTRIBUTE
 - (nullable instancetype)initWithAdSize:(GADAdSize)adSize;
 
 /// Video controller for controlling video rendered by this native express ad view.
-@property(nonatomic, strong, readonly) GADVideoController *videoController;
+@property(nonatomic, readonly, nonnull) GADVideoController *videoController;
 
 #pragma mark - Pre-Request
 
@@ -76,7 +60,7 @@ GAD_DEPRECATED_ATTRIBUTE
 ///
 /// @param adOptions An array of GADAdLoaderOptions objects. The array is deep copied and option
 /// objects cannot be modified after calling this method.
-- (void)setAdOptions:(NSArray *)adOptions;
+- (void)setAdOptions:(nonnull NSArray *)adOptions;
 
 #pragma mark - Making an Ad Request
 
@@ -92,5 +76,3 @@ GAD_DEPRECATED_ATTRIBUTE
 @property(nonatomic, readonly, weak, nullable) NSString *adNetworkClassName;
 
 @end
-
-NS_ASSUME_NONNULL_END

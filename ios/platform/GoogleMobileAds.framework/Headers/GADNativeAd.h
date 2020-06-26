@@ -6,10 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <GoogleMobileAds/GoogleMobileAdsDefines.h>
 #import <UIKit/UIKit.h>
-
-NS_ASSUME_NONNULL_BEGIN
 
 @protocol GADNativeAdDelegate;
 
@@ -33,5 +30,3 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly, copy, nullable) NSString *adNetworkClassName;
 
 @end
-
-NS_ASSUME_NONNULL_END

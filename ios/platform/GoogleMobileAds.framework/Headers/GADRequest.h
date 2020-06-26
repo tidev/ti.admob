@@ -9,11 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <GoogleMobileAds/GADAdNetworkExtras.h>
 #import <GoogleMobileAds/GoogleMobileAdsDefines.h>
-
-NS_ASSUME_NONNULL_BEGIN
+#import <UIKit/UIKit.h>
 
 /// Add this constant to the testDevices property's array to receive test ads on the simulator.
-GAD_EXTERN const id kGADSimulatorID;
+GAD_EXTERN const id _Nonnull kGADSimulatorID;
 
 /// Deprecated gender constants.
 typedef NS_ENUM(NSInteger, GADGender) {
@@ -26,7 +25,7 @@ typedef NS_ENUM(NSInteger, GADGender) {
 @interface GADRequest : NSObject <NSCopying>
 
 /// Returns a default request.
-+ (instancetype)request;
++ (nonnull instancetype)request;
 
 #pragma mark Additional Parameters For Ad Networks
 
@@ -36,30 +35,30 @@ typedef NS_ENUM(NSInteger, GADGender) {
 /// networks will have access to the basic settings you've set in this GADRequest. If you register
 /// an extras object that is the same class as one you have registered before, the previous extras
 /// will be overwritten.
-- (void)registerAdNetworkExtras:(id<GADAdNetworkExtras>)extras;
+- (void)registerAdNetworkExtras:(nonnull id<GADAdNetworkExtras>)extras;
 
 /// Returns the network extras defined for an ad network.
-- (nullable id<GADAdNetworkExtras>)adNetworkExtrasFor:(Class<GADAdNetworkExtras>)aClass;
+- (nullable id<GADAdNetworkExtras>)adNetworkExtrasFor:(nonnull Class<GADAdNetworkExtras>)aClass;
 
 /// Removes the extras for an ad network. |aClass| is the class which represents that network's
 /// extras type.
-- (void)removeAdNetworkExtrasFor:(Class<GADAdNetworkExtras>)aClass;
+- (void)removeAdNetworkExtrasFor:(nonnull Class<GADAdNetworkExtras>)aClass;
 
 #pragma mark Collecting SDK Information
 
 /// Returns the version of the SDK.
-+ (NSString *)sdkVersion;
++ (nonnull NSString *)sdkVersion;
 
-#pragma mark Testing
+#pragma mark Publisher Provided
 
-/// Test ads will be returned for devices with device IDs specified in this array.
-@property(nonatomic, copy, nullable) NSArray *testDevices;
+/// Scene object. Used in multiscene apps to request ads of the appropriate size.
+@property(nonatomic, nullable, weak) UIWindowScene *scene API_AVAILABLE(ios(13.0));
 
 #pragma mark User Information
 
-/// The user's current location may be used to deliver more relevant ads. However do not use Core
-/// Location just for advertising, make sure it is used for more beneficial reasons as well. It is
-/// both a good idea and part of Apple's guidelines.
+/// The user's current location. Location data is not used to target Google ads; however, it may be
+/// used by 3rd party ad networks. Do not use Core Location just for advertising. Your app should
+/// have a valid use case for it as well.
 - (void)setLocationWithLatitude:(CGFloat)latitude
                       longitude:(CGFloat)longitude
                        accuracy:(CGFloat)accuracyInMeters;
@@ -83,6 +82,11 @@ typedef NS_ENUM(NSInteger, GADGender) {
 @property(nonatomic, copy, nullable) NSString *requestAgent;
 
 #pragma mark Deprecated Methods
+
+/// Test ads will be returned for devices with device IDs specified in this array.
+/// Use GADRequestConfiguration instead.
+@property(nonatomic, copy, nullable) NSArray<NSString *> *testDevices GAD_DEPRECATED_MSG_ATTRIBUTE(
+    "Use GADMobileAds.sharedInstance.requestConfiguration.testDeviceIdentifiers.");
 
 /// Deprecated property. The user's gender.
 @property(nonatomic, assign) GADGender gender GAD_DEPRECATED_ATTRIBUTE;
@@ -123,5 +127,3 @@ typedef NS_ENUM(NSInteger, GADGender) {
         " use [GADMobileAds.sharedInstance.requestConfiguration tagForChildDirectedTreatment]");
 
 @end
-
-NS_ASSUME_NONNULL_END
