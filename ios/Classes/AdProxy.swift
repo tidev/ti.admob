@@ -28,16 +28,9 @@ extension AdProxy {
     if let contentUrl = options["contentUrl"] as? String {
       request.contentURL = contentUrl
     }
-    if let tagForChildDirectedTreatment = options["tagForChildDirectedTreatment"] as? NSNumber {
-      request.tag(forChildDirectedTreatment: tagForChildDirectedTreatment.boolValue)
-    }
     if let requestAgent = options["requestAgent"] as? String {
       request.requestAgent = requestAgent
     }
-    if let testDevices = options["testDevices"] as? [String] {
-      request.testDevices = testDevices
-    }
-
     return request
   }
 }

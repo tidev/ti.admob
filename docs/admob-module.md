@@ -49,6 +49,14 @@ Debug geography. Used for debug devices only.
 
 Indicates whether the user is tagged for under age of consent.
 
+---
+
+###  testDeviceIdentifiers
+
+> `testDeviceIdentifiers :Array<String>`
+
+Test ads will be returned for devices with device IDs specified in this array. Use AdMob.SIMULATOR_ID to add the simulator.
+
 ## Methods
 
 ### createBannerView
@@ -176,6 +184,17 @@ Requests consent information update for the provided publisher identifiers. All 
 > `resetConsent() → void`
 
 Resets consent information to default state and clears ad providers.
+
+---
+
+###  setTagForChildDirectedTreatment
+> `setTagForChildDirectedTreatment(value) → void`
+
+This option allows you to specify whether you would like your app to be treated as child-directed for purposes of the Children’s Online Privacy Protection Act (COPPA) - https//business.ftc.gov/privacy-and-security/childrens-privacy.
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `value` | `Boolean` | |
 
 ---
 

@@ -101,7 +101,17 @@ extension TiAdmobModule {
       PACConsentInformation.sharedInstance.debugGeography = PACDebugGeography(rawValue: newValue.intValue) ?? PACDebugGeography.disabled
     }
   }
-  
+    
+  @objc
+  public var testDeviceIdentifiers: [String] {
+      get {
+          return GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers ?? []
+      }
+      set {
+          GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = newValue
+      }
+  }
+    
   @objc(setTagForUnderAgeOfConsent:)
   public func setTagForUnderAgeOfConsent(arg: Any?) {
     if let value = arg as? NSNumber {
@@ -173,6 +183,13 @@ extension TiAdmobModule {
       })
     }
   }
+    
+  @objc(setTagForChildDirectedTreatment:)
+    public func setTagForChildDirectedTreatment(arg: Any?) {
+      if let value = arg as? NSNumber {
+        GADMobileAds.sharedInstance().requestConfiguration.tag(forChildDirectedTreatment: value.boolValue)
+      }
+  }
 }
 
 // MARK: Reporting options
@@ -180,11 +197,11 @@ extension TiAdmobModule {
 extension TiAdmobModule {
   @objc
   public func disableAutomatedInAppPurchaseReporting() {
-    GADMobileAds.disableAutomatedInAppPurchaseReporting()
+    GADMobileAds.sharedInstance().disableAutomatedInAppPurchaseReporting()
   }
 
   @objc
   public func disableSDKCrashReporting() {
-    GADMobileAds.disableSDKCrashReporting()
+    GADMobileAds.sharedInstance().disableSDKCrashReporting()
   }
 }
