@@ -89,6 +89,38 @@ properties:
     permission: read-only
     value: 3 # FIXME: 2 on iOS, 3 on Android
 
+  - name: TRACKING_AUTHORIZATION_STATUS_NOT_DETERMINED
+    type: Number
+    summary: Returned by `trackingAuthorizationStatus` Before a device receives an authorization request to approve access to app-related data that can be used for tracking the user or the device.
+    permission: read-only
+    value: 0
+    platforms: [iphone,ipad]
+    since: "2.6.0"
+
+  - name: TRACKING_AUTHORIZATION_STATUS_RESTRICTED
+    type: Number
+    summary: Returned by `trackingAuthorizationStatus` If authorization to use app tracking data is restricted
+    permission: read-only
+    value: 1
+    platforms: [iphone,ipad]
+    since: "2.6.0"
+    
+  - name: TRACKING_AUTHORIZATION_STATUS_DENIED
+    type: Number
+    summary: Returned by `trackingAuthorizationStatus` if After a device receives an authorization request to approve access, user denied the request
+    permission: read-only
+    value: 2
+    platforms: [iphone,ipad]
+    since: "2.6.0"
+
+  - name: TRACKING_AUTHORIZATION_STATUS_AUTHORIZED
+    type: Number
+    summary: Returned by `trackingAuthorizationStatus` if After a device receives an authorization request to approve access, user accpet the request
+    permission: read-only
+    value: 3
+    platforms: [iphone,ipad]
+    since: "2.6.0"
+
   - name: SIMULATOR_ID
     type: String
     summary: The deviceId for emulators to be used with <Modules.Admob.View.testDevices> property
@@ -214,6 +246,13 @@ properties:
     # FIXME: debugGeography is read-only on iOS, but readwrite on Android!
 
 # TODO: Android has property for isTaggedForUnderAgeOfConsent
+  
+  - name: trackingAuthorizationStatus
+    type: Number
+    platforms: [iphone,ipad]
+    since: "2.6.0"
+    summary: Use to check tracking authorization status.
+    constants: Modules.Admob.TRACKING_AUTHORIZATION_STATUS_*
 
 methods:
   - name: initialize
@@ -442,4 +481,28 @@ properties:
     summary: The error message in case of failure
     optional: true
     permission: read-only
+    
+---
+name: requestTrackingAuthorization
+summary: one-time request to authorize or deny access to app-elated data that can be used for tracking the user or the device. The system remembers the user's choice and doesn't prompt again unless a user uninstalls and then reinstalls the app on the device. Note, when calling requestTrackingAuthorization(completionHandler:), the NSUserTrackingUsageDescription key must be in the Information Property List.
+platforms: [iphone,ipad]
+since: "2.6.0"
+properties:
+  - name: callback
+    type: Callback<TrackingAuthorizationStatusObject>
+    summary: async callback function to invoke when done
+    optional: false
+
+---
+name: TrackingAuthorizationStatusObject
+summary: simple object passed to callback passed in to the <Modules.Admob.requestTrackingAuthorization> method
+platforms: [iphone,ipad]
+since: "2.6.0"
+properties:
+  - name: status
+    type: Number
+    summary: The status of Tracking Authorization
+    optional: false
+    permission: read-only
+    constants: Modules.Admob.TRACKING_AUTHORIZATION_STATUS_*
     

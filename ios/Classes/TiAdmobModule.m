@@ -11,6 +11,7 @@
 #import "TiBase.h"
 #import "TiHost.h"
 #import "TiUtils.h"
+#import <AppTrackingTransparency/ATTrackingManager.h>
 #import <GoogleMobileAds/GoogleMobileAds.h>
 #import <PersonalizedAdConsent/PersonalizedAdConsent.h>
 
@@ -159,7 +160,62 @@
   return @([[PACConsentInformation sharedInstance] isTaggedForUnderAgeOfConsent]);
 }
 
+- (NSNumber *)trackingAuthorizationStatus
+{
+  if (@available(iOS 14, *)) {
+    switch ([ATTrackingManager trackingAuthorizationStatus]) {
+    case ATTrackingManagerAuthorizationStatusNotDetermined:
+      return @0;
+    case ATTrackingManagerAuthorizationStatusRestricted:
+      return @1;
+    case ATTrackingManagerAuthorizationStatusDenied:
+      return @2;
+    case ATTrackingManagerAuthorizationStatusAuthorized:
+      return @3;
+    }
+  }
+  return @3;
+}
+
+- (void)requestTrackingAuthorization:(id)args
+{
+  ENSURE_SINGLE_ARG(args, NSDictionary);
+
+  KrollCallback *callback = [args objectForKey:@"callback"];
+  if (@available(iOS 14, *)) {
+    [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
+      NSNumber *trackingStatus = @0;
+      switch (status) {
+      case ATTrackingManagerAuthorizationStatusNotDetermined:
+        trackingStatus = @0;
+        break;
+      case ATTrackingManagerAuthorizationStatusRestricted:
+        trackingStatus = @1;
+        break;
+      case ATTrackingManagerAuthorizationStatusDenied:
+        trackingStatus = @2;
+        break;
+      case ATTrackingManagerAuthorizationStatusAuthorized:
+        trackingStatus = @3;
+        break;
+      }
+      if (callback != nil) {
+        [callback call:@[ @{ @"status" : trackingStatus } ] thisObject:self];
+      }
+    }];
+    return;
+  }
+  if (callback != nil) {
+    [callback call:@[ @{ @"status" : @3 } ] thisObject:self];
+  }
+}
+
 #pragma mark Constants
+
+MAKE_SYSTEM_PROP(TRACKING_AUTHORIZATION_STATUS_NOT_DETERMINED, 0);
+MAKE_SYSTEM_PROP(TRACKING_AUTHORIZATION_STATUS_RESTRICTED, 1);
+MAKE_SYSTEM_PROP(TRACKING_AUTHORIZATION_STATUS_DENIED, 2);
+MAKE_SYSTEM_PROP(TRACKING_AUTHORIZATION_STATUS_AUTHORIZED, 3);
 
 MAKE_SYSTEM_PROP(CONSENT_STATUS_UNKNOWN, PACConsentStatusUnknown);
 MAKE_SYSTEM_PROP(CONSENT_STATUS_NON_PERSONALIZED, PACConsentStatusNonPersonalized);
