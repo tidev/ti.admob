@@ -9,8 +9,9 @@
 
 /// Requested ad format.
 typedef NS_ENUM(NSInteger, GADAdFormat) {
-  GADAdFormatBanner,        ///< Banner.
-  GADAdFormatInterstitial,  ///< Interstitial.
-  GADAdFormatRewarded,      ///< Rewarded.
-  GADAdFormatNative,        ///< Native.
+  GADAdFormatBanner,                ///< Banner.
+  GADAdFormatInterstitial,          ///< Interstitial.
+  GADAdFormatRewarded,              ///< Rewarded.
+  GADAdFormatNative,                ///< Native.
+  GADAdFormatRewardedInterstitial,  ///< Rewarded interstitial.
 };

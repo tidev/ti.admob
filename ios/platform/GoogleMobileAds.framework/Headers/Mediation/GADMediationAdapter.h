@@ -103,4 +103,14 @@ typedef void (^GADMediationAdapterSetUpCompletionBlock)(NSError *_Nullable error
                        completionHandler:
                            (nonnull GADMediationRewardedLoadCompletionHandler)completionHandler;
 
+/// Asks the adapter to load a rewarded interstitial ad with the provided ad configuration. The
+/// adapter must call back completionHandler with the loaded ad, or it may call back with an error.
+/// This method is called on the main thread, and completionHandler must be called back on the main
+/// thread.
+- (void)loadRewardedInterstitialAdForAdConfiguration:
+            (nonnull GADMediationRewardedAdConfiguration *)adConfiguration
+                                   completionHandler:
+                                       (nonnull GADMediationRewardedLoadCompletionHandler)
+                                           completionHandler;
+
 @end

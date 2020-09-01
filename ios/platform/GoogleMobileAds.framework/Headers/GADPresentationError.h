@@ -26,4 +26,8 @@ typedef NS_ENUM(NSInteger, GADPresentationErrorCode) {
 
   /// Attempted to present ad from a non-main thread.
   GADPresentationErrorNotMainThread = 21,
+
+  /// A mediation ad network adapter failed to present the ad. The adapter's error is included as an
+  /// underlyingError.
+  GADPresentationErrorMediation = 22,
 };

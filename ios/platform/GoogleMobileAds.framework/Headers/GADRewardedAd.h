@@ -50,8 +50,7 @@ typedef void (^GADRewardedAdLoadCompletionHandler)(GADRequestError *_Nullable er
 @property(nonatomic, readonly, nullable) GADAdReward *reward;
 
 /// Options specified for server-side user reward verification.
-@property(nonatomic, copy, nullable)
-    GADServerSideVerificationOptions *serverSideVerificationOptions;
+@property(nonatomic, nullable) GADServerSideVerificationOptions *serverSideVerificationOptions;
 
 /// The loaded ad's metadata. Is nil if no ad is loaded or the loaded ad doesn't have metadata. Ad
 /// metadata may update after loading. Use the rewardedAdMetadataDidChange: delegate method on

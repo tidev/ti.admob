@@ -38,9 +38,9 @@ FB_CLASS_EXPORT
  */
 @property (nonatomic, strong, readwrite, nonnull) FBAdExperienceType adExperienceType;
 
--(instancetype)init NS_UNAVAILABLE;
+- (instancetype)init NS_UNAVAILABLE;
 
-+(instancetype) new NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
 
 /**
  Creates an FBAdExperienceConfig with a specified type of experience

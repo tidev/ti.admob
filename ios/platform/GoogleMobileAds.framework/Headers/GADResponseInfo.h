@@ -23,6 +23,9 @@
 /// Amount of time the ad network spent loading an ad. 0 if the network was not attempted.
 @property(nonatomic, readonly) NSTimeInterval latency;
 
+/// JSON-safe dictionary representation of the ad network response info.
+@property(nonatomic, readonly, nonnull) NSDictionary<NSString *, id> *dictionaryRepresentation;
+
 @end
 
 /// Ad network class name for ads returned from Google's ad network.
@@ -46,5 +49,8 @@ extern NSString *_Nonnull GADErrorUserInfoKeyResponseInfo;
 
 /// Array of metadata for each ad network included in the response.
 @property(nonatomic, readonly, nonnull) NSArray<GADAdNetworkResponseInfo *> *adNetworkInfoArray;
+
+/// JSON-safe dictionary representation of the response info.
+@property(nonatomic, readonly, nonnull) NSDictionary<NSString *, id> *dictionaryRepresentation;
 
 @end
