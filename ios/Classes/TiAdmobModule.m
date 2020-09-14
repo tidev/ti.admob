@@ -163,16 +163,9 @@
 - (NSNumber *)trackingAuthorizationStatus
 {
   if (@available(iOS 14, *)) {
-    switch ([ATTrackingManager trackingAuthorizationStatus]) {
-    case ATTrackingManagerAuthorizationStatusNotDetermined:
-      return @0;
-    case ATTrackingManagerAuthorizationStatusRestricted:
-      return @1;
-    case ATTrackingManagerAuthorizationStatusDenied:
-      return @2;
-    case ATTrackingManagerAuthorizationStatusAuthorized:
-      return @3;
-    }
+    return @([ATTrackingManager trackingAuthorizationStatus]);
+  } else {
+    NSLog(@"[WARN] Ti.AdMob: The property `trackingAuthorizationStatus` should be used on ios version 14 and above only");
   }
   return @3;
 }
@@ -184,26 +177,14 @@
   KrollCallback *callback = [args objectForKey:@"callback"];
   if (@available(iOS 14, *)) {
     [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
-      NSNumber *trackingStatus = @0;
-      switch (status) {
-      case ATTrackingManagerAuthorizationStatusNotDetermined:
-        trackingStatus = @0;
-        break;
-      case ATTrackingManagerAuthorizationStatusRestricted:
-        trackingStatus = @1;
-        break;
-      case ATTrackingManagerAuthorizationStatusDenied:
-        trackingStatus = @2;
-        break;
-      case ATTrackingManagerAuthorizationStatusAuthorized:
-        trackingStatus = @3;
-        break;
-      }
+      NSNumber *trackingStatus = @(status);
       if (callback != nil) {
         [callback call:@[ @{ @"status" : trackingStatus } ] thisObject:self];
       }
     }];
     return;
+  } else {
+    NSLog(@"[WARN] Ti.AdMob: The function `requestTrackingAuthorization` should be used on ios version 14 and above only");
   }
   if (callback != nil) {
     [callback call:@[ @{ @"status" : @3 } ] thisObject:self];

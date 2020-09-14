@@ -51,6 +51,28 @@ description: |
         <key>GADIsAdManagerApp</key>
         <true/>
 
+    Starting in iOS 14, IDFA will be unavailable until an app calls the App Tracking Transparency framework to present the app-tracking authorization request to the end user. 
+    To display the App Tracking Transparency authorization request for accessing the IDFA, update your tiapp.xml to add the NSUserTrackingUsageDescription key with a custom message describing your usage.
+    Below is an example description text:
+
+      <key>NSUserTrackingUsageDescription</key>
+      <string>This identifier will be used to deliver personalized ads to you.</string>
+
+    To present the authorization request, call requestTrackingAuthorization:. We recommend waiting for the completion callback prior to loading ads, so that if the user grants the App Tracking Transparency permission, the Google AdMob SDK can use the IDFA in ad requests.
+    For more information about the possible status values, see TRACKING_AUTHORIZATION_STATUS_*.
+    If an app does not present this request, the IDFA will automatically be zeroed out which may lead to a significant loss in ad revenue.    
+
+    The Google AdMob SDK supports conversion tracking using Apple's SKAdNetwork, which means Google is able to attribute an app install even when IDFA is unavailable.
+    To enable this functionality, you will need to update the SKAdNetworkItems key with an additional dictionary in your tiapp.xml
+    
+    <key>SKAdNetworkItems</key>
+      <array>
+        <dict>
+          <key>SKAdNetworkIdentifier</key>
+          <string>cstr6suwn9.skadnetwork</string>
+        </dict>
+     </array>
+
 platforms: [android, iphone, ipad]
 properties:
   - name: CONSENT_STATUS_UNKNOWN
@@ -96,6 +118,7 @@ properties:
     value: 0
     platforms: [iphone,ipad]
     since: "2.6.0"
+    osver: {ios: {min: "14.0"}}
 
   - name: TRACKING_AUTHORIZATION_STATUS_RESTRICTED
     type: Number
@@ -104,6 +127,7 @@ properties:
     value: 1
     platforms: [iphone,ipad]
     since: "2.6.0"
+    osver: {ios: {min: "14.0"}}
     
   - name: TRACKING_AUTHORIZATION_STATUS_DENIED
     type: Number
@@ -112,6 +136,7 @@ properties:
     value: 2
     platforms: [iphone,ipad]
     since: "2.6.0"
+    osver: {ios: {min: "14.0"}}
 
   - name: TRACKING_AUTHORIZATION_STATUS_AUTHORIZED
     type: Number
@@ -120,6 +145,7 @@ properties:
     value: 3
     platforms: [iphone,ipad]
     since: "2.6.0"
+    osver: {ios: {min: "14.0"}}
 
   - name: SIMULATOR_ID
     type: String
@@ -249,8 +275,9 @@ properties:
   
   - name: trackingAuthorizationStatus
     type: Number
-    platforms: [iphone,ipad]
+    platforms: [iphone, ipad]
     since: "2.6.0"
+    osver: {ios: {min: "14.0"}}
     summary: Use to check tracking authorization status.
     constants: Modules.Admob.TRACKING_AUTHORIZATION_STATUS_*
 
@@ -358,6 +385,21 @@ methods:
       - name: options
         type: ConsentFormOptions
         summary: Options used to build the consent form
+
+  - name: requestTrackingAuthorization
+    summary: The request for user authorization to access app-related data.
+    description: |
+            One-time request to authorize or deny access to app-elated data that can be used for tracking the user or the device.
+            The system remembers the user's choice and doesn't prompt again unless a user uninstalls and then reinstalls the app on the device.
+            Note, when calling requestTrackingAuthorization(completionHandler:), the NSUserTrackingUsageDescription key must be in the tiapp.xml.
+    platforms: [iphone, ipad]
+    since: "2.6.0"
+    osver: {ios: {min: "14.0"}}
+    parameters:
+      - name: callback
+        type: Callback<TrackingAuthorizationStatusObject>
+        summary: Async callback function to invoke when done
+        optional: false
 
 ---
 name: ConsentFormOptions
@@ -481,23 +523,13 @@ properties:
     summary: The error message in case of failure
     optional: true
     permission: read-only
-    
----
-name: requestTrackingAuthorization
-summary: one-time request to authorize or deny access to app-elated data that can be used for tracking the user or the device. The system remembers the user's choice and doesn't prompt again unless a user uninstalls and then reinstalls the app on the device. Note, when calling requestTrackingAuthorization(completionHandler:), the NSUserTrackingUsageDescription key must be in the Information Property List.
-platforms: [iphone,ipad]
-since: "2.6.0"
-properties:
-  - name: callback
-    type: Callback<TrackingAuthorizationStatusObject>
-    summary: async callback function to invoke when done
-    optional: false
 
 ---
 name: TrackingAuthorizationStatusObject
-summary: simple object passed to callback passed in to the <Modules.Admob.requestTrackingAuthorization> method
+summary: Simple object passed to callback passed in to the <Modules.Admob.requestTrackingAuthorization> method
 platforms: [iphone,ipad]
 since: "2.6.0"
+osver: {ios: {min: "14.0"}}
 properties:
   - name: status
     type: Number
