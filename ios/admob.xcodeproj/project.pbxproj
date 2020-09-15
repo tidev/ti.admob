@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,7 +16,7 @@
 		3A4F268F1C68DDF7003E06CF /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4F268E1C68DDF7003E06CF /* iAd.framework */; };
 		3AF5B7731C233383002E3DC7 /* TiAdmobTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AF5B7711C233383002E3DC7 /* TiAdmobTypes.h */; };
 		5E32C3FB20E2957400A17A2B /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E32C3F920E2957400A17A2B /* FBAudienceNetwork.framework */; };
-		5E32C3FC20E2957400A17A2B /* FacebookAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E32C3FA20E2957400A17A2B /* FacebookAdapter.framework */; };
+		5E32C3FC20E2957400A17A2B /* FacebookAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E32C3FA20E2957400A17A2B /* FacebookAdapter.framework */; platformFilter = ios; };
 		AA747D9F0F9514B9006C5449 /* TiAdmob_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* TiAdmob_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		CE6C17A01982D1170017C788 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6C179F1982D1170017C788 /* AdSupport.framework */; };
@@ -30,14 +30,14 @@
 		DB07E8B81E8010000008C1E1 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8B61E8010000008C1E1 /* CoreMedia.framework */; };
 		DB07E8B91E8010000008C1E1 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8B71E8010000008C1E1 /* CoreMotion.framework */; };
 		DB07E8BB1E80100D0008C1E1 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8BA1E80100D0008C1E1 /* CoreVideo.framework */; };
-		DB07E8BD1E80101A0008C1E1 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8BC1E80101A0008C1E1 /* GLKit.framework */; };
+		DB07E8BD1E80101A0008C1E1 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8BC1E80101A0008C1E1 /* GLKit.framework */; platformFilter = ios; };
 		DB07E8BF1E80101F0008C1E1 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8BE1E80101F0008C1E1 /* JavaScriptCore.framework */; };
 		DB07E8C01E80103C0008C1E1 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD5D7D112527E1A009CF986 /* MediaPlayer.framework */; };
-		DB07E8C21E80104D0008C1E1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8C11E80104D0008C1E1 /* MobileCoreServices.framework */; };
-		DB07E8C41E8010560008C1E1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8C31E8010560008C1E1 /* OpenGLES.framework */; };
+		DB07E8C21E80104D0008C1E1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8C11E80104D0008C1E1 /* MobileCoreServices.framework */; platformFilter = ios; };
+		DB07E8C41E8010560008C1E1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8C31E8010560008C1E1 /* OpenGLES.framework */; platformFilter = ios; };
 		DB07E8C61E8010680008C1E1 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8C51E8010680008C1E1 /* SafariServices.framework */; };
-		DB28410420B413750099933A /* PersonalizedAdConsent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28410320B413750099933A /* PersonalizedAdConsent.framework */; };
-		F770843B24F8FE15000D8E2F /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2840FA20B408760099933A /* GoogleMobileAds.framework */; };
+		DB28410420B413750099933A /* PersonalizedAdConsent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28410320B413750099933A /* PersonalizedAdConsent.framework */; platformFilter = ios; };
+		F770843B24F8FE15000D8E2F /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2840FA20B408760099933A /* GoogleMobileAds.framework */; platformFilter = ios; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
