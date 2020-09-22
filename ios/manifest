@@ -4,6 +4,7 @@
 #
 version: 2.6.0
 architectures:  armv7 i386 x86_64 arm64
+mac: false
 description: AdMob module for ad delivery via AdMob
 author: Jeff Haynie, Stephen Tramer, Jasper Kennis, Jon Alter and Hans Knoechel
 license: Apache License, Version 2.0

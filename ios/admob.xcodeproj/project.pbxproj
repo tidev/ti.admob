@@ -265,6 +265,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEPLOYMENT_POSTPROCESSING = NO;
 				DSTROOT = /tmp/TiAdmob.dst;
+				EXCLUDED_ARCHS = i386;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS",
@@ -318,6 +319,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DSTROOT = /tmp/TiAdmob.dst;
+				EXCLUDED_ARCHS = i386;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS",
@@ -371,6 +373,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DSTROOT = /tmp/TiAdmob.dst;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = i386;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -411,6 +414,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DSTROOT = /tmp/TiAdmob.dst;
+				EXCLUDED_ARCHS = i386;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

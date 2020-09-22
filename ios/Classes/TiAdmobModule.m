@@ -11,9 +11,11 @@
 #import "TiBase.h"
 #import "TiHost.h"
 #import "TiUtils.h"
-#import <AppTrackingTransparency/ATTrackingManager.h>
 #import <GoogleMobileAds/GoogleMobileAds.h>
 #import <PersonalizedAdConsent/PersonalizedAdConsent.h>
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 140000
+#import <AppTrackingTransparency/ATTrackingManager.h>
+#endif
 
 @implementation TiAdmobModule
 
