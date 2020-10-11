@@ -9,7 +9,6 @@ package ti.admob;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.LoadAdError;
-
 import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.KrollProxy;
 import org.appcelerator.kroll.common.Log;

@@ -67,7 +67,8 @@ public class InterstitialAdProxy extends KrollProxy
 		if (!TiApplication.getInstance().runOnMainThread()) {
 			getActivity().runOnUiThread(new Runnable() {
 				@Override
-				public void run() {
+				public void run()
+				{
 					interstitialAd.loadAd(new AdRequest.Builder().build());
 				}
 			});
@@ -77,11 +78,13 @@ public class InterstitialAdProxy extends KrollProxy
 	}
 
 	@Kroll.method
-	public void show() {
+	public void show()
+	{
 		if (!TiApplication.getInstance().runOnMainThread()) {
 			getActivity().runOnUiThread(new Runnable() {
 				@Override
-				public void run() {
+				public void run()
+				{
 					showInterstitial();
 				}
 			});
@@ -90,7 +93,8 @@ public class InterstitialAdProxy extends KrollProxy
 		}
 	}
 
-	private void showInterstitial() {
+	private void showInterstitial()
+	{
 		if (this.interstitialAd.isLoaded()) {
 			this.interstitialAd.show();
 		} else {

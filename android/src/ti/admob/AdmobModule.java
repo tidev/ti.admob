@@ -160,7 +160,8 @@ public class AdmobModule extends KrollModule
 	public int isGooglePlayServicesAvailable()
 	{
 		Log.w(TAG, "isGooglePlayServices in ti.admob is deprecated. Use the same method from ti.playservices instead.");
-		return GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(TiApplication.getAppRootOrCurrentActivity());
+		return GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(
+			TiApplication.getAppRootOrCurrentActivity());
 	}
 
 	// clang-format off
