@@ -7,8 +7,6 @@
 
 package ti.admob;
 
-import android.os.Bundle;
-import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import org.appcelerator.kroll.KrollDict;
@@ -57,6 +55,12 @@ public class InterstitialAdProxy extends KrollProxy
 	// clang format on
 	{
 		return this.interstitialAd.getAdUnitId();
+	}
+
+	@Kroll.getProperty
+	public boolean getIsReady()
+	{
+		return this.interstitialAd.isLoaded();
 	}
 
 	@Kroll.method

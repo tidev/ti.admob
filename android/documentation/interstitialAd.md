@@ -15,6 +15,11 @@ to show an ad, load a new after it has been closed one, and await for the proper
 
 Id for this add. This property can be set in the creation dictionary or after creating the Interstitial ad instance.
 
+### isReady
+
+> `isReady :Boolean`
+Returns `true` if the interstitial is ready to be displayed.
+
 ## Methods
 
 ### setAdUnitId(String id)

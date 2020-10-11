@@ -19,6 +19,12 @@ properties:
     type: String
     summary: Id for this add. This property can be set in the creation dictionary or after creating the Interstitial ad instance.
 
+  - name: isReady
+    type: Boolean
+    summary: Returns true if the interstitial ad is successfully loaded, false otherwise.
+    platforms: [android]
+    since: "5.0.2"
+
 methods:
   - name: load
     summary: Loads an ad for this Interstitial ad instance.
