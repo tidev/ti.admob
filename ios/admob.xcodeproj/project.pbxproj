@@ -37,7 +37,7 @@
 		DB07E8C41E8010560008C1E1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8C31E8010560008C1E1 /* OpenGLES.framework */; platformFilter = ios; };
 		DB07E8C61E8010680008C1E1 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8C51E8010680008C1E1 /* SafariServices.framework */; };
 		DB28410420B413750099933A /* PersonalizedAdConsent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28410320B413750099933A /* PersonalizedAdConsent.framework */; platformFilter = ios; };
-		F770843B24F8FE15000D8E2F /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2840FA20B408760099933A /* GoogleMobileAds.framework */; platformFilter = ios; };
+		F71D3A0D2534725800F2BBB6 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2840FA20B408760099933A /* GoogleMobileAds.framework */; platformFilter = ios; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,7 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F770843B24F8FE15000D8E2F /* GoogleMobileAds.framework in Frameworks */,
+				F71D3A0D2534725800F2BBB6 /* GoogleMobileAds.framework in Frameworks */,
 				DB28410420B413750099933A /* PersonalizedAdConsent.framework in Frameworks */,
 				3A4F268F1C68DDF7003E06CF /* iAd.framework in Frameworks */,
 				CE6C17A01982D1170017C788 /* AdSupport.framework in Frameworks */,

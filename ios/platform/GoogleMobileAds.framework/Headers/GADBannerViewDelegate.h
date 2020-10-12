@@ -27,6 +27,9 @@
 - (void)adView:(nonnull GADBannerView *)bannerView
     didFailToReceiveAdWithError:(nonnull GADRequestError *)error;
 
+/// Tells the delegate that an impression has been recorded for an ad.
+- (void)adViewDidRecordImpression:(nonnull GADBannerView *)bannerView;
+
 #pragma mark Click-Time Lifecycle Notifications
 
 /// Tells the delegate that a full screen view will be presented in response to the user clicking on
