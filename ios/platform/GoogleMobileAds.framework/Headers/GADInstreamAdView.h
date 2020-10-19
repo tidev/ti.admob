@@ -8,9 +8,10 @@
 #import <GoogleMobileAds/GADInstreamAd.h>
 
 /// A view that displays instream video ads.
+GAD_DEPRECATED_ATTRIBUTE
 @interface GADInstreamAdView : UIView
 
 /// The instream ad. The ad will begin playing when the GADInstreamAdView is visible.
-@property(nonatomic, nullable) GADInstreamAd *ad;
+@property (nonatomic, nullable) GADInstreamAd *ad;
 
 @end

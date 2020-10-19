@@ -33,4 +33,8 @@
 
 - (NSNumber *)isTaggedForUnderAgeOfConsent:(__unused id)unused;
 
+- (NSNumber *)trackingAuthorizationStatus;
+
+- (void)requestTrackingAuthorization:(id)args;
+
 @end

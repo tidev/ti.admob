@@ -20,25 +20,28 @@ typedef void (^GADInitializationCompletionHandler)(GADInitializationStatus *_Non
 /// Returns the shared GADMobileAds instance.
 + (nonnull GADMobileAds *)sharedInstance;
 
+/// Returns the version of the SDK.
+@property (nonatomic, nonnull, readonly) NSString *sdkVersion;
+
 /// The application's audio volume. Affects audio volumes of all ads relative to other audio output.
 /// Valid ad volume values range from 0.0 (silent) to 1.0 (current device volume). Use this method
 /// only if your application has its own volume controls (e.g., custom music or sound effect
 /// volumes). Defaults to 1.0.
-@property(nonatomic, assign) float applicationVolume;
+@property (nonatomic, assign) float applicationVolume;
 
 /// Indicates whether the application's audio is muted. Affects initial mute state for all ads. Use
 /// this method only if your application has its own volume controls (e.g., custom music or sound
 /// effect muting). Defaults to NO.
-@property(nonatomic, assign) BOOL applicationMuted;
+@property (nonatomic, assign) BOOL applicationMuted;
 
 /// Manages the Google Mobile Ads SDK's audio and video settings.
-@property(nonatomic, readonly, strong, nonnull) GADAudioVideoManager *audioVideoManager;
+@property (nonatomic, readonly, strong, nonnull) GADAudioVideoManager *audioVideoManager;
 
 /// Request configuration that is common to all requests.
-@property(nonatomic, readonly, strong, nonnull) GADRequestConfiguration *requestConfiguration;
+@property (nonatomic, readonly, strong, nonnull) GADRequestConfiguration *requestConfiguration;
 
 /// Initialization status of the ad networks available to the Google Mobile Ads SDK.
-@property(nonatomic, nonnull, readonly) GADInitializationStatus *initializationStatus;
+@property (nonatomic, nonnull, readonly) GADInitializationStatus *initializationStatus;
 
 /// Returns YES if the current SDK version is at least |major|.|minor|.|patch|. This method can be
 /// used by libraries that depend on a specific minimum version of the Google Mobile Ads SDK to warn

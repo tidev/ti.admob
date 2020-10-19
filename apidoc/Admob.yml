@@ -50,6 +50,31 @@ description: |
     * If using module 2.5.0+, add following key in tiapp.xml, inside ios plist section.   
         <key>GADIsAdManagerApp</key>
         <true/>
+    * If using Xcode 12.0+, set minimum ios version 11.0+ using following key in tiapp.xml, inside ios section to run app on simulators.
+      If app supports iOS < 11.0, be sure to remove it while building for device or app distribution. 
+        <min-ios-ver>11.0<</min-ios-ver>
+
+    Starting in iOS 14, IDFA will be unavailable until an app calls the App Tracking Transparency framework to present the app-tracking authorization request to the end user. 
+    To display the App Tracking Transparency authorization request for accessing the IDFA, update your tiapp.xml to add the NSUserTrackingUsageDescription key with a custom message describing your usage.
+    Below is an example description text:
+
+      <key>NSUserTrackingUsageDescription</key>
+      <string>This identifier will be used to deliver personalized ads to you.</string>
+
+    To present the authorization request, call requestTrackingAuthorization:. We recommend waiting for the completion callback prior to loading ads, so that if the user grants the App Tracking Transparency permission, the Google AdMob SDK can use the IDFA in ad requests.
+    For more information about the possible status values, see TRACKING_AUTHORIZATION_STATUS_*.
+    If an app does not present this request, the IDFA will automatically be zeroed out which may lead to a significant loss in ad revenue.    
+
+    The Google AdMob SDK supports conversion tracking using Apple's SKAdNetwork, which means Google is able to attribute an app install even when IDFA is unavailable.
+    To enable this functionality, you will need to update the SKAdNetworkItems key with an additional dictionary in your tiapp.xml
+    
+    <key>SKAdNetworkItems</key>
+      <array>
+        <dict>
+          <key>SKAdNetworkIdentifier</key>
+          <string>cstr6suwn9.skadnetwork</string>
+        </dict>
+     </array>
 
 platforms: [android, iphone, ipad]
 properties:
@@ -88,6 +113,42 @@ properties:
     summary: Returned by `debugGeography` if geography appears as not in EEA for debug devices.
     permission: read-only
     value: 3 # FIXME: 2 on iOS, 3 on Android
+
+  - name: TRACKING_AUTHORIZATION_STATUS_NOT_DETERMINED
+    type: Number
+    summary: Returned by `trackingAuthorizationStatus` Before a device receives an authorization request to approve access to app-related data that can be used for tracking the user or the device.
+    permission: read-only
+    value: 0
+    platforms: [iphone,ipad]
+    since: "2.6.0"
+    osver: {ios: {min: "14.0"}}
+
+  - name: TRACKING_AUTHORIZATION_STATUS_RESTRICTED
+    type: Number
+    summary: Returned by `trackingAuthorizationStatus` If authorization to use app tracking data is restricted
+    permission: read-only
+    value: 1
+    platforms: [iphone,ipad]
+    since: "2.6.0"
+    osver: {ios: {min: "14.0"}}
+    
+  - name: TRACKING_AUTHORIZATION_STATUS_DENIED
+    type: Number
+    summary: Returned by `trackingAuthorizationStatus` if After a device receives an authorization request to approve access, user denied the request
+    permission: read-only
+    value: 2
+    platforms: [iphone,ipad]
+    since: "2.6.0"
+    osver: {ios: {min: "14.0"}}
+
+  - name: TRACKING_AUTHORIZATION_STATUS_AUTHORIZED
+    type: Number
+    summary: Returned by `trackingAuthorizationStatus` if After a device receives an authorization request to approve access, user accpet the request
+    permission: read-only
+    value: 3
+    platforms: [iphone,ipad]
+    since: "2.6.0"
+    osver: {ios: {min: "14.0"}}
 
   - name: SIMULATOR_ID
     type: String
@@ -214,6 +275,14 @@ properties:
     # FIXME: debugGeography is read-only on iOS, but readwrite on Android!
 
 # TODO: Android has property for isTaggedForUnderAgeOfConsent
+  
+  - name: trackingAuthorizationStatus
+    type: Number
+    platforms: [iphone, ipad]
+    since: "2.6.0"
+    osver: {ios: {min: "14.0"}}
+    summary: Use to check tracking authorization status.
+    constants: Modules.Admob.TRACKING_AUTHORIZATION_STATUS_*
 
 methods:
   - name: initialize
@@ -319,6 +388,21 @@ methods:
       - name: options
         type: ConsentFormOptions
         summary: Options used to build the consent form
+
+  - name: requestTrackingAuthorization
+    summary: The request for user authorization to access app-related data.
+    description: |
+            One-time request to authorize or deny access to app-elated data that can be used for tracking the user or the device.
+            The system remembers the user's choice and doesn't prompt again unless a user uninstalls and then reinstalls the app on the device.
+            Note, when calling requestTrackingAuthorization(completionHandler:), the NSUserTrackingUsageDescription key must be in the tiapp.xml.
+    platforms: [iphone, ipad]
+    since: "2.6.0"
+    osver: {ios: {min: "14.0"}}
+    parameters:
+      - name: callback
+        type: Callback<TrackingAuthorizationStatusObject>
+        summary: Async callback function to invoke when done
+        optional: false
 
 ---
 name: ConsentFormOptions
@@ -442,4 +526,18 @@ properties:
     summary: The error message in case of failure
     optional: true
     permission: read-only
+
+---
+name: TrackingAuthorizationStatusObject
+summary: Simple object passed to callback passed in to the <Modules.Admob.requestTrackingAuthorization> method
+platforms: [iphone,ipad]
+since: "2.6.0"
+osver: {ios: {min: "14.0"}}
+properties:
+  - name: status
+    type: Number
+    summary: The status of Tracking Authorization
+    optional: false
+    permission: read-only
+    constants: Modules.Admob.TRACKING_AUTHORIZATION_STATUS_*
     

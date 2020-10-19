@@ -19,9 +19,10 @@
 /// and |error| is nil. On load failure, |instreamAd| is nil and |error| provides failure
 /// information.
 typedef void (^GADInstreamAdLoadCompletionHandler)(GADInstreamAd *_Nullable instreamAd,
-                                                   NSError *_Nullable error);
+    NSError *_Nullable error);
 
 /// An instream ad.
+GAD_DEPRECATED_ATTRIBUTE
 @interface GADInstreamAd : NSObject
 
 /// Loads an instream ad with the provided ad unit ID. Instream ads only support
@@ -38,12 +39,12 @@ typedef void (^GADInstreamAdLoadCompletionHandler)(GADInstreamAd *_Nullable inst
       completionHandler:(nonnull GADInstreamAdLoadCompletionHandler)completionHandler;
 
 /// Media content metadata and controls.
-@property(nonatomic, readonly, nonnull) GADMediaContent *mediaContent;
+@property (nonatomic, readonly, nonnull) GADMediaContent *mediaContent;
 
 /// Information about the ad response that returned the ad.
-@property(nonatomic, readonly, nonnull) GADResponseInfo *responseInfo;
+@property (nonatomic, readonly, nonnull) GADResponseInfo *responseInfo;
 
-/// Called when the ad is estimated to have earned money. Available for whitelisted accounts only.
-@property(nonatomic, nullable, copy) GADPaidEventHandler paidEventHandler;
+/// Called when the ad is estimated to have earned money. Available for allowlisted accounts only.
+@property (nonatomic, nullable, copy) GADPaidEventHandler paidEventHandler;
 
 @end

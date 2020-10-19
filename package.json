@@ -1,6 +1,6 @@
 {
   "name": "@titanium-sdk/ti.admob",
-  "version": "5.0.2",
+  "version": "6.0.0",
   "description": "Use the Google Admob Module in Appcelerator Titanium.",
   "scripts": {
     "commit": "git-cz",
