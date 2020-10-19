@@ -50,6 +50,9 @@ description: |
     * If using module 2.5.0+, add following key in tiapp.xml, inside ios plist section.   
         <key>GADIsAdManagerApp</key>
         <true/>
+    * If using Xcode 12.0+, set minimum ios version 11.0+ using following key in tiapp.xml, inside ios section to run app on simulators.
+      If app supports iOS < 11.0, be sure to remove it while building for device or app distribution. 
+        <min-ios-ver>11.0<</min-ios-ver>
 
     Starting in iOS 14, IDFA will be unavailable until an app calls the App Tracking Transparency framework to present the app-tracking authorization request to the end user. 
     To display the App Tracking Transparency authorization request for accessing the IDFA, update your tiapp.xml to add the NSUserTrackingUsageDescription key with a custom message describing your usage.
