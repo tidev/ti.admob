@@ -33,7 +33,7 @@
     "@seadub/danger-plugin-dependencies": "^1.0.0",
     "@seadub/danger-plugin-junit": "^0.2.0",
     "@seadub/danger-plugin-titanium-module": "1.0.0",
-    "clang-format": "^1.2.3",
+    "clang-format": "^1.5.0",
     "commitizen": "^4.2.2",
     "danger": "^10.5.0",
     "eslint": "^7.17.0",
