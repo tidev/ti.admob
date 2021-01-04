@@ -47,7 +47,7 @@
     "karma-mocha-reporter": "^2.2.5",
     "karma-titanium-launcher": "^0.7.8",
     "lint-staged": "^10.5.3",
-    "titanium-docgen": "^4.8.3"
+    "titanium-docgen": "^4.10.0"
   },
   "dependencies": {},
   "husky": {
