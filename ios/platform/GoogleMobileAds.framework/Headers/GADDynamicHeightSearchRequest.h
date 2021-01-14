@@ -154,6 +154,9 @@
 /// Indicates whether the CSA "longerHeadlines" parameter is enabled.
 @property(nonatomic, assign) BOOL longerHeadlinesExtensionEnabled;
 
+/// The CSA "styleId" parameter.
+@property(nonatomic, copy, nullable) NSString *styleID;
+
 /// Sets an advanced option value for a specified key. The value must be an NSString or NSNumber.
 - (void)setAdvancedOptionValue:(nonnull id)value forKey:(nonnull NSString *)key;
 

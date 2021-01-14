@@ -1,4 +1,10 @@
 # Change Log
+
+v3.0.1  Update AdMob SDK to 7.69.0
+        Update Audience Network SDK 6.2.0
+        Update Facebook Adapter 6.2.0.0
+        AppTrackingTransparency (iOS 14)
+
 v2.5.2  Update AdMob SDK to 7.64.0
         Update Audience Network SDK 5.10.1
         Update Facebook Adapter 5.10.1.0

@@ -6,7 +6,7 @@ Shows ads from Admob.
 
 ## Getting Started
 
-View the [Using Titanium Modules](http://docs.appcelerator.com/titanium/latest/#!/guide/Using_Titanium_Modules) document for instructions on getting
+View the [Using Titanium Modules](http://docs.appcelerator.com/platform/latest/#!/guide/Using_Titanium_Modules) document for instructions on getting
 started with using this module in your application.
 
 ## Requirements
@@ -16,7 +16,9 @@ The Google AdMob Ads SDK has the following requirements:
 * An AdMob site ID.
 * Xcode 6.4 or later.
 * Runtime of iOS 7.1 or later.
-
+* If using module 2.5.0+, add following key in tiapp.xml, inside ios plist  section.   
+    <key>GADIsAdManagerApp</key>
+    <true/>
 ## Accessing the Ti.Admob Module
 
 To access this module from JavaScript, you would do the following:

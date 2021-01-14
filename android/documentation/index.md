@@ -4,15 +4,28 @@
 
 Allows for the display of AdMob in Titanium Android applications.
 
-Please note that if your androidManifest has screen support set to: android:anyDensity="false", any banner ads will
+Please note that if your androidManifest has screen support set to: android:anyDensity="false", any banner ads will 
 display too small on high density devices.
 It is not clear at this point if this is a bug with AdMob or Titanium.
 In any event, you will either need to NOT set your screen support -- or set android:anyDensity="true" and adjust your app layout accordingly
 
 ## Getting Started
 
-View the [Using Titanium Modules](http://docs.appcelerator.com/titanium/latest/#!/guide/Using_Titanium_Modules) document
+View the [Using Titanium Modules](http://docs.appcelerator.com/platform/latest/#!/guide/Using_Titanium_Modules) document 
 for instructions on getting started with using this module in your application.
+
+In order to use the module you would need to add the following tags in yout tiapp.xml
+
+	<android 
+	    xmlns:android="http://schemas.android.com/apk/res/android">
+	    <manifest>
+	      <application>
+	        <meta-data
+	            android:name="com.google.android.gms.ads.APPLICATION_ID"
+	            android:value="your-admob-application-id"/>
+	      </application>
+	    </manifest>
+	  </android>
 
 ## Requirements
 
@@ -35,6 +48,10 @@ The "Admob" variable is now a reference to the Module object.
 
 ## Functions
 
+### initialize(admobApplicationID)
+
+You need to initialize the Admob SDK by passing your AdmobAppID as a parameter to this method.
+
 ### Number isGooglePlayServicesAvailable()
 
 Returns a number value indicating the availability of Google Play Services which are for push notifications.
@@ -42,8 +59,9 @@ Returns a number value indicating the availability of Google Play Services which
 Possible values include `SUCCESS`, `SERVICE_MISSING`, `SERVICE_VERSION_UPDATE_REQUIRED`, `SERVICE_DISABLED`,
 and `SERVICE_INVALID`.
 
-### `createAdMobView(args)`
+### `createView(args)`
 
+DEPRECATED since 4.5.0. Use `createBannerView` instead.
 Returns a view with an ad initialized by default.
 
 #### Arguments
@@ -53,8 +71,8 @@ parameters[object]: a dictionary object of properties.
 #### Example:
 
 	var adMobView = Admob.createView({
-	    publisherId: '<<YOUR PUBLISHER ID HERE>>',
-	    testing: false, // default is false
+	    adUnitId: 'ENTER_YOUR_AD_UNIT_ID_HERE',
+	    testing:false, // default is false
 	    top: 0, // optional
 	    left: 0, // optional
 	    right: 0, // optional
@@ -67,32 +85,27 @@ parameters[object]: a dictionary object of properties.
 	    linkColor: '#0000FF' // optional -  Link text color
 	});
 
-### `Admob.AD_RECEIVED`
-
-returns the constant for AD_RECEIVED -- for use in an event listener
-
-#### Example:
-
-	adMobView.addEventListener(Admob.AD_RECEIVED, function () {
-	    alert('ad was just received');
-	});
-
-### `Admob.AD_NOT_RECEIVED`
-
-returns the constant for AD_NOT_RECEIVED -- for use in an event listener
-
-#### Example:
-
-	adMobView.addEventListener(Admob.AD_NOT_RECEIVED, function () {
-	    alert('ad was not received');
-	});
-
 ### `AdMobView.requestAd(args)`
 
+DEPRECATED since 4.5.0. Use `load()` instead.
 Calls for a new ad if needed. Pass optional `args` to configure extras.
 
 #### Example:
 
+```js
+    bannerView.load({
+        extras: {
+            adBackgroundColor:"FF8855", // optional
+            backgroundColorTop: "738000", //optional - Gradient background color at top
+            borderColor: "#000000", // optional - Border color
+            textColor: "#000000", // optional - Text color
+            urlColor: "#00FF00", // optional - URL color
+            linkColor: "#0000FF" //optional -  Link text color
+        }
+    });
+```
+
+Deprecated:
 ```js
 adMobView.requestAd({
     extras: {
@@ -103,6 +116,8 @@ adMobView.requestAd({
 
 ### `AdMobView.requestTestAd()`
 
+DEPRECATED since 4.5.0. Use `load()` with the `testDevices` property instead. More details about this can be found on this link:
+https://developers.google.com/admob/android/test-ads#enable_test_devices
 Calls for a test ad if needed. This works independently from the testing flag above.
 
 #### Example:
@@ -139,10 +154,12 @@ Resets consent information to default state and clears ad providers.
 
 ### `setTagForUnderAgeOfConsent(true|false)`
 
+DEPRECATED since 4.5.0. Use directly `isTaggedForUnderAgeOfConsent` instead.
 Sets whether the user is tagged for under age of consent.
 
 ### `isTaggedForUnderAgeOfConsent()` (Boolean)
 
+DEPRECATED since 4.5.0. Use directly `isTaggedForUnderAgeOfConsent` instead.
 Indicates whether the user is tagged for under age of consent.
 
 ## Properties
@@ -156,6 +173,8 @@ Array of ad providers.
 ### `debugGeography` (`DEBUG_GEOGRAPHY_DISABLED`, `DEBUG_GEOGRAPHY_EEA` or `DEBUG_GEOGRAPHY_NOT_EEA`)
 
 Debug geography. Used for debug devices only.
+
+### IsTaggedForUnderAgeOfConsent: Boolean
 
 ### getAndroidAdId(callback)
 
@@ -181,12 +200,6 @@ and a boolean value for the user's setting.
 	Admob.isLimitAdTrackingEnabled(function (data) {
 		Ti.API.info('Ad tracking is limited: ' + data.isLimitAdTrackingEnabled);
 	});
-
-### Support the Facebook Audience Network adapter
-
-Starting in 4.3.0 you can use the included Facebook Audience Network adapter to turn on the mediation in your AdMob account.
-Here you do not have to do anything 😙. You only need to configure mediation in your AdMob and Facebook accounts by
-following the [official guide](https://developers.google.com/admob/android/mediation/facebook).
 
 ## Constants
 
@@ -223,6 +236,114 @@ Returned by `debugGeography` if geography appears as in EEA for debug devices.
 ### Number `DEBUG_GEOGRAPHY_NOT_EEA`
 Returned by `debugGeography` if geography appears as not in EEA for debug devices.
 
+### `Admob.AD_RECEIVED`
+
+DEPRECATED since 4.5.0. Use `load` instead.
+returns the constant for AD_RECEIVED -- for use in an event listener
+
+#### Example:
+
+	adMobView.addEventListener('load', function () {
+	    alert('ad was just received');
+	});
+
+Deprecated:
+	adMobView.addEventListener(Admob.AD_RECEIVED, function () {
+	    alert('ad was just received');
+	});
+
+### `Admob.AD_NOT_RECEIVED`
+
+DEPRECATED since 4.5.0. Use `fail` instead.
+returns whenever the ad was not successfully loaded. The callback contains the
+error code in its parameter under the key `errorCode`
+Error codes for Android can be checked here:
+https://developers.google.com/android/reference/com/google/android/gms/ads/AdRequest#ERROR_CODE_INTERNAL_ERROR
+
+#### Example:
+
+	adMobView.addEventListener('fail', function (e) {
+	    alert('ad was not received. error code is ' + e.errorCode);
+	});
+
+Deprecated:
+	adMobView.addEventListener(Admob.AD_NOT_RECEIVED, function (e) {
+	    alert('ad was not received. error code is ' + e.errorCode);
+	});
+
+### `Admob.AD_OPENED`
+
+DEPRECATED since 4.5.0. Use `open` instead.
+returns the constant for AD_OPENED -- for use in an event listener
+
+#### Example:
+
+	adMobView.addEventListener('open', function () {
+	    alert('ad was just opened');
+	});
+
+Deprecated:
+	adMobView.addEventListener(Admob.AD_OPENED, function () {
+	    alert('ad was just opened');
+	});
+
+### `Admob.AD_CLOSED`
+
+DEPRECATED since 4.5.0. Use `close` instead.
+
+#### Example:
+
+	adMobView.addEventListener('closed', function () {
+	    alert('ad was just closed');
+	});
+
+Deprecated:
+	adMobView.addEventListener(Admob.AD_CLOSED, function () {
+	    alert('ad was just closed');
+	});
+
+### `Admob.AD_LEFT_APPLICATION`
+
+DEPRECATED since 4.5.0. Use `leftapp` instead. 
+
+#### Example:
+
+	adMobView.addEventListener('leftapp', function () {
+	    alert('user just left the application through the ad');
+	});
+
+Deprecated:
+	adMobView.addEventListener(Admob.AD_LEFT_APPLICATION, function () {
+	    alert('user just left the application through the ad');
+	});
+
+### Admob.AD_SIZE_BANNER
+
+### Admob.AD_SIZE_FLUID
+
+### Admob.AD_SIZE_FULL_BANNER
+
+### Admob.AD_SIZE_LARGE_BANNER
+
+### Admob.AD_SIZE_LEADERBOARD
+
+### Admob.AD_SIZE_MEDIUM_RECTANGLE
+
+### Admob.AD_SIZE_SEARCH
+
+### Admob.AD_SIZE_SMART_BANNER
+
+### Admob.AD_SIZE_WIDE_SKYSCRAPER
+
+## Support the Facebook Audience Network adapter
+
+Starting in 4.3.0 you can use the included Facebook Audience Network adapter to turn on the mediation in your AdMob account.
+Here you do not have to do anything 😙. You only need to configure mediation in your AdMob and Facebook accounts by 
+following the [official guide](https://developers.google.com/admob/android/mediation/facebook).
+
+WARNING! From version 4.5.0 the Facebook Audience Network adapter is deprecated. Once it is removed in a future release, it would depend
+on users to add it manually to the module when they need it.
+
 ## Module History
 
 View the [change log](changelog.html) for this module.
@@ -231,109 +352,13 @@ View the [change log](changelog.html) for this module.
 
 Please direct all questions, feedback, and concerns to [info@appcelerator.com](mailto:info@appcelerator.com?subject=Android%20Admob%20Module).
 
-### Rewarded Video Ads
-
-⚠️ Works only with ti.playservices 11.0.40.
-
-In version 4.3.1 support for Admob Rewarded Video Ads was added. This is a similar type of ad to the Interstitial with the
-addition of getting a reward after watching an ad video.
-
-Since videos are pretty heavy to load it is recommended that the Rewarded Video Ad is fully loaded before showing it to the
-user. Similar to the Interstitial ads the Reward Video Ads are using one instance of the class to load and show a single ad
-multiple times. Meaning that you can load an add, show it at a proper time for your UX and after you get the closed/rewarded
-event you can load another video through the same instance and wait for the best time to show it to the user.
-
-#### Methods
-
-##### loadAd(String adUnitId, [optional] Object extras)
-
-Loads an ad with the provided adUnitId. You can set extras object: `{npa:1}` (disable personalized ads) or `{npa:0}` (enable personalized ads)
-
-##### show()
-
-Shows the most recent ad if it was successfully loaded.
-
-#### Events
-
-##### adloaded
-
-Fired when a rewarded video ad was successfully loaded.
-
-##### adrewarded
-
-Fired when the user was rewarded for watching an ad. This event contains a
-dictionary with the properties "type" and "amount" which determine the reward.
-
-##### adfailedtoload
-
-Fired if the video reward ad was unable to load.
-
-##### adleftapplication
-
-Fired when the user has left the application, for instance to visit the Play Store.
-
-##### adclosed
-
-Fired when the user has closed the rewarded video ad.
-
-##### adopened
-
-Fired when the rewarded video ad has been opened.
-
-##### videostarted
-
-Fired when the video of the rewarded ad has begun playing.
-
-#### Example
-
-	var Admob = require('ti.admob'),
-	    win = Titanium.UI.createWindow({ layout: 'vertical'}),
-	    rewardedVideo = Admob.createRewardedVideo(),
-	    buttonLoadAd = Ti.UI.createButton({ title: 'Load Ad'}),
-	    buttonShowAd = Ti.UI.createButton({ title: 'Show Ad', enabled: false, touchEnabled: false}),
-	    buttonClaimReward = Ti.UI.createButton({ title: 'Claim Reward', enabled: false, touchEnabled: false}),
-	    reward;
-
-	buttonLoadAd.addEventListener('click', function () {
-	    rewardedVideo.loadAd('ca-app-pub-3940256099942544/5224354917',{npa:0});
-	})
-
-	buttonShowAd.addEventListener('click', function () {
-	    rewardedVideo.show();
-	});
-
-	buttonClaimReward.addEventListener('click', function () {
-	    alert('You have received ' + reward.amount + ' ' + reward.type);
-	    buttonClaimReward.enabled = false;
-	    buttonClaimReward.touchEnabled = false;
-	});
-
-	rewardedVideo.addEventListener('adloaded', function () {
-	    buttonShowAd.enabled = true;
-	    buttonShowAd.touchEnabled = true;
-	});
-
-	rewardedVideo.addEventListener('adrewarded', function (rewardItem) {
-	    reward = rewardItem;
-	    buttonClaimReward.enabled = true;
-	    buttonClaimReward.touchEnabled = true;
-	});
-
-	rewardedVideo.addEventListener('adclosed', function () {
-	    buttonShowAd.enabled = false;
-	    buttonShowAd.touchEnabled = false;
-	});
-
-	win.add([buttonLoadAd, buttonShowAd, buttonClaimReward]);
-	win.open();
-
 ## Author
 
 Brian Kurzius | bkurzius@gmail.com
 Axway Appcelerator
 
 ## License
-Copyright 2011 Brian Kurzius, Studio Classics.
-Copyright 2017-present, Axway Appcelerator.
+Copyright 2011, Brian Kurzius, Studio Classics.
+Copyright 2014 - Present, Appcelerator.
 
 Please see the LICENSE file included in the distribution for further details.

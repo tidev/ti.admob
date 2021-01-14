@@ -44,7 +44,7 @@ typedef void (^GADAppOpenAdLoadCompletionHandler)(GADAppOpenAd *_Nullable appOpe
 /// Information about the ad response that returned the ad.
 @property(nonatomic, readonly, nonnull) GADResponseInfo *responseInfo;
 
-/// Called when the ad is estimated to have earned money. Available for whitelisted accounts only.
+/// Called when the ad is estimated to have earned money. Available for allowlisted accounts only.
 @property(nonatomic, nullable, copy) GADPaidEventHandler paidEventHandler;
 
 /// Returns whether the app open ad can be presented from the provided root view controller. Sets

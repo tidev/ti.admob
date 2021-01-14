@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,7 +16,7 @@
 		3A4F268F1C68DDF7003E06CF /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4F268E1C68DDF7003E06CF /* iAd.framework */; };
 		3AF5B7731C233383002E3DC7 /* TiAdmobTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AF5B7711C233383002E3DC7 /* TiAdmobTypes.h */; };
 		5E32C3FB20E2957400A17A2B /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E32C3F920E2957400A17A2B /* FBAudienceNetwork.framework */; };
-		5E32C3FC20E2957400A17A2B /* FacebookAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E32C3FA20E2957400A17A2B /* FacebookAdapter.framework */; };
+		5E32C3FC20E2957400A17A2B /* FacebookAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E32C3FA20E2957400A17A2B /* FacebookAdapter.framework */; platformFilter = ios; };
 		AA747D9F0F9514B9006C5449 /* TiAdmob_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* TiAdmob_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		CE6C17A01982D1170017C788 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6C179F1982D1170017C788 /* AdSupport.framework */; };
@@ -30,14 +30,14 @@
 		DB07E8B81E8010000008C1E1 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8B61E8010000008C1E1 /* CoreMedia.framework */; };
 		DB07E8B91E8010000008C1E1 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8B71E8010000008C1E1 /* CoreMotion.framework */; };
 		DB07E8BB1E80100D0008C1E1 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8BA1E80100D0008C1E1 /* CoreVideo.framework */; };
-		DB07E8BD1E80101A0008C1E1 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8BC1E80101A0008C1E1 /* GLKit.framework */; };
+		DB07E8BD1E80101A0008C1E1 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8BC1E80101A0008C1E1 /* GLKit.framework */; platformFilter = ios; };
 		DB07E8BF1E80101F0008C1E1 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8BE1E80101F0008C1E1 /* JavaScriptCore.framework */; };
 		DB07E8C01E80103C0008C1E1 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD5D7D112527E1A009CF986 /* MediaPlayer.framework */; };
-		DB07E8C21E80104D0008C1E1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8C11E80104D0008C1E1 /* MobileCoreServices.framework */; };
-		DB07E8C41E8010560008C1E1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8C31E8010560008C1E1 /* OpenGLES.framework */; };
+		DB07E8C21E80104D0008C1E1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8C11E80104D0008C1E1 /* MobileCoreServices.framework */; platformFilter = ios; };
+		DB07E8C41E8010560008C1E1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8C31E8010560008C1E1 /* OpenGLES.framework */; platformFilter = ios; };
 		DB07E8C61E8010680008C1E1 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB07E8C51E8010680008C1E1 /* SafariServices.framework */; };
-		DB2840FB20B408760099933A /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2840FA20B408760099933A /* GoogleMobileAds.framework */; };
-		DB28410420B413750099933A /* PersonalizedAdConsent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28410320B413750099933A /* PersonalizedAdConsent.framework */; };
+		DB28410420B413750099933A /* PersonalizedAdConsent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB28410320B413750099933A /* PersonalizedAdConsent.framework */; platformFilter = ios; };
+		F71D3A0D2534725800F2BBB6 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2840FA20B408760099933A /* GoogleMobileAds.framework */; platformFilter = ios; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,7 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB2840FB20B408760099933A /* GoogleMobileAds.framework in Frameworks */,
+				F71D3A0D2534725800F2BBB6 /* GoogleMobileAds.framework in Frameworks */,
 				DB28410420B413750099933A /* PersonalizedAdConsent.framework in Frameworks */,
 				3A4F268F1C68DDF7003E06CF /* iAd.framework in Frameworks */,
 				CE6C17A01982D1170017C788 /* AdSupport.framework in Frameworks */,
@@ -265,6 +265,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEPLOYMENT_POSTPROCESSING = NO;
 				DSTROOT = /tmp/TiAdmob.dst;
+				EXCLUDED_ARCHS = i386;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS",
@@ -287,11 +288,8 @@
 				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = (
-					"$(TITANIUM_BASE_SDK)",
-					"$(TITANIUM_BASE_SDK2)",
-					"~$(TITANIUM_BASE_SDK)",
-					"~$(TITANIUM_BASE_SDK2)",
 					"$(SRCROOT)/GoogleMobileAdsSdkiOS",
+					"$(HEADER_SEARCH_PATHS)",
 				);
 				INSTALL_PATH = /usr/local/lib;
 				LIBRARY_SEARCH_PATHS = (
@@ -311,6 +309,7 @@
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
+				VALIDATE_WORKSPACE = YES;
 			};
 			name = Debug;
 		};
@@ -321,6 +320,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DSTROOT = /tmp/TiAdmob.dst;
+				EXCLUDED_ARCHS = i386;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS",
@@ -343,11 +343,8 @@
 				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = (
-					"$(TITANIUM_BASE_SDK)",
-					"$(TITANIUM_BASE_SDK2)",
-					"~$(TITANIUM_BASE_SDK)",
-					"~$(TITANIUM_BASE_SDK2)",
 					"$(SRCROOT)/GoogleMobileAdsSdkiOS",
+					"$(HEADER_SEARCH_PATHS)",
 				);
 				INSTALL_PATH = /usr/local/lib;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -357,6 +354,7 @@
 					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS",
 					"$(PROJECT_DIR)/platform",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DTI_POST_1_2";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = TiAdmob;
@@ -365,6 +363,7 @@
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
+				VALIDATE_WORKSPACE = YES;
 			};
 			name = Release;
 		};
@@ -377,6 +376,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DSTROOT = /tmp/TiAdmob.dst;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = i386;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -393,7 +393,7 @@
 				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				INSTALL_PATH = /usr/local/lib;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-DDEBUG",
@@ -417,6 +417,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DSTROOT = /tmp/TiAdmob.dst;
+				EXCLUDED_ARCHS = i386;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -433,7 +434,7 @@
 				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				INSTALL_PATH = /usr/local/lib;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				OTHER_CFLAGS = "-DTI_POST_1_2";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = TiAdmob;

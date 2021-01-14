@@ -13,6 +13,9 @@
 #import "TiUtils.h"
 #import <GoogleMobileAds/GoogleMobileAds.h>
 #import <PersonalizedAdConsent/PersonalizedAdConsent.h>
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 140000
+#import <AppTrackingTransparency/ATTrackingManager.h>
+#endif
 
 @implementation TiAdmobModule
 
@@ -61,13 +64,13 @@
   [[PACConsentInformation sharedInstance] requestConsentInfoUpdateForPublisherIdentifiers:publisherIdentifiers
                                                                         completionHandler:^(NSError *_Nullable error) {
                                                                           if (error != nil) {
-                                                                            [callback call:@[ @{ @"success" : @NO,
-                                                                              @"error" : error.localizedDescription } ]
+                                                                            [callback call:@[ @{@"success" : @NO,
+                                                                              @"error" : error.localizedDescription} ]
                                                                                 thisObject:self];
                                                                             return;
                                                                           }
 
-                                                                          [callback call:@[ @{ @"success" : @YES } ] thisObject:self];
+                                                                          [callback call:@[ @{@"success" : @YES} ] thisObject:self];
                                                                         }];
 }
 
@@ -88,22 +91,25 @@
   form.shouldOfferNonPersonalizedAds = [TiUtils boolValue:@"shouldOfferNonPersonalizedAds" properties:args def:YES];
   form.shouldOfferAdFree = [TiUtils boolValue:@"shouldOfferAdFree" properties:args def:NO];
 
-  TiThreadPerformOnMainThread(^{
-    [form loadWithCompletionHandler:^(NSError *_Nullable error) {
-      if (error != nil) {
-        [callback call:@[ @{ @"error" : error.localizedDescription } ] thisObject:self];
-        return;
-      }
+  TiThreadPerformOnMainThread(
+      ^{
+        [form loadWithCompletionHandler:^(NSError *_Nullable error) {
+          if (error != nil) {
+            [callback call:@[ @{ @"error" : error.localizedDescription } ] thisObject:self];
+            return;
+          }
 
-      [form presentFromViewController:[[[TiApp app] controller] topPresentedController]
-                    dismissCompletion:^(NSError *_Nullable error, BOOL userPrefersAdFree) {
-                      [callback call:@[@{
-                        @"userPrefersAdFree" : @(userPrefersAdFree),
-                        @"error" : NULL_IF_NIL(error.localizedDescription)
-                      }] thisObject:self];
-                    }];
-    }];
-  }, NO);
+          [form presentFromViewController:[[[TiApp app] controller] topPresentedController]
+                        dismissCompletion:^(NSError *_Nullable error, BOOL userPrefersAdFree) {
+                          [callback call:@[ @{
+                            @"userPrefersAdFree" : @(userPrefersAdFree),
+                            @"error" : NULL_IF_NIL(error.localizedDescription)
+                          } ]
+                              thisObject:self];
+                        }];
+        }];
+      },
+      NO);
 }
 
 - (NSNumber *)consentStatus
@@ -156,7 +162,43 @@
   return @([[PACConsentInformation sharedInstance] isTaggedForUnderAgeOfConsent]);
 }
 
+- (NSNumber *)trackingAuthorizationStatus
+{
+  if (@available(iOS 14, *)) {
+    return @([ATTrackingManager trackingAuthorizationStatus]);
+  } else {
+    NSLog(@"[WARN] Ti.AdMob: The property `trackingAuthorizationStatus` should be used on ios version 14 and above only");
+  }
+  return @3;
+}
+
+- (void)requestTrackingAuthorization:(id)args
+{
+  ENSURE_SINGLE_ARG(args, NSDictionary);
+
+  KrollCallback *callback = [args objectForKey:@"callback"];
+  if (@available(iOS 14, *)) {
+    [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
+      NSNumber *trackingStatus = @(status);
+      if (callback != nil) {
+        [callback call:@[ @{ @"status" : trackingStatus } ] thisObject:self];
+      }
+    }];
+    return;
+  } else {
+    NSLog(@"[WARN] Ti.AdMob: The function `requestTrackingAuthorization` should be used on ios version 14 and above only");
+  }
+  if (callback != nil) {
+    [callback call:@[ @{ @"status" : @3 } ] thisObject:self];
+  }
+}
+
 #pragma mark Constants
+
+MAKE_SYSTEM_PROP(TRACKING_AUTHORIZATION_STATUS_NOT_DETERMINED, 0);
+MAKE_SYSTEM_PROP(TRACKING_AUTHORIZATION_STATUS_RESTRICTED, 1);
+MAKE_SYSTEM_PROP(TRACKING_AUTHORIZATION_STATUS_DENIED, 2);
+MAKE_SYSTEM_PROP(TRACKING_AUTHORIZATION_STATUS_AUTHORIZED, 3);
 
 MAKE_SYSTEM_PROP(CONSENT_STATUS_UNKNOWN, PACConsentStatusUnknown);
 MAKE_SYSTEM_PROP(CONSENT_STATUS_NON_PERSONALIZED, PACConsentStatusNonPersonalized);

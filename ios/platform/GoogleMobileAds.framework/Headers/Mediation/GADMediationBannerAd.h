@@ -23,6 +23,15 @@
 - (void)changeAdSizeTo:(GADAdSize)adSize;
 @end
 
+/// Rendered interscroller ad.
+@protocol GADMediationInterscrollerAd <GADMediationBannerAd>
+
+/// Indicates whether the interscroller rendering effect should be delegated to the Google Mobile
+/// Ads SDK.
+@property(nonatomic, assign) BOOL delegateInterscrollerEffect;
+
+@end
+
 /// Banner ad configuration.
 @interface GADMediationBannerAdConfiguration : GADMediationAdConfiguration
 

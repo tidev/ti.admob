@@ -6,6 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 #import <GoogleMobileAds/GADAudioVideoManager.h>
 #import <GoogleMobileAds/GADInitializationStatus.h>
 #import <GoogleMobileAds/GADRequestConfiguration.h>
@@ -13,6 +15,10 @@
 /// A block called with the initialization status when [GADMobileAds startWithCompletionHandler:]
 /// completes or times out.
 typedef void (^GADInitializationCompletionHandler)(GADInitializationStatus *_Nonnull status);
+
+/// Completion handler for presenting Ad Inspector. Returns an error if a problem was detected
+/// during presentation, or nil otherwise.
+typedef void (^GADAdInspectorCompletionHandler)(NSError *_Nullable error);
 
 /// Google Mobile Ads SDK settings.
 @interface GADMobileAds : NSObject
@@ -77,6 +83,16 @@ typedef void (^GADInitializationCompletionHandler)(GADInitializationStatus *_Non
 /// GMA SDK controlled mediation during this app session. This method must be called before
 /// initializing the GMA SDK or loading ads and has no effect once the SDK has been initialized.
 - (void)disableMediationInitialization;
+
+/// Presents Ad Inspector. The device calling this API must be registered as a test device in order
+/// to launch Ad Inspector. Set
+/// GADMobileAds.sharedInstance.requestConfiguration.testDeviceIdentifiers to enable test mode on
+/// this device.
+/// @param viewController A view controller to present Ad Inspector.
+/// @param completionHandler A handler to execute when Ad Inspector is closed.
+- (void)presentAdInspectorFromViewController:(nonnull UIViewController *)viewController
+                           completionHandler:
+                               (nullable GADAdInspectorCompletionHandler)completionHandler;
 
 #pragma mark Deprecated
 

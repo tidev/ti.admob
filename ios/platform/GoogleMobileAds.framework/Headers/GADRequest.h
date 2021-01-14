@@ -68,6 +68,11 @@ typedef NS_ENUM(NSInteger, GADGender) {
 /// is used for targeting and brand safety purposes.
 @property(nonatomic, copy, nullable) NSString *contentURL;
 
+/// URL strings for non-primary web content near an ad. Promotes brand safety and allows displayed
+/// ads to have an app level rating (MA, T, PG, etc) that is more appropriate to neighboring
+/// content.
+@property(nonatomic, copy, nullable) NSArray<NSString *> *neighboringContentURLStrings;
+
 #pragma mark Request Agent Information
 
 /// String that identifies the ad request's origin. Third party libraries that reference the Mobile

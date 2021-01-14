@@ -72,7 +72,7 @@
 /// ad request succeeds or fails.
 @property(nonatomic, readonly, nullable) GADResponseInfo *responseInfo;
 
-/// Called when ad is estimated to have earned money. Available for whitelisted accounts only.
+/// Called when ad is estimated to have earned money. Available for allowlisted accounts only.
 @property(nonatomic, nullable, copy) GADPaidEventHandler paidEventHandler;
 
 #pragma mark Deprecated

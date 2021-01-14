@@ -60,7 +60,7 @@ typedef void (^GADRewardedAdLoadCompletionHandler)(GADRequestError *_Nullable er
 /// Delegate for ad metadata changes.
 @property(nonatomic, weak, nullable) id<GADRewardedAdMetadataDelegate> adMetadataDelegate;
 
-/// Called when the ad is estimated to have earned money. Available for whitelisted accounts only.
+/// Called when the ad is estimated to have earned money. Available for allowlisted accounts only.
 @property(nonatomic, nullable, copy) GADPaidEventHandler paidEventHandler;
 
 /// Returns whether the rewarded ad can be presented from the provided root view controller. Sets
