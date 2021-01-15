@@ -20,13 +20,6 @@
 typedef id<GADMediationBannerAdEventDelegate> _Nullable (^GADMediationBannerLoadCompletionHandler)(
     _Nullable id<GADMediationBannerAd> ad, NSError *_Nullable error);
 
-/// Called by the adapter after loading the interscroller ad or encountering an error. Returns an ad
-/// event object to send ad events to the Google Mobile Ads SDK. The block returns nil if a delegate
-/// couldn't be created or if the block has already been called.
-typedef id<GADMediationBannerAdEventDelegate> _Nullable (
-    ^GADMediationInterscrollerAdLoadCompletionHandler)(_Nullable id<GADMediationInterscrollerAd> ad,
-                                                       NSError *_Nullable error);
-
 /// Called by the adapter after loading the interstitial ad or encountering an error. Returns an
 /// ad event delegate to send ad events to the Google Mobile Ads SDK. The block returns nil if a
 /// delegate couldn't be created or if the block has already been called.
@@ -68,7 +61,7 @@ typedef void (^GADMediationAdapterSetUpCompletionBlock)(NSError *_Nullable error
 /// Returns Nil if the network doesn't have publisher provided extras.
 + (nullable Class<GADAdNetworkExtras>)networkExtrasClass;
 
-/// Returns an initialized mediation adapter.
+/// Returns an initalized mediation adapter.
 - (nonnull instancetype)init;
 
 @optional
@@ -85,16 +78,6 @@ typedef void (^GADMediationAdapterSetUpCompletionBlock)(NSError *_Nullable error
 - (void)loadBannerForAdConfiguration:(nonnull GADMediationBannerAdConfiguration *)adConfiguration
                    completionHandler:
                        (nonnull GADMediationBannerLoadCompletionHandler)completionHandler;
-
-/// Asks the adapter to load an interscroller ad with the provided ad configuration. The adapter
-/// must call back completionHandler with the loaded ad, or it may call back with an error. This
-/// method is called on the main thread, and completionHandler must be called back on the main
-/// thread.
-- (void)loadInterscrollerAdForAdConfiguration:
-            (nonnull GADMediationBannerAdConfiguration *)adConfiguration
-                            completionHandler:
-                                (nonnull GADMediationInterscrollerAdLoadCompletionHandler)
-                                    completionHandler;
 
 /// Asks the adapter to load an interstitial ad with the provided ad configuration. The adapter
 /// must call back completionHandler with the loaded ad, or it may call back with an error. This

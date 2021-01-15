@@ -1,27 +1,6 @@
 # Change Log
-
-v3.0.1  Update AdMob SDK to 7.69.0
-        Update Audience Network SDK 6.2.0
-        Update Facebook Adapter 6.2.0.0
-        AppTrackingTransparency (iOS 14)
-
-v2.5.2  Update AdMob SDK to 7.64.0
-        Update Audience Network SDK 5.10.1
-        Update Facebook Adapter 5.10.1.0
-
 <pre>
-v2.4.4  Update AdMob SDK to 7.59.0
-        Update PersonalizedAdConsent to 1.5.0 (Removed all references to deprecated UIWebView)
-        Update Audience Network SDK 5.8.0
-        Update Facebook Adapter 5.8.0.2
-
-v2.4.3  Update AdMob SDK to 7.57.0
-        Update Audience Network SDK 5.7.1
-
-v2.4.2  Added support for Rewarded Video Ads.
-        Update AdMob SDK to 7.47.0
-        Update Audience Network SDK 5.4.0
-
+v2.5.0 Updated to Admob iOS  SDK  to 7.49.0
 v2.4.0  Support the Facebook Audience Network adapter
         iOS integration guide: https://developers.google.com/admob/ios/mediation/facebook
 

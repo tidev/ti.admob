@@ -36,32 +36,32 @@ typedef void (^GADRewardedAdLoadCompletionHandler)(GADRequestError *_Nullable er
     completionHandler:(nullable GADRewardedAdLoadCompletionHandler)completionHandler;
 
 /// The ad unit ID.
-@property(nonatomic, readonly, nonnull) NSString *adUnitID;
+@property (nonatomic, readonly, nonnull) NSString *adUnitID;
 
 /// Indicates whether the rewarded ad is ready to be presented.
-@property(nonatomic, readonly, getter=isReady) BOOL ready;
+@property (nonatomic, readonly, getter=isReady) BOOL ready;
 
 /// Information about the ad response that returned the current ad or an error. Nil until the first
 /// ad request succeeds or fails.
-@property(nonatomic, readonly, nullable) GADResponseInfo *responseInfo;
+@property (nonatomic, readonly, nullable) GADResponseInfo *responseInfo;
 
 /// The reward earned by the user for interacting with a rewarded ad. Is nil until the ad has
 /// successfully loaded.
-@property(nonatomic, readonly, nullable) GADAdReward *reward;
+@property (nonatomic, readonly, nullable) GADAdReward *reward;
 
 /// Options specified for server-side user reward verification.
-@property(nonatomic, nullable) GADServerSideVerificationOptions *serverSideVerificationOptions;
+@property (nonatomic, nullable) GADServerSideVerificationOptions *serverSideVerificationOptions;
 
 /// The loaded ad's metadata. Is nil if no ad is loaded or the loaded ad doesn't have metadata. Ad
 /// metadata may update after loading. Use the rewardedAdMetadataDidChange: delegate method on
 /// GADRewardedAdMetadataDelegate to listen for updates.
-@property(nonatomic, readonly, nullable) NSDictionary<GADAdMetadataKey, id> *adMetadata;
+@property (nonatomic, readonly, nullable) NSDictionary<GADAdMetadataKey, id> *adMetadata;
 
 /// Delegate for ad metadata changes.
-@property(nonatomic, weak, nullable) id<GADRewardedAdMetadataDelegate> adMetadataDelegate;
+@property (nonatomic, weak, nullable) id<GADRewardedAdMetadataDelegate> adMetadataDelegate;
 
 /// Called when the ad is estimated to have earned money. Available for allowlisted accounts only.
-@property(nonatomic, nullable, copy) GADPaidEventHandler paidEventHandler;
+@property (nonatomic, nullable, copy) GADPaidEventHandler paidEventHandler;
 
 /// Returns whether the rewarded ad can be presented from the provided root view controller. Sets
 /// the error out parameter if the rewarded ad can't be presented. Must be called on the main
@@ -79,7 +79,7 @@ typedef void (^GADRewardedAdLoadCompletionHandler)(GADRequestError *_Nullable er
 #pragma mark Deprecated
 
 /// Deprecated. Use responseInfo.adNetworkClassName instead.
-@property(nonatomic, readonly, copy, nullable)
+@property (nonatomic, readonly, copy, nullable)
     NSString *adNetworkClassName GAD_DEPRECATED_MSG_ATTRIBUTE(
         "Use responseInfo.adNetworkClassName.");
 
