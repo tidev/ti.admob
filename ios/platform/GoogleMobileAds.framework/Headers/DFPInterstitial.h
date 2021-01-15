@@ -13,7 +13,7 @@
 @interface DFPInterstitial : GADInterstitial
 
 /// Optional delegate that is notified when creatives send app events.
-@property (nonatomic, weak, nullable) id<GADAppEventDelegate> appEventDelegate;
+@property(nonatomic, weak, nullable) id<GADAppEventDelegate> appEventDelegate;
 
 /// Initializes an interstitial with an ad unit created on the Ad Manager website. Create a new ad
 /// unit for every unique placement of an ad in your application. Set this to the ID assigned for

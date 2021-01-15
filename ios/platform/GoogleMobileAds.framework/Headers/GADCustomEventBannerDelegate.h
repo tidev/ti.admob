@@ -8,6 +8,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import <GoogleMobileAds/GoogleMobileAdsDefines.h>
+
 @protocol GADCustomEventBanner;
 
 /// Call back to this delegate in your custom event. You must call customEventBanner:didReceiveAd:

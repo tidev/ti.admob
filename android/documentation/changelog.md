@@ -1,14 +1,18 @@
 # Change Log
 
+ v5.0.2 Update Google Mobile Ads SDK 19.2.0
+        Update Audience Network SDK 5.11.0
+        Update Facebook Adapter 5.11.0.0
+
 <pre>
 
-v4.5.0 Update APIs to match the Swift version of the iOS part of the module. Set Titanium 8.0.0 as minimum.
+v4.5.0  Update APIs to match the Swift version of the iOS part of the module. Set Titanium 8.0.0 as minimum.
 
 v4.4.0  Maintain API parity with iOS module and introduce Interstitial ads support on Android.
 
 v4.3.0  Support the Facebook Audience Network adapter
         Android integration guide: https://developers.google.com/admob/android/mediation/facebook
-        
+
 v4.2.1  Fix Kroll annotation for requestConsentInfoUpdateForPublisherIdentifiers.
 
 v4.2.0  Expose getId() and isAdTrackingLimited() from AdvertisingIdClient.Info.
