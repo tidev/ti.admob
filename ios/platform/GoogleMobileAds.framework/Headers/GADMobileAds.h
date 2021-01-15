@@ -6,8 +6,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
 #import <GoogleMobileAds/GADAudioVideoManager.h>
 #import <GoogleMobileAds/GADInitializationStatus.h>
 #import <GoogleMobileAds/GADRequestConfiguration.h>
@@ -16,10 +14,6 @@
 /// completes or times out.
 typedef void (^GADInitializationCompletionHandler)(GADInitializationStatus *_Nonnull status);
 
-/// Completion handler for presenting Ad Inspector. Returns an error if a problem was detected
-/// during presentation, or nil otherwise.
-typedef void (^GADAdInspectorCompletionHandler)(NSError *_Nullable error);
-
 /// Google Mobile Ads SDK settings.
 @interface GADMobileAds : NSObject
 
@@ -27,27 +21,27 @@ typedef void (^GADAdInspectorCompletionHandler)(NSError *_Nullable error);
 + (nonnull GADMobileAds *)sharedInstance;
 
 /// Returns the version of the SDK.
-@property(nonatomic, nonnull, readonly) NSString *sdkVersion;
+@property (nonatomic, nonnull, readonly) NSString *sdkVersion;
 
 /// The application's audio volume. Affects audio volumes of all ads relative to other audio output.
 /// Valid ad volume values range from 0.0 (silent) to 1.0 (current device volume). Use this method
 /// only if your application has its own volume controls (e.g., custom music or sound effect
 /// volumes). Defaults to 1.0.
-@property(nonatomic, assign) float applicationVolume;
+@property (nonatomic, assign) float applicationVolume;
 
 /// Indicates whether the application's audio is muted. Affects initial mute state for all ads. Use
 /// this method only if your application has its own volume controls (e.g., custom music or sound
 /// effect muting). Defaults to NO.
-@property(nonatomic, assign) BOOL applicationMuted;
+@property (nonatomic, assign) BOOL applicationMuted;
 
 /// Manages the Google Mobile Ads SDK's audio and video settings.
-@property(nonatomic, readonly, strong, nonnull) GADAudioVideoManager *audioVideoManager;
+@property (nonatomic, readonly, strong, nonnull) GADAudioVideoManager *audioVideoManager;
 
 /// Request configuration that is common to all requests.
-@property(nonatomic, readonly, strong, nonnull) GADRequestConfiguration *requestConfiguration;
+@property (nonatomic, readonly, strong, nonnull) GADRequestConfiguration *requestConfiguration;
 
 /// Initialization status of the ad networks available to the Google Mobile Ads SDK.
-@property(nonatomic, nonnull, readonly) GADInitializationStatus *initializationStatus;
+@property (nonatomic, nonnull, readonly) GADInitializationStatus *initializationStatus;
 
 /// Returns YES if the current SDK version is at least |major|.|minor|.|patch|. This method can be
 /// used by libraries that depend on a specific minimum version of the Google Mobile Ads SDK to warn
@@ -83,16 +77,6 @@ typedef void (^GADAdInspectorCompletionHandler)(NSError *_Nullable error);
 /// GMA SDK controlled mediation during this app session. This method must be called before
 /// initializing the GMA SDK or loading ads and has no effect once the SDK has been initialized.
 - (void)disableMediationInitialization;
-
-/// Presents Ad Inspector. The device calling this API must be registered as a test device in order
-/// to launch Ad Inspector. Set
-/// GADMobileAds.sharedInstance.requestConfiguration.testDeviceIdentifiers to enable test mode on
-/// this device.
-/// @param viewController A view controller to present Ad Inspector.
-/// @param completionHandler A handler to execute when Ad Inspector is closed.
-- (void)presentAdInspectorFromViewController:(nonnull UIViewController *)viewController
-                           completionHandler:
-                               (nullable GADAdInspectorCompletionHandler)completionHandler;
 
 #pragma mark Deprecated
 

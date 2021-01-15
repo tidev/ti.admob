@@ -27,26 +27,26 @@ GAD_EXTERN NSString *_Nonnull const GADNativeCustomTemplateAdMediaViewKey;
 @interface GADNativeCustomTemplateAd : GADNativeAd
 
 /// The ad's custom template ID.
-@property(nonatomic, readonly, nonnull) NSString *templateID;
+@property (nonatomic, readonly, nonnull) NSString *templateID;
 
 /// Array of available asset keys.
-@property(nonatomic, readonly, nonnull) NSArray<NSString *> *availableAssetKeys;
+@property (nonatomic, readonly, nonnull) NSArray<NSString *> *availableAssetKeys;
 
 /// Returns media view for rendering video loaded by the receiver. Returns nil if receiver doesn't
 /// has a video.
-@property(nonatomic, readonly, nullable) GADMediaView *mediaView;
+@property (nonatomic, readonly, nullable) GADMediaView *mediaView;
 
 /// Custom click handler. Set this property only if this template ad is configured with a custom
 /// click action, otherwise set it to nil. If this property is set to a non-nil value, the ad's
 /// built-in click actions are ignored and |customClickHandler| is executed when a click on the
 /// asset is received.
-@property(atomic, copy, nullable) GADNativeAdCustomClickHandler customClickHandler;
+@property (atomic, copy, nullable) GADNativeAdCustomClickHandler customClickHandler;
 
 /// The display ad measurement associated with this ad.
-@property(nonatomic, readonly, nullable) GADDisplayAdMeasurement *displayAdMeasurement;
+@property (nonatomic, readonly, nullable) GADDisplayAdMeasurement *displayAdMeasurement;
 
 /// Media content.
-@property(nonatomic, readonly, nonnull) GADMediaContent *mediaContent;
+@property (nonatomic, readonly, nonnull) GADMediaContent *mediaContent;
 
 /// Returns the native ad image corresponding to the specified key or nil if the image is not
 /// available.
@@ -67,7 +67,7 @@ GAD_EXTERN NSString *_Nonnull const GADNativeCustomTemplateAdMediaViewKey;
 #pragma mark - Deprecated
 
 /// Returns video controller for controlling receiver's video.
-@property(nonatomic, readonly, nonnull)
+@property (nonatomic, readonly, nonnull)
     GADVideoController *videoController GAD_DEPRECATED_MSG_ATTRIBUTE(
         "Use the videoController property from the ad's mediaContent instead.");
 

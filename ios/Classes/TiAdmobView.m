@@ -304,8 +304,9 @@
     return;
   }
 
-  [self.proxy fireEvent:@"didFailToReceiveAd" withObject:@{ @"adUnitId" : view.adUnitID,
-    @"error" : error.localizedDescription }];
+  [self.proxy fireEvent:@"didFailToReceiveAd"
+             withObject:@{ @"adUnitId" : view.adUnitID,
+               @"error" : error.localizedDescription }];
 }
 
 - (void)adViewWillPresentScreen:(GADBannerView *)adView
@@ -377,8 +378,9 @@
     return;
   }
 
-  [self.proxy fireEvent:@"didFailToReceiveAd" withObject:@{ @"adUnitId" : ad.adUnitID,
-    @"error" : error.localizedDescription }];
+  [self.proxy fireEvent:@"didFailToReceiveAd"
+             withObject:@{ @"adUnitId" : ad.adUnitID,
+               @"error" : error.localizedDescription }];
 }
 
 - (void)interstitialWillPresentScreen:(GADInterstitial *)ad
@@ -401,9 +403,10 @@
 
 - (void)interstitialDidDismissScreen:(GADInterstitial *)ad
 {
-  TiThreadPerformOnMainThread(^{
-    [self removeFromSuperview];
-  },
+  TiThreadPerformOnMainThread(
+      ^{
+        [self removeFromSuperview];
+      },
       NO);
 
   if (![[self proxy] _hasListeners:@"didDismissScreen"]) {
