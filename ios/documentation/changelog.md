@@ -1,5 +1,9 @@
 # Change Log
 
+v3.1.0  Update Audience Network SDK 6.2.1
+        Update Facebook Adapter 6.2.1.0
+        Added setAdvertiserTrackingEnabled for Audience Network (iOS 14)
+
 v3.0.1  Update AdMob SDK to 7.69.0
         Update Audience Network SDK 6.2.0
         Update Facebook Adapter 6.2.0.0

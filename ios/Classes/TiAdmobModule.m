@@ -15,6 +15,7 @@
 #import <PersonalizedAdConsent/PersonalizedAdConsent.h>
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 140000
 #import <AppTrackingTransparency/ATTrackingManager.h>
+#import <FBAudienceNetwork/FBAdSettings.h>
 #endif
 
 @implementation TiAdmobModule
@@ -190,6 +191,17 @@
   }
   if (callback != nil) {
     [callback call:@[ @{ @"status" : @3 } ] thisObject:self];
+  }
+}
+
+- (void)setAdvertiserTrackingEnabled:(id)advertiserTrackingEnabled
+{
+  // this method is required by Facebook Audience Network for iOS >= 14
+  if (@available(iOS 14, *)) {
+    ENSURE_TYPE(advertiserTrackingEnabled, NSNumber);
+    [FBAdSettings setAdvertiserTrackingEnabled:[TiUtils boolValue:advertiserTrackingEnabled]];
+  } else {
+    NSLog(@"[WARN] Ti.AdMob: The function `setAdvertiserTrackingEnabled` should be used on ios version 14 and above only");
   }
 }
 

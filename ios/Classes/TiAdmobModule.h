@@ -37,4 +37,6 @@
 
 - (void)requestTrackingAuthorization:(id)args;
 
+- (void)setAdvertiserTrackingEnabled:(id)advertiserTrackingEnabled;
+
 @end
