@@ -1,6 +1,10 @@
 # Change Log
 
- v5.0.2 Update Google Mobile Ads SDK 19.2.0
+v5.0.3  Update Google Mobile Ads SDK 19.7.0
+        Update Audience Network SDK 6.2.0
+        Update Facebook Adapter 6.2.0.1
+
+v5.0.2  Update Google Mobile Ads SDK 19.2.0
         Update Audience Network SDK 5.11.0
         Update Facebook Adapter 5.11.0.0
 

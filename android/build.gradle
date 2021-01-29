@@ -1,10 +1,12 @@
 dependencies {
 	implementation 'com.google.android.ads.consent:consent-library:1.0.8'
-	implementation 'com.facebook.android:audience-network-sdk:5.11.0'
-	implementation 'com.google.ads.mediation:facebook:5.11.0.0'
-	implementation 'com.google.android.gms:play-services-base:17.1.0'
-	implementation 'com.google.android.gms:play-services-ads:19.2.0'
-	implementation 'com.google.android.gms:play-services-ads-base:19.2.0'
+	implementation 'com.facebook.android:audience-network-sdk:6.2.0'
+	implementation 'com.google.ads.mediation:facebook:6.2.0.1'
+	implementation 'com.google.android.gms:play-services-base:17.5.0'
+	implementation 'com.google.android.gms:play-services-ads:19.7.0'
+	implementation 'com.google.android.gms:play-services-ads-base:19.7.0'
 	implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
-	implementation 'com.google.android.gms:play-services-ads-lite:19.2.0'
+	implementation 'com.google.android.gms:play-services-ads-lite:19.7.0'
+	implementation 'com.google.firebase:firebase-ads:19.7.0'
+	implementation 'com.google.firebase:firebase-ads-lite:19.7.0'
 }
