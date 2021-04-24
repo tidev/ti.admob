@@ -15,6 +15,7 @@
 
 - (void)receive:(id)unused;
 
+// Unused in v4+ of the module
 - (void)showRewardedVideo:(id)args;
 - (void)loadRewardedVideo:(id)adUnitId;
 

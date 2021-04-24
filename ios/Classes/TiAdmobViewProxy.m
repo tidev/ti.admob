@@ -23,20 +23,12 @@
 }
 
 - (void)showRewardedVideo:(id)args {
-  if ([[GADRewardBasedVideoAd sharedInstance] isReady]) {
-    [GADRewardBasedVideoAd.sharedInstance presentFromRootViewController:TiApp.app.controller.topPresentedController];
-  }
+  DEPRECATED_REMOVED(@"Admob.showRewardedVideo", @"4.0.0", @"4.0.0 (not required anymore, just use initialize())")
 }
 
 - (void)loadRewardedVideo:(id)adUnitId
 {
-  id adType = [self valueForKey:@"adType"];
-  if (adType != nil && [TiUtils boolValue:adType def:TiAdmobAdTypeBanner] != TiAdmobAdTypeRewardedVideo) {
-    return;
-  }
-
-  ENSURE_SINGLE_ARG(adUnitId, NSString);
-  [GADRewardBasedVideoAd.sharedInstance loadRequest:self.admobView.request withAdUnitID:adUnitId];
+  DEPRECATED_REMOVED(@"Admob.loadRewardedVideo", @"4.0.0", @"4.0.0 (not required anymore, just use initialize())")
 }
 
 @end

@@ -11,48 +11,126 @@
 #import "TiBase.h"
 #import "TiHost.h"
 #import "TiUtils.h"
+
 #import <GoogleMobileAds/GoogleMobileAds.h>
 #import <PersonalizedAdConsent/PersonalizedAdConsent.h>
+#import <UserMessagingPlatform/UserMessagingPlatform.h>
+
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 140000
 #import <AppTrackingTransparency/ATTrackingManager.h>
 #import <FBAudienceNetwork/FBAdSettings.h>
+#import <InMobiAdapter/InMobiAdapter.h>
 #endif
 
 @implementation TiAdmobModule
 
-// this is generated for your module, please do not change it
 - (id)moduleGUID
 {
   return @"0d005e93-9980-4739-9e41-fd1129c8ff32";
 }
 
-// this is generated for your module, please do not change it
 - (NSString *)moduleId
 {
   return @"ti.admob";
-}
-
-#pragma mark Lifecycle
-
-- (void)startup
-{
-  // this method is called when the module is first loaded
-  // you *must* call the superclass
-  [super startup];
-
-  NSLog(@"[DEBUG] Ti.AdMob loaded", self);
 }
 
 #pragma mark Public API's
 
 - (void)disableSDKCrashReporting:(id)unused
 {
-  [GADMobileAds disableSDKCrashReporting];
+  [GADMobileAds.sharedInstance disableSDKCrashReporting];
 }
 
 - (void)disableAutomatedInAppPurchaseReporting:(id)unused
 {
-  [GADMobileAds disableAutomatedInAppPurchaseReporting];
+  DEPRECATED_REMOVED(@"Admob.disableAutomatedInAppPurchaseReporting", @"4.0.0", @"4.0.0 (removed by Google)");
+}
+
+- (void)requestConsentInfoUpdateWithParameters:(id)args
+{
+  ENSURE_SINGLE_ARG(args, NSDictionary);
+
+  //NSArray<NSString *> *publisherIdentifiers = [args objectForKey:@"publisherIdentifiers"];
+  KrollCallback *callback = [args objectForKey:@"callback"];
+
+  // Create a UMPRequestParameters object.
+  UMPRequestParameters *parameters = [[UMPRequestParameters alloc] init];
+
+  // Set tag for under age of consent. Here NO means users are not under age.
+  parameters.tagForUnderAgeOfConsent = [TiUtils boolValue:@"tagForUnderAgeOfConsent" properties:args def:NO];;
+  
+  // Request an update to the consent information.
+  [[UMPConsentInformation sharedInstance] requestConsentInfoUpdateWithParameters:parameters
+                                                                        completionHandler:^(NSError *_Nullable error) {
+                                                                          // The consent information has updated.
+                                                                          if (error != nil) {
+                                                                            // Handle the error.
+                                                                            [callback call:@[ @{@"success" : @NO,
+                                                                              @"error" : error.localizedDescription} ]
+                                                                                thisObject:self];
+                                                                            return;
+                                                                          } else {
+                                                                            // The consent information state was updated.
+                                                                            // You are now ready to see if a form is available.
+                                                                            UMPFormStatus formStatus =
+                                                                              UMPConsentInformation.sharedInstance
+                                                                                  .formStatus;
+                                                                              NSNumber *status = @(formStatus);
+                                                                              if (formStatus == UMPFormStatusAvailable) {
+                                                                                NSLog(@"[INFO] Ti.AdMob: formStatus is available!");
+                                                                                //[self loadForm];
+                                                                              }
+                                                                              if (callback != nil) {                                                                            
+                                                                                [callback call:@[ @{
+                                                                                  @"success" : @YES,
+                                                                                  @"status" : status} ]
+                                                                                  thisObject:self];
+                                                                              }
+                                                                          }                                                                          
+                                                                        }];
+}
+
+- (void)loadForm:(id)args 
+{
+  ENSURE_SINGLE_ARG(args, NSDictionary);
+
+  KrollCallback *callback = [args objectForKey:@"callback"];
+  
+  TiThreadPerformOnMainThread(
+      ^{
+        [UMPConsentForm loadWithCompletionHandler:^(UMPConsentForm *form,
+                                                    NSError *loadError) {
+          if (loadError) {
+            // Handle the error.
+            [callback call:@[ @{ @"loadError" : loadError.localizedDescription } ] thisObject:self];
+          } else {
+            // Present the form. You can also hold on to the reference to present
+            // later.
+            NSNumber *status = @(UMPConsentInformation.sharedInstance.consentStatus);
+            if (UMPConsentInformation.sharedInstance.consentStatus ==
+                UMPConsentStatusRequired) {
+              [form
+                  presentFromViewController:[[[TiApp app] controller] topPresentedController]
+                          completionHandler:^(NSError *_Nullable dismissError) {
+                            if (UMPConsentInformation.sharedInstance.consentStatus ==
+                                UMPConsentStatusObtained) {
+                              // App can start requesting ads. 
+                              [callback call:@[ @{
+                                @"status" : status,
+                                @"dismissError" : NULL_IF_NIL(dismissError.localizedDescription)
+                              } ]
+                                  thisObject:self]; 
+                              return;                            
+                            }
+                          }];
+            } else {
+              // Keep the form available for changes to user consent.
+            }
+            [callback call:@[ @{@"status" : status} ]thisObject:self];
+          }
+        }];
+      },
+      NO);
 }
 
 - (void)requestConsentInfoUpdateForPublisherIdentifiers:(id)args
@@ -149,7 +227,7 @@
 
 - (void)resetConsent:(id)unused
 {
-  [[PACConsentInformation sharedInstance] reset];
+  [[UMPConsentInformation sharedInstance] reset];
 }
 
 - (void)setTagForUnderAgeOfConsent:(id)tagForUnderAgeOfConsent
@@ -205,6 +283,25 @@
   }
 }
 
+- (void)setInMobi_updateGDPRConsent:(id)updateGDPRConsent
+{
+  NSMutableDictionary *consentObject = [[NSMutableDictionary alloc] init];
+
+  ENSURE_TYPE(updateGDPRConsent, NSNumber);
+  if ([TiUtils boolValue:updateGDPRConsent]) {
+    // this method is required by InMobi to set GDPR    
+    [consentObject setObject:@"1" forKey:@"gdpr"];
+    [consentObject setObject:@"true" forKey:IM_GDPR_CONSENT_AVAILABLE];
+    NSLog(@"[INFO] Ti.AdMob: inMobi_updateGDPRConsent --> true");
+  }  else {    
+    [consentObject setObject:@"0" forKey:@"gdpr"];
+    [consentObject setObject:@"true" forKey:IM_GDPR_CONSENT_AVAILABLE];
+    NSLog(@"[INFO] Ti.AdMob: inMobi_updateGDPRConsent --> false");
+  }
+
+  [GADMInMobiConsent updateGDPRConsent:consentObject];
+}
+
 #pragma mark Constants
 
 MAKE_SYSTEM_PROP(TRACKING_AUTHORIZATION_STATUS_NOT_DETERMINED, 0);
@@ -212,7 +309,15 @@ MAKE_SYSTEM_PROP(TRACKING_AUTHORIZATION_STATUS_RESTRICTED, 1);
 MAKE_SYSTEM_PROP(TRACKING_AUTHORIZATION_STATUS_DENIED, 2);
 MAKE_SYSTEM_PROP(TRACKING_AUTHORIZATION_STATUS_AUTHORIZED, 3);
 
-MAKE_SYSTEM_PROP(CONSENT_STATUS_UNKNOWN, PACConsentStatusUnknown);
+MAKE_SYSTEM_PROP(CONSENT_FORM_STATUS_UNKNOWN, UMPFormStatusUnknown); // 0
+MAKE_SYSTEM_PROP(CONSENT_FORM_STATUS_AVAILABLE, UMPFormStatusAvailable); // 1
+MAKE_SYSTEM_PROP(CONSENT_FORM_STATUS_UNAVAILABLE, UMPFormStatusUnavailable); // 2
+MAKE_SYSTEM_PROP(CONSENT_STATUS_UNKNOWN, UMPConsentStatusUnknown); // 0
+MAKE_SYSTEM_PROP(CONSENT_STATUS_REQUIRED, UMPConsentStatusRequired); // 1
+MAKE_SYSTEM_PROP(CONSENT_STATUS_NOT_REQUIRED, UMPConsentStatusNotRequired); // 2
+MAKE_SYSTEM_PROP(CONSENT_STATUS_OBTAINED, UMPConsentStatusObtained); // 3
+
+//MAKE_SYSTEM_PROP(CONSENT_STATUS_UNKNOWN, PACConsentStatusUnknown);
 MAKE_SYSTEM_PROP(CONSENT_STATUS_NON_PERSONALIZED, PACConsentStatusNonPersonalized);
 MAKE_SYSTEM_PROP(CONSENT_STATUS_PERSONALIZED, PACConsentStatusPersonalized);
 
