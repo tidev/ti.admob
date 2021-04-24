@@ -52,6 +52,14 @@
     [bannerView removeFromSuperview];
   }
 
+  if (interstitialAd) {
+    interstitialAd.fullScreenContentDelegate = nil;
+  }
+  
+  if (rewardedAd) {
+    rewardedAd.fullScreenContentDelegate = nil;
+  }
+
   RELEASE_TO_NIL(bannerView);
   RELEASE_TO_NIL(interstitialAd);
   RELEASE_TO_NIL(rewardedAd);
@@ -172,13 +180,13 @@
 
 - (void)loadRewardedVideo
 {
-  [GADRewardedAd loadWithAdUnitID:adUnitId request:[GADRequest request] completionHandler:^(GADRewardedAd * _Nullable rewardedAd, NSError * _Nullable error) {
+  [GADRewardedAd loadWithAdUnitID:adUnitId request:[GADRequest request] completionHandler:^(GADRewardedAd * _Nullable _rewardedAd, NSError * _Nullable error) {
     if (error) {
       [self.proxy fireEvent:@"adfailedtoload" withObject:@{ @"message": error.localizedDescription }];
       return;
     }
     
-    rewardedAd = rewardedAd;
+    rewardedAd = [_rewardedAd retain];
     rewardedAd.fullScreenContentDelegate = self;
 
     [self showRewardedVideo];
@@ -195,7 +203,7 @@
        return;
      }
 
-     interstitialAd = ad;
+     interstitialAd = [ad retain];
      interstitialAd.fullScreenContentDelegate = self;
 
     [self showInterstitial];
@@ -283,6 +291,39 @@
   return @"ca-app-pub-3940256099942544/1712485313";
 }
 
+#pragma mark - GADBannerViewDelegate
+
+- (void)bannerViewDidReceiveAd:(nonnull GADBannerView *)bannerView
+{
+  [self.proxy fireEvent:@"didReceiveAd" withObject:bannerView.adUnitID];
+}
+
+- (void)bannerView:(nonnull GADBannerView *)bannerView
+    didFailToReceiveAdWithError:(nonnull NSError *)error
+{
+  [self.proxy fireEvent:@"didFailToReceiveAd" withObject:@{ @"adUnitId" : adUnitId, @"error" : error.localizedDescription }];
+}
+
+- (void)bannerViewDidRecordImpression:(nonnull GADBannerView *)bannerView
+{
+  [self.proxy fireEvent:@"didRecordImpression" withObject:bannerView.adUnitID];
+}
+
+- (void)bannerViewWillPresentScreen:(nonnull GADBannerView *)bannerView
+{
+  [self.proxy fireEvent:@"willPresentScreen" withObject:@{ @"adUnitId": bannerView.adUnitID }];
+}
+
+- (void)bannerViewWillDismissScreen:(nonnull GADBannerView *)bannerView
+{
+  [self.proxy fireEvent:@"willDismissScreen" withObject:@{ @"adUnitId": bannerView.adUnitID }];
+}
+
+- (void)bannerViewDidDismissScreen:(nonnull GADBannerView *)bannerView
+{
+  [self.proxy fireEvent:@"didDismissScreen" withObject:@{ @"adUnitId": bannerView.adUnitID }];
+}
+
 #pragma mark - GADFullScreenContentDelegate
 
 // NOTE: I tried to map them as best as possible, but for example "adDidRecordImpression" is new
@@ -290,7 +331,15 @@
 
 - (void)adDidRecordImpression:(id<GADFullScreenPresentingAd>)ad
 {
-  [self.proxy fireEvent:@"didRecordImpression" withObject:@{ @"adUnitId": adUnitId }];
+  NSMutableDictionary *event = [NSMutableDictionary dictionaryWithDictionary:@{ @"adUnitId": adUnitId }];
+
+  if ([ad isKindOfClass:[GADRewardedAd class]]) {
+    GADAdReward *adReward = [(GADRewardedAd *)ad adReward];
+    event[@"amount"] = adReward.amount;
+    event[@"type"] = adReward.type;
+  }
+
+  [self.proxy fireEvent:@"didRecordImpression" withObject:event];
 }
 
 - (void)ad:(id<GADFullScreenPresentingAd>)ad didFailToPresentFullScreenContentWithError:(NSError *)error
