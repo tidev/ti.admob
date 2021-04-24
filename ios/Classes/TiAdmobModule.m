@@ -19,7 +19,6 @@
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 140000
 #import <AppTrackingTransparency/ATTrackingManager.h>
 #import <FBAudienceNetwork/FBAdSettings.h>
-#import <InMobiAdapter/InMobiAdapter.h>
 #endif
 
 @implementation TiAdmobModule
@@ -285,21 +284,7 @@
 
 - (void)setInMobi_updateGDPRConsent:(id)updateGDPRConsent
 {
-  NSMutableDictionary *consentObject = [[NSMutableDictionary alloc] init];
-
-  ENSURE_TYPE(updateGDPRConsent, NSNumber);
-  if ([TiUtils boolValue:updateGDPRConsent]) {
-    // this method is required by InMobi to set GDPR    
-    [consentObject setObject:@"1" forKey:@"gdpr"];
-    [consentObject setObject:@"true" forKey:IM_GDPR_CONSENT_AVAILABLE];
-    NSLog(@"[INFO] Ti.AdMob: inMobi_updateGDPRConsent --> true");
-  }  else {    
-    [consentObject setObject:@"0" forKey:@"gdpr"];
-    [consentObject setObject:@"true" forKey:IM_GDPR_CONSENT_AVAILABLE];
-    NSLog(@"[INFO] Ti.AdMob: inMobi_updateGDPRConsent --> false");
-  }
-
-  [GADMInMobiConsent updateGDPRConsent:consentObject];
+  DEPRECATED_REMOVED(@"Admob.inMobi_updateGDPRConsent", @"4.0.0", @"4.0.0 (Not supported by it's vendors anymore")
 }
 
 #pragma mark Constants

@@ -13,11 +13,9 @@
 		249BE67411B47B3800AF41CF /* TiAdmobView.m in Sources */ = {isa = PBXBuildFile; fileRef = 249BE67211B47B3800AF41CF /* TiAdmobView.m */; };
 		24DD6CF91134B3F500162E58 /* TiAdmobModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DD6CF71134B3F500162E58 /* TiAdmobModule.h */; };
 		24DD6CFA1134B3F500162E58 /* TiAdmobModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DD6CF81134B3F500162E58 /* TiAdmobModule.m */; };
-		3ABFE38C26335E0000887180 /* InMobiSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38026335E0000887180 /* InMobiSDK.framework */; };
 		3ABFE38D26335E0000887180 /* GoogleMobileAds.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38126335E0000887180 /* GoogleMobileAds.xcframework */; };
 		3ABFE38E26335E0000887180 /* nanopb.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38226335E0000887180 /* nanopb.xcframework */; };
 		3ABFE38F26335E0000887180 /* PersonalizedAdConsent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38326335E0000887180 /* PersonalizedAdConsent.framework */; };
-		3ABFE39026335E0000887180 /* InMobiAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38426335E0000887180 /* InMobiAdapter.framework */; };
 		3ABFE39126335E0000887180 /* FacebookAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38526335E0000887180 /* FacebookAdapter.framework */; };
 		3ABFE39226335E0000887180 /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38626335E0000887180 /* FBAudienceNetwork.framework */; };
 		3ABFE39326335E0000887180 /* PromisesObjC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38726335E0000887180 /* PromisesObjC.xcframework */; };
@@ -37,11 +35,9 @@
 		24DD6CF71134B3F500162E58 /* TiAdmobModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiAdmobModule.h; path = Classes/TiAdmobModule.h; sourceTree = "<group>"; };
 		24DD6CF81134B3F500162E58 /* TiAdmobModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiAdmobModule.m; path = Classes/TiAdmobModule.m; sourceTree = "<group>"; };
 		24DD6D1B1134B66800162E58 /* titanium.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = titanium.xcconfig; sourceTree = "<group>"; };
-		3ABFE38026335E0000887180 /* InMobiSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InMobiSDK.framework; path = platform/InMobiSDK.framework; sourceTree = "<group>"; };
 		3ABFE38126335E0000887180 /* GoogleMobileAds.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleMobileAds.xcframework; path = platform/GoogleMobileAds.xcframework; sourceTree = "<group>"; };
 		3ABFE38226335E0000887180 /* nanopb.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = nanopb.xcframework; path = platform/nanopb.xcframework; sourceTree = "<group>"; };
 		3ABFE38326335E0000887180 /* PersonalizedAdConsent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PersonalizedAdConsent.framework; path = platform/PersonalizedAdConsent.framework; sourceTree = "<group>"; };
-		3ABFE38426335E0000887180 /* InMobiAdapter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InMobiAdapter.framework; path = platform/InMobiAdapter.framework; sourceTree = "<group>"; };
 		3ABFE38526335E0000887180 /* FacebookAdapter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookAdapter.framework; path = platform/FacebookAdapter.framework; sourceTree = "<group>"; };
 		3ABFE38626335E0000887180 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBAudienceNetwork.framework; path = platform/FBAudienceNetwork.framework; sourceTree = "<group>"; };
 		3ABFE38726335E0000887180 /* PromisesObjC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = PromisesObjC.xcframework; path = platform/PromisesObjC.xcframework; sourceTree = "<group>"; };
@@ -62,11 +58,9 @@
 				3ABFE39126335E0000887180 /* FacebookAdapter.framework in Frameworks */,
 				3ABFE38E26335E0000887180 /* nanopb.xcframework in Frameworks */,
 				3ABFE39526335E0000887180 /* UserMessagingPlatform.xcframework in Frameworks */,
-				3ABFE38C26335E0000887180 /* InMobiSDK.framework in Frameworks */,
 				3ABFE38F26335E0000887180 /* PersonalizedAdConsent.framework in Frameworks */,
 				3ABFE38D26335E0000887180 /* GoogleMobileAds.xcframework in Frameworks */,
 				3ABFE39226335E0000887180 /* FBAudienceNetwork.framework in Frameworks */,
-				3ABFE39026335E0000887180 /* InMobiAdapter.framework in Frameworks */,
 				3ABFE39626335E0000887180 /* GoogleAppMeasurement.xcframework in Frameworks */,
 				3ABFE39426335E0000887180 /* FBSDKCoreKit.framework in Frameworks */,
 				3ABFE39326335E0000887180 /* PromisesObjC.xcframework in Frameworks */,
@@ -105,8 +99,6 @@
 				3ABFE38A26335E0000887180 /* GoogleAppMeasurement.xcframework */,
 				3ABFE38126335E0000887180 /* GoogleMobileAds.xcframework */,
 				3ABFE38B26335E0000887180 /* GoogleUtilities.xcframework */,
-				3ABFE38426335E0000887180 /* InMobiAdapter.framework */,
-				3ABFE38026335E0000887180 /* InMobiSDK.framework */,
 				3ABFE38226335E0000887180 /* nanopb.xcframework */,
 				3ABFE38326335E0000887180 /* PersonalizedAdConsent.framework */,
 				3ABFE38726335E0000887180 /* PromisesObjC.xcframework */,
