@@ -76,7 +76,6 @@
                                                                               NSNumber *status = @(formStatus);
                                                                               if (formStatus == UMPFormStatusAvailable) {
                                                                                 NSLog(@"[INFO] Ti.AdMob: formStatus is available!");
-                                                                                //[self loadForm];
                                                                               }
                                                                               if (callback != nil) {                                                                            
                                                                                 [callback call:@[ @{
@@ -114,7 +113,7 @@
                                 UMPConsentStatusObtained) {
                               // App can start requesting ads. 
                               [callback call:@[ @{
-                                @"status" : status,
+                                @"status" : @(UMPConsentInformation.sharedInstance.consentStatus), // update here because it can change between the above assignment
                                 @"dismissError" : NULL_IF_NIL(dismissError.localizedDescription)
                               } ]
                                   thisObject:self]; 
@@ -122,9 +121,11 @@
                             }
                           }];
             } else {
-              // Keep the form available for changes to user consent.
+              [callback call:@[ @{
+                @"status" : status
+              } ]
+                  thisObject:self];
             }
-            [callback call:@[ @{@"status" : status} ]thisObject:self];
           }
         }];
       },
