@@ -6,7 +6,6 @@
  */
 
 #import "TiAdmobViewProxy.h"
-#import "TiAdmobTypes.h"
 #import "TiApp.h"
 #import "TiUtils.h"
 
