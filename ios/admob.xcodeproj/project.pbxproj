@@ -16,10 +16,7 @@
 		3ABFE38D26335E0000887180 /* GoogleMobileAds.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38126335E0000887180 /* GoogleMobileAds.xcframework */; };
 		3ABFE38E26335E0000887180 /* nanopb.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38226335E0000887180 /* nanopb.xcframework */; };
 		3ABFE38F26335E0000887180 /* PersonalizedAdConsent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38326335E0000887180 /* PersonalizedAdConsent.framework */; };
-		3ABFE39126335E0000887180 /* FacebookAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38526335E0000887180 /* FacebookAdapter.framework */; };
-		3ABFE39226335E0000887180 /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38626335E0000887180 /* FBAudienceNetwork.framework */; };
 		3ABFE39326335E0000887180 /* PromisesObjC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38726335E0000887180 /* PromisesObjC.xcframework */; };
-		3ABFE39426335E0000887180 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38826335E0000887180 /* FBSDKCoreKit.framework */; };
 		3ABFE39526335E0000887180 /* UserMessagingPlatform.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38926335E0000887180 /* UserMessagingPlatform.xcframework */; };
 		3ABFE39626335E0000887180 /* GoogleAppMeasurement.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38A26335E0000887180 /* GoogleAppMeasurement.xcframework */; };
 		3ABFE39726335E0000887180 /* GoogleUtilities.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38B26335E0000887180 /* GoogleUtilities.xcframework */; };
@@ -38,10 +35,7 @@
 		3ABFE38126335E0000887180 /* GoogleMobileAds.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleMobileAds.xcframework; path = platform/GoogleMobileAds.xcframework; sourceTree = "<group>"; };
 		3ABFE38226335E0000887180 /* nanopb.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = nanopb.xcframework; path = platform/nanopb.xcframework; sourceTree = "<group>"; };
 		3ABFE38326335E0000887180 /* PersonalizedAdConsent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PersonalizedAdConsent.framework; path = platform/PersonalizedAdConsent.framework; sourceTree = "<group>"; };
-		3ABFE38526335E0000887180 /* FacebookAdapter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookAdapter.framework; path = platform/FacebookAdapter.framework; sourceTree = "<group>"; };
-		3ABFE38626335E0000887180 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBAudienceNetwork.framework; path = platform/FBAudienceNetwork.framework; sourceTree = "<group>"; };
 		3ABFE38726335E0000887180 /* PromisesObjC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = PromisesObjC.xcframework; path = platform/PromisesObjC.xcframework; sourceTree = "<group>"; };
-		3ABFE38826335E0000887180 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = platform/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		3ABFE38926335E0000887180 /* UserMessagingPlatform.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = UserMessagingPlatform.xcframework; path = platform/UserMessagingPlatform.xcframework; sourceTree = "<group>"; };
 		3ABFE38A26335E0000887180 /* GoogleAppMeasurement.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurement.xcframework; path = platform/GoogleAppMeasurement.xcframework; sourceTree = "<group>"; };
 		3ABFE38B26335E0000887180 /* GoogleUtilities.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleUtilities.xcframework; path = platform/GoogleUtilities.xcframework; sourceTree = "<group>"; };
@@ -55,14 +49,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3ABFE39126335E0000887180 /* FacebookAdapter.framework in Frameworks */,
 				3ABFE38E26335E0000887180 /* nanopb.xcframework in Frameworks */,
 				3ABFE39526335E0000887180 /* UserMessagingPlatform.xcframework in Frameworks */,
 				3ABFE38F26335E0000887180 /* PersonalizedAdConsent.framework in Frameworks */,
 				3ABFE38D26335E0000887180 /* GoogleMobileAds.xcframework in Frameworks */,
-				3ABFE39226335E0000887180 /* FBAudienceNetwork.framework in Frameworks */,
 				3ABFE39626335E0000887180 /* GoogleAppMeasurement.xcframework in Frameworks */,
-				3ABFE39426335E0000887180 /* FBSDKCoreKit.framework in Frameworks */,
 				3ABFE39326335E0000887180 /* PromisesObjC.xcframework in Frameworks */,
 				3ABFE39726335E0000887180 /* GoogleUtilities.xcframework in Frameworks */,
 			);
@@ -93,16 +84,13 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3ABFE38526335E0000887180 /* FacebookAdapter.framework */,
-				3ABFE38626335E0000887180 /* FBAudienceNetwork.framework */,
-				3ABFE38826335E0000887180 /* FBSDKCoreKit.framework */,
 				3ABFE38A26335E0000887180 /* GoogleAppMeasurement.xcframework */,
 				3ABFE38126335E0000887180 /* GoogleMobileAds.xcframework */,
 				3ABFE38B26335E0000887180 /* GoogleUtilities.xcframework */,
 				3ABFE38226335E0000887180 /* nanopb.xcframework */,
-				3ABFE38326335E0000887180 /* PersonalizedAdConsent.framework */,
 				3ABFE38726335E0000887180 /* PromisesObjC.xcframework */,
 				3ABFE38926335E0000887180 /* UserMessagingPlatform.xcframework */,
+				3ABFE38326335E0000887180 /* PersonalizedAdConsent.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

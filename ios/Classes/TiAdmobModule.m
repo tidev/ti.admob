@@ -18,7 +18,6 @@
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 140000
 #import <AppTrackingTransparency/ATTrackingManager.h>
-#import <FBAudienceNetwork/FBAdSettings.h>
 #endif
 
 @implementation TiAdmobModule
@@ -273,18 +272,12 @@
 
 - (void)setAdvertiserTrackingEnabled:(id)advertiserTrackingEnabled
 {
-  // this method is required by Facebook Audience Network for iOS >= 14
-  if (@available(iOS 14, *)) {
-    ENSURE_TYPE(advertiserTrackingEnabled, NSNumber);
-    [FBAdSettings setAdvertiserTrackingEnabled:[TiUtils boolValue:advertiserTrackingEnabled]];
-  } else {
-    NSLog(@"[WARN] Ti.AdMob: The function `setAdvertiserTrackingEnabled` should be used on ios version 14 and above only");
-  }
+  DEPRECATED_REMOVED(@"Admob.advertiserTrackingEnabled", @"4.0.0", @"4.0.0")
 }
 
 - (void)setInMobi_updateGDPRConsent:(id)updateGDPRConsent
 {
-  DEPRECATED_REMOVED(@"Admob.inMobi_updateGDPRConsent", @"4.0.0", @"4.0.0 (Not supported by it's vendors anymore")
+  DEPRECATED_REMOVED(@"Admob.inMobi_updateGDPRConsent", @"4.0.0", @"4.0.0")
 }
 
 #pragma mark Constants
