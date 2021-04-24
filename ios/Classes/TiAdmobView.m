@@ -86,7 +86,7 @@
   } else if ([TiUtils intValue:adType def:TiAdmobAdTypeBanner] == TiAdmobAdTypeInterstitial) {
     [self loadInterstitial];
   } else if ([TiUtils intValue:adType def:TiAdmobAdTypeBanner] == TiAdmobAdTypeRewardedVideo) {
-    [self loadRewardedVideo];
+    [self loadRewardedVideoWithAdUnitID:adUnitId];
   }
 }
 
@@ -178,9 +178,11 @@
   [[self bannerView] loadRequest:[GADRequest request]];
 }
 
-- (void)loadRewardedVideo
+- (void)loadRewardedVideoWithAdUnitID:(NSString *)adUnitID
 {
-  [GADRewardedAd loadWithAdUnitID:adUnitId request:[GADRequest request] completionHandler:^(GADRewardedAd * _Nullable _rewardedAd, NSError * _Nullable error) {
+  // Pass directly here because it can be overwritten by
+  // calling "loadRewardedVideo(adUnitId)" again
+  [GADRewardedAd loadWithAdUnitID:adUnitID request:[GADRequest request] completionHandler:^(GADRewardedAd * _Nullable _rewardedAd, NSError * _Nullable error) {
     if (error) {
       [self.proxy fireEvent:@"adfailedtoload" withObject:@{ @"message": error.localizedDescription }];
       return;
@@ -189,7 +191,7 @@
     rewardedAd = [_rewardedAd retain];
     rewardedAd.fullScreenContentDelegate = self;
 
-    [self showRewardedVideo];
+    [[self proxy] fireEvent:@"adloaded"];
   }];
 }
 
@@ -206,7 +208,7 @@
      interstitialAd = [ad retain];
      interstitialAd.fullScreenContentDelegate = self;
 
-    [self showInterstitial];
+    [[self proxy] fireEvent:@"adloaded"];
    }];
 }
 
@@ -231,7 +233,7 @@
     [rewardedAd presentFromRootViewController:[[[TiApp app] controller] topPresentedController] userDidEarnRewardHandler:^{
       GADAdReward *reward = rewardedAd.adReward;
 
-      // TODO: Which event to fire for best backwards compatibility
+      [[self proxy] fireEvent:@"adrewarded"];
     }];
   } else {
     NSLog(@"[WARN] Cannot show rewarded video: %@", error.localizedDescription);
@@ -295,7 +297,7 @@
 
 - (void)bannerViewDidReceiveAd:(nonnull GADBannerView *)bannerView
 {
-  [self.proxy fireEvent:@"didReceiveAd" withObject:bannerView.adUnitID];
+  // [self.proxy fireEvent:@"didReceiveAd" withObject:bannerView.adUnitID];
 }
 
 - (void)bannerView:(nonnull GADBannerView *)bannerView

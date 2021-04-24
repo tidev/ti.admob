@@ -5,15 +5,19 @@ var win = Ti.UI.createWindow({
     orientationModes: [Ti.UI.PORTRAIT, Ti.UI.LANDSCAPE_LEFT, Ti.UI.LANDSCAPE_RIGHT]
 });
 
+win.addEventListener('postlayout', function onPostLayout(event) {
+  win.removeEventListener('postlayout', onPostLayout);
+  bannerAdView.bottom = event.source.safeAreaPadding.bottom;
+});
+
 /* Banner ads */
 
 var bannerAdView = Admob.createView({
     height: 50,
-    bottom: 30,
-    debugEnabled: true, // If enabled, a dummy value for `adUnitId` will be used to test
+    bottom: 0,
     adType: Admob.AD_TYPE_BANNER,
-    adUnitId: '<<YOUR ADD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
-    adBackgroundColor: 'yellow',
+    adUnitId: 'ca-app-pub-3940256099942544/2934735716', // You can get your own at http: //www.admob.com/
+    adBackgroundColor: 'black',
     contentURL: 'https://admob.com', // URL string for a webpage whose content matches the app content.
     requestAgent: 'Titanium Mobile App', // String that identifies the ad request's origin.
     extras: {
@@ -25,9 +29,6 @@ var bannerAdView = Admob.createView({
 });
 win.add(bannerAdView);
 
-bannerAdView.addEventListener('didRecordImpression', function(e) {
-    Ti.API.info('Ad impression recorded!');
-});
 bannerAdView.addEventListener('didReceiveAd', function(e) {
     Ti.API.info('Did receive ad: ' + e.adUnitId + '!');
 });
@@ -58,9 +59,13 @@ interstitialAdButton.addEventListener('click', function() {
         keywords: ['keyword1', 'keyword2']
     });
     ad2.receive();
-
-    ad2.addEventListener('didRecordImpression', function(e) {
-        Ti.API.info('Ad impression recorded!');
+  
+    ad2.addEventListener('adloaded', function() {
+      ad2.showInterstitial();
+    });
+  
+    ad2.addEventListener('didReceiveAd', function(e) {
+        Ti.API.info('Did receive ad!');
     });
 
     ad2.addEventListener('didFailToReceiveAd', function(e) {
@@ -88,11 +93,16 @@ rewardedVideoButton.addEventListener('click', function() {
     });
     rewardedVideo.receive();
 
-    rewardedVideo.addEventListener('didRecordImpression', function (reward) {
-        Ti.API.debug(`Received reward! type: ${reward.type}, amount: ${reward.amount}`);
+    rewardedVideo.addEventListener('adloaded', function() {
+        rewardedVideo.showRewardedVideo();
     });
-    rewardedVideo.addEventListener('didDismissScreen', function() {
-        Ti.API.debug('Ad closed!');
+    rewardedVideo.addEventListener('adrewarded', function (reward) {
+        Ti.API.debug(`Received reward! type: ${reward.type}, amount: ${reward.amount}`);
+        // pre load next rewarded video
+        // rewardedVideo.loadRewardedVideo('ad-unit-id');
+    });
+    rewardedVideo.addEventListener('adclosed', function() {
+        Ti.API.debug('No gold for you!');
     });
     rewardedVideo.addEventListener('adfailedtoload', function(error) {
         Ti.API.debug('Rewarded video ad failed to load: ' + error.message);

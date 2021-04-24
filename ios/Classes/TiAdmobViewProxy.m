@@ -21,13 +21,19 @@
   [[self admobView] initialize];
 }
 
-- (void)showRewardedVideo:(id)args {
-  DEPRECATED_REMOVED(@"Admob.showRewardedVideo", @"4.0.0", @"4.0.0 (not required anymore, just use initialize())")
+- (void)showRewardedVideo:(id)args
+{
+  [[self admobView] showRewardedVideo];
+}
+
+- (void)showInterstitial:(id)args
+{
+  [[self admobView] showInterstitial];
 }
 
 - (void)loadRewardedVideo:(id)adUnitId
 {
-  DEPRECATED_REMOVED(@"Admob.loadRewardedVideo", @"4.0.0", @"4.0.0 (not required anymore, just use initialize())")
+  [[self admobView] loadRewardedVideoWithAdUnitID:adUnitId];
 }
 
 @end

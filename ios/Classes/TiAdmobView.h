@@ -40,6 +40,8 @@
 
 - (GADBannerView *)bannerView;
 
+- (void)loadRewardedVideoWithAdUnitID:(NSString *)adUnitID;
+
 #pragma mark Removed APIs
 
 - (void)setPublisherId_:(id)value;
