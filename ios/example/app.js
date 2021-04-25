@@ -4,6 +4,8 @@ var rootWindow = Ti.UI.createWindow({
     backgroundColor: 'white',
 });
 
+rootWindow.add(Ti.UI.createLabel({ text: 'Preparing …' }));
+
 rootWindow.addEventListener('open', onOpen);
 rootWindow.open();
 
@@ -61,9 +63,8 @@ function openTestAdsWin() {
 
   interstitialAdButton.addEventListener('click', function() {
       var ad2 = Admob.createView({
-          debugEnabled: true, // If enabled, a dummy value for `adUnitId` will be used to test
           adType: Admob.AD_TYPE_INTERSTITIAL,
-          adUnitId: '<<YOUR ADD UNIT ID HERE>>', // You can get your own at http: //www.admob.com/
+          adUnitId: 'ca-app-pub-3940256099942544/5135589807', // You can get your own at http: //www.admob.com/
           keywords: ['keyword1', 'keyword2']
       });
       ad2.receive();
@@ -87,6 +88,7 @@ function openTestAdsWin() {
 
   var rewardedVideoButton = Ti.UI.createButton({
       title: 'Show Rewarded Video Ad',
+      width: Ti.UI.FILL,
       center: {
           y: '55%'
       }
@@ -96,13 +98,14 @@ function openTestAdsWin() {
       rewardedVideoButton.title = 'Loading Rewarded Video ...';
 
       var rewardedVideo = Admob.createView({
-          debugEnabled: true,
+          adUnitId: 'ca-app-pub-3940256099942544/1712485313',
           adType: Admob.AD_TYPE_REWARDED_VIDEO,
       });
       rewardedVideo.receive();
 
       rewardedVideo.addEventListener('adloaded', function() {
           rewardedVideo.showRewardedVideo();
+          rewardedVideoButton.title = 'Show Rewarded Video Ad';
       });
       rewardedVideo.addEventListener('adrewarded', function (reward) {
           Ti.API.debug(`Received reward! type: ${reward.type}, amount: ${reward.amount}`);
@@ -113,6 +116,7 @@ function openTestAdsWin() {
           Ti.API.debug('No gold for you!');
       });
       rewardedVideo.addEventListener('adfailedtoload', function(error) {
+          rewardedVideoButton.title = 'Show Rewarded Video Ad';
           Ti.API.debug('Rewarded video ad failed to load: ' + error.message);
       });
   });
@@ -204,6 +208,10 @@ function requestConsent() {
       if (e.success) {
         Admob.loadForm({
           callback: (e) => {
+            if (e.dismissError || e.loadError) {
+              alert(e.dismissError || e.loadError);
+              return;
+            }
             console.log("Admob.loadConsentForm callback:");
             console.log(e);
             

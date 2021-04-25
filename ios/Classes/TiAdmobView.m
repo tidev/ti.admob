@@ -231,9 +231,12 @@
 
   if (canPresent) {
     [rewardedAd presentFromRootViewController:[[[TiApp app] controller] topPresentedController] userDidEarnRewardHandler:^{
-      GADAdReward *reward = rewardedAd.adReward;
+      NSDictionary *event = @{
+        @"amount": rewardedAd.adReward.amount,
+        @"type": rewardedAd.adReward.type
+      };
 
-      [[self proxy] fireEvent:@"adrewarded"];
+      [[self proxy] fireEvent:@"adrewarded" withObject:event];
     }];
   } else {
     NSLog(@"[WARN] Cannot show rewarded video: %@", error.localizedDescription);
