@@ -18,7 +18,7 @@
 {
   if (bannerView == nil) {
     // Create the view with dynamic width and height specification.
-    bannerView = [[GADBannerView alloc] initWithAdSize:[self generateHeight]];
+    bannerView = [[GADBannerView alloc] initWithAdSize:[self generateAdSize]];
 
     // Set the delegate to receive the internal events
     [bannerView setDelegate:self];
@@ -277,15 +277,24 @@
   return [urlTest evaluateWithObject:candidate];
 }
 
-- (GADAdSize)generateHeight
+- (GADAdSize)generateAdSize
 {
   id height = [[self proxy] valueForKey:@"height"];
+  CGRect frame = self.frame;
+  // Here safe area is taken into account, hence the view frame is used after the
+  // view has been laid out.
+  if (@available(iOS 11.0, *)) {
+    frame = UIEdgeInsetsInsetRect(self.frame, self.safeAreaInsets);
+  }
+  CGFloat viewWidth = frame.size.width;
 
+  // We still support this, but per Google docs, we should primariy use
+  // the adaptive banner width (without a fixed height)
   if (height != nil) {
     return GADAdSizeFullWidthPortraitWithHeight([TiUtils floatValue:height]);
   }
 
-  return kGADAdSizeFluid;
+  return GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(viewWidth);
 }
 
 - (NSString *)exampleAdId
@@ -297,7 +306,7 @@
 
 - (void)bannerViewDidReceiveAd:(nonnull GADBannerView *)bannerView
 {
-  // [self.proxy fireEvent:@"didReceiveAd" withObject:bannerView.adUnitID];
+  [self.proxy fireEvent:@"didReceiveAd" withObject:@{ @"adUnitId": adUnitId }];
 }
 
 - (void)bannerView:(nonnull GADBannerView *)bannerView
@@ -308,22 +317,25 @@
 
 - (void)bannerViewDidRecordImpression:(nonnull GADBannerView *)bannerView
 {
-  [self.proxy fireEvent:@"didRecordImpression" withObject:bannerView.adUnitID];
+  [self.proxy fireEvent:@"didRecordImpression" withObject:adUnitId];
 }
+
+// These three are only called if the banner ad triggers an in-app fullscreen view
+// (without leaving the app)
 
 - (void)bannerViewWillPresentScreen:(nonnull GADBannerView *)bannerView
 {
-  [self.proxy fireEvent:@"willPresentScreen" withObject:@{ @"adUnitId": bannerView.adUnitID }];
+  [self.proxy fireEvent:@"willPresentScreen" withObject:@{ @"adUnitId": adUnitId }];
 }
 
 - (void)bannerViewWillDismissScreen:(nonnull GADBannerView *)bannerView
 {
-  [self.proxy fireEvent:@"willDismissScreen" withObject:@{ @"adUnitId": bannerView.adUnitID }];
+  [self.proxy fireEvent:@"willDismissScreen" withObject:@{ @"adUnitId": adUnitId }];
 }
 
 - (void)bannerViewDidDismissScreen:(nonnull GADBannerView *)bannerView
 {
-  [self.proxy fireEvent:@"didDismissScreen" withObject:@{ @"adUnitId": bannerView.adUnitID }];
+  [self.proxy fireEvent:@"didDismissScreen" withObject:@{ @"adUnitId": adUnitId }];
 }
 
 #pragma mark - GADFullScreenContentDelegate
