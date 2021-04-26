@@ -6,7 +6,6 @@
  */
 
 #import "TiAdmobViewProxy.h"
-#import "TiAdmobTypes.h"
 #import "TiApp.h"
 #import "TiUtils.h"
 
@@ -22,21 +21,19 @@
   [[self admobView] initialize];
 }
 
-- (void)showRewardedVideo:(id)args {
-  if ([[GADRewardBasedVideoAd sharedInstance] isReady]) {
-    [GADRewardBasedVideoAd.sharedInstance presentFromRootViewController:TiApp.app.controller.topPresentedController];
-  }
+- (void)showRewardedVideo:(id)args
+{
+  [[self admobView] showRewardedVideo];
+}
+
+- (void)showInterstitial:(id)args
+{
+  [[self admobView] showInterstitial];
 }
 
 - (void)loadRewardedVideo:(id)adUnitId
 {
-  id adType = [self valueForKey:@"adType"];
-  if (adType != nil && [TiUtils boolValue:adType def:TiAdmobAdTypeBanner] != TiAdmobAdTypeRewardedVideo) {
-    return;
-  }
-
-  ENSURE_SINGLE_ARG(adUnitId, NSString);
-  [GADRewardBasedVideoAd.sharedInstance loadRequest:self.admobView.request withAdUnitID:adUnitId];
+  [[self admobView] loadRewardedVideoWithAdUnitID:adUnitId];
 }
 
 @end

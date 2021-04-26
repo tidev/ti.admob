@@ -11,7 +11,11 @@
 
 - (void)disableSDKCrashReporting:(id)unused;
 
-- (void)disableAutomatedInAppPurchaseReporting:(id)unused;
+- (void)disableAutomatedInAppPurchaseReporting:(id)unused; // REMOVED
+
+- (void)requestConsentInfoUpdateWithParameters:(id)args;
+
+- (void)loadForm:(id)args;
 
 - (void)requestConsentInfoUpdateForPublisherIdentifiers:(id)args;
 
@@ -38,5 +42,7 @@
 - (void)requestTrackingAuthorization:(id)args;
 
 - (void)setAdvertiserTrackingEnabled:(id)advertiserTrackingEnabled;
+
+- (void)setInMobi_updateGDPRConsent:(id)updateGDPRConsent;
 
 @end
