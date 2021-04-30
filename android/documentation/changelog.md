@@ -1,4 +1,11 @@
 # Change Log
+v5.0.6  Update Google Mobile Ads SDK 19.8.0
+        Update Audience Network SDK 6.+
+        Update Facebook Adapter 6.3.0.1
+        Support InMobi adapter
+        Update InMobi SDK 9.1.7
+        Update InMobiAdapter 9.1.6.0
+        Admob.setInMobi_updateGDPRConsent()
 
 v5.0.3  Update Google Mobile Ads SDK 19.7.0
         Update Audience Network SDK 6.2.0
