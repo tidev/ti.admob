@@ -1,4 +1,13 @@
 # Change Log
+v4.1.0  Update AdMob SDK 8.4.0 (Firebase 7.11.0)
+        Update iOS Audience Network SDK 6.4.1
+        Update iOS Facebook Adapter 6.4.1.0
+        Update InMobi SDK 9.1.7
+        Update InMobiAdapter 9.1.7.0
+
+v4.0.0  Update AdMob SDK to 8 (Removed all deprecated classes)
+        Added support for new Rewarded Video Ads
+        Added UMP SDK 2.0.0
 
 v3.1.0  Update iOS Audience Network SDK 6.2.1
         Update iOS Facebook Adapter 6.2.1.0
