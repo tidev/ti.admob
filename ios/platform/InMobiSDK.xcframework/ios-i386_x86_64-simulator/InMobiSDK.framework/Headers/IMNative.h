@@ -94,6 +94,11 @@
  */
 -(void)load;
 /**
+ * Loads a Native Ad with a response Object. This is used for Open Auction use cases
+ * @param response An NSData object which contains the InMobi Native Ad
+ */
+-(void)load:(NSData*)response;
+/**
  * Indicates if the native ad is ready to be displayed.
  */
 -(BOOL)isReady;

@@ -59,13 +59,23 @@ NS_ASSUME_NONNULL_BEGIN
  * updates the user consent for a session of the app
  *
  * @param consentDictionary consent dicionary allows publishers to provide its consent to collect user data and use it.
- * It has Three optional keys:"gdpr", IM_GDPR_CONSENT_AVAILABLE, IM_GDPR_CONSENT_IAB
- * "gdpr"(String): Whether or not the request is subjected to GDPR regulations (0 = No, 1 = Yes), omission indicates Unknown.
+ * It has Three optional keys:IM_SUBJECT_TO_GDPR, IM_GDPR_CONSENT_AVAILABLE, IM_GDPR_CONSENT_IAB
+ * IM_SUBJECT_TO_GDPR(String): Whether or not the request is subjected to GDPR regulations (0 = No, 1 = Yes), omission indicates Unknown.
  * IM_GDPR_CONSENT_AVAILABLE(string): "true" : User has provided consent to collect and use data.
- *                                    "false": User has not provided consent to collect and use data.
+ *                                "false": User has not provided consent to collect and use data.
  * IM_GDPR_CONSENT_IAB(string): Key to send the IAB consent string.
  */
 +(void)updateGDPRConsent:(nullable NSDictionary *)consentDictionary;
+/**
+ * updates the user consent (through mediation partner)  for a session of the app
+ *
+ * @param consentDictionary consent dicionary allows partners to provide its consent to collect user data and use it.
+ * It has Two optional keys: IM_PARTNER_GDPR_CONSENT_AVAILABLE, IM_PARTNER_GDPR_APPLIES
+ * IM_PARTNER_GDPR_CONSENT_AVAILABLE(string): "true" : User has provided consent to collect and use data.
+ *                                        "false": User has not provided consent to collect and use data.
+ * IM_PARTNER_GDPR_APPLIES(string): Whether or not the request is subjected to GDPR regulations (0 = No, 1 = Yes), omission indicates Unknown.
+ */
++(void)setPartnerGDPRConsent:(nullable NSDictionary *)consentDictionary;
 /**
  * Use this to get the version of the SDK.
  * @return The version of the SDK.

@@ -13,6 +13,8 @@
 static NSString * const IM_GDPR_CONSENT_AVAILABLE = @"gdpr_consent_available";
 static NSString * const IM_GDPR_CONSENT_IAB = @"gdpr_consent";
 static NSString * const IM_SUBJECT_TO_GDPR = @"gdpr";
+static NSString * const IM_PARTNER_GDPR_CONSENT_AVAILABLE = @"partner_gdpr_consent_available";
+static NSString * const IM_PARTNER_GDPR_APPLIES = @"partner_gdpr_applies";
 
 typedef NS_ENUM(NSInteger, IMSDKLogLevel) {
     kIMSDKLogLevelNone,
