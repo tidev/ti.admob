@@ -50,11 +50,17 @@
 {
   ENSURE_SINGLE_ARG(args, NSDictionary);
 
-  //NSArray<NSString *> *publisherIdentifiers = [args objectForKey:@"publisherIdentifiers"];
+  NSArray<NSString *> *testDeviceIdentifiers = [args objectForKey:@"testDeviceIdentifiers"];
   KrollCallback *callback = [args objectForKey:@"callback"];
 
   // Create a UMPRequestParameters object.
   UMPRequestParameters *parameters = [[UMPRequestParameters alloc] init];
+
+  // Create a UMPDebugSettings object.
+  UMPDebugSettings *debugSettings = [[UMPDebugSettings alloc] init];
+  debugSettings.testDeviceIdentifiers = testDeviceIdentifiers ?: @[];
+  debugSettings.geography = [TiUtils intValue:@"geography" properties:args def:0];
+  parameters.debugSettings = debugSettings;
 
   // Set tag for under age of consent. Here NO means users are not under age.
   parameters.tagForUnderAgeOfConsent = [TiUtils boolValue:@"tagForUnderAgeOfConsent" properties:args def:NO];;
@@ -322,9 +328,13 @@ MAKE_SYSTEM_PROP(CONSENT_STATUS_OBTAINED, UMPConsentStatusObtained); // 3
 MAKE_SYSTEM_PROP(CONSENT_STATUS_NON_PERSONALIZED, PACConsentStatusNonPersonalized);
 MAKE_SYSTEM_PROP(CONSENT_STATUS_PERSONALIZED, PACConsentStatusPersonalized);
 
-MAKE_SYSTEM_PROP(DEBUG_GEOGRAPHY_DISABLED, PACDebugGeographyDisabled);
-MAKE_SYSTEM_PROP(DEBUG_GEOGRAPHY_EEA, PACDebugGeographyEEA);
-MAKE_SYSTEM_PROP(DEBUG_GEOGRAPHY_NOT_EEA, PACDebugGeographyNotEEA);
+//MAKE_SYSTEM_PROP(DEBUG_GEOGRAPHY_DISABLED, PACDebugGeographyDisabled);
+//MAKE_SYSTEM_PROP(DEBUG_GEOGRAPHY_EEA, PACDebugGeographyEEA);
+//MAKE_SYSTEM_PROP(DEBUG_GEOGRAPHY_NOT_EEA, PACDebugGeographyNotEEA);
+
+MAKE_SYSTEM_PROP(DEBUG_GEOGRAPHY_DISABLED, UMPDebugGeographyDisabled);
+MAKE_SYSTEM_PROP(DEBUG_GEOGRAPHY_EEA,  UMPDebugGeographyEEA);
+MAKE_SYSTEM_PROP(DEBUG_GEOGRAPHY_NOT_EEA, UMPDebugGeographyNotEEA);
 
 MAKE_SYSTEM_STR(SIMULATOR_ID, kGADSimulatorID);
 MAKE_SYSTEM_PROP(GENDER_MALE, kGADGenderMale);
