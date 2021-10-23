@@ -45,7 +45,7 @@ FB_CLASS_EXPORT FB_SUBCLASSING_RESTRICTED @interface FBRewardedVideoAd : NSObjec
 @property (nonatomic, assign, readonly) CMTime duration;
 
 /**
-  the delegate
+  The delegate.
  */
 @property (nonatomic, weak, nullable) id<FBRewardedVideoAdDelegate> delegate;
 
@@ -78,8 +78,8 @@ FB_CLASS_EXPORT FB_SUBCLASSING_RESTRICTED @interface FBRewardedVideoAd : NSObjec
 - (instancetype)initWithPlacementID:(NSString *)placementID;
 
 /**
-  This is a method to initialize an FBRewardedVideoAd matching the given placement id and allows the publisher to set
- the reward to give to a user.
+ This is a method to initialize an FBRewardedVideoAd matching the given placement id and allows the publisher to set the
+ reward to give to a user.
 
  - Parameter placementID The id of the ad placement. You can create your placement id from Facebook developers page.
  - Parameter userID the id of the user
@@ -94,7 +94,7 @@ FB_CLASS_EXPORT FB_SUBCLASSING_RESTRICTED @interface FBRewardedVideoAd : NSObjec
 
 
  You can implement `rewardedVideoAdDidLoad:` and `rewardedVideoAd:didFailWithError:` methods
- of `FBRewardedVideoAdDelegate` if you would like to be notified as loading succeeds or fails.
+ of `FBRewardedVideoAdDelegate` if you would like to be notified when loading succeeds or fails.
  */
 - (void)loadAd;
 
@@ -161,7 +161,7 @@ FB_CLASS_EXPORT FB_SUBCLASSING_RESTRICTED @interface FBRewardedVideoAd : NSObjec
 /**
   Sent when an ad has been successfully loaded.
 
- @param rewardedVideoAd An FBRewardedVideoAd object sending the message.
+ @param rewardedVideoAd A FBRewardedVideoAd object sending the message.
  */
 - (void)rewardedVideoAdDidLoad:(FBRewardedVideoAd *)rewardedVideoAd;
 

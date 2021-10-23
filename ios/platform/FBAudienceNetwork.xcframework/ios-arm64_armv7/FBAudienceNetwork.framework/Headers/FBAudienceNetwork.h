@@ -43,6 +43,7 @@
 #import <FBAudienceNetwork/FBNativeAdsManager.h>
 #import <FBAudienceNetwork/FBNativeBannerAd.h>
 #import <FBAudienceNetwork/FBNativeBannerAdView.h>
+#import <FBAudienceNetwork/FBRewardedInterstitialAd.h>
 #import <FBAudienceNetwork/FBRewardedVideoAd.h>
 #import <FBAudienceNetwork/UIView+FBNativeAdViewTag.h>
 
@@ -58,4 +59,4 @@
 // NOTE: Any changes should also be made to the module.modulemap
 // to ensure comptability with Swift apps using Cocoapods
 
-#define FB_AD_SDK_VERSION @"6.6.0"
+#define FB_AD_SDK_VERSION @"6.8.0"
