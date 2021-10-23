@@ -217,15 +217,15 @@ A constant to be passed in an array to the `testDevices` property to get test ad
 
 ### Number `GENDER_MALE`
 
-A constant to be passed to the `gender` property to specify a gender if used. **Deprecated by the AdMob SDK**.
+A constant to be passed to the `gender` property to specify a gender if used. **Deprecated by the AdMob SDK, deleted from 4.5.0**.
 
 ### Number `GENDER_FEMALE`
 
-A constant to be passed to the `gender` property to specify a gender if used. **Deprecated by the AdMob SDK**.
+A constant to be passed to the `gender` property to specify a gender if used. **Deprecated by the AdMob SDK, deleted from 4.5.0**.
 
 ### Number `GENDER_UNKNOWN`
 
-A constant to be passed to the `gender` property to specify a gender if used. **Deprecated by the AdMob SDK**.
+A constant to be passed to the `gender` property to specify a gender if used. **Deprecated by the AdMob SDK,deleted from 4.5.0**.
 
 ## Usage
 

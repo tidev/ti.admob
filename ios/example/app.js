@@ -199,8 +199,8 @@ function requestConsent() {
       if (Admob.adProviders) {
         if (Admob.adProviders.length > 0) {
           if (Admob.adProviders[0].privacyPolicyURL) {
-            Ti.API.info('adProviders.length:', adProviders.length);
-            Ti.API.info('adProviders[0].privacyPolicyUR');
+            Ti.API.info('adProviders.length:', Admob.adProviders.length);
+            Ti.API.info('adProviders[0].privacyPolicyURL', Admob.adProviders[0].privacyPolicyURL);
             //adProviders = Admob.adProviders;
           };
         };

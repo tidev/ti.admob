@@ -47,7 +47,7 @@ for determining ad delivery.
 
 ### string gender
 
-**Deprecated as part of the AdMob SDK**
+**Deprecated as part of the AdMob SDK, deleted from 4.5.0**
 
 The user's gender for the purpose of determining ad delivery. This should be one of the constants `GENDER_MALE`, `GENDER_FEMALE` or `GENDER_UNKNOWN`.
 
