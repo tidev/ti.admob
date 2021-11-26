@@ -13,6 +13,9 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+
 import com.google.ads.consent.AdProvider;
 import com.google.ads.consent.ConsentForm;
 import com.google.ads.consent.ConsentFormListener;
@@ -21,6 +24,8 @@ import com.google.ads.consent.ConsentInformation;
 import com.google.ads.consent.ConsentStatus;
 import com.google.ads.consent.DebugGeography;
 import com.google.ads.mediation.admob.AdMobAdapter;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.inmobi.sdk.InMobiSdk;
 import com.google.ads.mediation.inmobi.InMobiConsent;
 import com.google.android.gms.ads.AdRequest;
@@ -156,7 +161,12 @@ public class AdmobModule extends KrollModule
 	@Kroll.method
 	public void initialize(String appID)
 	{
-		MobileAds.initialize(TiApplication.getInstance(), appID);
+		MobileAds.initialize(TiApplication.getInstance(), new OnInitializationCompleteListener() {
+			@Override
+			public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
+
+			}
+		});
 	}
 
 	@Kroll.method
@@ -557,7 +567,7 @@ public class AdmobModule extends KrollModule
 		}
 		// Handle tagForChildDirectedTreatment
 		if (options.containsKeyAndNotNull("tagForChildDirectedTreatment")) {
-			adRequestBuilder.tagForChildDirectedTreatment(options.getBoolean("tagForChildDirectedTreatment"));
+			//adRequestBuilder.tagForChildDirectedTreatment(options.getBoolean("tagForChildDirectedTreatment"));
 		}
 		// Handle requestAgent
 		if (options.containsKeyAndNotNull("requestAgent")) {
@@ -567,7 +577,7 @@ public class AdmobModule extends KrollModule
 		if (options.containsKeyAndNotNull("testDevices")) {
 			String[] testDevices = options.getStringArray("testDevices");
 			for (int i = 0; i < testDevices.length; i++) {
-				adRequestBuilder.addTestDevice(testDevices[i]);
+				//adRequestBuilder.addTestDevice(testDevices[i]);
 			}
 		}
 		return adRequestBuilder;

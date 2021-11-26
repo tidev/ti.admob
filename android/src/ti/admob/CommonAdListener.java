@@ -7,7 +7,11 @@
 
 package ti.admob;
 
+import androidx.annotation.NonNull;
+
 import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.LoadAdError;
+
 import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.KrollProxy;
 import org.appcelerator.kroll.common.Log;
@@ -36,12 +40,11 @@ public class CommonAdListener extends AdListener
 	}
 
 	@Override
-	public void onAdFailedToLoad(int errorCode)
-	{
-		super.onAdFailedToLoad(errorCode);
-		Log.d(this.sourceTag, "onAdFailedToLoad(): " + errorCode);
+	public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+		super.onAdFailedToLoad(loadAdError);
+		Log.d(this.sourceTag, "onAdFailedToLoad(): " + loadAdError);
 		KrollDict eventData = new KrollDict();
-		eventData.put("errorCode", String.valueOf(errorCode));
+		eventData.put("errorCode", loadAdError);
 		warnForDeprecatedConstant(AdmobModule.AD_NOT_RECEIVED, AdmobModule.EVENT_AD_FAIL);
 		this.sourceProxy.fireEvent(AdmobModule.AD_NOT_RECEIVED, eventData);
 		this.sourceProxy.fireEvent(AdmobModule.EVENT_AD_FAIL, eventData);
@@ -66,11 +69,8 @@ public class CommonAdListener extends AdListener
 	}
 
 	@Override
-	public void onAdLeftApplication()
-	{
-		super.onAdLeftApplication();
-		warnForDeprecatedConstant(AdmobModule.AD_LEFT_APPLICATION, AdmobModule.EVENT_AD_LEFT_APP);
-		this.sourceProxy.fireEvent(AdmobModule.AD_LEFT_APPLICATION, new KrollDict());
+	public void onAdClicked() {
+		super.onAdClicked();
 		this.sourceProxy.fireEvent(AdmobModule.EVENT_AD_LEFT_APP, new KrollDict());
 	}
 
