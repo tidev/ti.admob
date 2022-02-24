@@ -76,12 +76,16 @@ public class InterstitialAdProxy extends KrollProxy
 			public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
 				super.onAdLoaded(interstitialAd);
 				mInterstitialAd = interstitialAd;
+				fireEvent(AdmobModule.EVENT_AD_LOAD, new KrollDict());
 			}
 
 			@Override
 			public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
 				super.onAdFailedToLoad(loadAdError);
 				mInterstitialAd  = null;
+				KrollDict eventData = new KrollDict();
+				eventData.put("errorCode", loadAdError);
+				fireEvent(AdmobModule.EVENT_AD_FAIL, eventData);
 			}
 		});
 	}
