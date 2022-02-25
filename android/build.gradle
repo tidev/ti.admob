@@ -9,18 +9,18 @@ dependencies {
 	/* Facebook */
 	implementation 'androidx.annotation:annotation:1.0.0'
 	implementation 'com.facebook.android:audience-network-sdk:6.+'
-	implementation 'com.google.ads.mediation:facebook:6.3.0.1'
+	implementation 'com.google.ads.mediation:facebook:6.8.0.0'
 	/* inMobi */
-	implementation 'com.inmobi.monetization:inmobi-ads:9.1.7'
-	implementation 'com.google.ads.mediation:inmobi:9.1.6.0'
+	implementation 'com.inmobi.monetization:inmobi-ads:10.0.1'
+	implementation 'com.google.ads.mediation:inmobi:10.0.1.0'
 	//implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
-	implementation 'com.google.android.gms:play-services-location:17.1.0'//optional dependency for better targeting
+	implementation 'com.google.android.gms:play-services-location:18.0.0'//optional dependency for better targeting
 	/****/
 	implementation 'com.google.android.gms:play-services-base:17.6.0'
-	implementation 'com.google.android.gms:play-services-ads:19.8.0'
-	implementation 'com.google.android.gms:play-services-ads-base:19.8.0'
-	implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
-	implementation 'com.google.android.gms:play-services-ads-lite:19.8.0'
-	implementation 'com.google.firebase:firebase-ads:19.8.0'
-	implementation 'com.google.firebase:firebase-ads-lite:19.8.0'
+	implementation 'com.google.android.gms:play-services-ads:20.5.0'
+	implementation 'com.google.android.gms:play-services-ads-base:20.5.0'
+	implementation 'com.google.android.gms:play-services-ads-identifier:17.1.0'
+	implementation 'com.google.android.gms:play-services-ads-lite:20.5.0'
+	implementation 'com.google.firebase:firebase-ads:20.5.0'
+	implementation 'com.google.firebase:firebase-ads-lite:20.5.0'
 }
