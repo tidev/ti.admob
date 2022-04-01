@@ -81,13 +81,25 @@
     adUnitId = self.exampleAdId;
   }
 
-  if ([TiUtils intValue:adType def:TiAdmobAdTypeBanner] == TiAdmobAdTypeBanner) {
-    [self loadBanner];
-  } else if ([TiUtils intValue:adType def:TiAdmobAdTypeBanner] == TiAdmobAdTypeInterstitial) {
-    [self loadInterstitial];
-  } else if ([TiUtils intValue:adType def:TiAdmobAdTypeBanner] == TiAdmobAdTypeRewardedVideo) {
-    [self loadRewardedVideoWithAdUnitID:adUnitId];
-  }
+  // https://developers.google.com/admob/ios/mediate#initialize_the_mobile_ads_sdk
+  GADMobileAds *ads = [GADMobileAds sharedInstance];
+  [ads startWithCompletionHandler:^(GADInitializationStatus *status) {
+    // Optional: Log each adapter's initialization latency.
+    NSDictionary *adapterStatuses = [status adapterStatusesByClassName];
+    for (NSString *adapter in adapterStatuses) {
+      GADAdapterStatus *adapterStatus = adapterStatuses[adapter];
+      NSLog(@"Adapter Name: %@, Description: %@, Latency: %f", adapter,
+            adapterStatus.description, adapterStatus.latency);
+    }
+
+    if ([TiUtils intValue:adType def:TiAdmobAdTypeBanner] == TiAdmobAdTypeBanner) {
+      [self loadBanner];
+    } else if ([TiUtils intValue:adType def:TiAdmobAdTypeBanner] == TiAdmobAdTypeInterstitial) {
+      [self loadInterstitial];
+    } else if ([TiUtils intValue:adType def:TiAdmobAdTypeBanner] == TiAdmobAdTypeRewardedVideo) {
+      [self loadRewardedVideoWithAdUnitID:adUnitId];
+    }
+  }];
 }
 
 - (void)setAdUnitId_:(id)value
@@ -310,6 +322,7 @@
 - (void)bannerViewDidReceiveAd:(nonnull GADBannerView *)bannerView
 {
   [self.proxy fireEvent:@"didReceiveAd" withObject:@{ @"adUnitId": adUnitId }];
+  //NSLog(@"Banner adapter class name: %@", bannerView.responseInfo.adNetworkClassName);
 }
 
 - (void)bannerView:(nonnull GADBannerView *)bannerView

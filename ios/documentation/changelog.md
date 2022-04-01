@@ -1,4 +1,28 @@
 # Change Log
+
+v4.7.0  Update Google Mobile Ads SDK 8.13.0 (https://github.com/CocoaPods/Specs/tree/master/Specs/5/9/a/Google-Mobile-Ads-SDK/8.13.0 and https://github.com/firebase/firebase-ios-sdk/releases/tag/v8.13.0)
+        Update Audience Network SDK 6.9.0 (https://developers.facebook.com/docs/audience-network/setting-up/platform-setup/ios/add-sdk)
+        Update Facebook Adapter 6.9.0.0 (https://developers.google.com/admob/ios/mediation/facebook#facebook-ios-mediation-adapter-changelog)
+        Update InMobi SDK 10.0.2 (https://support.inmobi.com/monetize/sdk-documentation/download-sdk)
+        Update InMobiAdapter 10.0.2.0 (https://developers.google.com/admob/ios/mediation/inmobi#step_3_import_the_inmobi_sdk_and_adapter)
+        
+v4.5.6  Update AdMob SDK 8.12.0
+        Update iOS Audience Network SDK 6.8.0
+        Update iOS Facebook Adapter 6.8.0.0
+
+v4.5.0  Update AdMob SDK 8.12.0
+
+v4.4.0  Update AdMob SDK 8.11.0 (iOS 15 support)
+
+v4.3.0  Added `UMPDebugSettings` on `Admob.requestConsentInfoUpdateWithParameters`: `testDeviceIdentifiers` and `geography`
+More info here: https://developers.google.com/admob/ump/ios/quick-start#testing
+
+v4.2.0  Update AdMob SDK 8.10.0
+        Update iOS Audience Network SDK 6.6.0
+        Update iOS Facebook Adapter 6.6.0.0
+        Update InMobi SDK 9.2.1
+        Update InMobiAdapter 9.2.1.0
+
 v4.1.0  Update AdMob SDK 8.4.0 (Firebase 7.11.0)
         Update iOS Audience Network SDK 6.4.1
         Update iOS Facebook Adapter 6.4.1.0

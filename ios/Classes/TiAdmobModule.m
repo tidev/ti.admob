@@ -16,10 +16,11 @@
 #import <PersonalizedAdConsent/PersonalizedAdConsent.h>
 #import <UserMessagingPlatform/UserMessagingPlatform.h>
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 140000
-#import <AppTrackingTransparency/ATTrackingManager.h>
 #import <FBAudienceNetwork/FBAdSettings.h>
 #import <InMobiAdapter/InMobiAdapter.h>
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 140000
+#import <AppTrackingTransparency/ATTrackingManager.h>
 #endif
 
 @implementation TiAdmobModule
@@ -283,8 +284,14 @@
 {
   // this method is required by Facebook Audience Network for iOS >= 14
   if (@available(iOS 14, *)) {
-    ENSURE_TYPE(advertiserTrackingEnabled, NSNumber);
-    [FBAdSettings setAdvertiserTrackingEnabled:[TiUtils boolValue:advertiserTrackingEnabled]];
+    ENSURE_TYPE(advertiserTrackingEnabled, NSNumber);      
+    if ([TiUtils boolValue:advertiserTrackingEnabled]) {      
+      [FBAdSettings setAdvertiserTrackingEnabled:YES];
+      NSLog(@"[DEBUG] Ti.AdMob: setAdvertiserTrackingEnabled --> YES");
+    } else {      
+      [FBAdSettings setAdvertiserTrackingEnabled:NO];
+      NSLog(@"[DEBUG] Ti.AdMob: setAdvertiserTrackingEnabled --> NO");
+    }
   } else {
     NSLog(@"[WARN] Ti.AdMob: The function `setAdvertiserTrackingEnabled` should be used on ios version 14 and above only");
   }
@@ -299,11 +306,11 @@
     // this method is required by InMobi to set GDPR    
     [consentObject setObject:@"1" forKey:@"gdpr"];
     [consentObject setObject:@"true" forKey:IM_GDPR_CONSENT_AVAILABLE];
-    NSLog(@"[INFO] Ti.AdMob: inMobi_updateGDPRConsent --> true");
+    NSLog(@"[DEBUG] Ti.AdMob: inMobi_updateGDPRConsent --> true");
   }  else {    
     [consentObject setObject:@"0" forKey:@"gdpr"];
     [consentObject setObject:@"true" forKey:IM_GDPR_CONSENT_AVAILABLE];
-    NSLog(@"[INFO] Ti.AdMob: inMobi_updateGDPRConsent --> false");
+    NSLog(@"[DEBUG] Ti.AdMob: inMobi_updateGDPRConsent --> false");
   }
 
   [GADMInMobiConsent updateGDPRConsent:consentObject];

@@ -21,9 +21,11 @@
 		3ABFE39626335E0000887180 /* GoogleAppMeasurement.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38A26335E0000887180 /* GoogleAppMeasurement.xcframework */; };
 		3ABFE39726335E0000887180 /* GoogleUtilities.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38B26335E0000887180 /* GoogleUtilities.xcframework */; };
 		3AF5B7731C233383002E3DC7 /* TiAdmobTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AF5B7711C233383002E3DC7 /* TiAdmobTypes.h */; };
-		5E497DF2263B088C0059081A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E497DF1263B088C0059081A /* WebKit.framework */; };
-		5E497DF4263B08A00059081A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E497DF3263B08A00059081A /* libz.tbd */; };
-		5E497DF6263B08BE0059081A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E497DF5263B08BE0059081A /* libsqlite3.0.tbd */; };
+		5E0B17A527F21AED001D0BD9 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B17A427F21AED001D0BD9 /* File.swift */; };
+		5E6743A427F4B84500BEE594 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6743A327F4B84500BEE594 /* WebKit.framework */; };
+		5E6743A627F4B85800BEE594 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6743A527F4B85800BEE594 /* libsqlite3.0.tbd */; };
+		5E6743A827F4B86A00BEE594 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6743A727F4B86A00BEE594 /* libz.tbd */; };
+		5E6743AE27F4BEA300BEE594 /* GoogleAppMeasurementIdentitySupport.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6743AD27F4BEA300BEE594 /* GoogleAppMeasurementIdentitySupport.xcframework */; };
 		5ED7B66026EBC395007F4D90 /* FBAudienceNetwork.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ED7B65F26EBC395007F4D90 /* FBAudienceNetwork.xcframework */; };
 		5EFC8F4F263ABC430011A0C2 /* FacebookAdapter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFC8F4B263ABC430011A0C2 /* FacebookAdapter.xcframework */; };
 		5EFC8F50263ABC430011A0C2 /* InMobiSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFC8F4C263ABC430011A0C2 /* InMobiSDK.xcframework */; };
@@ -47,9 +49,12 @@
 		3ABFE38A26335E0000887180 /* GoogleAppMeasurement.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurement.xcframework; path = platform/GoogleAppMeasurement.xcframework; sourceTree = "<group>"; };
 		3ABFE38B26335E0000887180 /* GoogleUtilities.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleUtilities.xcframework; path = platform/GoogleUtilities.xcframework; sourceTree = "<group>"; };
 		3AF5B7711C233383002E3DC7 /* TiAdmobTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiAdmobTypes.h; path = Classes/TiAdmobTypes.h; sourceTree = "<group>"; };
-		5E497DF1263B088C0059081A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/iOSSupport/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
-		5E497DF3263B08A00059081A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
-		5E497DF5263B08BE0059081A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/lib/libsqlite3.0.tbd; sourceTree = DEVELOPER_DIR; };
+		5E0B17A327F21AED001D0BD9 /* admob-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "admob-Bridging-Header.h"; sourceTree = "<group>"; };
+		5E0B17A427F21AED001D0BD9 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		5E6743A327F4B84500BEE594 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/iOSSupport/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
+		5E6743A527F4B85800BEE594 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/lib/libsqlite3.0.tbd; sourceTree = DEVELOPER_DIR; };
+		5E6743A727F4B86A00BEE594 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
+		5E6743AD27F4BEA300BEE594 /* GoogleAppMeasurementIdentitySupport.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurementIdentitySupport.xcframework; path = platform/GoogleAppMeasurementIdentitySupport.xcframework; sourceTree = "<group>"; };
 		5ED7B65F26EBC395007F4D90 /* FBAudienceNetwork.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBAudienceNetwork.xcframework; path = platform/FBAudienceNetwork.xcframework; sourceTree = "<group>"; };
 		5EFC8F4B263ABC430011A0C2 /* FacebookAdapter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FacebookAdapter.xcframework; path = platform/FacebookAdapter.xcframework; sourceTree = "<group>"; };
 		5EFC8F4C263ABC430011A0C2 /* InMobiSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = InMobiSDK.xcframework; path = platform/InMobiSDK.xcframework; sourceTree = "<group>"; };
@@ -63,10 +68,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E6743A827F4B86A00BEE594 /* libz.tbd in Frameworks */,
+				5E6743A627F4B85800BEE594 /* libsqlite3.0.tbd in Frameworks */,
+				5E6743A427F4B84500BEE594 /* WebKit.framework in Frameworks */,
 				5ED7B66026EBC395007F4D90 /* FBAudienceNetwork.xcframework in Frameworks */,
-				5E497DF6263B08BE0059081A /* libsqlite3.0.tbd in Frameworks */,
-				5E497DF4263B08A00059081A /* libz.tbd in Frameworks */,
-				5E497DF2263B088C0059081A /* WebKit.framework in Frameworks */,
 				5EFC8F4F263ABC430011A0C2 /* FacebookAdapter.xcframework in Frameworks */,
 				5EFC8F50263ABC430011A0C2 /* InMobiSDK.xcframework in Frameworks */,
 				5EFC8F51263ABC430011A0C2 /* InMobiAdapter.xcframework in Frameworks */,
@@ -75,6 +80,7 @@
 				3ABFE38F26335E0000887180 /* PersonalizedAdConsent.framework in Frameworks */,
 				3ABFE38D26335E0000887180 /* GoogleMobileAds.xcframework in Frameworks */,
 				3ABFE39626335E0000887180 /* GoogleAppMeasurement.xcframework in Frameworks */,
+				5E6743AE27F4BEA300BEE594 /* GoogleAppMeasurementIdentitySupport.xcframework in Frameworks */,
 				3ABFE39326335E0000887180 /* PromisesObjC.xcframework in Frameworks */,
 				3ABFE39726335E0000887180 /* GoogleUtilities.xcframework in Frameworks */,
 			);
@@ -94,10 +100,12 @@
 		0867D691FE84028FC02AAC07 /* admob */ = {
 			isa = PBXGroup;
 			children = (
+				5E0B17A427F21AED001D0BD9 /* File.swift */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
 				034768DFFF38A50411DB9C8B /* Products */,
+				5E0B17A327F21AED001D0BD9 /* admob-Bridging-Header.h */,
 			);
 			name = admob;
 			sourceTree = "<group>";
@@ -105,14 +113,15 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5E497DF5263B08BE0059081A /* libsqlite3.0.tbd */,
-				5E497DF3263B08A00059081A /* libz.tbd */,
-				5E497DF1263B088C0059081A /* WebKit.framework */,
+				5E6743A727F4B86A00BEE594 /* libz.tbd */,
+				5E6743A527F4B85800BEE594 /* libsqlite3.0.tbd */,
+				5E6743A327F4B84500BEE594 /* WebKit.framework */,
 				5ED7B65F26EBC395007F4D90 /* FBAudienceNetwork.xcframework */,
 				5EFC8F4B263ABC430011A0C2 /* FacebookAdapter.xcframework */,
 				5EFC8F4D263ABC430011A0C2 /* InMobiAdapter.xcframework */,
 				5EFC8F4C263ABC430011A0C2 /* InMobiSDK.xcframework */,
 				3ABFE38A26335E0000887180 /* GoogleAppMeasurement.xcframework */,
+				5E6743AD27F4BEA300BEE594 /* GoogleAppMeasurementIdentitySupport.xcframework */,
 				3ABFE38126335E0000887180 /* GoogleMobileAds.xcframework */,
 				3ABFE38B26335E0000887180 /* GoogleUtilities.xcframework */,
 				3ABFE38226335E0000887180 /* nanopb.xcframework */,
@@ -187,7 +196,12 @@
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					D2AAC07D0554694100DB518D = {
+						LastSwiftMigration = 1300;
+					};
+				};
 			};
 			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "admob" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -213,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24DD6CFA1134B3F500162E58 /* TiAdmobModule.m in Sources */,
+				5E0B17A527F21AED001D0BD9 /* File.swift in Sources */,
 				249BE67011B47B2700AF41CF /* TiAdmobViewProxy.m in Sources */,
 				249BE67411B47B3800AF41CF /* TiAdmobView.m in Sources */,
 			);
@@ -225,6 +240,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -257,11 +274,19 @@
 					"$(HEADER_SEARCH_PATHS)",
 				);
 				INSTALL_PATH = /usr/local/lib;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+					/usr/lib/swift,
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS",
 					"$(PROJECT_DIR)/platform",
+					"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
+					"$(SDKROOT)/usr/lib/swift",
 				);
 				OTHER_CFLAGS = (
 					"-DDEBUG",
@@ -273,6 +298,9 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "admob-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 			};
@@ -282,7 +310,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DSTROOT = /tmp/TiAdmob.dst;
@@ -313,12 +343,20 @@
 					"$(HEADER_SEARCH_PATHS)",
 				);
 				INSTALL_PATH = /usr/local/lib;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+					/usr/lib/swift,
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS",
 					"$(PROJECT_DIR)/platform",
+					"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
+					"$(SDKROOT)/usr/lib/swift",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DTI_POST_1_2";
@@ -328,6 +366,8 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "admob-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE = YES;
 			};
@@ -452,6 +492,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
