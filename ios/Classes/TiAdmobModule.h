@@ -45,4 +45,6 @@
 
 - (void)setInMobi_updateGDPRConsent:(id)updateGDPRConsent;
 
+- (void)showMediationTestSuite:(__unused id)unused;
+
 @end

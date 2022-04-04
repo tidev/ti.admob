@@ -18,6 +18,7 @@
 
 #import <FBAudienceNetwork/FBAdSettings.h>
 #import <InMobiAdapter/InMobiAdapter.h>
+@import GoogleMobileAdsMediationTestSuite;
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 140000
 #import <AppTrackingTransparency/ATTrackingManager.h>
@@ -314,6 +315,14 @@
   }
 
   [GADMInMobiConsent updateGDPRConsent:consentObject];
+}
+
+- (void)showMediationTestSuite:(id)unused
+{
+  TiThreadPerformOnMainThread(
+      ^{
+          [GoogleMobileAdsMediationTestSuite presentOnViewController:[[[TiApp app] controller] topPresentedController] delegate:nil];          
+      },NO);
 }
 
 #pragma mark Constants

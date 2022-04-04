@@ -27,6 +27,11 @@
 		5E6743A827F4B86A00BEE594 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6743A727F4B86A00BEE594 /* libz.tbd */; };
 		5E6743AE27F4BEA300BEE594 /* GoogleAppMeasurementIdentitySupport.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6743AD27F4BEA300BEE594 /* GoogleAppMeasurementIdentitySupport.xcframework */; };
 		5ED7B66026EBC395007F4D90 /* FBAudienceNetwork.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ED7B65F26EBC395007F4D90 /* FBAudienceNetwork.xcframework */; };
+		5EF162A627FAE60400798679 /* GoogleMobileAdsMediationTestSuite.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EF162A227FAE60400798679 /* GoogleMobileAdsMediationTestSuite.xcframework */; };
+		5EF162A727FAE60400798679 /* MDFTextAccessibility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EF162A327FAE60400798679 /* MDFTextAccessibility.framework */; };
+		5EF162A827FAE60400798679 /* MDFInternationalization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EF162A427FAE60400798679 /* MDFInternationalization.framework */; };
+		5EF162A927FAE60400798679 /* MaterialComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EF162A527FAE60400798679 /* MaterialComponents.framework */; };
+		5EF162AC27FAE65400798679 /* GoogleMobileAdsMediationTestSuite.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5EF162AB27FAE65400798679 /* GoogleMobileAdsMediationTestSuite.bundle */; };
 		5EFC8F4F263ABC430011A0C2 /* FacebookAdapter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFC8F4B263ABC430011A0C2 /* FacebookAdapter.xcframework */; };
 		5EFC8F50263ABC430011A0C2 /* InMobiSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFC8F4C263ABC430011A0C2 /* InMobiSDK.xcframework */; };
 		5EFC8F51263ABC430011A0C2 /* InMobiAdapter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFC8F4D263ABC430011A0C2 /* InMobiAdapter.xcframework */; };
@@ -56,6 +61,11 @@
 		5E6743A727F4B86A00BEE594 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		5E6743AD27F4BEA300BEE594 /* GoogleAppMeasurementIdentitySupport.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurementIdentitySupport.xcframework; path = platform/GoogleAppMeasurementIdentitySupport.xcframework; sourceTree = "<group>"; };
 		5ED7B65F26EBC395007F4D90 /* FBAudienceNetwork.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBAudienceNetwork.xcframework; path = platform/FBAudienceNetwork.xcframework; sourceTree = "<group>"; };
+		5EF162A227FAE60400798679 /* GoogleMobileAdsMediationTestSuite.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleMobileAdsMediationTestSuite.xcframework; path = platform/GoogleMobileAdsMediationTestSuite.xcframework; sourceTree = "<group>"; };
+		5EF162A327FAE60400798679 /* MDFTextAccessibility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MDFTextAccessibility.framework; path = platform/MDFTextAccessibility.framework; sourceTree = "<group>"; };
+		5EF162A427FAE60400798679 /* MDFInternationalization.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MDFInternationalization.framework; path = platform/MDFInternationalization.framework; sourceTree = "<group>"; };
+		5EF162A527FAE60400798679 /* MaterialComponents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaterialComponents.framework; path = platform/MaterialComponents.framework; sourceTree = "<group>"; };
+		5EF162AB27FAE65400798679 /* GoogleMobileAdsMediationTestSuite.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMobileAdsMediationTestSuite.bundle; path = Resources/GoogleMobileAdsMediationTestSuite.bundle; sourceTree = "<group>"; };
 		5EFC8F4B263ABC430011A0C2 /* FacebookAdapter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FacebookAdapter.xcframework; path = platform/FacebookAdapter.xcframework; sourceTree = "<group>"; };
 		5EFC8F4C263ABC430011A0C2 /* InMobiSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = InMobiSDK.xcframework; path = platform/InMobiSDK.xcframework; sourceTree = "<group>"; };
 		5EFC8F4D263ABC430011A0C2 /* InMobiAdapter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = InMobiAdapter.xcframework; path = platform/InMobiAdapter.xcframework; sourceTree = "<group>"; };
@@ -68,6 +78,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EF162A627FAE60400798679 /* GoogleMobileAdsMediationTestSuite.xcframework in Frameworks */,
+				5EF162A727FAE60400798679 /* MDFTextAccessibility.framework in Frameworks */,
+				5EF162A827FAE60400798679 /* MDFInternationalization.framework in Frameworks */,
+				5EF162A927FAE60400798679 /* MaterialComponents.framework in Frameworks */,
 				5E6743A827F4B86A00BEE594 /* libz.tbd in Frameworks */,
 				5E6743A627F4B85800BEE594 /* libsqlite3.0.tbd in Frameworks */,
 				5E6743A427F4B84500BEE594 /* WebKit.framework in Frameworks */,
@@ -100,6 +114,7 @@
 		0867D691FE84028FC02AAC07 /* admob */ = {
 			isa = PBXGroup;
 			children = (
+				5EF162AB27FAE65400798679 /* GoogleMobileAdsMediationTestSuite.bundle */,
 				5E0B17A427F21AED001D0BD9 /* File.swift */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
@@ -113,6 +128,10 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5EF162A227FAE60400798679 /* GoogleMobileAdsMediationTestSuite.xcframework */,
+				5EF162A527FAE60400798679 /* MaterialComponents.framework */,
+				5EF162A427FAE60400798679 /* MDFInternationalization.framework */,
+				5EF162A327FAE60400798679 /* MDFTextAccessibility.framework */,
 				5E6743A727F4B86A00BEE594 /* libz.tbd */,
 				5E6743A527F4B85800BEE594 /* libsqlite3.0.tbd */,
 				5E6743A327F4B84500BEE594 /* WebKit.framework */,
@@ -180,6 +199,7 @@
 				D2AAC07A0554694100DB518D /* Headers */,
 				D2AAC07B0554694100DB518D /* Sources */,
 				D2AAC07C0554694100DB518D /* Frameworks */,
+				5EF162AA27FAE63E00798679 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -220,6 +240,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5EF162AA27FAE63E00798679 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5EF162AC27FAE65400798679 /* GoogleMobileAdsMediationTestSuite.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D2AAC07B0554694100DB518D /* Sources */ = {
