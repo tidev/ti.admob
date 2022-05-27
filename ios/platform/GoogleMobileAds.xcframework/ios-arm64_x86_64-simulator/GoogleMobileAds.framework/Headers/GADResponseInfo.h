@@ -27,24 +27,17 @@
 /// JSON-safe dictionary representation of the ad network response info.
 @property(nonatomic, readonly, nonnull) NSDictionary<NSString *, id> *dictionaryRepresentation;
 
-#pragma mark Deprecated
-
-/// Deprecated. Use adUnitMapping.
-@property(nonatomic, readonly, nonnull)
-    NSDictionary<NSString *, id> *credentials GAD_DEPRECATED_MSG_ATTRIBUTE(
-        "Use adUnitMapping instead");
-
 @end
 
 /// Ad network class name for ads returned from Google's ad network.
-extern NSString *_Nonnull const GADGoogleAdNetworkClassName;
+FOUNDATION_EXPORT NSString *_Nonnull const GADGoogleAdNetworkClassName;
 
 /// Ad network class name for custom event ads.
-extern NSString *_Nonnull const GADCustomEventAdNetworkClassName;
+FOUNDATION_EXPORT NSString *_Nonnull const GADCustomEventAdNetworkClassName;
 
 /// Key into NSError.userInfo mapping to a GADResponseInfo object. When ads fail to load, errors
 /// returned contain an instance of GADResponseInfo.
-extern NSString *_Nonnull GADErrorUserInfoKeyResponseInfo;
+FOUNDATION_EXPORT NSString *_Nonnull GADErrorUserInfoKeyResponseInfo;
 
 /// Information about a response to an ad request.
 @interface GADResponseInfo : NSObject

@@ -13,7 +13,6 @@
 #import "TiUtils.h"
 
 #import <GoogleMobileAds/GoogleMobileAds.h>
-#import <PersonalizedAdConsent/PersonalizedAdConsent.h>
 #import <UserMessagingPlatform/UserMessagingPlatform.h>
 
 #import <FBAudienceNetwork/FBAdSettings.h>
@@ -144,94 +143,45 @@
 
 - (void)requestConsentInfoUpdateForPublisherIdentifiers:(id)args
 {
-  ENSURE_SINGLE_ARG(args, NSDictionary);
-
-  NSArray<NSString *> *publisherIdentifiers = [args objectForKey:@"publisherIdentifiers"];
-  KrollCallback *callback = [args objectForKey:@"callback"];
-
-  [[PACConsentInformation sharedInstance] requestConsentInfoUpdateForPublisherIdentifiers:publisherIdentifiers
-                                                                        completionHandler:^(NSError *_Nullable error) {
-                                                                          if (error != nil) {
-                                                                            [callback call:@[ @{@"success" : @NO,
-                                                                              @"error" : error.localizedDescription} ]
-                                                                                thisObject:self];
-                                                                            return;
-                                                                          }
-
-                                                                          [callback call:@[ @{@"success" : @YES} ] thisObject:self];
-                                                                        }];
+  NSLog(@"[ERROR] The \"requestConsentInfoUpdateForPublisherIdentifiers\" method has been removed due to the discontinuation of the PersonalizedAdConsent framework by Google. Read more here: https://developers.google.com/admob/ios/eu-consent")
 }
 
 - (void)showConsentForm:(id)args
 {
-  ENSURE_SINGLE_ARG(args, NSDictionary);
-
-  if ([args objectForKey:@"privacyURL"] == nil) {
-    [self throwException:NSLocalizedString(@"Missing \"privacyURL\" argument", nil) subreason:@"Cannot show consent form" location:CODELOCATION];
-    return;
-  }
-
-  NSURL *privacyURL = [TiUtils toURL:[args objectForKey:@"privacyURL"] proxy:self];
-  KrollCallback *callback = [args objectForKey:@"callback"];
-
-  PACConsentForm *form = [[PACConsentForm alloc] initWithApplicationPrivacyPolicyURL:privacyURL];
-  form.shouldOfferPersonalizedAds = [TiUtils boolValue:@"shouldOfferPersonalizedAds" properties:args def:YES];
-  form.shouldOfferNonPersonalizedAds = [TiUtils boolValue:@"shouldOfferNonPersonalizedAds" properties:args def:YES];
-  form.shouldOfferAdFree = [TiUtils boolValue:@"shouldOfferAdFree" properties:args def:NO];
-
-  TiThreadPerformOnMainThread(
-      ^{
-        [form loadWithCompletionHandler:^(NSError *_Nullable error) {
-          if (error != nil) {
-            [callback call:@[ @{ @"error" : error.localizedDescription } ] thisObject:self];
-            return;
-          }
-
-          [form presentFromViewController:[[[TiApp app] controller] topPresentedController]
-                        dismissCompletion:^(NSError *_Nullable error, BOOL userPrefersAdFree) {
-                          [callback call:@[ @{
-                            @"userPrefersAdFree" : @(userPrefersAdFree),
-                            @"error" : NULL_IF_NIL(error.localizedDescription)
-                          } ]
-                              thisObject:self];
-                        }];
-        }];
-      },
-      NO);
+  NSLog(@"[ERROR] The \"showConsentForm\" method has been removed due to the discontinuation of the PersonalizedAdConsent framework by Google. Read more here: https://developers.google.com/admob/ios/eu-consent")
 }
 
 - (NSNumber *)consentStatus
 {
-  return @([[PACConsentInformation sharedInstance] consentStatus]);
+  NSLog(@"[ERROR] The \"consentStatus\" property has been removed due to the discontinuation of the PersonalizedAdConsent framework by Google. Read more here: https://developers.google.com/admob/ios/eu-consent")
+
+  return @(-1);
 }
 
 - (NSArray *)adProviders
 {
-  NSArray *adProviders = [[PACConsentInformation sharedInstance] adProviders];
-  NSMutableArray *result = [NSMutableArray arrayWithCapacity:adProviders.count];
+  NSLog(@"[ERROR] The \"adProviders\" property has been removed due to the discontinuation of the PersonalizedAdConsent framework by Google. Read more here: https://developers.google.com/admob/ios/eu-consent")
 
-  for (PACAdProvider *adProvider in adProviders) {
-    [result addObject:@{ @"identifier" : adProvider.identifier,
-      @"name" : adProvider.name,
-      @"privacyPolicyURL" : adProvider.privacyPolicyURL }];
-  }
-
-  return result;
+  return @[];
 }
 
 - (NSArray *)debugIdentifiers
 {
-  return [[PACConsentInformation sharedInstance] debugIdentifiers] ?: @[];
+  NSLog(@"[ERROR] The \"debugIdentifiers\" property has been removed due to the discontinuation of the PersonalizedAdConsent framework by Google. Read more here: https://developers.google.com/admob/ios/eu-consent")
+
+  return @[];
 }
 
 - (void)setDebugIdentifiers:(id)debugIdentifiers
 {
-  [[PACConsentInformation sharedInstance] setDebugIdentifiers:debugIdentifiers];
+  NSLog(@"[ERROR] The \"debugIdentifiers\" property has been removed due to the discontinuation of the PersonalizedAdConsent framework by Google. Read more here: https://developers.google.com/admob/ios/eu-consent")
 }
 
 - (NSNumber *)debugGeography
 {
-  return @([[PACConsentInformation sharedInstance] debugGeography]);
+  NSLog(@"[ERROR] The \"debugGeography\" property has been removed due to the discontinuation of the PersonalizedAdConsent framework by Google. Read more here: https://developers.google.com/admob/ios/eu-consent")
+
+  return @(-1);
 }
 
 - (void)resetConsent:(id)unused
@@ -241,13 +191,15 @@
 
 - (void)setTagForUnderAgeOfConsent:(id)tagForUnderAgeOfConsent
 {
-  ENSURE_TYPE(tagForUnderAgeOfConsent, NSNumber);
-  [[PACConsentInformation sharedInstance] setTagForUnderAgeOfConsent:[TiUtils boolValue:tagForUnderAgeOfConsent]];
+  NSLog(@"[ERROR] The \"tagForUnderAgeOfConsent\" property has been removed due to the discontinuation of the PersonalizedAdConsent framework by Google. Read more here: https://developers.google.com/admob/ios/eu-consent")
+
 }
 
 - (NSNumber *)isTaggedForUnderAgeOfConsent:(id)unused
 {
-  return @([[PACConsentInformation sharedInstance] isTaggedForUnderAgeOfConsent]);
+  NSLog(@"[ERROR] The \"isTaggedForUnderAgeOfConsent\" method has been removed due to the discontinuation of the PersonalizedAdConsent framework by Google. Read more here: https://developers.google.com/admob/ios/eu-consent")
+
+  return @(NO);
 }
 
 - (NSNumber *)trackingAuthorizationStatus
@@ -340,9 +292,8 @@ MAKE_SYSTEM_PROP(CONSENT_STATUS_REQUIRED, UMPConsentStatusRequired); // 1
 MAKE_SYSTEM_PROP(CONSENT_STATUS_NOT_REQUIRED, UMPConsentStatusNotRequired); // 2
 MAKE_SYSTEM_PROP(CONSENT_STATUS_OBTAINED, UMPConsentStatusObtained); // 3
 
-//MAKE_SYSTEM_PROP(CONSENT_STATUS_UNKNOWN, PACConsentStatusUnknown);
-MAKE_SYSTEM_PROP(CONSENT_STATUS_NON_PERSONALIZED, PACConsentStatusNonPersonalized);
-MAKE_SYSTEM_PROP(CONSENT_STATUS_PERSONALIZED, PACConsentStatusPersonalized);
+MAKE_SYSTEM_PROP(CONSENT_STATUS_NON_PERSONALIZED, -1);
+MAKE_SYSTEM_PROP(CONSENT_STATUS_PERSONALIZED, -2);
 
 //MAKE_SYSTEM_PROP(DEBUG_GEOGRAPHY_DISABLED, PACDebugGeographyDisabled);
 //MAKE_SYSTEM_PROP(DEBUG_GEOGRAPHY_EEA, PACDebugGeographyEEA);

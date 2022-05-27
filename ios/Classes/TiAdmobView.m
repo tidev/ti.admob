@@ -180,9 +180,7 @@
 {
   ENSURE_TYPE(args, NSDictionary);
 
-  [[GADRequest request] setLocationWithLatitude:[[args valueForKey:@"latitude"] floatValue]
-                                longitude:[[args valueForKey:@"longitude"] floatValue]
-                                 accuracy:[[args valueForKey:@"accuracy"] floatValue]];
+  NSLog(@"The \"setLocation\" method has been removed due to the Google removal. See: https://developers.google.com/admob/ios/migration#remove_location_setting_api_on_gadrequest");
 }
 
 - (void)loadBanner
@@ -377,7 +375,7 @@
   [self.proxy fireEvent:@"didFailToReceiveAd" withObject:@{ @"adUnitId" : adUnitId, @"error" : error.localizedDescription }];
 }
 
-- (void)adDidPresentFullScreenContent:(id<GADFullScreenPresentingAd>)ad
+- (void)adWillPresentFullScreenContent:(id<GADFullScreenPresentingAd>)ad
 {
   [self.proxy fireEvent:@"didPresentScreen" withObject:@{ @"adUnitId": adUnitId }];
 }
