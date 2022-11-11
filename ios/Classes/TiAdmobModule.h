@@ -17,25 +17,25 @@
 
 - (void)loadForm:(id)args;
 
-- (void)requestConsentInfoUpdateForPublisherIdentifiers:(id)args;
+- (void)requestConsentInfoUpdateForPublisherIdentifiers:(id)args; // REMOVED
 
-- (void)showConsentForm:(id)args;
+- (void)showConsentForm:(id)args; // REMOVED
 
-- (NSNumber *)consentStatus;
+- (NSNumber *)consentStatus; // REMOVED
 
-- (NSArray *)adProviders;
+- (NSArray *)adProviders; // REMOVED
 
-- (NSArray *)debugIdentifiers;
+- (NSArray *)debugIdentifiers; // REMOVED
 
-- (void)setDebugIdentifiers:(id)debugIdentifiers;
+- (void)setDebugIdentifiers:(id)debugIdentifiers; // REMOVED
 
-- (NSNumber *)debugGeography;
+- (NSNumber *)debugGeography; // REMOVED
 
 - (void)resetConsent:(__unused id)unused;
 
-- (void)setTagForUnderAgeOfConsent:(id)tagForUnderAgeOfConsent;
+- (void)setTagForUnderAgeOfConsent:(id)tagForUnderAgeOfConsent; // REMOVED
 
-- (NSNumber *)isTaggedForUnderAgeOfConsent:(__unused id)unused;
+- (NSNumber *)isTaggedForUnderAgeOfConsent:(__unused id)unused; // REMOVED
 
 - (NSNumber *)trackingAuthorizationStatus;
 
@@ -44,7 +44,5 @@
 - (void)setAdvertiserTrackingEnabled:(id)advertiserTrackingEnabled;
 
 - (void)setInMobi_updateGDPRConsent:(id)updateGDPRConsent;
-
-- (void)showMediationTestSuite:(__unused id)unused;
 
 @end

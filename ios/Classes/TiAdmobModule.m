@@ -13,12 +13,11 @@
 #import "TiUtils.h"
 
 #import <GoogleMobileAds/GoogleMobileAds.h>
-#import <PersonalizedAdConsent/PersonalizedAdConsent.h>
+//#import <PersonalizedAdConsent/PersonalizedAdConsent.h>
 #import <UserMessagingPlatform/UserMessagingPlatform.h>
 
 #import <FBAudienceNetwork/FBAdSettings.h>
 #import <InMobiAdapter/InMobiAdapter.h>
-@import GoogleMobileAdsMediationTestSuite;
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 140000
 #import <AppTrackingTransparency/ATTrackingManager.h>
@@ -144,6 +143,8 @@
 
 - (void)requestConsentInfoUpdateForPublisherIdentifiers:(id)args
 {
+  DEPRECATED_REMOVED(@"Admob.requestConsentInfoUpdateForPublisherIdentifiers", @"5.0.0", @"5.0.0 (removed by Google. Use new UMP https://developers.google.com/admob/ump/ios/)");
+  /*
   ENSURE_SINGLE_ARG(args, NSDictionary);
 
   NSArray<NSString *> *publisherIdentifiers = [args objectForKey:@"publisherIdentifiers"];
@@ -160,10 +161,13 @@
 
                                                                           [callback call:@[ @{@"success" : @YES} ] thisObject:self];
                                                                         }];
+  */
 }
 
 - (void)showConsentForm:(id)args
 {
+  DEPRECATED_REMOVED(@"Admob.showConsentForm", @"5.0.0", @"5.0.0 (Removed since Ti.Admob 5.0.0 in favor of new UMP method Admob.requestConsentInfoUpdateWithParameters())");
+  /*
   ENSURE_SINGLE_ARG(args, NSDictionary);
 
   if ([args objectForKey:@"privacyURL"] == nil) {
@@ -198,15 +202,19 @@
         }];
       },
       NO);
+  */
 }
 
 - (NSNumber *)consentStatus
 {
-  return @([[PACConsentInformation sharedInstance] consentStatus]);
+  DEPRECATED_REMOVED(@"Admob.adProviders", @"5.0.0", @"5.0.0 (Removed since Ti.Admob 5.0.0 because deprecated by Google https://developers.google.com/admob/ios/eu-consent)");
+  //return @([[PACConsentInformation sharedInstance] consentStatus]);
 }
 
 - (NSArray *)adProviders
 {
+  DEPRECATED_REMOVED(@"Admob.adProviders", @"5.0.0", @"5.0.0 (Removed since Ti.Admob 5.0.0 because deprecated by Google https://developers.google.com/admob/ios/eu-consent)");
+  /*
   NSArray *adProviders = [[PACConsentInformation sharedInstance] adProviders];
   NSMutableArray *result = [NSMutableArray arrayWithCapacity:adProviders.count];
 
@@ -217,21 +225,25 @@
   }
 
   return result;
+  */
 }
 
 - (NSArray *)debugIdentifiers
 {
-  return [[PACConsentInformation sharedInstance] debugIdentifiers] ?: @[];
+  DEPRECATED_REMOVED(@"Admob.debugIdentifiers", @"5.0.0", @"5.0.0 (Removed since Ti.Admob 5.0.0. You can set 'testDeviceIdentifiers' parameter in Admob.requestConsentInfoUpdateWithParameters() )");
+  //return [[PACConsentInformation sharedInstance] debugIdentifiers] ?: @[];
 }
 
 - (void)setDebugIdentifiers:(id)debugIdentifiers
 {
-  [[PACConsentInformation sharedInstance] setDebugIdentifiers:debugIdentifiers];
+  DEPRECATED_REMOVED(@"Admob.setDebugIdentifiers", @"5.0.0", @"5.0.0 (Removed since Ti.Admob 5.0.0. You can set 'testDeviceIdentifiers' parameter in Admob.requestConsentInfoUpdateWithParameters() )");
+  //[[PACConsentInformation sharedInstance] setDebugIdentifiers:debugIdentifiers];
 }
 
 - (NSNumber *)debugGeography
 {
-  return @([[PACConsentInformation sharedInstance] debugGeography]);
+  DEPRECATED_REMOVED(@"Admob.debugGeography", @"5.0.0", @"5.0.0 (Removed since Ti.Admob 5.0.0. You can set 'geography' parameter in Admob.requestConsentInfoUpdateWithParameters() )");
+  //return @([[PACConsentInformation sharedInstance] debugGeography]);
 }
 
 - (void)resetConsent:(id)unused
@@ -241,13 +253,17 @@
 
 - (void)setTagForUnderAgeOfConsent:(id)tagForUnderAgeOfConsent
 {
+  DEPRECATED_REMOVED(@"Admob.setTagForUnderAgeOfConsent", @"5.0.0", @"5.0.0 (Removed since Ti.Admob 5.0.0. You can set 'tagForUnderAgeOfConsent' parameter in Admob.requestConsentInfoUpdateWithParameters() )");
+  /*
   ENSURE_TYPE(tagForUnderAgeOfConsent, NSNumber);
   [[PACConsentInformation sharedInstance] setTagForUnderAgeOfConsent:[TiUtils boolValue:tagForUnderAgeOfConsent]];
+  */
 }
 
 - (NSNumber *)isTaggedForUnderAgeOfConsent:(id)unused
 {
-  return @([[PACConsentInformation sharedInstance] isTaggedForUnderAgeOfConsent]);
+  DEPRECATED_REMOVED(@"Admob.isTaggedForUnderAgeOfConsent", @"5.0.0", @"5.0.0 (Removed since Ti.Admob 5.0.0. You can set 'tagForUnderAgeOfConsent' parameter in Admob.requestConsentInfoUpdateWithParameters() )");
+  //return @([[PACConsentInformation sharedInstance] isTaggedForUnderAgeOfConsent]);
 }
 
 - (NSNumber *)trackingAuthorizationStatus
@@ -317,14 +333,6 @@
   [GADMInMobiConsent updateGDPRConsent:consentObject];
 }
 
-- (void)showMediationTestSuite:(id)unused
-{
-  TiThreadPerformOnMainThread(
-      ^{
-          [GoogleMobileAdsMediationTestSuite presentOnViewController:[[[TiApp app] controller] topPresentedController] delegate:nil];          
-      },NO);
-}
-
 #pragma mark Constants
 
 MAKE_SYSTEM_PROP(TRACKING_AUTHORIZATION_STATUS_NOT_DETERMINED, 0);
@@ -341,8 +349,8 @@ MAKE_SYSTEM_PROP(CONSENT_STATUS_NOT_REQUIRED, UMPConsentStatusNotRequired); // 2
 MAKE_SYSTEM_PROP(CONSENT_STATUS_OBTAINED, UMPConsentStatusObtained); // 3
 
 //MAKE_SYSTEM_PROP(CONSENT_STATUS_UNKNOWN, PACConsentStatusUnknown);
-MAKE_SYSTEM_PROP(CONSENT_STATUS_NON_PERSONALIZED, PACConsentStatusNonPersonalized);
-MAKE_SYSTEM_PROP(CONSENT_STATUS_PERSONALIZED, PACConsentStatusPersonalized);
+//MAKE_SYSTEM_PROP(CONSENT_STATUS_NON_PERSONALIZED, PACConsentStatusNonPersonalized); deleted from 5.0.0
+//MAKE_SYSTEM_PROP(CONSENT_STATUS_PERSONALIZED, PACConsentStatusPersonalized); deleted from 5.0.0
 
 //MAKE_SYSTEM_PROP(DEBUG_GEOGRAPHY_DISABLED, PACDebugGeographyDisabled);
 //MAKE_SYSTEM_PROP(DEBUG_GEOGRAPHY_EEA, PACDebugGeographyEEA);

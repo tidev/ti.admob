@@ -185,7 +185,11 @@ NS_ASSUME_NONNULL_BEGIN
  * @param ids Represents the unified ids in dictionary format.
  */
 +(void)setPublisherProvidedUnifiedId:(NSDictionary*)ids;
-
+/**
+ * Provide if user is age restricted or not
+ * @param isRestricted The user's age restriction. Default value is false
+ */
++(void)setIsAgeRestricted:(BOOL)isRestricted;
 NS_ASSUME_NONNULL_END
 
 @end

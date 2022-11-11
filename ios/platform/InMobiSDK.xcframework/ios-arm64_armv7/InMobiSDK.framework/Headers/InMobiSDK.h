@@ -42,5 +42,6 @@ FOUNDATION_EXPORT const unsigned char InMobiSDKVersionString[];
 #import <InMobiSDK/IMUnifiedIdDelegate.h>
 #import <InMobiSDK/IMUserDataModel.h>
 #import <InMobiSDK/IMUserDataTypes.h>
+#import <InMobiSDK/IMODTargetingService.h>
 
 #endif /* InMobiSDK_h */

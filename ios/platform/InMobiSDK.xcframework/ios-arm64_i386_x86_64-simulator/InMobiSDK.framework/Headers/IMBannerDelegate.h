@@ -84,5 +84,8 @@
  * Notifies the delegate that the user has completed the action to be incentivised with.
  */
 -(void)banner:(IMBanner*)banner rewardActionCompletedWithRewards:(NSDictionary*)rewards;
-
+/**
+ * Notifies the delegate that the banner ad impression has been tracked
+ */
+-(void)bannerAdImpressed:(IMBanner*)banner;
 @end

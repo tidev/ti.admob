@@ -99,7 +99,10 @@
  * Notifies the delegate that the user will leave application context.
  */
 -(void)userWillLeaveApplicationFromInterstitial:(IMInterstitial*)interstitial;
-
+/**
+ * Notifies the delegate that the interstitial ad impression has been tracked
+ */
+-(void)interstitialAdImpressed:(IMInterstitial*)interstitial;
 @end
 
 #endif /* INTERSTITIALDELEGATEINCLUDE_H */

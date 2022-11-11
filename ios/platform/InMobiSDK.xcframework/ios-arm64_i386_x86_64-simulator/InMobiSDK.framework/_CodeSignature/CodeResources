@@ -18,7 +18,7 @@
 		</data>
 		<key>Headers/IMBannerDelegate.h</key>
 		<data>
-		blLA27yk7jAdO4cJuPwzZgfrwjc=
+		iaR2zCCL2ENqfRXt3YwVmR7OWfg=
 		</data>
 		<key>Headers/IMBannerPreloadManager.h</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>Headers/IMCoreConstants.h</key>
 		<data>
-		NmbZxW62SqbO3zhwj69FqZEk18Q=
+		5XnNFGD3s7rsZCLDBhK0J32w9gM=
 		</data>
 		<key>Headers/IMInterstitial.h</key>
 		<data>
@@ -38,7 +38,7 @@
 		</data>
 		<key>Headers/IMInterstitialDelegate.h</key>
 		<data>
-		oVnhPX9PCmt027JXcb7CP84N/8I=
+		8NyIKJtRgN4dsloca6JbBjoqcoA=
 		</data>
 		<key>Headers/IMInterstitialPreloadManager.h</key>
 		<data>
@@ -52,13 +52,17 @@
 		<data>
 		z63MKvC1rumX8wlrfwQ2fvHihVs=
 		</data>
+		<key>Headers/IMODTargetingService.h</key>
+		<data>
+		x1Mha6tYeguBA9woRi4vodI7lho=
+		</data>
 		<key>Headers/IMRequestStatus.h</key>
 		<data>
 		+MFeTVIYIoH+KmYJu49gsGMQm7Q=
 		</data>
 		<key>Headers/IMSdk.h</key>
 		<data>
-		gkcj35n9I2KoGx/ZH/QPl31C0Uc=
+		ICK7y89ZLGR5u3vIIHh7lshlsBU=
 		</data>
 		<key>Headers/IMUnifiedIdDelegate.h</key>
 		<data>
@@ -78,11 +82,11 @@
 		</data>
 		<key>Headers/InMobiSDK.h</key>
 		<data>
-		lAc9G1L7OoZaWdyDWtmhpIQ1RWw=
+		V64dBXtERif+rCLRqVXUMvgR7gg=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		FkGTeffyHaI3Q4fGIAXM0E5aDqs=
+		ls7apqSB+rSIf38prl0yXmWOig0=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -128,11 +132,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			blLA27yk7jAdO4cJuPwzZgfrwjc=
+			iaR2zCCL2ENqfRXt3YwVmR7OWfg=
 			</data>
 			<key>hash2</key>
 			<data>
-			iHLQm/awrtiibPDmPpBHx649Kc2HI6gQFyJlVVn/bT4=
+			oAPIFZuiP+ozPW1iAahN4YYIFEjvvQ5DGT03XEQvJTg=
 			</data>
 		</dict>
 		<key>Headers/IMBannerPreloadManager.h</key>
@@ -161,11 +165,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			NmbZxW62SqbO3zhwj69FqZEk18Q=
+			5XnNFGD3s7rsZCLDBhK0J32w9gM=
 			</data>
 			<key>hash2</key>
 			<data>
-			3U0EZQC1G8WvqaNoNUVKFrcF6Yn0rtolN50OA/hP82c=
+			IAvLGzxEjJLsy6iR729lABO3NqmSdrUhOgb2IaLVpZA=
 			</data>
 		</dict>
 		<key>Headers/IMInterstitial.h</key>
@@ -183,11 +187,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			oVnhPX9PCmt027JXcb7CP84N/8I=
+			8NyIKJtRgN4dsloca6JbBjoqcoA=
 			</data>
 			<key>hash2</key>
 			<data>
-			yeb+hhJxXOSjhMWIbz36Wjh5bFeUlWqDpCqbiGKlork=
+			6A9lb+RQk8bmqT0XK0Twh/v8muaPF/7gXcDTFT+xiuE=
 			</data>
 		</dict>
 		<key>Headers/IMInterstitialPreloadManager.h</key>
@@ -223,6 +227,17 @@
 			iyfWhMUaNUfEkYV3N9RsB3mjVoNZSyH83Snn6DdbLCs=
 			</data>
 		</dict>
+		<key>Headers/IMODTargetingService.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			x1Mha6tYeguBA9woRi4vodI7lho=
+			</data>
+			<key>hash2</key>
+			<data>
+			bqqr3/ZS9hlY5ha55+479Fedjq/o4B7ff/4uA9izWBw=
+			</data>
+		</dict>
 		<key>Headers/IMRequestStatus.h</key>
 		<dict>
 			<key>hash</key>
@@ -238,11 +253,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			gkcj35n9I2KoGx/ZH/QPl31C0Uc=
+			ICK7y89ZLGR5u3vIIHh7lshlsBU=
 			</data>
 			<key>hash2</key>
 			<data>
-			9CRTYSvjlQ7NwxjyVZZV1WcgCvIfL0nil/gXaCAO9vc=
+			ehCvGXsjIU2nihcW8owcNhHQ1t0iMAvzGipSYuRjfdQ=
 			</data>
 		</dict>
 		<key>Headers/IMUnifiedIdDelegate.h</key>
@@ -293,11 +308,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			lAc9G1L7OoZaWdyDWtmhpIQ1RWw=
+			V64dBXtERif+rCLRqVXUMvgR7gg=
 			</data>
 			<key>hash2</key>
 			<data>
-			vLbh3iJWTdxJyG7CnyeUQO4F8EvxSn8HtQwcP6AhYzE=
+			y7Su9Zp7ukPJXXNt0kgIPMU+bA9TCUtELD0r67whpw0=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

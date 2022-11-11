@@ -99,8 +99,6 @@ extern NSString* const kASIMKVStorePlacementInfo;
 extern NSString* const kASIMKVStoreTrueBaseEventUrls;
 
 // Ad Markup Types
-extern NSString* const kASIMAdMarkupTypeInMobiJSON;
-extern NSString* const kASIMAdMarkupTypeHTML;
 extern NSString* const kASIMAdMarkupTypeMediationJSON;
 
 // Banner Refresh
