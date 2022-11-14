@@ -1,5 +1,10 @@
 # Change Log
 
+### v5.1.0
+- Removed the FBLPromises framework
+- Added sample demo app: https://github.com/Astrovic/ti.admob-sample-app/
+- Minor fixes
+
 ### v5.0.0
 - Migration to SDK v9 (https://developers.google.com/admob/ios/migration):
 - Update Google Mobile Ads SDK 9.13.0 (https://github.com/CocoaPods/Specs/tree/master/Specs/5/9/a/Google-Mobile-Ads-SDK/9.13.0
