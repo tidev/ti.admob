@@ -100,8 +100,8 @@ function requestTrackingAuthorization() {
   Admob.requestTrackingAuthorization({
     callback: e => {
       getStatus(e);
-      if (Admob.TRACKING_AUTHORIZATION_STATUS_AUTHORIZED) {
-        Ti.info("Admob.TRACKING_AUTHORIZATION_STATUS_AUTHORIZED, enable personalized ads in ads mediation too")
+      if (e.status === Admob.TRACKING_AUTHORIZATION_STATUS_AUTHORIZED) {
+        Ti.API.info("Admob.TRACKING_AUTHORIZATION_STATUS_AUTHORIZED, enable personalized ads in ads mediation too")
         Admob.setInMobi_updateGDPRConsent(true);
         Admob.setAdvertiserTrackingEnabled(true);
       }

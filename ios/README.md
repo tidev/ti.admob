@@ -14,3 +14,4 @@ Consult the [documentation](./documentation/) to use the module:
 ## Example
 
 A complete example in [app.js](./example/app.js)
+Here a demo app ready to use: https://github.com/Astrovic/ti.admob-sample-app/

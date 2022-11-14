@@ -26,7 +26,7 @@
 		5E6743A627F4B85800BEE594 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6743A527F4B85800BEE594 /* libsqlite3.0.tbd */; };
 		5E6743A827F4B86A00BEE594 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6743A727F4B86A00BEE594 /* libz.tbd */; };
 		5E6743AE27F4BEA300BEE594 /* GoogleAppMeasurementIdentitySupport.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6743AD27F4BEA300BEE594 /* GoogleAppMeasurementIdentitySupport.xcframework */; };
-		5EB1EE78291D6339009D08AC /* FBLPromises.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB1EE77291D6339009D08AC /* FBLPromises.xcframework */; };
+		
 		5ED7B66026EBC395007F4D90 /* FBAudienceNetwork.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ED7B65F26EBC395007F4D90 /* FBAudienceNetwork.xcframework */; };
 		5EFC8F50263ABC430011A0C2 /* InMobiSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFC8F4C263ABC430011A0C2 /* InMobiSDK.xcframework */; };
 		5EFC8F51263ABC430011A0C2 /* InMobiAdapter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFC8F4D263ABC430011A0C2 /* InMobiAdapter.xcframework */; };
@@ -55,7 +55,7 @@
 		5E6743A527F4B85800BEE594 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/lib/libsqlite3.0.tbd; sourceTree = DEVELOPER_DIR; };
 		5E6743A727F4B86A00BEE594 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		5E6743AD27F4BEA300BEE594 /* GoogleAppMeasurementIdentitySupport.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurementIdentitySupport.xcframework; path = platform/GoogleAppMeasurementIdentitySupport.xcframework; sourceTree = "<group>"; };
-		5EB1EE77291D6339009D08AC /* FBLPromises.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBLPromises.xcframework; path = platform/FBLPromises.xcframework; sourceTree = "<group>"; };
+		
 		5ED7B65F26EBC395007F4D90 /* FBAudienceNetwork.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBAudienceNetwork.xcframework; path = platform/FBAudienceNetwork.xcframework; sourceTree = "<group>"; };
 		5EFC8F4C263ABC430011A0C2 /* InMobiSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = InMobiSDK.xcframework; path = platform/InMobiSDK.xcframework; sourceTree = "<group>"; };
 		5EFC8F4D263ABC430011A0C2 /* InMobiAdapter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = InMobiAdapter.xcframework; path = platform/InMobiAdapter.xcframework; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 				5E6743A427F4B84500BEE594 /* WebKit.framework in Frameworks */,
 				5E343CDF291BFA3600F047EB /* MetaAdapter.xcframework in Frameworks */,
 				5ED7B66026EBC395007F4D90 /* FBAudienceNetwork.xcframework in Frameworks */,
-				5EB1EE78291D6339009D08AC /* FBLPromises.xcframework in Frameworks */,
+				
 				5EFC8F50263ABC430011A0C2 /* InMobiSDK.xcframework in Frameworks */,
 				5EFC8F51263ABC430011A0C2 /* InMobiAdapter.xcframework in Frameworks */,
 				3ABFE38E26335E0000887180 /* nanopb.xcframework in Frameworks */,
@@ -113,7 +113,7 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5EB1EE77291D6339009D08AC /* FBLPromises.xcframework */,
+				
 				5E343CDE291BFA3600F047EB /* MetaAdapter.xcframework */,
 				5E6743A727F4B86A00BEE594 /* libz.tbd */,
 				5E6743A527F4B85800BEE594 /* libsqlite3.0.tbd */,

@@ -565,6 +565,7 @@ If you are also using [Titanium Firebase Core Module](https://github.com/hansema
 ## Usage
 
 See example in [app.js](/ios/example/app.js);
+Here a demo app ready to use: https://github.com/Astrovic/ti.admob-sample-app/
 
 ## Author
 
