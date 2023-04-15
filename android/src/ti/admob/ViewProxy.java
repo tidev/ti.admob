@@ -14,15 +14,13 @@ import org.appcelerator.kroll.common.Log;
  * This class is left for backwards compatibility until
  * the deprecated createView() method for BannerView ad
  * is removed from the module. Users should use createBannerView()
-*/
+ */
 @Kroll.proxy(creatableInModule = AdmobModule.class)
-public class ViewProxy extends BannerViewProxy
-{
+public class ViewProxy extends BannerViewProxy {
 
-	protected static final String TAG = "AdMobViewProxy";
+    protected static final String TAG = "AdMobViewProxy";
 
-	public ViewProxy()
-	{
-		Log.w(TAG, "ViewProxy has been deprecated. Use createBannerView instead.");
-	}
+    public ViewProxy() {
+        Log.w(TAG, "ViewProxy has been deprecated. Use createBannerView instead.");
+    }
 }

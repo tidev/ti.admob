@@ -1,0 +1,127 @@
+<com.google.android.gms.ads.nativead.NativeAdView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ad_app_icon"
+            android:layout_width="140dp"
+            android:layout_height="match_parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/gnt_default_margin"
+            android:layout_marginEnd="@dimen/gnt_default_margin"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+            <LinearLayout
+                android:id="@+id/headline"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/gnt_no_size"
+                android:layout_weight="@dimen/gnt_text_row_weight"
+                android:background="@android:color/transparent"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/row_two"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/ad_headline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/gnt_no_margin"
+                    android:layout_marginTop="@dimen/gnt_no_margin"
+                    android:layout_marginEnd="@dimen/gnt_no_margin"
+                    android:layout_marginBottom="@dimen/gnt_no_margin"
+                    android:lines="1"
+                    android:textColor="@color/gnt_gray"
+                    android:textSize="@dimen/gnt_text_size_large"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/row_two"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/gnt_no_size"
+                android:layout_weight="@dimen/gnt_text_row_weight"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/cta"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/headline">
+
+                <TextView
+                    android:id="@+id/ad_notification_view"
+                    android:layout_width="@dimen/gnt_ad_indicator_width"
+                    android:layout_height="@dimen/gnt_ad_indicator_height"
+                    android:layout_marginStart="@dimen/gnt_no_margin"
+                    android:layout_marginTop="@dimen/gnt_ad_indicator_top_margin"
+                    android:layout_marginEnd="@dimen/gnt_default_margin"
+                    android:background="@drawable/gnt_rounded_corners_shape"
+                    android:gravity="center"
+                    android:text="Ad"
+                    android:textColor="@color/gnt_ad_green"
+                    android:textSize="@dimen/gnt_ad_indicator_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RatingBar
+                    android:id="@+id/rating_bar"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/gnt_no_margin"
+                    android:layout_marginTop="@dimen/gnt_no_margin"
+                    android:layout_marginEnd="@dimen/gnt_no_margin"
+                    android:layout_marginBottom="@dimen/gnt_no_margin"
+                    android:background="@android:color/transparent"
+                    android:lines="1"
+                    android:numStars="5"
+                    android:stepSize="0.1"
+                    android:textColor="@color/gnt_gray"
+                    android:textSize="@dimen/gnt_text_size_small"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/ad_notification_view"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </RatingBar>
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/cta"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/gnt_no_size"
+                android:background="@color/gnt_blue"
+                android:gravity="center"
+                android:lines="1"
+                android:textColor="@color/gnt_white"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.35"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/row_two" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</com.google.android.gms.ads.nativead.NativeAdView>
+

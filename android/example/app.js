@@ -13,10 +13,10 @@ var win = Titanium.UI.createWindow({
 var Admob = require('ti.admob');
 
 // check if google play services are available
-var code = Admob.isGooglePlayServicesAvailable();
-if (code != Admob.SUCCESS) {
-    alert("Google Play Services is not installed/updated/available");
-}
+// var code = Admob.isGooglePlayServicesAvailable();
+// if (code != Admob.SUCCESS) {
+//     alert("Google Play Services is not installed/updated/available");
+// }
 
 // then create an adMob view
 var adMobView = Admob.createView({
@@ -34,7 +34,7 @@ var adMobView = Admob.createView({
     linkColor: "#0000FF" //optional -  Link text color
     //primaryTextColor: "blue", // deprecated -- now maps to textColor
     //secondaryTextColor: "green" // deprecated -- now maps to linkColor
-    
+
 });
 
 // Create an Interstitial ad with a testing AdUnitId

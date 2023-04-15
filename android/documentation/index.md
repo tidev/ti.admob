@@ -4,19 +4,19 @@
 
 Allows for the display of AdMob in Titanium Android applications.
 
-Please note that if your androidManifest has screen support set to: android:anyDensity="false", any banner ads will 
+Please note that if your androidManifest has screen support set to: android:anyDensity="false", any banner ads will
 display too small on high density devices.
 It is not clear at this point if this is a bug with AdMob or Titanium.
 In any event, you will either need to NOT set your screen support -- or set android:anyDensity="true" and adjust your app layout accordingly
 
 ## Getting Started
 
-View the [Using Titanium Modules](http://docs.appcelerator.com/platform/latest/#!/guide/Using_Titanium_Modules) document 
+View the [Using Titanium Modules](http://docs.appcelerator.com/platform/latest/#!/guide/Using_Titanium_Modules) document
 for instructions on getting started with using this module in your application.
 
 In order to use the module you would need to add the following tags in yout tiapp.xml
 
-	<android 
+	<android
 	    xmlns:android="http://schemas.android.com/apk/res/android">
 	    <manifest>
 	      <application>
@@ -51,13 +51,6 @@ The "Admob" variable is now a reference to the Module object.
 ### initialize(admobApplicationID)
 
 You need to initialize the Admob SDK by passing your AdmobAppID as a parameter to this method.
-
-### Number isGooglePlayServicesAvailable()
-
-Returns a number value indicating the availability of Google Play Services which are for push notifications.
-
-Possible values include `SUCCESS`, `SERVICE_MISSING`, `SERVICE_VERSION_UPDATE_REQUIRED`, `SERVICE_DISABLED`,
-and `SERVICE_INVALID`.
 
 ### `createView(args)`
 
@@ -304,7 +297,7 @@ Deprecated:
 
 ### `Admob.AD_LEFT_APPLICATION`
 
-DEPRECATED since 4.5.0. Use `leftapp` instead. 
+DEPRECATED since 4.5.0. Use `leftapp` instead.
 
 #### Example:
 
@@ -338,7 +331,7 @@ Deprecated:
 ## Support the Facebook Audience Network adapter
 
 Starting in 4.3.0 you can use the included Facebook Audience Network adapter to turn on the mediation in your AdMob account.
-Here you do not have to do anything 😙. You only need to configure mediation in your AdMob and Facebook accounts by 
+Here you do not have to do anything 😙. You only need to configure mediation in your AdMob and Facebook accounts by
 following the [official guide](https://developers.google.com/admob/android/mediation/facebook).
 
 WARNING! From version 4.5.0 the Facebook Audience Network adapter is deprecated. Once it is removed in a future release, it would depend

@@ -11,66 +11,59 @@ import android.app.Activity;
 
 import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.annotations.Kroll;
-import org.appcelerator.kroll.common.Log;
 import org.appcelerator.titanium.TiBaseActivity;
 import org.appcelerator.titanium.TiLifecycle.OnLifecycleEvent;
 import org.appcelerator.titanium.proxy.TiViewProxy;
 import org.appcelerator.titanium.view.TiUIView;
 
 @Kroll.proxy(creatableInModule = AdmobModule.class)
-public class BannerViewProxy extends TiViewProxy implements OnLifecycleEvent {
+public class NativeAdViewProxy extends TiViewProxy implements OnLifecycleEvent {
     protected static final String TAG = "BannerViewProxy";
-    private AdmobView adMob;
+    private NativeAdView adMob;
+    private String prop_adUnitId;
+    private int imageWidth = -1;
 
-    public BannerViewProxy() {
+    public NativeAdViewProxy() {
         super();
     }
 
     @Override
-    protected KrollDict getLangConversionTable() {
-        KrollDict table = new KrollDict();
-        table.put("title", "titleid");
-        return table;
-    }
-
-    @Override
     public TiUIView createView(Activity activity) {
-        adMob = new AdmobView(this);
+        adMob = new NativeAdView(this);
         ((TiBaseActivity) activity).addOnLifecycleEventListener(this);
         return adMob;
     }
 
-    @Kroll.method
-    public void requestAd(@Kroll.argument(optional = true) KrollDict parameters) {
-        adMob.requestAd(parameters);
-        Log.w(TAG, "requestAd() has been deprecated. Use load() instead.");
+    @Override
+    public void handleCreationDict(KrollDict options) {
+        super.handleCreationDict(options);
+        if (options.containsKeyAndNotNull("adUnitId")) {
+            prop_adUnitId = options.getString("adUnitId");
+        }
+        if (options.containsKeyAndNotNull("imageWidth")) {
+            imageWidth = options.getInt("imageWidth");
+        }
+
     }
 
     @Kroll.method
-    public void requestTestAd() {
-        adMob.requestTestAd();
-        Log.w(TAG, "requestAd() has been deprecated. Use load() with 'debugIdentifiers' property instead.");
-    }
-
-    @Kroll.method
-    public void load(@Kroll.argument(optional = true) KrollDict options) {
-        // Load ad with options...
-        adMob.nativeLoadAd(options);
+    public void loadAd(){
+        adMob.loadAd();
     }
 
     @Override
     public void onDestroy(Activity activity) {
-        adMob.destroy();
+
     }
 
     @Override
     public void onPause(Activity activity) {
-        adMob.pause();
+
     }
 
     @Override
     public void onResume(Activity activity) {
-        adMob.resume();
+
     }
 
     @Override
