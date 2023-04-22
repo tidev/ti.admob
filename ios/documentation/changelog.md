@@ -1,5 +1,12 @@
 # Change Log
 
+### v6.0.0
+- Migration to SDK v10 (https://developers.google.com/admob/ios/migration#migrate-to-sdk-v10)
+- Update Google Mobile Ads SDK 10.4.0 (https://github.com/CocoaPods/Specs/tree/master/Specs/5/9/a/Google-Mobile-Ads-SDK/10.4.0)
+- Update Meta Adapter 6.12.0.1 (https://developers.google.com/admob/ios/mediation/meta#version-6.12.0.1)
+- Update InMobi SDK 10.1.3 (https://support.inmobi.com/monetize/sdk-documentation/download-sdk)
+- Update InMobiAdapter 10.1.2.1 (https://developers.google.com/admob/ios/mediation/inmobi#version-10.1.2.1_1)
+
 ### v5.1.0
 - Removed the FBLPromises framework
 - Added sample demo app: https://github.com/Astrovic/ti.admob-sample-app/
@@ -7,7 +14,7 @@
 
 ### v5.0.0
 - Migration to SDK v9 (https://developers.google.com/admob/ios/migration):
-- Update Google Mobile Ads SDK 9.13.0 (https://github.com/CocoaPods/Specs/tree/master/Specs/5/9/a/Google-Mobile-Ads-SDK/9.13.0
+- Update Google Mobile Ads SDK 9.13.0 (https://github.com/CocoaPods/Specs/tree/master/Specs/5/9/a/Google-Mobile-Ads-SDK/9.13.0)
 - Update Audience Network SDK 6.12.0 (https://developers.facebook.com/docs/audience-network/setting-up/platform-setup/ios/add-sdk)
 - Added Meta Adapter 6.12.0.0 (https://developers.google.com/admob/ios/mediation/meta#facebook-ios-mediation-adapter-changelog)
 - Removed Facebook Adapter 6.9.0.0 (https://developers.google.com/admob/ios/mediation/facebook#facebook-ios-mediation-adapter-changelog)- 
