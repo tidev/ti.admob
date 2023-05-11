@@ -1,5 +1,9 @@
 # Change Log
 
+### v6.1.0
+- Update InMobi SDK 10.5.4 (https://support.inmobi.com/monetize/sdk-documentation/download-sdk)
+- Update InMobiAdapter 10.5.4.0 (https://developers.google.com/admob/ios/mediation/inmobi#version-10.5.4.0_1)
+
 ### v6.0.0
 - Migration to SDK v10 (https://developers.google.com/admob/ios/migration#migrate-to-sdk-v10)
 - Update Google Mobile Ads SDK 10.4.0 (https://github.com/CocoaPods/Specs/tree/master/Specs/5/9/a/Google-Mobile-Ads-SDK/10.4.0)

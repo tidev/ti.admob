@@ -3,4 +3,11 @@ framework module InMobiSDK {
 
   export *
   module * { export * }
+  
+  explicit module Private {}
+}
+
+module InMobiSDK.Swift {
+  header "InMobiSDK-Swift.h"
+  requires objc
 }

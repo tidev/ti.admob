@@ -322,11 +322,11 @@
   if ([TiUtils boolValue:updateGDPRConsent]) {
     // this method is required by InMobi to set GDPR    
     [consentObject setObject:@"1" forKey:@"gdpr"];
-    [consentObject setObject:@"true" forKey:IM_GDPR_CONSENT_AVAILABLE];
+    [consentObject setObject:@"true" forKey:IMCommonConstants.IM_GDPR_CONSENT_AVAILABLE];
     NSLog(@"[DEBUG] Ti.AdMob: inMobi_updateGDPRConsent --> true");
   }  else {    
     [consentObject setObject:@"0" forKey:@"gdpr"];
-    [consentObject setObject:@"true" forKey:IM_GDPR_CONSENT_AVAILABLE];
+    [consentObject setObject:@"true" forKey:IMCommonConstants.IM_GDPR_CONSENT_AVAILABLE];
     NSLog(@"[DEBUG] Ti.AdMob: inMobi_updateGDPRConsent --> false");
   }
 
