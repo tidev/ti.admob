@@ -36,8 +36,6 @@
 
 - (void)setExtras_:(id)args;
 
-- (void)setLocation_:(id)args;
-
 - (GADBannerView *)bannerView;
 
 - (void)loadRewardedVideoWithAdUnitID:(NSString *)adUnitID;
@@ -53,5 +51,7 @@
 - (void)setDateOfBirth_:(id)value;
 
 - (void)setTestDevices_:(id)value;
+
+- (void)setLocation_:(id)args;
 
 @end

@@ -88,7 +88,7 @@
     NSDictionary *adapterStatuses = [status adapterStatusesByClassName];
     for (NSString *adapter in adapterStatuses) {
       GADAdapterStatus *adapterStatus = adapterStatuses[adapter];
-      NSLog(@"Adapter Name: %@, Description: %@, Latency: %f", adapter,
+      NSLog(@"[DEBUG] Adapter Name: %@, Description: %@, Latency: %f", adapter,
             adapterStatus.description, adapterStatus.latency);
     }
 
@@ -174,15 +174,6 @@
   [[GADRequest request] registerAdNetworkExtras:extras];
 
   RELEASE_TO_NIL(extras);
-}
-
-- (void)setLocation_:(id)args
-{
-  ENSURE_TYPE(args, NSDictionary);
-
-  [[GADRequest request] setLocationWithLatitude:[[args valueForKey:@"latitude"] floatValue]
-                                longitude:[[args valueForKey:@"longitude"] floatValue]
-                                 accuracy:[[args valueForKey:@"accuracy"] floatValue]];
 }
 
 - (void)loadBanner
@@ -280,6 +271,11 @@
 - (void)setTestDevices_:(id)value
 {
   DEPRECATED_REMOVED(@"Admob.testDevices", @"4.0.0", @"4.0.0 (removed by Google)")
+}
+
+- (void)setLocation_:(id)args
+{
+  DEPRECATED_REMOVED(@"Admob.setLocation (setLocationWithLatitude)", @"5.0.0", @"5.0.0 (removed by Google)")
 }
 
 #pragma mark - Utilities

@@ -1,7 +1,7 @@
 Titanium AdMob Module
 ============
 
-Use the Google Admob Module in Appcelerator Titanium.
+Use the Google Admob Module in Titanium.
 
 ## Contributors
 
@@ -12,12 +12,13 @@ Use the Google Admob Module in Appcelerator Titanium.
 * Gary Mathews
 * Dawson Toth
 * Hans Knöchel
+* Vittorio Sorbera
 
-Interested in contributing? Read the [contributors/committer's](https://wiki.appcelerator.org/display/community/Home) guide.
+Interested in contributing? Fork and submit your PR :)
 
 ## Issues
 
-Report issues to [Appcelerator JIRA](https://jira.appcelerator.org).
+Report issues to [TiSlack](https://slack.tidev.io/).
 
 ## Legal
 
