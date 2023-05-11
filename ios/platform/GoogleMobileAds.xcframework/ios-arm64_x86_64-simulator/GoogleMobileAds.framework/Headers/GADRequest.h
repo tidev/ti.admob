@@ -11,6 +11,13 @@
 #import <GoogleMobileAds/GoogleMobileAdsDefines.h>
 #import <UIKit/UIKit.h>
 
+/// Deprecated gender constants.
+typedef NS_ENUM(NSInteger, GADGender) {
+  kGADGenderUnknown,  ///< Deprecated.
+  kGADGenderMale,     ///< Deprecated.
+  kGADGenderFemale    ///< Deprecated.
+};
+
 /// Specifies optional parameters for ad requests.
 @interface GADRequest : NSObject <NSCopying>
 

@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <GoogleMobileAds/GoogleMobileAdsDefines.h>
 
-typedef NSString *GADAdLoaderAdType NS_TYPED_ENUM;
+typedef NSString *GADAdLoaderAdType NS_STRING_ENUM;
 
 /// Use with GADAdLoader to request native custom template ads. To receive ads, the ad loader's
 /// delegate must conform to the GADCustomNativeAdLoaderDelegate protocol. See GADCustomNativeAd.h.

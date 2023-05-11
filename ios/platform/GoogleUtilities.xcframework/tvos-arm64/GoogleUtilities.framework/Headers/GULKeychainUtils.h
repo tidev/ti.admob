@@ -20,10 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 FOUNDATION_EXPORT NSString *const kGULKeychainUtilsErrorDomain;
 
-/// A collection of helper functions that abstract away common Keychain operations.
-///
-/// When using this API on macOS, the corresponding target must be signed with a provisioning
-/// profile that has the Keychain Sharing capability enabled.
+/// Helper functions to access Keychain.
 @interface GULKeychainUtils : NSObject
 
 /** Fetches a keychain item data matching to the provided query.

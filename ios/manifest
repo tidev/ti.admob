@@ -2,7 +2,7 @@
 # this is your module manifest and used by Titanium
 # during compilation, packaging, distribution, etc.
 #
-version: 6.1.0
+version: 5.1.0
 architectures: arm64 x86_64
 mac: false
 description: AdMob module for ad delivery via AdMob

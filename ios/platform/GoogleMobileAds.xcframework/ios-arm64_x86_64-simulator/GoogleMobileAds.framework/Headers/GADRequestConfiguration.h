@@ -9,7 +9,7 @@
 #import <GoogleMobileAds/GoogleMobileAdsDefines.h>
 
 /// Maximum ad content rating.
-typedef NSString *GADMaxAdContentRating NS_TYPED_ENUM;
+typedef NSString *GADMaxAdContentRating NS_STRING_ENUM;
 
 /// Rating for content suitable for general audiences, including families.
 FOUNDATION_EXPORT GADMaxAdContentRating _Nonnull const GADMaxAdContentRatingGeneral;

@@ -61,6 +61,9 @@ FOUNDATION_EXPORT NSString *_Nonnull GADErrorUserInfoKeyResponseInfo;
 /// Unique identifier of the ad response.
 @property(nonatomic, readonly, nullable) NSString *responseIdentifier;
 
+/// A class name that identifies the ad network that returned the ad. Nil if no ad was returned.
+@property(nonatomic, readonly, nullable) NSString *adNetworkClassName;
+
 /// Dictionary of extra parameters that may be returned in an ad response.
 @property(nonatomic, readonly, nonnull) NSDictionary<NSString *, id> *extrasDictionary;
 
@@ -73,11 +76,5 @@ FOUNDATION_EXPORT NSString *_Nonnull GADErrorUserInfoKeyResponseInfo;
 
 /// JSON-safe dictionary representation of the response info.
 @property(nonatomic, readonly, nonnull) NSDictionary<NSString *, id> *dictionaryRepresentation;
-
-#pragma mark - Deprecated
-
-/// Deprecated. Use loadedAdNetworkResponseInfo.adNetworkClassName instead.
-@property(nonatomic, readonly, nullable) NSString *adNetworkClassName GAD_DEPRECATED_MSG_ATTRIBUTE(
-    "Deprecated. Use loadedAdNetworkResponseInfo.adNetworkClassName instead.");
 
 @end

@@ -27,4 +27,28 @@
 /// Indicates whether the testing property has been set in GADRequest.
 @property(nonatomic, readonly, assign) BOOL isTesting;
 
+#pragma mark - Deprecated
+
+/// Deprecated and unsupported. Always NO.
+@property(nonatomic, readonly, assign)
+    BOOL userHasLocation GAD_DEPRECATED_MSG_ATTRIBUTE("Deprecated and unsupported. Always NO.");
+
+/// Deprecated and unsupported. Always 0.
+@property(nonatomic, readonly, assign)
+    CGFloat userLatitude GAD_DEPRECATED_MSG_ATTRIBUTE("Deprecated and unsupported. Always 0.");
+
+/// Deprecated and unsupported. Always 0.
+@property(nonatomic, readonly, assign)
+    CGFloat userLongitude GAD_DEPRECATED_MSG_ATTRIBUTE("Deprecated and unsupported. Always 0.");
+
+/// Deprecated and unsupported. Always 0.
+@property(nonatomic, readonly, assign)
+    CGFloat userLocationAccuracyInMeters GAD_DEPRECATED_MSG_ATTRIBUTE(
+        "Deprecated and unsupported. Always 0.");
+
+/// Deprecated and unsupported. Always nil.
+@property(nonatomic, readonly, copy, nullable)
+    NSString *userLocationDescription GAD_DEPRECATED_MSG_ATTRIBUTE(
+        "Deprecated and unsupported. Always nil.");
+
 @end

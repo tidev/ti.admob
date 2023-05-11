@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <GoogleMobileAds/GoogleMobileAdsDefines.h>
 
-typedef NSString *GADNativeAssetIdentifier NS_TYPED_ENUM;
+typedef NSString *GADNativeAssetIdentifier NS_STRING_ENUM;
 
 FOUNDATION_EXPORT GADNativeAssetIdentifier _Nonnull const GADNativeHeadlineAsset;
 FOUNDATION_EXPORT GADNativeAssetIdentifier _Nonnull const GADNativeCallToActionAsset;

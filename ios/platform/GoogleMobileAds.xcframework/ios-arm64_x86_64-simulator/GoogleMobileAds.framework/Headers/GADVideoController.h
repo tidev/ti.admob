@@ -20,9 +20,6 @@
 /// Delegate for receiving video notifications.
 @property(nonatomic, weak, nullable) id<GADVideoControllerDelegate> delegate;
 
-/// Indicates whether the video is muted.
-@property(nonatomic, readonly) BOOL isMuted;
-
 /// Mute or unmute video. Set to YES to mute the video. Set to NO to allow the video to play sound.
 /// Doesn't do anything if -customControlsEnabled returns NO.
 - (void)setMute:(BOOL)mute;

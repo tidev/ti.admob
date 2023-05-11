@@ -19,7 +19,6 @@
 #import "GULHeartbeatDateStorageUserDefaults.h"
 #import "GULKeychainStorage.h"
 #import "GULKeychainUtils.h"
-#import "GULNetworkInfo.h"
 #import "GULSecureCoding.h"
 #import "GULURLSessionDataResponse.h"
 #import "NSURLSession+GULPromises.h"

@@ -93,8 +93,3 @@
     GAD_DEPRECATED_MSG_ATTRIBUTE("Deprecated. Use -didRewardUser.");
 
 @end
-
-/// Reports app open related information to the Google Mobile Ads SDK from the adapter.
-@protocol GADMediationAppOpenAdEventDelegate <GADMediationAdEventDelegate>
-
-@end
