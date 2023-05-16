@@ -26,7 +26,7 @@ public class AdmobView extends TiUIView
 
 	AdmobSizeProxy prop_adSize = AdmobSizeEnum.BANNER.getAdmobSizeProxy();
 	String prop_adUnitId;
-	// Put these in extras bundle of laod
+	// Put these in extras bundle of load
 	Boolean prop_debugEnabled = false;
 	int prop_top;
 	int prop_left;
@@ -72,7 +72,7 @@ public class AdmobView extends TiUIView
 				final AdRequest.Builder adRequestBuilder = new AdRequest.Builder();
 				Log.d(TAG, "requestAd(Boolean testing) -- testing:" + testing);
 				if (testing) {
-					adRequestBuilder.addTestDevice(AdRequest.DEVICE_ID_EMULATOR);
+					//adRequestBuilder.addTestDevice(AdRequest.DEVICE_ID_EMULATOR);
 				}
 				Bundle bundle = createAdRequestProperties();
 				if (bundle.size() > 0) {

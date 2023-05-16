@@ -11,30 +11,38 @@
 
 - (void)disableSDKCrashReporting:(id)unused;
 
-- (void)disableAutomatedInAppPurchaseReporting:(id)unused;
+- (void)disableAutomatedInAppPurchaseReporting:(id)unused; // REMOVED
 
-- (void)requestConsentInfoUpdateForPublisherIdentifiers:(id)args;
+- (void)requestConsentInfoUpdateWithParameters:(id)args;
 
-- (void)showConsentForm:(id)args;
+- (void)loadForm:(id)args;
 
-- (NSNumber *)consentStatus;
+- (void)requestConsentInfoUpdateForPublisherIdentifiers:(id)args; // REMOVED
 
-- (NSArray *)adProviders;
+- (void)showConsentForm:(id)args; // REMOVED
 
-- (NSArray *)debugIdentifiers;
+- (NSNumber *)consentStatus; // REMOVED
 
-- (void)setDebugIdentifiers:(id)debugIdentifiers;
+- (NSArray *)adProviders; // REMOVED
 
-- (NSNumber *)debugGeography;
+- (NSArray *)debugIdentifiers; // REMOVED
+
+- (void)setDebugIdentifiers:(id)debugIdentifiers; // REMOVED
+
+- (NSNumber *)debugGeography; // REMOVED
 
 - (void)resetConsent:(__unused id)unused;
 
-- (void)setTagForUnderAgeOfConsent:(id)tagForUnderAgeOfConsent;
+- (void)setTagForUnderAgeOfConsent:(id)tagForUnderAgeOfConsent; // REMOVED
 
-- (NSNumber *)isTaggedForUnderAgeOfConsent:(__unused id)unused;
+- (NSNumber *)isTaggedForUnderAgeOfConsent:(__unused id)unused; // REMOVED
 
 - (NSNumber *)trackingAuthorizationStatus;
 
 - (void)requestTrackingAuthorization:(id)args;
+
+- (void)setAdvertiserTrackingEnabled:(id)advertiserTrackingEnabled;
+
+- (void)setInMobi_updateGDPRConsent:(id)updateGDPRConsent;
 
 @end

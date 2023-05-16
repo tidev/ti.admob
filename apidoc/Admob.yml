@@ -54,6 +54,10 @@ description: |
       If app supports iOS < 11.0, be sure to remove it while building for device or app distribution. 
         <min-ios-ver>11.0<</min-ios-ver>
 
+    Add the following key in tiapp.xml    
+        <key>GADApplicationIdentifier</key>
+        <string>YOUR-APP-ID</string>
+    
     Starting in iOS 14, IDFA will be unavailable until an app calls the App Tracking Transparency framework to present the app-tracking authorization request to the end user. 
     To display the App Tracking Transparency authorization request for accessing the IDFA, update your tiapp.xml to add the NSUserTrackingUsageDescription key with a custom message describing your usage.
     Below is an example description text:
@@ -61,7 +65,7 @@ description: |
       <key>NSUserTrackingUsageDescription</key>
       <string>This identifier will be used to deliver personalized ads to you.</string>
 
-    To present the authorization request, call requestTrackingAuthorization:. We recommend waiting for the completion callback prior to loading ads, so that if the user grants the App Tracking Transparency permission, the Google AdMob SDK can use the IDFA in ad requests.
+    To present the authorization request, call requestTrackingAuthorization. We recommend waiting for the completion callback prior to loading ads, so that if the user grants the App Tracking Transparency permission, the Google AdMob SDK can use the IDFA in ad requests.
     For more information about the possible status values, see TRACKING_AUTHORIZATION_STATUS_*.
     If an app does not present this request, the IDFA will automatically be zeroed out which may lead to a significant loss in ad revenue.    
 
@@ -76,107 +80,20 @@ description: |
         </dict>
      </array>
 
+    If you use Facebook Audience Network mediation, starting with iOS 14, you will need to implement the setAdvertiserTrackingEnabled flag.
+    This allows you to inform Facebook whether to use the data to deliver personalized ads. If the flag is set to false, Facebook will not be able to deliver personalized ads.
+    You need to set this flag before initializing the mediation SDK in order to receive it in the bidding request.
+
+    If you use InMobi mediation, instead, you will have to use the method setInMobi_updateGDPRConsent to deliver personalized ads.
+
+    A complete documentation is present in /ios module folder.
+
 platforms: [android, iphone, ipad]
 properties:
-  - name: CONSENT_STATUS_UNKNOWN
-    type: Number
-    summary: Returned by `consentStatus` if the consent status is unknown.
-    permission: read-only
-    value: 0
-
-  - name: CONSENT_STATUS_NON_PERSONALIZED
-    type: Number
-    summary: Returned by `consentStatus` if the consent status is not personalized.
-    permission: read-only
-    value: 1
-
-  - name: CONSENT_STATUS_PERSONALIZED
-    type: Number
-    summary: Returned by `consentStatus` if the consent status is personalized.
-    permission: read-only
-    value: 2
-
-  - name: DEBUG_GEOGRAPHY_DISABLED
-    type: Number
-    summary: Returned by `debugGeography` if geography debugging is disabled.
-    permission: read-only
-    value: 0
-
-  - name: DEBUG_GEOGRAPHY_EEA
-    type: Number
-    summary: Returned by `debugGeography` if geography appears as in EEA for debug devices.
-    permission: read-only
-    value: 1
-
-  - name: DEBUG_GEOGRAPHY_NOT_EEA
-    type: Number
-    summary: Returned by `debugGeography` if geography appears as not in EEA for debug devices.
-    permission: read-only
-    value: 3 # FIXME: 2 on iOS, 3 on Android
-
-  - name: TRACKING_AUTHORIZATION_STATUS_NOT_DETERMINED
-    type: Number
-    summary: Returned by `trackingAuthorizationStatus` Before a device receives an authorization request to approve access to app-related data that can be used for tracking the user or the device.
-    permission: read-only
-    value: 0
-    platforms: [iphone,ipad]
-    since: "2.6.0"
-    osver: {ios: {min: "14.0"}}
-
-  - name: TRACKING_AUTHORIZATION_STATUS_RESTRICTED
-    type: Number
-    summary: Returned by `trackingAuthorizationStatus` If authorization to use app tracking data is restricted
-    permission: read-only
-    value: 1
-    platforms: [iphone,ipad]
-    since: "2.6.0"
-    osver: {ios: {min: "14.0"}}
-    
-  - name: TRACKING_AUTHORIZATION_STATUS_DENIED
-    type: Number
-    summary: Returned by `trackingAuthorizationStatus` if After a device receives an authorization request to approve access, user denied the request
-    permission: read-only
-    value: 2
-    platforms: [iphone,ipad]
-    since: "2.6.0"
-    osver: {ios: {min: "14.0"}}
-
-  - name: TRACKING_AUTHORIZATION_STATUS_AUTHORIZED
-    type: Number
-    summary: Returned by `trackingAuthorizationStatus` if After a device receives an authorization request to approve access, user accpet the request
-    permission: read-only
-    value: 3
-    platforms: [iphone,ipad]
-    since: "2.6.0"
-    osver: {ios: {min: "14.0"}}
-
-  - name: SIMULATOR_ID
-    type: String
-    summary: The deviceId for emulators to be used with <Modules.Admob.View.testDevices> property
-    permission: read-only
-    platforms: [android, iphone, ipad]
-
-  # FIXME: GENDER constants are deprecated! (and removed on Android!)
-  - name: GENDER_UNKNOWN
-    type: Number
-    summary: return value for `debugGeography` property
-    permission: read-only
-    value: 0
-    platforms: [iphone, ipad]
-
-  - name: GENDER_MALE
-    type: Number
-    summary: return value for `debugGeography` property
-    permission: read-only
-    value: 1
-    platforms: [iphone, ipad]
-
-  - name: GENDER_FEMALE
-    type: Number
-    summary: return value for `debugGeography` property
-    permission: read-only
-    value: 2
-    platforms: [iphone, ipad]
+  - name: adProviders
+    type: Array<AddProvider>
+    summary: Array of ad providers.
+    platforms: [android]
 
   - name: AD_TYPE_BANNER
     type: Number
@@ -187,6 +104,12 @@ properties:
   - name: AD_TYPE_INTERSTITIAL
     type: Number
     summary: Used when creating a <Modules.Admob.View> to determine ad type of interstitial
+    permission: read-only
+    platforms: [iphone, ipad]
+
+  - name: AD_TYPE_REWARDED_VIDEO
+    type: Number
+    summary: Used when creating a <Modules.Admob.View> to determine ad type of rewarded video
     permission: read-only
     platforms: [iphone, ipad]
 
@@ -258,24 +181,162 @@ properties:
     summary: Current constent status
     permission: read-only
     constants: Modules.Admob.CONSENT_*
+    platforms: [android]   
 
-  - name: adProviders
-    type: Array<AddProvider>
-    summary: Array of ad providers.
+  - name: CONSENT_FORM_STATUS_AVAILABLE
+    type: Number
+    summary: Consent form is available.
+    permission: read-only
+    value: 0,
+    platforms: [iphone, ipad]
+
+  - name: CONSENT_FORM_STATUS_UNAVAILABLE
+    type: Number
+    summary: Consent form is unavailable.
+    permission: read-only
+    value: 1,
+    platforms: [iphone, ipad]  
+
+  - name: CONSENT_STATUS_NON_PERSONALIZED
+    type: Number
+    summary: Returned by `consentStatus` if the consent status is not personalized.
+    permission: read-only
+    value: 1,
+    platforms: [android]
+
+  - name: CONSENT_STATUS_NOT_REQUIRED
+    type: Number
+    summary: Consent status is not required.
+    permission: read-only
+    value: 2,
+    platforms: [iphone, ipad]
+
+  - name: CONSENT_STATUS_OBTAINED
+    type: Number
+    summary: Consent status has already been obtained.
+    permission: read-only
+    value: 3,
+    platforms: [iphone, ipad] 
+
+  - name: CONSENT_STATUS_PERSONALIZED
+    type: Number
+    summary: Returned by `consentStatus` if the consent status is personalized.
+    permission: read-only
+    value: 2,
+    platforms: [android]
+
+  - name: CONSENT_STATUS_REQUIRED
+    type: Number
+    summary: Consent status is required. You should call Admob.loadForm() to ask for permissions.
+    permission: read-only
+    value: 1,
+    platforms: [iphone, ipad]
+
+  - name: CONSENT_STATUS_UNKNOWN
+    type: Number
+    summary: Consent status is unknown.
+    permission: read-only
+    value: 0
+
+  - name: DEBUG_GEOGRAPHY_DISABLED
+    type: Number
+    summary: Geography debugging is disabled.
+    permission: read-only
+    value: 0
+
+  - name: DEBUG_GEOGRAPHY_EEA
+    type: Number
+    summary: Geography appears as in EEA for debug devices.
+    permission: read-only
+    value: 1
+
+  - name: DEBUG_GEOGRAPHY_NOT_EEA
+    type: Number
+    summary: Geography appears as not in EEA for debug devices.
+    permission: read-only
+    value: 3 # FIXME: 2 on iOS, 3 on Android
 
   - name: debugIdentifiers
     type: Array<String>
     summary: Array of advertising identifier UUID strings. Debug features are enabled for devices with these identifiers. Debug features are always enabled for simulators.
+    platforms: [android]
 
   - name: debugGeography
     type: Number
     summary: Debug geography. Used for debug devices only.
     constants: Modules.Admob.DEBUG_GEOGRAPHY_*
-    #permission: read-only
-    # FIXME: debugGeography is read-only on iOS, but readwrite on Android!
+    platforms: [android]   
 
-# TODO: Android has property for isTaggedForUnderAgeOfConsent
-  
+  # FIXME: GENDER constants are deprecated! (and removed on Android!)
+  - name: GENDER_UNKNOWN
+    type: Number
+    summary: return value for `debugGeography` property. Deleted from 4.5.0
+    permission: read-only
+    value: 0
+    platforms: [iphone, ipad]
+    deleted:
+      since: "4.5.0"
+
+  - name: GENDER_MALE
+    type: Number
+    summary: return value for `debugGeography` property. Deleted from 4.5.0
+    permission: read-only
+    value: 1
+    platforms: [iphone, ipad]
+    deleted:
+      since: "4.5.0"
+
+  - name: GENDER_FEMALE
+    type: Number
+    summary: return value for `debugGeography` property. Deleted from 4.5.0
+    permission: read-only
+    value: 2
+    platforms: [iphone, ipad]
+    deleted:
+      since: "4.5.0"
+
+  - name: SIMULATOR_ID
+    type: String
+    summary: The deviceId for emulators to be used with <Modules.Admob.View.testDevices> property
+    permission: read-only
+    platforms: [android, iphone, ipad]
+    
+  - name: TRACKING_AUTHORIZATION_STATUS_NOT_DETERMINED
+    type: Number
+    summary: Returned by `trackingAuthorizationStatus` Before a device receives an authorization request to approve access to app-related data that can be used for tracking the user or the device.
+    permission: read-only
+    value: 0
+    platforms: [iphone,ipad]
+    since: "2.6.0"
+    osver: {ios: {min: "14.0"}}
+     
+  - name: TRACKING_AUTHORIZATION_STATUS_AUTHORIZED
+    type: Number
+    summary: Returned by `trackingAuthorizationStatus` if After a device receives an authorization request to approve access, user accpet the request
+    permission: read-only
+    value: 3
+    platforms: [iphone,ipad]
+    since: "2.6.0"
+    osver: {ios: {min: "14.0"}}
+
+  - name: TRACKING_AUTHORIZATION_STATUS_DENIED
+    type: Number
+    summary: Returned by `trackingAuthorizationStatus` if After a device receives an authorization request to approve access, user denied the request
+    permission: read-only
+    value: 2
+    platforms: [iphone,ipad]
+    since: "2.6.0"
+    osver: {ios: {min: "14.0"}}
+
+  - name: TRACKING_AUTHORIZATION_STATUS_RESTRICTED
+    type: Number
+    summary: Returned by `trackingAuthorizationStatus` If authorization to use app tracking data is restricted
+    permission: read-only
+    value: 1
+    platforms: [iphone,ipad]
+    since: "2.6.0"
+    osver: {ios: {min: "14.0"}}
+      
   - name: trackingAuthorizationStatus
     type: Number
     platforms: [iphone, ipad]
@@ -285,6 +346,36 @@ properties:
     constants: Modules.Admob.TRACKING_AUTHORIZATION_STATUS_*
 
 methods:
+  - name: disableSDKCrashReporting
+    returns:
+      type: void
+    summary: Disables automated SDK crash reporting. 
+    platforms: [iphone, ipad]
+    description: |
+        If not called, the SDK records the original exception
+        handler if available and registers a new exception handler. The new exception handler only
+        reports SDK related exceptions and calls the recorded original exception handler.
+    
+  - name: disableAutomatedInAppPurchaseReporting
+    returns:
+      type: void
+    summary: Disables automated in app purchase (IAP) reporting. Must be called before any IAP transaction is initiated. IAP reporting is used to track IAP ad conversions. Do not disable reporting if you use IAP ads.
+    platforms: [iphone, ipad]
+
+  - name: getAndroidAdId
+    returns:
+      type: void
+    summary: Gets the user Android Advertising ID
+    description: |
+        Gets the user Android Advertising ID. Since this works in a background thread in native
+        Android a callback is called when the value is fetched. The callback parameter is a key/value
+        pair with key `androidAdId` and a String value with the id.
+    platforms: [android]
+    parameters:
+      - name: callback
+        type: Callback<AndroidAdIdObject>
+        summary: async callback called when retrieved  
+  
   - name: initialize
     returns:
       type: void
@@ -310,7 +401,8 @@ methods:
   - name: isLimitAdTrackingEnabled
     returns:
       type: void
-    summary: |
+    summary: Checks whether the user has opted out from ad tracking in the device's settings
+    description: |
         Checks whether the user has opted out from ad tracking in the device's settings. Since
         this works in a background thread in native Android a callback is called when the value
         is fetched. The callback parameter is a key/value pair with key `isLimitAdTrackingEnabled`
@@ -320,24 +412,34 @@ methods:
       - name: callback
         type: Callback<LimitAdTrackingObject>
         summary: async callback called when retrieved
+  
+  - name: isTaggedForUnderAgeOfConsent
+    returns:
+      type: Boolean
+    summary: Indicates whether the user is tagged for under age of consent.
+    platforms: [android]
 
-  - name: getAndroidAdId
+  - name: loadForm
     returns:
       type: void
-    summary: |
-        Gets the user Android Advertising ID. Since this works in a background thread in native
-        Android a callback is called when the value is fetched. The callback parameter is a key/value
-        pair with key `androidAdId` and a String value with the id.
-    platforms: [android]
+    summary: Load the consent form
+    description: |
+        It is a best practice to load a form every time the user launches your app, even if you determine consent is not required, so that the form is ready to display in case the user wishes to change their consent setting.
+        The forms for obtaining consent are created in AdMob UI. Once you have determined that you will ask a user for consent, the next step is to determine if a form is available. There are a variety of reasons why a form may not be available, such as:
+        1) The user has limit ad tracking enabled.
+        2) You tagged the user as under the age of consent.
+        To check if a form is available, use the callback status parameter
+    platforms: [iphone, ipad]
     parameters:
       - name: callback
-        type: Callback<AndroidAdIdObject>
+        type: Callback<LoadFormObject>
         summary: async callback called when retrieved
 
   - name: requestConsentInfoUpdateForPublisherIdentifiers
     returns:
       type: void
-    summary: |
+    summary: Requests consent information update for the provided publisher identifiers
+    description: |
         Requests consent information update for the provided publisher identifiers. All publisher
         identifiers used in the application should be specified in this call. Consent status is reset to
         unknown when the ad provider list changes.
@@ -346,55 +448,26 @@ methods:
       - name: options
         type: RequestConsentInfoOptions
         summary: options used to request consent for given publishers
-        
-  - name: resetConsent
-    returns:
-      type: void
-    summary: Resets consent information to default state and clears ad providers.
-
-  - name: disableSDKCrashReporting
-    returns:
-      type: void
-    summary: Disables automated SDK crash reporting. 
+  
+  - name: requestConsentInfoUpdateWithParameters
+    summary: Request the latest consent information
     description: |
-        If not called, the SDK records the original exception
-        handler if available and registers a new exception handler. The new exception handler only
-        reports SDK related exceptions and calls the recorded original exception handler.
-    
-  - name: disableAutomatedInAppPurchaseReporting
-    returns:
-      type: void
-    summary: Disables automated in app purchase (IAP) reporting. Must be called before any IAP transaction is initiated. IAP reporting is used to track IAP ad conversions. Do not disable reporting if you use IAP ads.
-
-  - name: setTagForUnderAgeOfConsent
-    returns:
-      type: void
-    summary: Sets whether the user is tagged for under age of consent.
-    parameters:
-      - name: tag
-        type: Boolean
-        summary: whether the user is tagged for under age of consent.
-
-  - name: isTaggedForUnderAgeOfConsent
-    returns:
-      type: Boolean
-    summary: Indicates whether the user is tagged for under age of consent.
-
-  - name: showConsentForm
-    returns:
-      type: void
-    summary: Shows a consent modal form.
+        Request the latest consent information
+        It is recommended that you request an update of the consent information at every app launch.
+        This will determine whether or not your user needs to provide consent.
+    platforms: [iphone, ipad]
     parameters:
       - name: options
-        type: ConsentFormOptions
-        summary: Options used to build the consent form
-
+        type: RequestConsentInfoUpdateWithParametersOptions
+        summary: parameters used to request consent information
+        optional: false 
+  
   - name: requestTrackingAuthorization
     summary: The request for user authorization to access app-related data.
     description: |
             One-time request to authorize or deny access to app-elated data that can be used for tracking the user or the device.
             The system remembers the user's choice and doesn't prompt again unless a user uninstalls and then reinstalls the app on the device.
-            Note, when calling requestTrackingAuthorization(completionHandler:), the NSUserTrackingUsageDescription key must be in the tiapp.xml.
+            Note, when calling Admob.requestTrackingAuthorization(), the NSUserTrackingUsageDescription key must be in the tiapp.xml.
     platforms: [iphone, ipad]
     since: "2.6.0"
     osver: {ios: {min: "14.0"}}
@@ -403,141 +476,253 @@ methods:
         type: Callback<TrackingAuthorizationStatusObject>
         summary: Async callback function to invoke when done
         optional: false
+        
+  - name: resetConsent
+    returns:
+      type: void
+    summary: Resets consent information to default state and clears ad providers.
+  
+  - name: setAdvertiserTrackingEnabled
+    returns:
+      type: void
+    summary: Sets whether to use the data to deliver personalized ads on Facebook Audience Network mediation.
+    description: |
+            If you use Facebook Audience Network mediation, starting with iOS 14, you will need to implement the setAdvertiserTrackingEnabled flag.
+            This allows you to inform Facebook whether to use the data to deliver personalized ads. If the flag is set to false, Facebook will not 
+            be able to deliver personalized ads.
+    platforms: [iphone, ipad]
+    since: "3.1.0"
+    osver: {ios: {min: "14.0"}}
+    parameters:
+      - name: tag
+        type: Boolean
+        summary: Sets whether to use the data to deliver personalized ads on Facebook Audience Network mediation.
 
----
-name: ConsentFormOptions
-summary: Simple object type used in <Modules.Admob.showConsentForm>
-platforms: [android, iphone, ipad]
-properties:
-  - name: shouldOfferPersonalizedAds
-    type: Boolean
-    summary: Indicates whether the consent form should show a personalized ad option.
-    default: true
-    optional: true
+  - name: setInMobi_updateGDPRConsent
+    returns:
+      type: void
+    summary: This allows you to inform InMobi whether to use the data to deliver personalized ads
+    description: |
+            If you use InMobi mediation, this allows you to inform InMobi whether to use the data to deliver personalized ads. If the flag is set to false, InMobi will not be able to deliver personalized ads.
+            You need to set this flag before initializing the mediation SDK in order to receive it in the bidding request.
+    platforms: [iphone, ipad]
+    parameters:
+      - name: tag
+        type: Boolean
+        summary: If the flag is set to false, InMobi will not be able to deliver personalized ads.      
 
-  - name: shouldOfferNonPersonalizedAds
-    type: Boolean
-    summary: Indicates whether the consent form should show a non-personalized ad option.
-    default: true
-    optional: true
-
-  - name: shouldOfferAdFree
-    type: Boolean
-    summary: Indicates whether the consent form should show an ad-free app option.
-    default: false
-    optional: true
-
-  - name: callback
-    type: Callback<ConsentFormCallbackObject>
-    summary: Callback to be triggered once the form completes.
-    default: false
-    optional: false
-
-  - name: privacyURL
-    type: String
-    summary: Privacy URL (required)
-    optional: false
-
----
-name: ConsentFormCallbackObject
-summary: Simple object passed to the callback used in <Modules.Admob.showConsentForm>
-platforms: [android, iphone, ipad]
-properties:
-  - name: userPrefersAdFree
-    type: Boolean
-    summary: Indicates whether the uer prefers ad-free
-    optional: true
-
-  - name: consentStatus
-    type: Number
-    summary: consent status
-    optional: true
+  - name: setTagForUnderAgeOfConsent
+    returns:
+      type: void
+    summary: Sets whether the user is tagged for under age of consent.
     platforms: [android]
+    parameters:
+      - name: tag
+        type: Boolean
+        summary: whether the user is tagged for under age of consent.
+     
+  - name: showConsentForm
+    returns:
+      type: void
+    summary: Shows a consent modal form. Removed on iOS since Ti.Admob 5.0.0 in favor of new UMP method Admob.requestConsentInfoUpdateWithParameters()
+    platforms: [android]
+    parameters:
+      - name: options
+        type: ConsentFormOptions
+        summary: Options used to build the consent form
 
-  - name: error
-    type: String
-    summary: the error message if the constent form is closed or fails
-    optional: false
+objects:
+  - name: AndroidAdIdObject
+    summary: simple object passed to the <Modules.Admob.getAndroidAdId> callback function
+    platforms: [android]
+    properties:
+      - name: androidAdId
+        type: String
+        summary: the user Android Advertising ID
+        optional: false
+  
+  - name: AddProvider
+    summary: Simple object returned in Array from <Modules.Admob.adProviders>
+    properties:
+      - name: identifier
+        type: String
+        summary: identifier of the ad provider
 
----
-name: AddProvider
-summary: Simple object returned in Array from <Modules.Admob.adProviders>
-properties:
-  - name: identifier
-    type: String
-    summary: identifier of the ad provider
+      - name: name
+        type: String
+        summary: display name of the add provider
 
-  - name: name
-    type: String
-    summary: display name of the add provider
+      - name: privacyPolicyURL
+        type: String
+        summary: URL of the add provider's privacy policy
+ 
+  - name: ConsentFormCallbackObject
+    summary: Simple object passed to the callback used in <Modules.Admob.showConsentForm>
+    platforms: [android]
+    properties:
+      - name: userPrefersAdFree
+        type: Boolean
+        summary: Indicates whether the uer prefers ad-free
+        optional: true
 
-  - name: privacyPolicyURL
-    type: String
-    summary: URL of the add provider's privacy policy
+      - name: consentStatus
+        type: Number
+        summary: consent status
+        optional: true
+        platforms: [android]
 
----
-name: LimitAdTrackingObject
-summary: simple object passed to the <Modules.Admob.isLimitAdTrackingEnabled> callback function
-platforms: [android]
-properties:
-  - name: isLimitAdTrackingEnabled
-    type: Boolean
-    summary: whether the user has opted out from ad tracking in the device's settings
-    optional: false
+      - name: error
+        type: String
+        summary: the error message if the constent form is closed or fails
+        optional: false
+  
+  - name: ConsentFormOptions
+    summary: Simple object type used in <Modules.Admob.showConsentForm>
+    platforms: [android]
+    properties:
+      - name: shouldOfferPersonalizedAds
+        type: Boolean
+        summary: Indicates whether the consent form should show a personalized ad option.
+        default: true
+        optional: true
 
----
-name: AndroidAdIdObject
-summary: simple object passed to the <Modules.Admob.getAndroidAdId> callback function
-platforms: [android]
-properties:
-  - name: androidAdId
-    type: String
-    summary: the user Android Advertising ID
-    optional: false
+      - name: shouldOfferNonPersonalizedAds
+        type: Boolean
+        summary: Indicates whether the consent form should show a non-personalized ad option.
+        default: true
+        optional: true
 
----
-name: RequestConsentInfoOptions
-summary: simple object passed to the <Modules.Admob.requestConsentInfoUpdateForPublisherIdentifiers> method
-platforms: [android]
-properties:
-  - name: publisherIdentifiers
-    type: Array<String>
-    summary: The publisher identifiers whose consent info we're requesting
-    optional: false
+      - name: shouldOfferAdFree
+        type: Boolean
+        summary: Indicates whether the consent form should show an ad-free app option.
+        default: false
+        optional: true
 
-  - name: callback
-    type: Callback<ConsentStatusObject>
-    summary: async callback function to invoke when done
-    optional: false
+      - name: callback
+        type: Callback<ConsentFormCallbackObject>
+        summary: Callback to be triggered once the form completes.
+        default: false
+        optional: false
 
----
-name: ConsentStatusObject
-summary: simple object passed to callback passed in to the <Modules.Admob.requestConsentInfoUpdateForPublisherIdentifiers> method
-platforms: [android]
-properties:
-  - name: consentStatus
-    type: Number
-    summary: The consent status for the given publishers
-    optional: true
-    permission: read-only
+      - name: privacyURL
+        type: String
+        summary: Privacy URL (required)
+        optional: false
 
-  - name: error
-    type: String
-    summary: The error message in case of failure
-    optional: true
-    permission: read-only
+  - name: ConsentStatusObject
+    summary: simple object passed to callback passed in to the <Modules.Admob.requestConsentInfoUpdateForPublisherIdentifiers> method
+    platforms: [android]
+    properties:
+      - name: consentStatus
+        type: Number
+        summary: The consent status for the given publishers
+        optional: true
+        permission: read-only
 
----
-name: TrackingAuthorizationStatusObject
-summary: Simple object passed to callback passed in to the <Modules.Admob.requestTrackingAuthorization> method
-platforms: [iphone,ipad]
-since: "2.6.0"
-osver: {ios: {min: "14.0"}}
-properties:
-  - name: status
-    type: Number
-    summary: The status of Tracking Authorization
-    optional: false
-    permission: read-only
-    constants: Modules.Admob.TRACKING_AUTHORIZATION_STATUS_*
+      - name: error
+        type: String
+        summary: The error message in case of failure
+        optional: true
+        permission: read-only
+  
+  - name: LimitAdTrackingObject
+    summary: simple object passed to the <Modules.Admob.isLimitAdTrackingEnabled> callback function
+    platforms: [android]
+    properties:
+      - name: isLimitAdTrackingEnabled
+        type: Boolean
+        summary: whether the user has opted out from ad tracking in the device's settings
+        optional: false
+
+  - name: LoadFormObject
+    summary: simple object passed to the <Modules.Admob.loadForn> callback function
+    platforms: [iphone, ipad]
+    properties:
+      - name: dismissError
+        type: String
+        summary: dismiss error message
+        optional: false
+      
+      - name: loadError
+        type: String
+        summary: load error message
+        optional: false
+
+      - name: status
+        type: Number
+        summary: Check the consent status
+        optional: true
+        permission: read-only
+        constants: Modules.Admob.CONSENT_STATUS_* 
+
+  - name: RequestConsentInfoOptions
+    summary: simple object passed to the <Modules.Admob.requestConsentInfoUpdateForPublisherIdentifiers> method
+    platforms: [android]
+    properties:
+      - name: publisherIdentifiers
+        type: Array<String>
+        summary: The publisher identifiers whose consent info we're requesting
+        optional: false
+
+      - name: callback
+        type: Callback<ConsentStatusObject>
+        summary: async callback function to invoke when done
+        optional: false
+
+
+  - name: RequestConsentInfoUpdateWithParametersOptions
+    summary: simple object passed to the <Modules.Admob.requestConsentInfoUpdateWithParameters> method
+    platforms: [iphone, ipad]
+    properties:
+      - name: geography    
+        type: Number
+        summary: To force the SDK to treat the device as though it is not in the EEA or UK, use UMPDebugGeographyNotEEA. Note that debug settings only work on test devices. Emulators do not need to be added to the device id list as they have testing enabled by default.
+        optional: true
+        permission: read-only
+        constants: Modules.Admob.DEBUG_GEOGRAPHY_*  
+      
+      - name: tagForUnderAgeOfConsent
+        type: Boolean
+        summary: Sets whether the user is tagged for under age of consent
+        optional: true
+
+      - name: testDeviceIdentifiers
+        type: Array<String>
+        summary: Array of "TEST-DEVICE-HASHED-ID" strings. You can use Admob.SIMULATOR_ID for simulator.
+        optional: true
+        
+      - name: callback
+        type: Callback<RequestConsentStatusObject>
+        summary: async callback function to invoke when done
+        optional: false  
+
+  - name: RequestConsentStatusObject
+    summary: simple object passed to callback passed in to the <Modules.Admob.requestConsentInfoUpdateWithParameters> method
+    platforms: [iphone, ipad]
+    properties:
+      - name: status
+        type: Number
+        summary: Check if the consent status is required, non required, obtained or unknown
+        optional: true
+        permission: read-only
+        constants: Modules.Admob.CONSENT_STATUS_*  
+
+      - name: success
+        type: Boolean
+        summary: Check if received a valid response
+        optional: true
+        permission: read-only
+
+  - name: TrackingAuthorizationStatusObject
+    summary: Simple object passed to callback passed in to the <Modules.Admob.requestTrackingAuthorization> method
+    platforms: [iphone,ipad]
+    since: "2.6.0"
+    osver: {ios: {min: "14.0"}}
+    properties:
+      - name: status
+        type: Number
+        summary: The status of Tracking Authorization
+        optional: false
+        permission: read-only
+        constants: Modules.Admob.TRACKING_AUTHORIZATION_STATUS_*
     
