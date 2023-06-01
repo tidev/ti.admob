@@ -1,7 +1,7 @@
 # Change Log
 
 ### v6.2.0
-- Added support for App Open Ad (https://developers.google.com/admob/android/app-open)
+- Added support for App Open Ad (https://developers.google.com/admob/ios/app-open)
 - Reset TC string if last updated date was more than 13 months ago (https://developers.google.com/admob/ios/privacy/gdpr#troubleshooting)
 - Renamed Interstitial and Rewarded Video event names:
 -- `adloaded` becomes `didReceiveAd`
