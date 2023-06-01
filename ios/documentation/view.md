@@ -117,6 +117,10 @@ Sets a testing value for `adUnitId` to test ads without an admob account.
  Sent when an ad request failed. Normally this is because no network
  connection was available or no ads were available (i.e. no fill).
 
+### didFailToShowAd
+
+Sent when App Open Ad failed to show.
+
 ### willPresentScreen
 
 Sent just before presenting the user a full screen view, such as a browser,
@@ -150,7 +154,12 @@ Store).
 Called when the user clicks on the buy button of an in-app purchase ad. After the receiver handles the purchase, it must 
 call the GADInAppPurchase object's reportPurchaseStatus: method.
 
+### didRewardUser
+
+Fired when the reward based video ad has rewarded the user.
+
 ### adrewarded
+⚠️ Removed since Ti.Admob 6.2.0. You can use `didRewardUser`
 
 Fired when the reward based video ad has rewarded the user.
 
@@ -162,30 +171,12 @@ Fired when the reward based video ad has rewarded the user.
 | `reward.type` | `String` | Type of the reward. |
 | `reward.amount` | `Number` | Amount rewarded to the user. |
 
-### adloaded
+### adloaded 
+⚠️ Removed since Ti.Admob 6.2.0. You can use `didReceiveAd`
 
 Fired when a reward based video ad was received. From this point on you can open the video using `showRewardedVideo()`.
 
-### adopened
-
-Fired when the reward based video ad opened.
-
-### videostarted
-
-Fired when the reward based video ad started playing.
-
-### videocompleted
-
-Fired when the reward based video ad completed playing.
-
-### adclosed
-
-Fired when the reward based video ad closed.
-
-### adleftapplication
-
-Fires when the reward based video ad will leave the application.
-
 ### adfailedtoload
+⚠️ Removed since Ti.Admob 6.2.0. You can use `didFailToReceiveAd`
 
 Fired when the reward based video ad failed to load.

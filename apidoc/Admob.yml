@@ -112,6 +112,12 @@ properties:
     summary: Used when creating a <Modules.Admob.View> to determine ad type of rewarded video
     permission: read-only
     platforms: [iphone, ipad]
+  
+  - name: AD_TYPE_APP_OPEN
+    type: Number
+    summary: Used when creating a <Modules.Admob.View> to determine ad type of app open
+    permission: read-only
+    platforms: [iphone, ipad]
 
   - name: AD_SIZE_BANNER
     type: Number
@@ -361,6 +367,8 @@ methods:
       type: void
     summary: Disables automated in app purchase (IAP) reporting. Must be called before any IAP transaction is initiated. IAP reporting is used to track IAP ad conversions. Do not disable reporting if you use IAP ads.
     platforms: [iphone, ipad]
+    deleted:
+      since: "6.2.0"
 
   - name: getAndroidAdId
     returns:

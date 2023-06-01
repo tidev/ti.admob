@@ -180,13 +180,15 @@ function openTestAdsWin() {
 
   var view = Ti.UI.createView({
     layout: "vertical",
-    top: 20
+    top: 50
   });
   var label = Ti.UI.createLabel({
-    text: 'Loading the ads now! Note that there may be a several minute delay if you have not viewed an ad in over 24 hours.',
+    text: 'Loading the ads now! Note that there may be a several minute delay if you have not viewed an ad in over 24 hours.\n\n' +
+          'Resume the app to show OpenApp ad',
     font: {
       fontSize: "20sp"
     },
+    textAlign: 'center',
     color: "black",
     width: "90%",
     top: 20
@@ -257,23 +259,26 @@ function openTestAdsWin() {
 
   bannerAdView.addEventListener('didReceiveAd', function (e) {
     console.log(e)
-    Ti.API.info('BannerAdView - Did receive ad: ' + e.adUnitId + '!');
+    Ti.API.info('BannerAdView - Did receive ad: ' + e.adUnitId);
   });
   bannerAdView.addEventListener('didFailToReceiveAd', function (e) {
     Ti.API.error('BannerAdView - Failed to receive ad: ' + e.error);
   });
+  bannerAdView.addEventListener('didRecordImpression', function (e) {
+    Ti.API.info('BannerAdView - didRecordImpression: ' + e.adUnitId);
+  });
 
+  bannerAdView.addEventListener('didRecordClick', function (e) {
+    Ti.API.info('BannerAdView - didRecordClick: ' + e.adUnitId);
+  });
   bannerAdView.addEventListener('willPresentScreen', function (e) {
-    Ti.API.error('BannerAdView - willPresentScreen');
+    Ti.API.error('BannerAdView - willPresentScreen: ' + e.adUnitId);
   });
-  bannerAdView.addEventListener('willDismissScreen', function () {
-    Ti.API.info('BannerAdView - willDismissScreen!');
+  bannerAdView.addEventListener('willDismissScreen', function (e) {
+    Ti.API.info('BannerAdView - willDismissScreen: ' + e.adUnitId);
   });
-  bannerAdView.addEventListener('didDismissScreen', function () {
-    Ti.API.info('BannerAdView - Dismissed screen!');
-  });
-  bannerAdView.addEventListener('didPresentScreen', function (e) {
-    Ti.API.info('BannerAdView - Presenting screen!' + e.adUnitId);
+  bannerAdView.addEventListener('didDismissScreen', function (e) {
+    Ti.API.info('BannerAdView - Dismissed screen: ' + e.adUnitId);
   });
 
 
@@ -289,17 +294,11 @@ function openTestAdsWin() {
     }, // Object of additional infos
     visible: false // If true, covers the win when added and can't tap nothing
   });
-  interstitialAd.addEventListener('adloaded', function (e) {
-    Ti.API.info('interstitialAd - adloaded: Did receive ad!');
-    console.log(e);
-    interstitialButton.title = "Show interstitial Ad";
-    enableInterstitialButton();
-  });
+  
 
   interstitialAd.addEventListener('didReceiveAd', function (e) {
-    Ti.API.info('interstitialAd - Did receive ad!');
+    Ti.API.info('interstitialAd - Did receive ad: ' + e.adUnitId);
     interstitialButton.title = "Show interstitial Ad";
-    console.log(e);
     enableInterstitialButton();
   });
   interstitialAd.addEventListener('didFailToReceiveAd', function (e) {
@@ -307,11 +306,7 @@ function openTestAdsWin() {
     interstitialButton.title = "Load interstitial Ad";
     testAdsWin.remove(interstitialAd);
     enableInterstitialButton();
-  });
-  interstitialAd.addEventListener('didPresentScreen', function (e) {
-    Ti.API.info('interstitialAd - didPresentScreen: ' + e.adUnitId);
-    enableInterstitialButton();
-  });
+  });  
   interstitialAd.addEventListener('didDismissScreen', function (e) {
     Ti.API.info('interstitialAd - Dismissed screen: ' + e.adUnitId);
     testAdsWin.remove(interstitialAd);
@@ -322,9 +317,11 @@ function openTestAdsWin() {
     enableInterstitialButton();
   });
   interstitialAd.addEventListener('didRecordImpression', function (e) {
-    Ti.API.info('interstitialAd- didRecordImpression');
-    console.log(e);
+    Ti.API.info('interstitialAd- didRecordImpression: ' + e.adUnitId);
     enableInterstitialButton();
+  });
+  interstitialAd.addEventListener('didRecordClick', function (e) {
+    Ti.API.info('interstitialAd - didRecordClick: ' + e.adUnitId);
   });
 
 
@@ -359,36 +356,28 @@ function openTestAdsWin() {
       'name': 'My App'
     } // Object of additional infos
   });
-
-  rewardedVideo.addEventListener('adloaded', function (e) {
-    Ti.API.debug('rewardedVideo - Rewarded video loaded!');
-    console.log(e);
-    enableRewardedVideoButton();
-  });
-  rewardedVideo.addEventListener('adrewarded', function (reward) {
-    Ti.API.debug('rewardedVideo -adrewarded');
+ 
+  rewardedVideo.addEventListener('didRewardUser', function (reward) {
+    Ti.API.debug('rewardedVideo - didRewardUser');
     Ti.API.debug(`Received reward! type: ${reward.type}, amount: ${reward.amount}`);
     console.log(reward);
     disableRewardedVideoButton();
     alert("Well! Amount earned: " + reward.amount);
   });
-  rewardedVideo.addEventListener('adfailedtoload', function (error) {
-    Ti.API.debug('rewardedVideo - Rewarded video ad failed to load: ' + error.message);
-    disableRewardedVideoButton();
-  });
+  
   rewardedVideo.addEventListener('didReceiveAd', function (e) {
-    Ti.API.info('rewardedVideo - Did receive ad!');
+    Ti.API.info('rewardedVideo - Did receive ad: ' + e.adUnitId);
     console.log(e);
     enableRewardedVideoButton();
   });
   rewardedVideo.addEventListener('didFailToReceiveAd', function (e) {
+    Ti.API.debug('rewardedVideo - Rewarded video ad failed to load: ' + e.error);
+    disableRewardedVideoButton();
+  });  
+  rewardedVideo.addEventListener('didFailToReceiveAd', function (e) {
     Ti.API.error('rewardedVideo - Failed to receive ad: ' + e.error);
     disableRewardedVideoButton();
-  });
-  rewardedVideo.addEventListener('didPresentScreen', function (e) {
-    Ti.API.info('rewardedVideo - didPresentScreen: ' + e.adUnitId);
-    enableRewardedVideoButton();
-  });
+  }); 
   rewardedVideo.addEventListener('didDismissScreen', function (e) {
     Ti.API.info('rewardedVideo - Dismissed screen: ' + e.adUnitId);
     disableRewardedVideoButton();
@@ -402,6 +391,10 @@ function openTestAdsWin() {
     console.log(e);
     disableRewardedVideoButton();
   });
+  rewardedVideo.addEventListener('didRecordClick', function (e) {
+    Ti.API.info('rewardedVideo - didRecordClick: ' + e.adUnitId);
+  });
+  
 
   function showRewarded() {
     if (rewardedVideoButton.title === "Load Rewarded Video Ad") {
@@ -426,6 +419,113 @@ function openTestAdsWin() {
       rewardedVideoButton.title = 'Show Rewarded Video Ad';
     }, 10);
   }
+
+  /* OpenApp Ad */
+
+  let appOpenAd;
+
+  function loadOpenAd() {
+    const reload_max_tries_case_error = 4;
+    let reload_max_tries = 0;
+
+    function reloadAppOpenAd() {
+      if (reload_max_tries < reload_max_tries_case_error) {
+        setTimeout(() => {
+          appOpenAd.requestAppOpenAd();
+        }, 10000);
+      }
+      reload_max_tries += 1;
+    }
+
+    appOpenAd = Admob.createView({
+      debugEnabled: false,
+      adType: Admob.AD_TYPE_APP_OPEN,
+      adUnitId: 'ca-app-pub-3940256099942544/5662855259', // You can get your own at http: //www.admob.com/
+      extras: {
+        'version': 1.0,
+        'name': 'My App'
+      } // Object of additional infos
+    });
+
+    // appOpenAd custom events
+    appOpenAd.addEventListener('didReceiveAd', function (e) {
+      Ti.API.debug('appOpenAd - didReceiveAd: Did receive ad: ' + e.adUnitId);
+      Ti.API.debug(e);
+      reload_max_tries = 0;
+      Titanium.App.Properties.setDouble('appOpenAdLoadTime', (new Date().getTime()));
+    });   
+    appOpenAd.addEventListener('didFailToShowAd', function (e) {
+      Ti.API.error('appOpenAd - Failed to show: ' + e.error);
+      reloadAppOpenAd();
+    });
+
+    // appOpenAd AdMob avents
+    appOpenAd.addEventListener('didRecordClick', function (e) {
+      Ti.API.debug('appOpenAd - didRecordClick: ' + e.adUnitId);
+    });
+    appOpenAd.addEventListener('didFailToReceiveAd', function (e) {
+      Ti.API.error('appOpenAd - Failed to receive ad: ' + e.error);
+      reloadAppOpenAd();
+    });
+    appOpenAd.addEventListener('didDismissScreen', function (e) {
+      Ti.API.debug('appOpenAd - Dismissed screen: ' + e.adUnitId);
+      Titanium.App.Properties.setDouble('lastTimeAppOpenAdWasShown', (new Date().getTime()));
+      appOpenAd.requestAppOpenAd();
+    });
+    appOpenAd.addEventListener('willPresentScreen', function (e) {
+      Ti.API.debug('appOpenAd - willPresentScreen: ' + e.adUnitId);
+    });
+    appOpenAd.addEventListener('willDismissScreen', function (e) {
+      Ti.API.debug('appOpenAd - willDismissScreen: ' + e.adUnitId);
+    });
+    appOpenAd.addEventListener('didRecordImpression', function (e) {
+      Ti.API.debug('appOpenAd- didRecordImpression: ' + e.adUnitId);
+    });
+
+    console.log("appOpenAd.receive();")
+    appOpenAd.receive();    
+
+  }
+
+  function resumeOpenAd() {
+    let currentTime = (new Date().getTime());
+    let loadTime = Titanium.App.Properties.getDouble('appOpenAdLoadTime', currentTime);
+    let lastTimeAppOpenAdWasShown = Titanium.App.Properties.getDouble('lastTimeAppOpenAdWasShown', 1);
+
+    if ((currentTime - loadTime) < 14400000) { // then less than 4 hours elapsed.
+      if ((currentTime - lastTimeAppOpenAdWasShown) > 600000) { // then more than 10 minutes elapsed after the last Ad showed.        
+        console.log("appOpenAd.showAppOpenAd()!")
+        setTimeout(() => {
+          try {
+            appOpenAd.showAppOpenAd();
+          } catch (error) {
+            Ti.API.error(error);
+            Titanium.App.removeEventListener('resume', resumeOpenAd);
+            setTimeout(() => {
+              loadOpenAd();
+              Titanium.App.addEventListener('resume', resumeOpenAd);
+            }, 500);
+          }
+        }, 500);
+      } else {
+        Titanium.API.warn("You have showned an AppOpenAd less than 10 minutes ago. You should wait!");
+      }
+    } else {
+      Titanium.API.warn("The AppOpenAd was requested more than 4 hours ago and has expired! You should load another one.");
+      Titanium.App.removeEventListener('resume', resumeOpenAd);
+      setTimeout(() => {
+        loadOpenAd();
+        Titanium.App.addEventListener('resume', resumeOpenAd);
+      }, 500);
+    }
+  }
+
+  loadOpenAd();
+  Titanium.App.addEventListener('resume', resumeOpenAd);
+
+  testAdsWin.addEventListener('close', () => {
+    Titanium.App.removeEventListener('resume', resumeOpenAd);    
+  });
 
   testAdsWin.open();
   setTimeout(() => {

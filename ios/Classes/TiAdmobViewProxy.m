@@ -36,4 +36,14 @@
   [[self admobView] loadRewardedVideoWithAdUnitID:adUnitId];
 }
 
+- (void)requestAppOpenAd:(id)args
+{
+  [[self admobView] requestAppOpenAd];
+}
+
+- (void)showAppOpenAd:(id)args
+{
+  [[self admobView] showAppOpenAd];
+}
+
 @end

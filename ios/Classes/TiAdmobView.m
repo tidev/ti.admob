@@ -10,7 +10,10 @@
 #import "TiApp.h"
 #import "TiUtils.h"
 
-@implementation TiAdmobView
+@implementation TiAdmobView {
+  BOOL _isLoadingAd;
+  BOOL _isShowingAd;
+}
 
 #pragma mark - Ad Lifecycle
 
@@ -60,9 +63,14 @@
     rewardedAd.fullScreenContentDelegate = nil;
   }
 
+  if (appOpenAd) {
+    appOpenAd.fullScreenContentDelegate = nil;
+  }
+
   RELEASE_TO_NIL(bannerView);
   RELEASE_TO_NIL(interstitialAd);
   RELEASE_TO_NIL(rewardedAd);
+  RELEASE_TO_NIL(appOpenAd);
 
   [super dealloc];
 }
@@ -98,6 +106,8 @@
       [self loadInterstitial];
     } else if ([TiUtils intValue:adType def:TiAdmobAdTypeBanner] == TiAdmobAdTypeRewardedVideo) {
       [self loadRewardedVideoWithAdUnitID:adUnitId];
+    } else if ([TiUtils intValue:adType def:TiAdmobAdTypeBanner] == TiAdmobAdTypeAppOpen) {
+      [self requestAppOpenAd];
     }
   }];
 }
@@ -187,14 +197,14 @@
   // calling "loadRewardedVideo(adUnitId)" again
   [GADRewardedAd loadWithAdUnitID:adUnitID request:[GADRequest request] completionHandler:^(GADRewardedAd * _Nullable _rewardedAd, NSError * _Nullable error) {
     if (error) {
-      [self.proxy fireEvent:@"adfailedtoload" withObject:@{ @"message": error.localizedDescription }];
+      [self.proxy fireEvent:@"didFailToReceiveAd" withObject:@{ @"adUnitId" : adUnitId, @"error": error.localizedDescription }];
       return;
     }
     
     rewardedAd = [_rewardedAd retain];
     rewardedAd.fullScreenContentDelegate = self;
-
-    [[self proxy] fireEvent:@"adloaded"];
+    
+    [self.proxy fireEvent:@"didReceiveAd" withObject:@{ @"adUnitId": adUnitId }];
   }];
 }
 
@@ -204,14 +214,14 @@
                                request:[GADRequest request]
                      completionHandler:^(GADInterstitialAd *ad, NSError *error) {
      if (error) {
-       [self.proxy fireEvent:@"adfailedtoload" withObject:@{ @"message": error.localizedDescription }];
+       [self.proxy fireEvent:@"didFailToReceiveAd" withObject:@{ @"adUnitId" : adUnitId, @"error": error.localizedDescription }];
        return;
      }
 
      interstitialAd = [ad retain];
      interstitialAd.fullScreenContentDelegate = self;
 
-    [[self proxy] fireEvent:@"adloaded"];
+    [self.proxy fireEvent:@"didReceiveAd" withObject:@{ @"adUnitId": adUnitId }];
    }];
 }
 
@@ -239,10 +249,88 @@
         @"type": rewardedAd.adReward.type
       };
 
-      [[self proxy] fireEvent:@"adrewarded" withObject:event];
+      [[self proxy] fireEvent:@"didRewardUser" withObject:event];
     }];
   } else {
     NSLog(@"[WARN] Cannot show rewarded video: %@", error.localizedDescription);
+  }
+}
+
+// App Open Ad
+
+- (BOOL)isAdAvailable {
+  // Check if ad exists.
+  return appOpenAd != nil;
+}
+
+- (void)requestAppOpenAd
+{
+    // Do not load ad if one is already loading.
+    if(_isLoadingAd){
+        NSLog(@"[DEBUG] Ad is loading. No need to rush!");
+        return;
+    }
+
+    //GADRequest *request = [GADRequest request];
+    _isLoadingAd = YES;
+    //
+    [GADAppOpenAd loadWithAdUnitID:adUnitId
+                           request:[GADRequest request]
+                       orientation:UIInterfaceOrientationPortrait
+                 completionHandler:^(GADAppOpenAd *_Nullable _appOpenAd, NSError *_Nullable error) {
+        _isLoadingAd = NO;
+        if (error) {
+            [self.proxy fireEvent:@"didFailToReceiveAd" withObject:@{ @"adUnitId" : adUnitId, @"error": error.localizedDescription }];            
+            appOpenAd = nil;
+            return;
+        }
+
+        appOpenAd = [_appOpenAd retain];
+        appOpenAd.fullScreenContentDelegate = self;
+
+        [self.proxy fireEvent:@"didReceiveAd" withObject:@{ @"adUnitId": adUnitId }];
+
+        _isLoadingAd = NO;
+    }];
+}
+
+- (void)showAppOpenAd
+{
+  // If the app open ad is already showing, do not show the ad again.
+  if (_isShowingAd) {
+      NSLog(@"[WARN] The App Open Ad is already showing.");
+      return;
+  }
+
+  // If the app open ad is still loading, you can not show the ad.
+  if (_isLoadingAd){
+      NSLog(@"[WARN] The App Open Ad is still loading. Hang on!");
+      return;
+  }
+
+  // If the app open ad is not available yet, invoke the callback then load the ad.
+  if (![self isAdAvailable]) {
+      NSLog(@"[ERROR] The App Open Ad is not available. Did you call load() method?");            
+      [self.proxy fireEvent:@"didFailToReceiveAd" withObject:@{ @"adUnitId" : adUnitId, @"error": [NSString stringWithFormat:@"The App Open Ad is not available. Did you call load() method?"]}];
+      appOpenAd = nil;
+      return;
+  }
+  
+  NSError *error;
+  BOOL canPresent = appOpenAd && [appOpenAd canPresentFromRootViewController:[[[TiApp app] controller] topPresentedController] error:&error];
+
+  if (canPresent) {
+    _isShowingAd = YES;
+    //[appOpenAd presentFromRootViewController:[[[TiApp app] controller] topPresentedController]];
+    
+    UIViewController *rootViewController = [[[TiApp app] controller] topPresentedController];
+    [appOpenAd presentFromRootViewController:rootViewController];
+      
+  } else {
+    NSLog(@"[WARN] Cannot show App Open ad: %@", error.localizedDescription);
+    [self.proxy fireEvent:@"didFailToShowAd" withObject:@{ @"adUnitId" : adUnitId, @"error": error.localizedDescription }];
+    _isShowingAd = NO;
+    appOpenAd = nil;
   }
 }
 
@@ -329,7 +417,12 @@
 
 - (void)bannerViewDidRecordImpression:(nonnull GADBannerView *)bannerView
 {
-  [self.proxy fireEvent:@"didRecordImpression" withObject:adUnitId];
+    [self.proxy fireEvent:@"didRecordImpression" withObject:@{ @"adUnitId": adUnitId }];
+}
+
+- (void)bannerViewDidRecordClick:(nonnull GADBannerView *)bannerView
+{
+    [self.proxy fireEvent:@"didRecordClick" withObject:@{ @"adUnitId": adUnitId }];
 }
 
 // These three are only called if the banner ad triggers an in-app fullscreen view
@@ -352,9 +445,6 @@
 
 #pragma mark - GADFullScreenContentDelegate
 
-// NOTE: I tried to map them as best as possible, but for example "adDidRecordImpression" is new
-// and "willPresentScreen" is not available anymore
-
 - (void)adDidRecordImpression:(id<GADFullScreenPresentingAd>)ad
 {
   NSMutableDictionary *event = [NSMutableDictionary dictionaryWithDictionary:@{ @"adUnitId": adUnitId }];
@@ -368,14 +458,23 @@
   [self.proxy fireEvent:@"didRecordImpression" withObject:event];
 }
 
-- (void)ad:(id<GADFullScreenPresentingAd>)ad didFailToPresentFullScreenContentWithError:(NSError *)error
+- (void)adDidRecordClick:(id<GADFullScreenPresentingAd>)ad
 {
-  [self.proxy fireEvent:@"didFailToReceiveAd" withObject:@{ @"adUnitId" : adUnitId, @"error" : error.localizedDescription }];
+  [self.proxy fireEvent:@"didRecordClick" withObject:@{ @"adUnitId": adUnitId }];
 }
 
-- (void)adDidPresentFullScreenContent:(id<GADFullScreenPresentingAd>)ad
+- (void)ad:(id<GADFullScreenPresentingAd>)ad didFailToPresentFullScreenContentWithError:(NSError *)error
 {
-  [self.proxy fireEvent:@"didPresentScreen" withObject:@{ @"adUnitId": adUnitId }];
+  if ([ad isKindOfClass:[GADAppOpenAd class]]) {
+    _isShowingAd = NO;
+    appOpenAd = nil;
+  }
+  [self.proxy fireEvent:@"didFailToReceiveAd" withObject:@{ @"adUnitId" : adUnitId, @"error" : error.localizedDescription }];  
+}
+
+- (void)adWillPresentFullScreenContent:(id<GADFullScreenPresentingAd>)ad
+{
+  [self.proxy fireEvent:@"willPresentScreen" withObject:@{ @"adUnitId": adUnitId }];
 }
 
 - (void)adWillDismissFullScreenContent:(id<GADFullScreenPresentingAd>)ad
@@ -385,6 +484,10 @@
 
 - (void)adDidDismissFullScreenContent:(id<GADFullScreenPresentingAd>)ad
 {
+  if ([ad isKindOfClass:[GADAppOpenAd class]]) {
+    _isShowingAd = NO;
+    appOpenAd = nil;
+  }
   [self.proxy fireEvent:@"didDismissScreen" withObject:@{ @"adUnitId": adUnitId }];
 }
 

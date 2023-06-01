@@ -135,11 +135,7 @@ events:
     properties:
       - name: adUnitId
         type: String
-        summary: Id for the add
-      - name: isReady
-        type: Boolean
-        summary: Whether the ad is ready. Populated only for interstitial ads
-        optional: true
+        summary: Id for the ad      
 
   - name: didFailToReceiveAd
     summary: Sent when an ad request failed. Normally this is because no network connection was available or no ads were available (i.e. no fill).
@@ -147,7 +143,18 @@ events:
     properties:
       - name: adUnitId
         type: String
-        summary: add id that failed to load
+        summary: ad id that failed to load
+      - name: error
+        type: String
+        summary: error message
+
+  - name: didFailToShowAd
+    summary: Sent when App Open Ad failed to show.
+    platforms: [iphone, ipad]
+    properties:
+      - name: adUnitId
+        type: String
+        summary: ad id that failed to show
       - name: error
         type: String
         summary: error message
@@ -163,11 +170,7 @@ events:
     properties:
       - name: adUnitId
         type: String
-        summary: Id for the add
-      - name: isReady
-        type: Boolean
-        summary: Whether the ad is ready. Populated only for interstitial ads
-        optional: true
+        summary: Id for the ad      
 
   - name: willDismissScreen
     summary: Sent just before dismissing a full screen view.
@@ -175,11 +178,7 @@ events:
     properties:
       - name: adUnitId
         type: String
-        summary: Id for the add
-      - name: isReady
-        type: Boolean
-        summary: Whether the ad is ready. Populated only for interstitial ads
-        optional: true
+        summary: Id for the ad     
 
   - name: didDismissScreen
     summary: Sent just after dismissing a full screen view. Use this opportunity to restart anything you may have stopped as part of `willPresentScreen`.
@@ -187,11 +186,7 @@ events:
     properties:
       - name: adUnitId
         type: String
-        summary: Id for the add
-      - name: isReady
-        type: Boolean
-        summary: Whether the ad is ready. Populated only for interstitial ads
-        optional: true
+        summary: Id for the ad
 
   - name: willLeaveApplication
     summary: Sent just before the application will background or terminate because the user clicked on an ad that will launch another application (such as the App Store).
@@ -199,11 +194,7 @@ events:
     properties:
       - name: adUnitId
         type: String
-        summary: Id for the add
-      - name: isReady
-        type: Boolean
-        summary: Whether the ad is ready. Populated only for interstitial ads
-        optional: true
+        summary: Id for the ad
 
   - name: didReceiveInAppPurchase
     summary: Called when the user clicks on the buy button of an in-app purchase ad.
@@ -217,6 +208,33 @@ events:
         summary: The product quantity.
     deprecated:
       since: "2.2.0"
+
+  - name: didRecordClick
+    summary: Called when the user clicks on the ad.
+    platforms: [iphone, ipad]
+    properties:
+      - name: adUnitId
+        type: String
+        summary: Id for the ad 
+  
+  - name: didRecordImpression
+    summary: Called when an ad is impressed
+    platforms: [iphone, ipad]
+    properties:
+      - name: adUnitId
+        type: String
+        summary: Id for the ad 
+  
+  - name: didRewardUser
+    summary: Fired when the reward based video ad has rewarded the user.
+    platforms: [iphone, ipad]
+    properties:
+      - name: type
+        type: String
+        summary: Type of the reward.
+      - name: amount
+        type: Number
+        summary: Amount rewarded to the user.
 
   - name: ad_received
     summary: Fired when ad is loaded

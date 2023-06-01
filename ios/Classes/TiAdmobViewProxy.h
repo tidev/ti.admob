@@ -21,4 +21,8 @@
 
 - (void)loadRewardedVideo:(id)adUnitId;
 
+- (void)requestAppOpenAd:(id)args;
+
+- (void)showAppOpenAd:(id)args;
+
 @end

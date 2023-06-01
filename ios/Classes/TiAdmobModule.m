@@ -37,16 +37,65 @@
 
 #pragma mark Public API's
 
+
+// Check if the TC string last updated date was more than 13 months ago
+// https://developers.google.com/admob/ios/privacy/gdpr#troubleshooting
+/**
+ * This function checks the date of last consent, which is base64-encoded in digits 1..7 of a string that is stored
+ * in userDefaults under the key "IABTCF_TCString".
+ *
+ * If this date is older than 365 days, the entry with that key will be removed from userDefaults. With the IABTCF
+ * configuration now being invalid, the CMP should re-display the consent dialog the next time it is instantiated.
+ *
+ * This should avoid errors of any used ad solution, which is supposed to consider consent older than 13 months "outdated".
+ *
+ * Inspired by @bocops code: https://github.com/bocops/UMP-workarounds/blob/main/detect_outdated_consent/android/java/detect_outdated_consent.java
+ */
+- (void)deleteTCStringIfOutdated {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    // IABTCF string is stored in userDefaults
+    NSString *tcString = [userDefaults stringForKey:@"IABTCF_TCString"] ?: @"";
+
+  // Check if the TCF string is empty
+  if (tcString.length > 0) {
+    
+      // base64 alphabet used to store data in IABTCF string
+      NSString *base64 = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+      
+      // Date is stored in digits 1..7 of the IABTCF string
+      NSString *dateSubstring = [tcString substringWithRange:NSMakeRange(1, 6)];
+      
+      // Interpret date substring as base64-encoded integer value
+      long timestamp = 0;
+      for (int i = 0; i < dateSubstring.length; i++) {
+          unichar c = [dateSubstring characterAtIndex:i];
+          
+          NSInteger value = [base64 rangeOfString:[NSString stringWithFormat:@"%C", c]].location;
+          timestamp = timestamp * 64 + value;
+      }
+      
+      // Timestamp is given is deci-seconds, convert to milliseconds
+      timestamp *= 100;
+      
+      // Compare with current timestamp to get age in days
+      long daysAgo = (long)(([[NSDate date] timeIntervalSince1970] * 1000) - timestamp) / (1000 * 60 * 60 * 24);
+      NSLog(@"[DEBUG] Ti.AdMob: TC string last updated date was %ld days ago", daysAgo);
+      // Delete TC string if age is over a year
+      if (daysAgo > 365) {        
+          [userDefaults removeObjectForKey:@"IABTCF_TCString"];
+          [userDefaults synchronize];
+          NSLog(@"[DEBUG] Ti.AdMob: TC string removed");
+      }
+  } else {
+    NSLog(@"[DEBUG] The TCF string does not exist or is empty.");
+  }
+}
+
 - (void)disableSDKCrashReporting:(id)unused
 {
   [GADMobileAds.sharedInstance disableSDKCrashReporting];
 }
-
-- (void)disableAutomatedInAppPurchaseReporting:(id)unused
-{
-  DEPRECATED_REMOVED(@"Admob.disableAutomatedInAppPurchaseReporting", @"4.0.0", @"4.0.0 (removed by Google)");
-}
-
 - (void)requestConsentInfoUpdateWithParameters:(id)args
 {
   ENSURE_SINGLE_ARG(args, NSDictionary);
@@ -66,6 +115,9 @@
   // Set tag for under age of consent. Here NO means users are not under age.
   parameters.tagForUnderAgeOfConsent = [TiUtils boolValue:@"tagForUnderAgeOfConsent" properties:args def:NO];;
   
+  // The TCF string may be outdated, so proceed with removal if needed.
+  [self deleteTCStringIfOutdated];
+
   // Request an update to the consent information.
   [[UMPConsentInformation sharedInstance] requestConsentInfoUpdateWithParameters:parameters
                                                                         completionHandler:^(NSError *_Nullable error) {
@@ -367,5 +419,6 @@ MAKE_SYSTEM_STR(SIMULATOR_ID, GADSimulatorID);
 MAKE_SYSTEM_PROP(AD_TYPE_BANNER, TiAdmobAdTypeBanner);
 MAKE_SYSTEM_PROP(AD_TYPE_INTERSTITIAL, TiAdmobAdTypeInterstitial);
 MAKE_SYSTEM_PROP(AD_TYPE_REWARDED_VIDEO, TiAdmobAdTypeRewardedVideo);
+MAKE_SYSTEM_PROP(AD_TYPE_APP_OPEN, TiAdmobAdTypeAppOpen);
 
 @end
