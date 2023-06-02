@@ -118,6 +118,7 @@ properties:
     summary: Used when creating a <Modules.Admob.View> to determine ad type of app open
     permission: read-only
     platforms: [iphone, ipad]
+    since: "6.2.0"
 
   - name: AD_SIZE_BANNER
     type: Number

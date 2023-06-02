@@ -158,6 +158,7 @@ events:
       - name: error
         type: String
         summary: error message
+    since: 6.2.0
 
   - name: willPresentScreen
     summary: Sent just before presenting the user a full screen view, such as a browser, in response to clicking on an ad. Use this opportunity to stop animations, time sensitive interactions, etc.
@@ -215,7 +216,8 @@ events:
     properties:
       - name: adUnitId
         type: String
-        summary: Id for the ad 
+        summary: Id for the ad
+    since: "6.2.0"
   
   - name: didRecordImpression
     summary: Called when an ad is impressed
@@ -224,6 +226,7 @@ events:
       - name: adUnitId
         type: String
         summary: Id for the ad 
+    since: "6.2.0"
   
   - name: didRewardUser
     summary: Fired when the reward based video ad has rewarded the user.
@@ -235,6 +238,7 @@ events:
       - name: amount
         type: Number
         summary: Amount rewarded to the user.
+    since: "6.2.0"
 
   - name: ad_received
     summary: Fired when ad is loaded
