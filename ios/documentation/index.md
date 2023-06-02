@@ -163,6 +163,8 @@ reports SDK related exceptions and calls the recorded original exception handler
 
 ### `disableAutomatedInAppPurchaseReporting()`
 
+⚠️ Removed since Ti.Admob 6.2.0.
+
 Disables automated in app purchase (IAP) reporting. Must be called before any IAP transaction is
 initiated. IAP reporting is used to track IAP ad conversions. Do not disable reporting if you use IAP ads.
 
@@ -299,6 +301,10 @@ Used when creating a <Modules.Admob.View> to determine ad type of interstitial
 
 Used when creating a <Modules.Admob.View> to determine ad type of rewarded video
 
+### Number `AD_TYPE_APP_OPEN`
+
+Used when creating a <Modules.Admob.View> to determine ad type of app open
+
 ### Number `CONSENT_FORM_STATUS_AVAILABLE`
 
 Consent form is available.
@@ -406,34 +412,39 @@ var bannerAdView = Admob.createView({
 win.add(bannerAdView);
 
 bannerAdView.addEventListener('didReceiveAd', function (e) {
-  Ti.API.info('BannerAdView - Did receive ad: ' + e.adUnitId + '!');
+  Ti.API.info('BannerAdView - Did receive ad: ' + e.adUnitId);
 });
 
 bannerAdView.addEventListener('didFailToReceiveAd', function (e) {
   Ti.API.error('BannerAdView - Failed to receive ad: ' + e.error);
 });
 
-bannerAdView.addEventListener('willPresentScreen', function (e) {
-  Ti.API.error('BannerAdView - willPresentScreen');
+bannerAdView.addEventListener('didRecordImpression', function (e) {
+  Ti.API.info('BannerAdView - didRecordImpression: ' + e.adUnitId);
 });
 
-bannerAdView.addEventListener('willDismissScreen', function () {
-  Ti.API.info('BannerAdView - willDismissScreen!');
+bannerAdView.addEventListener('didRecordClick', function (e) {
+  Ti.API.info('BannerAdView - didRecordClick: ' + e.adUnitId);
+});
+
+bannerAdView.addEventListener('willPresentScreen', function (e) {
+  Ti.API.error('BannerAdView - willPresentScreen: ' + e.adUnitId);
+});
+
+bannerAdView.addEventListener('willDismissScreen', function (e) {
+  Ti.API.info('BannerAdView - willDismissScreen: ' + e.adUnitId);
 });
 
 bannerAdView.addEventListener('didDismissScreen', function () {
-  Ti.API.info('BannerAdView - Dismissed screen!');
+  Ti.API.info('BannerAdView - Dismissed screen: ' + e.adUnitId);
 });
 
-bannerAdView.addEventListener('didPresentScreen', function (e) {
-  Ti.API.info('BannerAdView - Presenting screen!' + e.adUnitId);
-});
 ```
 
 ### Interstitials
 
 To receive an interstitional ad, you need to add it to the view hierarchy.
-It fires the `adloaded` event if the ad was successfully received, the `didFailToReceiveAd` event otherwise. When ad is loaded, then you can use `ad.showInterstitial()` to show.
+It fires the `didReceiveAd` event if the ad was successfully received, the `didFailToReceiveAd` event otherwise. When ad is loaded, then you can use `ad.showInterstitial()` to show.
 
 ```js
 var Admob = require('ti.admob');
@@ -450,21 +461,12 @@ var interstitialAd = Admob.createView({
 });
 win.add(interstitialAd);
 
-interstitialAd.addEventListener('adloaded', function (e) {
-  Ti.API.info('interstitialAd - adloaded: Did receive ad: ' +  e.source.adUnitId);
-  interstitialAd.showInterstitial(); 
-});
-
 interstitialAd.addEventListener('didReceiveAd', function (e) {
-  Ti.API.info('interstitialAd - Did receive ad: ' +  e.source.adUnitId);
+  Ti.API.info('interstitialAd - Did receive ad: ' + e.adUnitId);
 });
 
 interstitialAd.addEventListener('didFailToReceiveAd', function (e) {
   Ti.API.error('interstitialAd - Failed to receive ad: ' + e.error);  
-});
-
-interstitialAd.addEventListener('didPresentScreen', function (e) {
-  Ti.API.info('interstitialAd - didPresentScreen: ' + e.adUnitId);
 });
 
 interstitialAd.addEventListener('didDismissScreen', function (e) {
@@ -476,7 +478,11 @@ interstitialAd.addEventListener('willDismissScreen', function (e) {
 });
 
 interstitialAd.addEventListener('didRecordImpression', function (e) {
-  Ti.API.info('interstitialAd- didRecordImpression: ' +  e.source.adUnitId);
+  Ti.API.info('interstitialAd- didRecordImpression: ' + e.adUnitId);
+});
+
+interstitialAd.addEventListener('didRecordClick', function (e) {
+  Ti.API.info('interstitialAd - didRecordClick: ' + e.adUnitId);
 });
 ```
 
@@ -486,7 +492,7 @@ Please see the example for a complete implementation.
 
 Since version 2.4.2 you can use Admob Rewarded Video ads. This is similar to interstitials with the addition of getting a reward after watching an ad video.
 
-You create a rewarded video ad by specifying `Admob.AD_TYPE_REWARDED_VIDEO` as the `adType`. The first video will be automatically pre-loaded after creating the view and calling `ad.receive()`. To know when a video is completely loaded you can use the `adloaded` event. To show a rewarded video add call the `ad.showRewardedVideo()` method. Loading another video can be started with the `loadRewardedVideo(adUnitId)` method on the same instance.
+You create a rewarded video ad by specifying `Admob.AD_TYPE_REWARDED_VIDEO` as the `adType`. The first video will be automatically pre-loaded after creating the view and calling `ad.receive()`. To know when a video is completely loaded you can use the `didReceiveAd` event. To show a rewarded video add call the `ad.showRewardedVideo()` method. Loading another video can be started with the `loadRewardedVideo(adUnitId)` method on the same instance.
 
 ```js
 var Admob = require('ti.admob');
@@ -502,30 +508,21 @@ var rewardedVideo = Admob.createView({
 
 rewardedVideo.receive()
 
-rewardedVideo.addEventListener('adloaded', function(e) {
-  Ti.API.info('rewardedVideo - adloaded: Did receive ad: ' +  e.source.adUnitId);
-  rewardedVideo.showRewardedVideo();
-});
-
-rewardedVideo.addEventListener('adrewarded', function (reward) {
-  Ti.API.debug(`rewardedVideo -adrewarded: Received reward! type: ${reward.type}, amount: ${reward.amount}`);
+rewardedVideo.addEventListener('didRewardUser', function (reward) {
+  Ti.API.debug(`rewardedVideo - didRewardUser: Received reward! type: ${reward.type}, amount: ${reward.amount}`);
   console.log(reward);  
 });
 
-rewardedVideo.addEventListener('adfailedtoload', function (error) {
-  Ti.API.debug('rewardedVideo - Rewarded video ad failed to load: ' + error.message);
+rewardedVideo.addEventListener('didFailToReceiveAd', function (er) {
+  Ti.API.debug('rewardedVideo - Rewarded video ad failed to load: ' + e.error);
 });
 
 rewardedVideo.addEventListener('didReceiveAd', function (e) {
-  Ti.API.info('rewardedVideo - Did receive ad!');
+  Ti.API.info('rewardedVideo - Did receive ad: ' + e.adUnitId);
 });
 
 rewardedVideo.addEventListener('didFailToReceiveAd', function (e) {
   Ti.API.error('rewardedVideo - Failed to receive ad: ' + e.error);
-});
-
-rewardedVideo.addEventListener('didPresentScreen', function (e) {
-  Ti.API.info('rewardedVideo - didPresentScreen: ' + e.adUnitId);
 });
 
 rewardedVideo.addEventListener('didDismissScreen', function (e) {
@@ -537,8 +534,63 @@ rewardedVideo.addEventListener('willDismissScreen', function (e) {
 });
 
 rewardedVideo.addEventListener('didRecordImpression', function (e) {
-  Ti.API.info('rewardedVideo - didRecordImpression');
+  Ti.API.info('rewardedVideo - didRecordImpression: ' + e.adUnitId);
 });
+
+rewardedVideo.addEventListener('didRecordClick', function (e) {
+  Ti.API.info('rewardedVideo - didRecordClick: ' + e.adUnitId);
+});
+```
+
+Please see the example for a complete implementation.
+
+### Open App
+
+Since version 6.2.0 you can use Admob Open App Ads, a special ad format intended for publishers wishing to monetize their app load screens. App open ads can be closed by your users at any time. App open ads can be shown when users bring your app to the foreground.
+
+You create a rewarded video ad by specifying `Admob.AD_TYPE_APP_OPEN` as the `adType`. The first ad will be automatically pre-loaded after creating the view and calling `appOpenAd.receive()`. To know when the ad is completely loaded you can use the `didReceiveAd` event. To show an Open Ad call the `appOpenAd.showAppOpenAd()` method. Loading another ad can be started with the `appOpenAd.requestAppOpenAd();` method on the same instance.
+App open ads will time out after four hours. Ads rendered more than four hours after request time will no longer be valid and may not earn revenue, so you should request a new ad. See the example for a complete implementation or read the official documentation: https://developers.google.com/admob/ios/app-open
+
+```js
+var Admob = require('ti.admob');
+
+appOpenAd = Admob.createView({
+  adType: Admob.AD_TYPE_APP_OPEN,
+  adUnitId: 'ca-app-pub-3940256099942544/5662855259', // You can get your own at http: //www.admob.com/
+  extras: {
+    'version': 1.0,
+    'name': 'My App'
+  } // Object of additional infos
+});		
+		
+// appOpenAd custom events
+appOpenAd.addEventListener('didReceiveAd', function (e) {
+  console.debug('appOpenAd - didReceiveAd: Did receive ad!');
+});
+appOpenAd.addEventListener('didFailToShowAd', function (e) {
+  console.error('appOpenAd - Failed to show: ' + e.error);
+});
+
+// appOpenAd AdMob avents
+appOpenAd.addEventListener('didRecordClick', function (e) {
+  console.debug('appOpenAd - didRecordClick: ' + e.adUnitId);
+});
+appOpenAd.addEventListener('didFailToReceiveAd', function (e) {
+  console.error('appOpenAd - Failed to receive ad: ' + e.error);
+});		
+appOpenAd.addEventListener('didDismissScreen', function (e) {
+  console.debug('appOpenAd - Dismissed screen: ' + e.adUnitId);
+});
+appOpenAd.addEventListener('willPresentScreen', function (e) {
+  console.debug('appOpenAd - willPresentScreen: ' + e.adUnitId);
+});
+appOpenAd.addEventListener('willDismissScreen', function (e) {
+  console.debug('appOpenAd - willDismissScreen: ' + e.adUnitId);
+});
+appOpenAd.addEventListener('didRecordImpression', function (e) {
+  console.debug('appOpenAd- didRecordImpression: ' + e.adUnitId);
+});
+
 ```
 
 Please see the example for a complete implementation.

@@ -11,8 +11,6 @@
 
 - (void)disableSDKCrashReporting:(id)unused;
 
-- (void)disableAutomatedInAppPurchaseReporting:(id)unused; // REMOVED
-
 - (void)requestConsentInfoUpdateWithParameters:(id)args;
 
 - (void)loadForm:(id)args;

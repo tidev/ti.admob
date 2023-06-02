@@ -12,6 +12,7 @@
   GADBannerView *bannerView;
   GADRewardedAd *rewardedAd;
   GADInterstitialAd *interstitialAd;
+  GADAppOpenAd *appOpenAd;
 
   NSString *adUnitId;
 }
@@ -21,6 +22,10 @@
 - (void)showInterstitial;
 
 - (void)showRewardedVideo;
+
+- (void)requestAppOpenAd;
+
+- (void)showAppOpenAd;
 
 - (void)setAdUnitId_:(id)value;
 

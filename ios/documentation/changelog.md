@@ -1,5 +1,17 @@
 # Change Log
 
+### v6.2.0
+- Added support for App Open Ad (https://developers.google.com/admob/ios/app-open)
+- Reset TC string if last updated date was more than 13 months ago (https://developers.google.com/admob/ios/privacy/gdpr#troubleshooting)
+- Renamed Interstitial and Rewarded Video event names:
+-- `adloaded` becomes `didReceiveAd`
+-- `adfailedtoload` becomes `didFailToReceiveAd`
+-- `adrewarded` becomes `didRewardUser`
+- Added `didRecordImpression` and `didRecordClick` events to all ad types
+- Added `didFailToShowAd` event to Open App ad type
+- Removed deprecated `didPresentScreen` event
+- Updated documentation and iOS example
+
 ### v6.1.0
 - Update InMobi SDK 10.5.4 (https://support.inmobi.com/monetize/sdk-documentation/download-sdk)
 - Update InMobiAdapter 10.5.4.0 (https://developers.google.com/admob/ios/mediation/inmobi#version-10.5.4.0_1)
