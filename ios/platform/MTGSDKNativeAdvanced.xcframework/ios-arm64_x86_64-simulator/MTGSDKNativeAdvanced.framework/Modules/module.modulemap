@@ -1,0 +1,9 @@
+framework module MTGSDKNativeAdvanced {
+    umbrella header "MTGNativeAdvancedAd.h"
+   
+    export *
+ 
+    module * {
+         export *
+     }
+}

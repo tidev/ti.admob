@@ -1,0 +1,40 @@
+framework module MTGSDK {
+    umbrella header "MTGSDK.h"
+    header "MTGBool.h"
+    header "MTGAdSize.h"
+    header "MTGRewardAdInfo.h"
+    header "MTGErrorCodeConstant.h"
+    header "MTGAdChoicesView.h"
+    export *
+ 
+    module * {
+         export *
+     }
+
+    link framework "AdSupport"
+    link framework "CoreGraphics"
+    link framework "CoreTelephony"
+    link framework "MediaPlayer"
+    link framework "MessageUI"
+    link framework "MobileCoreServices"
+    link framework "QuartzCore"
+    link framework "Security"
+    link framework "StoreKit"
+    link framework "SystemConfiguration"
+    link framework "AVFoundation"
+    link framework "CoreMedia"
+    link framework "CFNetwork"
+    link framework "CoreVideo"
+    link framework "Foundation"
+    link framework "UIKit"
+    link framework "WebKit"
+    link framework "AudioToolbox"
+    
+    link "xml2"
+    link "z"
+    link "sqlite3"
+
+}
+
+
+

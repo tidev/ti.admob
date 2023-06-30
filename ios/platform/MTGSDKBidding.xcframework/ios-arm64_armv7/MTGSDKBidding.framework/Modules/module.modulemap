@@ -1,0 +1,15 @@
+framework module MTGSDKBidding {
+    umbrella header "MTGBiddingSDK.h"
+    header "MTGBiddingHeader.h"
+    header "MTGBiddingRequest.h"
+    header "MTGBiddingResponse.h"
+    header "MTGBiddingBannerRequestParameter.h"
+    header "MTGBiddingSplashRequestParameter.h"
+    header "MTGBiddingNativeAdvancedAdRequestParameter.h"
+    header "MTGBiddingRequestParameter.h"
+    export *
+ 
+    module * {
+         export *
+     }
+}

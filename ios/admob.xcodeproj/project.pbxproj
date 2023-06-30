@@ -22,14 +22,28 @@
 		3AF5B7731C233383002E3DC7 /* TiAdmobTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AF5B7711C233383002E3DC7 /* TiAdmobTypes.h */; };
 		5E0B17A527F21AED001D0BD9 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B17A427F21AED001D0BD9 /* File.swift */; };
 		5E343CDF291BFA3600F047EB /* MetaAdapter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E343CDE291BFA3600F047EB /* MetaAdapter.xcframework */; };
-		5E6743A427F4B84500BEE594 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6743A327F4B84500BEE594 /* WebKit.framework */; };
-		5E6743A627F4B85800BEE594 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6743A527F4B85800BEE594 /* libsqlite3.0.tbd */; };
-		5E6743A827F4B86A00BEE594 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6743A727F4B86A00BEE594 /* libz.tbd */; };
 		5E6743AE27F4BEA300BEE594 /* GoogleAppMeasurementIdentitySupport.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6743AD27F4BEA300BEE594 /* GoogleAppMeasurementIdentitySupport.xcframework */; };
-		
 		5ED7B66026EBC395007F4D90 /* FBAudienceNetwork.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ED7B65F26EBC395007F4D90 /* FBAudienceNetwork.xcframework */; };
 		5EFC8F50263ABC430011A0C2 /* InMobiSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFC8F4C263ABC430011A0C2 /* InMobiSDK.xcframework */; };
 		5EFC8F51263ABC430011A0C2 /* InMobiAdapter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFC8F4D263ABC430011A0C2 /* InMobiAdapter.xcframework */; };
+		A5AAA4A02A4F0363007FAF66 /* StatusBarHiddenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5AAA49F2A4F0363007FAF66 /* StatusBarHiddenViewController.m */; };
+		A5AAA4A22A4F0399007FAF66 /* StatusBarHiddenViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = A5AAA4A12A4F0399007FAF66 /* StatusBarHiddenViewController.h */; };
+		A5AAA4B02A4F0878007FAF66 /* MTGSDKBanner.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AAA4A32A4F0878007FAF66 /* MTGSDKBanner.xcframework */; };
+		A5AAA4B12A4F0878007FAF66 /* MTGSDKCNAddition.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AAA4A42A4F0878007FAF66 /* MTGSDKCNAddition.xcframework */; };
+		A5AAA4B22A4F0878007FAF66 /* MTGSDKInterstitialVideo.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AAA4A52A4F0878007FAF66 /* MTGSDKInterstitialVideo.xcframework */; };
+		A5AAA4B32A4F0878007FAF66 /* MTGSDKSplash.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AAA4A62A4F0878007FAF66 /* MTGSDKSplash.xcframework */; };
+		A5AAA4B42A4F0878007FAF66 /* MTGSDKNativeAdvanced.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AAA4A72A4F0878007FAF66 /* MTGSDKNativeAdvanced.xcframework */; };
+		A5AAA4B52A4F0878007FAF66 /* MTGSDKNewInterstitial.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AAA4A82A4F0878007FAF66 /* MTGSDKNewInterstitial.xcframework */; };
+		A5AAA4B62A4F0878007FAF66 /* MTGSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AAA4A92A4F0878007FAF66 /* MTGSDK.xcframework */; };
+		A5AAA4B72A4F0878007FAF66 /* AdColonyAdapter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AAA4AA2A4F0878007FAF66 /* AdColonyAdapter.xcframework */; };
+		A5AAA4B82A4F0878007FAF66 /* MintegralAdapter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AAA4AB2A4F0878007FAF66 /* MintegralAdapter.xcframework */; };
+		A5AAA4B92A4F0878007FAF66 /* MTGSDKInterstitial.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AAA4AC2A4F0878007FAF66 /* MTGSDKInterstitial.xcframework */; };
+		A5AAA4BA2A4F0878007FAF66 /* AdColony.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AAA4AD2A4F0878007FAF66 /* AdColony.xcframework */; };
+		A5AAA4BB2A4F0878007FAF66 /* MTGSDKReward.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AAA4AE2A4F0878007FAF66 /* MTGSDKReward.xcframework */; };
+		A5AAA4BC2A4F0878007FAF66 /* MTGSDKBidding.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AAA4AF2A4F0878007FAF66 /* MTGSDKBidding.xcframework */; };
+		A5AAA4BE2A4F0895007FAF66 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AAA4BD2A4F0895007FAF66 /* libz.tbd */; };
+		A5AAA4C02A4F08A2007FAF66 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AAA4BF2A4F08A2007FAF66 /* libsqlite3.0.tbd */; };
+		A5AAA4C22A4F08AA007FAF66 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AAA4C12A4F08AA007FAF66 /* WebKit.framework */; };
 		AA747D9F0F9514B9006C5449 /* TiAdmob_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* TiAdmob_Prefix.pch */; };
 /* End PBXBuildFile section */
 
@@ -51,14 +65,28 @@
 		5E0B17A327F21AED001D0BD9 /* admob-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "admob-Bridging-Header.h"; sourceTree = "<group>"; };
 		5E0B17A427F21AED001D0BD9 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		5E343CDE291BFA3600F047EB /* MetaAdapter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MetaAdapter.xcframework; path = platform/MetaAdapter.xcframework; sourceTree = "<group>"; };
-		5E6743A327F4B84500BEE594 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/iOSSupport/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
-		5E6743A527F4B85800BEE594 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/lib/libsqlite3.0.tbd; sourceTree = DEVELOPER_DIR; };
-		5E6743A727F4B86A00BEE594 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		5E6743AD27F4BEA300BEE594 /* GoogleAppMeasurementIdentitySupport.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurementIdentitySupport.xcframework; path = platform/GoogleAppMeasurementIdentitySupport.xcframework; sourceTree = "<group>"; };
-		
 		5ED7B65F26EBC395007F4D90 /* FBAudienceNetwork.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBAudienceNetwork.xcframework; path = platform/FBAudienceNetwork.xcframework; sourceTree = "<group>"; };
 		5EFC8F4C263ABC430011A0C2 /* InMobiSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = InMobiSDK.xcframework; path = platform/InMobiSDK.xcframework; sourceTree = "<group>"; };
 		5EFC8F4D263ABC430011A0C2 /* InMobiAdapter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = InMobiAdapter.xcframework; path = platform/InMobiAdapter.xcframework; sourceTree = "<group>"; };
+		A5AAA49F2A4F0363007FAF66 /* StatusBarHiddenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = StatusBarHiddenViewController.m; path = Classes/StatusBarHiddenViewController.m; sourceTree = "<group>"; };
+		A5AAA4A12A4F0399007FAF66 /* StatusBarHiddenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = StatusBarHiddenViewController.h; path = Classes/StatusBarHiddenViewController.h; sourceTree = "<group>"; };
+		A5AAA4A32A4F0878007FAF66 /* MTGSDKBanner.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MTGSDKBanner.xcframework; path = platform/MTGSDKBanner.xcframework; sourceTree = "<group>"; };
+		A5AAA4A42A4F0878007FAF66 /* MTGSDKCNAddition.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MTGSDKCNAddition.xcframework; path = platform/MTGSDKCNAddition.xcframework; sourceTree = "<group>"; };
+		A5AAA4A52A4F0878007FAF66 /* MTGSDKInterstitialVideo.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MTGSDKInterstitialVideo.xcframework; path = platform/MTGSDKInterstitialVideo.xcframework; sourceTree = "<group>"; };
+		A5AAA4A62A4F0878007FAF66 /* MTGSDKSplash.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MTGSDKSplash.xcframework; path = platform/MTGSDKSplash.xcframework; sourceTree = "<group>"; };
+		A5AAA4A72A4F0878007FAF66 /* MTGSDKNativeAdvanced.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MTGSDKNativeAdvanced.xcframework; path = platform/MTGSDKNativeAdvanced.xcframework; sourceTree = "<group>"; };
+		A5AAA4A82A4F0878007FAF66 /* MTGSDKNewInterstitial.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MTGSDKNewInterstitial.xcframework; path = platform/MTGSDKNewInterstitial.xcframework; sourceTree = "<group>"; };
+		A5AAA4A92A4F0878007FAF66 /* MTGSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MTGSDK.xcframework; path = platform/MTGSDK.xcframework; sourceTree = "<group>"; };
+		A5AAA4AA2A4F0878007FAF66 /* AdColonyAdapter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AdColonyAdapter.xcframework; path = platform/AdColonyAdapter.xcframework; sourceTree = "<group>"; };
+		A5AAA4AB2A4F0878007FAF66 /* MintegralAdapter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MintegralAdapter.xcframework; path = platform/MintegralAdapter.xcframework; sourceTree = "<group>"; };
+		A5AAA4AC2A4F0878007FAF66 /* MTGSDKInterstitial.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MTGSDKInterstitial.xcframework; path = platform/MTGSDKInterstitial.xcframework; sourceTree = "<group>"; };
+		A5AAA4AD2A4F0878007FAF66 /* AdColony.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AdColony.xcframework; path = platform/AdColony.xcframework; sourceTree = "<group>"; };
+		A5AAA4AE2A4F0878007FAF66 /* MTGSDKReward.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MTGSDKReward.xcframework; path = platform/MTGSDKReward.xcframework; sourceTree = "<group>"; };
+		A5AAA4AF2A4F0878007FAF66 /* MTGSDKBidding.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MTGSDKBidding.xcframework; path = platform/MTGSDKBidding.xcframework; sourceTree = "<group>"; };
+		A5AAA4BD2A4F0895007FAF66 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
+		A5AAA4BF2A4F08A2007FAF66 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/usr/lib/libsqlite3.0.tbd; sourceTree = DEVELOPER_DIR; };
+		A5AAA4C12A4F08AA007FAF66 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/System/iOSSupport/System/Library/PrivateFrameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		AA747D9E0F9514B9006C5449 /* TiAdmob_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiAdmob_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		D2AAC07E0554694100DB518D /* libTiAdmob.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTiAdmob.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -68,12 +96,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E6743A827F4B86A00BEE594 /* libz.tbd in Frameworks */,
-				5E6743A627F4B85800BEE594 /* libsqlite3.0.tbd in Frameworks */,
-				5E6743A427F4B84500BEE594 /* WebKit.framework in Frameworks */,
+				A5AAA4C22A4F08AA007FAF66 /* WebKit.framework in Frameworks */,
+				A5AAA4C02A4F08A2007FAF66 /* libsqlite3.0.tbd in Frameworks */,
+				A5AAA4BE2A4F0895007FAF66 /* libz.tbd in Frameworks */,
+				A5AAA4B02A4F0878007FAF66 /* MTGSDKBanner.xcframework in Frameworks */,
+				A5AAA4B12A4F0878007FAF66 /* MTGSDKCNAddition.xcframework in Frameworks */,
+				A5AAA4B22A4F0878007FAF66 /* MTGSDKInterstitialVideo.xcframework in Frameworks */,
+				A5AAA4B32A4F0878007FAF66 /* MTGSDKSplash.xcframework in Frameworks */,
+				A5AAA4B42A4F0878007FAF66 /* MTGSDKNativeAdvanced.xcframework in Frameworks */,
+				A5AAA4B52A4F0878007FAF66 /* MTGSDKNewInterstitial.xcframework in Frameworks */,
+				A5AAA4B62A4F0878007FAF66 /* MTGSDK.xcframework in Frameworks */,
+				A5AAA4B72A4F0878007FAF66 /* AdColonyAdapter.xcframework in Frameworks */,
+				A5AAA4B82A4F0878007FAF66 /* MintegralAdapter.xcframework in Frameworks */,
+				A5AAA4B92A4F0878007FAF66 /* MTGSDKInterstitial.xcframework in Frameworks */,
+				A5AAA4BA2A4F0878007FAF66 /* AdColony.xcframework in Frameworks */,
+				A5AAA4BB2A4F0878007FAF66 /* MTGSDKReward.xcframework in Frameworks */,
+				A5AAA4BC2A4F0878007FAF66 /* MTGSDKBidding.xcframework in Frameworks */,
 				5E343CDF291BFA3600F047EB /* MetaAdapter.xcframework in Frameworks */,
 				5ED7B66026EBC395007F4D90 /* FBAudienceNetwork.xcframework in Frameworks */,
-				
 				5EFC8F50263ABC430011A0C2 /* InMobiSDK.xcframework in Frameworks */,
 				5EFC8F51263ABC430011A0C2 /* InMobiAdapter.xcframework in Frameworks */,
 				3ABFE38E26335E0000887180 /* nanopb.xcframework in Frameworks */,
@@ -113,11 +153,23 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				
+				A5AAA4C12A4F08AA007FAF66 /* WebKit.framework */,
+				A5AAA4BF2A4F08A2007FAF66 /* libsqlite3.0.tbd */,
+				A5AAA4BD2A4F0895007FAF66 /* libz.tbd */,
+				A5AAA4AD2A4F0878007FAF66 /* AdColony.xcframework */,
+				A5AAA4AA2A4F0878007FAF66 /* AdColonyAdapter.xcframework */,
+				A5AAA4AB2A4F0878007FAF66 /* MintegralAdapter.xcframework */,
+				A5AAA4A92A4F0878007FAF66 /* MTGSDK.xcframework */,
+				A5AAA4A32A4F0878007FAF66 /* MTGSDKBanner.xcframework */,
+				A5AAA4AF2A4F0878007FAF66 /* MTGSDKBidding.xcframework */,
+				A5AAA4A42A4F0878007FAF66 /* MTGSDKCNAddition.xcframework */,
+				A5AAA4AC2A4F0878007FAF66 /* MTGSDKInterstitial.xcframework */,
+				A5AAA4A52A4F0878007FAF66 /* MTGSDKInterstitialVideo.xcframework */,
+				A5AAA4A72A4F0878007FAF66 /* MTGSDKNativeAdvanced.xcframework */,
+				A5AAA4A82A4F0878007FAF66 /* MTGSDKNewInterstitial.xcframework */,
+				A5AAA4AE2A4F0878007FAF66 /* MTGSDKReward.xcframework */,
+				A5AAA4A62A4F0878007FAF66 /* MTGSDKSplash.xcframework */,
 				5E343CDE291BFA3600F047EB /* MetaAdapter.xcframework */,
-				5E6743A727F4B86A00BEE594 /* libz.tbd */,
-				5E6743A527F4B85800BEE594 /* libsqlite3.0.tbd */,
-				5E6743A327F4B84500BEE594 /* WebKit.framework */,
 				5ED7B65F26EBC395007F4D90 /* FBAudienceNetwork.xcframework */,
 				5EFC8F4D263ABC430011A0C2 /* InMobiAdapter.xcframework */,
 				5EFC8F4C263ABC430011A0C2 /* InMobiSDK.xcframework */,
@@ -136,12 +188,14 @@
 			isa = PBXGroup;
 			children = (
 				24DD6CF71134B3F500162E58 /* TiAdmobModule.h */,
+				A5AAA49F2A4F0363007FAF66 /* StatusBarHiddenViewController.m */,
 				24DD6CF81134B3F500162E58 /* TiAdmobModule.m */,
 				249BE66D11B47B2700AF41CF /* TiAdmobViewProxy.h */,
 				249BE66E11B47B2700AF41CF /* TiAdmobViewProxy.m */,
 				249BE67111B47B3800AF41CF /* TiAdmobView.h */,
 				249BE67211B47B3800AF41CF /* TiAdmobView.m */,
 				3AF5B7711C233383002E3DC7 /* TiAdmobTypes.h */,
+				A5AAA4A12A4F0399007FAF66 /* StatusBarHiddenViewController.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -165,6 +219,7 @@
 				AA747D9F0F9514B9006C5449 /* TiAdmob_Prefix.pch in Headers */,
 				24DD6CF91134B3F500162E58 /* TiAdmobModule.h in Headers */,
 				249BE66F11B47B2700AF41CF /* TiAdmobViewProxy.h in Headers */,
+				A5AAA4A22A4F0399007FAF66 /* StatusBarHiddenViewController.h in Headers */,
 				3AF5B7731C233383002E3DC7 /* TiAdmobTypes.h in Headers */,
 				249BE67311B47B3800AF41CF /* TiAdmobView.h in Headers */,
 			);
@@ -230,6 +285,7 @@
 				5E0B17A527F21AED001D0BD9 /* File.swift in Sources */,
 				249BE67011B47B2700AF41CF /* TiAdmobViewProxy.m in Sources */,
 				249BE67411B47B3800AF41CF /* TiAdmobView.m in Sources */,
+				A5AAA4A02A4F0363007FAF66 /* StatusBarHiddenViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

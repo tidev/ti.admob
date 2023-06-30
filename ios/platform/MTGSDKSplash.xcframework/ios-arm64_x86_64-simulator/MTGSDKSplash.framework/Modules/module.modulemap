@@ -1,0 +1,9 @@
+framework module MTGSDKSplash {
+    umbrella header "MTGSplashAD.h"
+   
+    export *
+ 
+    module * {
+         export *
+     }
+}

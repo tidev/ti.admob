@@ -1,0 +1,10 @@
+framework module MTGSDKInterstitialVideo {
+    umbrella header "MTGInterstitialVideoAdManager.h"
+    header "MTGBidInterstitialVideoAdManager.h"
+   
+    export *
+ 
+    module * {
+         export *
+     }
+}
