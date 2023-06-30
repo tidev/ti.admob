@@ -12,6 +12,10 @@
 #import "TiHost.h"
 #import "TiUtils.h"
 
+#import <AdColonyAdapter/AdColonyAdapter.h>
+
+#import <MTGSDK/MTGSDK.h>
+
 #import <GoogleMobileAds/GoogleMobileAds.h>
 //#import <PersonalizedAdConsent/PersonalizedAdConsent.h>
 #import <UserMessagingPlatform/UserMessagingPlatform.h>
@@ -52,6 +56,7 @@
  * Inspired by @bocops code: https://github.com/bocops/UMP-workarounds/blob/main/detect_outdated_consent/android/java/detect_outdated_consent.java
  */
 - (void)deleteTCStringIfOutdated {
+    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     // IABTCF string is stored in userDefaults
@@ -383,6 +388,32 @@
   }
 
   [GADMInMobiConsent updateGDPRConsent:consentObject];
+}
+
+-(void)setConsentMediations:(id)mediationsConsentEnabled
+{
+    ENSURE_TYPE(mediationsConsentEnabled, NSNumber);
+    AdColonyAppOptions *options = GADMediationAdapterAdColony.appOptions;
+    
+    if ([TiUtils boolValue:mediationsConsentEnabled]) {
+        
+        [options setPrivacyFrameworkOfType:ADC_CCPA isRequired:YES];
+        [options setPrivacyConsentString:@"1" forType:ADC_CCPA];
+        
+        [[MTGSDK sharedInstance] setConsentStatus:YES];
+        [[MTGSDK sharedInstance] setDoNotTrackStatus:NO];
+        
+        NSLog(@"[DEBUG] Ti.AdMob: setConsentMediations --> true");
+    } else {
+        
+        [options setPrivacyFrameworkOfType:ADC_CCPA isRequired:NO];
+        [options setPrivacyConsentString:@"1" forType:ADC_CCPA];
+        
+        [[MTGSDK sharedInstance] setConsentStatus:NO];
+        [[MTGSDK sharedInstance] setDoNotTrackStatus:YES];
+        
+        NSLog(@"[DEBUG] Ti.AdMob: setConsentMediations --> false");
+    }
 }
 
 #pragma mark Constants

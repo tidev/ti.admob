@@ -1,0 +1,9 @@
+framework module MTGSDKInterstitial {
+    umbrella header "MTGInterstitialAdManager.h"
+   
+    export *
+ 
+    module * {
+         export *
+     }
+}

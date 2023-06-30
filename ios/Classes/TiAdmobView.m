@@ -10,6 +10,8 @@
 #import "TiApp.h"
 #import "TiUtils.h"
 
+#import "StatusBarHiddenViewController.h"
+
 @implementation TiAdmobView {
   BOOL _isLoadingAd;
   BOOL _isShowingAd;
@@ -294,6 +296,7 @@
     }];
 }
 
+StatusBarHiddenViewController *adViewController;
 - (void)showAppOpenAd
 {
   // If the app open ad is already showing, do not show the ad again.
@@ -310,7 +313,7 @@
 
   // If the app open ad is not available yet, invoke the callback then load the ad.
   if (![self isAdAvailable]) {
-      NSLog(@"[ERROR] The App Open Ad is not available. Did you call load() method?");            
+      NSLog(@"[ERROR] The App Open Ad is not available. Did you call load() method?");
       [self.proxy fireEvent:@"didFailToReceiveAd" withObject:@{ @"adUnitId" : adUnitId, @"error": [NSString stringWithFormat:@"The App Open Ad is not available. Did you call load() method?"]}];
       appOpenAd = nil;
       return;
@@ -321,10 +324,19 @@
 
   if (canPresent) {
     _isShowingAd = YES;
-    //[appOpenAd presentFromRootViewController:[[[TiApp app] controller] topPresentedController]];
-    
-    UIViewController *rootViewController = [[[TiApp app] controller] topPresentedController];
-    [appOpenAd presentFromRootViewController:rootViewController];
+      // Create an instance of StatusBarHiddenViewController
+      adViewController = [[StatusBarHiddenViewController alloc] init];
+      adViewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+      
+      // Set the ad property
+      adViewController.ad = appOpenAd;
+
+      // Present the ad view controller
+      UIViewController *rootViewController = [[[TiApp app] controller] topPresentedController];
+      rootViewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+      [rootViewController presentViewController:adViewController animated:YES completion:nil];
+      
+      [self.proxy fireEvent:@"onAdShowedFullScreenContent" withObject:@{ @"adUnitId": adUnitId }];
       
   } else {
     NSLog(@"[WARN] Cannot show App Open ad: %@", error.localizedDescription);
@@ -485,8 +497,9 @@
 - (void)adDidDismissFullScreenContent:(id<GADFullScreenPresentingAd>)ad
 {
   if ([ad isKindOfClass:[GADAppOpenAd class]]) {
-    _isShowingAd = NO;
-    appOpenAd = nil;
+      [adViewController dismissViewControllerAnimated:YES completion:nil];
+      _isShowingAd = NO;
+      appOpenAd = nil;
   }
   [self.proxy fireEvent:@"didDismissScreen" withObject:@{ @"adUnitId": adUnitId }];
 }

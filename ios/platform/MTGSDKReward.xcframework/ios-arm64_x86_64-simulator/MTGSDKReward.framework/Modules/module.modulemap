@@ -1,0 +1,10 @@
+framework module MTGSDKReward {
+    umbrella header "MTGRewardAdManager.h"
+    header "MTGBidRewardAdManager.h"
+   
+    export *
+ 
+    module * {
+         export *
+     }
+}

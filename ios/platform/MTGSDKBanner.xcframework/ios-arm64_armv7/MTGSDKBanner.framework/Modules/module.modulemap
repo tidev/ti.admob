@@ -1,0 +1,9 @@
+framework module MTGSDKBanner {
+    umbrella header "MTGBannerAdView.h"
+   
+    export *
+ 
+    module * {
+         export *
+     }
+}
