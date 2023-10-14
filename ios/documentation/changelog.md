@@ -1,7 +1,7 @@
 # Change Log
 
 ### v6.3.0
-- Added iphone methods `isGDPR()`, `canShowAds()`, `(canShowPersonalizedAds)`
+- Added iphone methods `isGDPR()`, `canShowAds()`, `canShowPersonalizedAds()`
 - Update Google Mobile Ads SDK 10.12.0 (https://github.com/CocoaPods/Specs/tree/master/Specs/5/9/a/Google-Mobile-Ads-SDK/10.12.0)
 - Update Meta Audience Network SDK 6.14.0 (https://developers.facebook.com/docs/audience-network/setting-up/platform-setup/ios/changelog#6_14_0)
 - Update Meta Adapter 6.14.0.0 (https://developers.google.com/admob/ios/mediation/meta#version-6.14.0.0)
