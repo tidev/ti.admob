@@ -1,5 +1,8 @@
 # Change Log
 
+### v6.3.1
+- Fixed AppOpen auto closing on iOS
+
 ### v6.3.0
 - Added iphone methods `isGDPR()`, `canShowAds()`, `canShowPersonalizedAds()`
 - Update Google Mobile Ads SDK 10.12.0 (https://github.com/CocoaPods/Specs/tree/master/Specs/5/9/a/Google-Mobile-Ads-SDK/10.12.0)

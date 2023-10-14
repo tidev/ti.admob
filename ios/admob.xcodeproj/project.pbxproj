@@ -22,11 +22,12 @@
 		3AF5B7731C233383002E3DC7 /* TiAdmobTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AF5B7711C233383002E3DC7 /* TiAdmobTypes.h */; };
 		5E0B17A527F21AED001D0BD9 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B17A427F21AED001D0BD9 /* File.swift */; };
 		5E343CDF291BFA3600F047EB /* MetaAdapter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E343CDE291BFA3600F047EB /* MetaAdapter.xcframework */; };
+		5E58AD4E2ADAE76000C78E7F /* StatusBarHiddenViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E58AD4C2ADAE76000C78E7F /* StatusBarHiddenViewController.h */; };
+		5E58AD4F2ADAE76000C78E7F /* StatusBarHiddenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E58AD4D2ADAE76000C78E7F /* StatusBarHiddenViewController.m */; };
 		5E6743A427F4B84500BEE594 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6743A327F4B84500BEE594 /* WebKit.framework */; };
 		5E6743A627F4B85800BEE594 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6743A527F4B85800BEE594 /* libsqlite3.0.tbd */; };
 		5E6743A827F4B86A00BEE594 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6743A727F4B86A00BEE594 /* libz.tbd */; };
 		5E6743AE27F4BEA300BEE594 /* GoogleAppMeasurementIdentitySupport.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6743AD27F4BEA300BEE594 /* GoogleAppMeasurementIdentitySupport.xcframework */; };
-		
 		5ED7B66026EBC395007F4D90 /* FBAudienceNetwork.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ED7B65F26EBC395007F4D90 /* FBAudienceNetwork.xcframework */; };
 		5EFC8F50263ABC430011A0C2 /* InMobiSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFC8F4C263ABC430011A0C2 /* InMobiSDK.xcframework */; };
 		5EFC8F51263ABC430011A0C2 /* InMobiAdapter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFC8F4D263ABC430011A0C2 /* InMobiAdapter.xcframework */; };
@@ -51,11 +52,12 @@
 		5E0B17A327F21AED001D0BD9 /* admob-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "admob-Bridging-Header.h"; sourceTree = "<group>"; };
 		5E0B17A427F21AED001D0BD9 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		5E343CDE291BFA3600F047EB /* MetaAdapter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MetaAdapter.xcframework; path = platform/MetaAdapter.xcframework; sourceTree = "<group>"; };
+		5E58AD4C2ADAE76000C78E7F /* StatusBarHiddenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusBarHiddenViewController.h; path = Classes/StatusBarHiddenViewController.h; sourceTree = "<group>"; };
+		5E58AD4D2ADAE76000C78E7F /* StatusBarHiddenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatusBarHiddenViewController.m; path = Classes/StatusBarHiddenViewController.m; sourceTree = "<group>"; };
 		5E6743A327F4B84500BEE594 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/iOSSupport/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		5E6743A527F4B85800BEE594 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/lib/libsqlite3.0.tbd; sourceTree = DEVELOPER_DIR; };
 		5E6743A727F4B86A00BEE594 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		5E6743AD27F4BEA300BEE594 /* GoogleAppMeasurementIdentitySupport.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurementIdentitySupport.xcframework; path = platform/GoogleAppMeasurementIdentitySupport.xcframework; sourceTree = "<group>"; };
-		
 		5ED7B65F26EBC395007F4D90 /* FBAudienceNetwork.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBAudienceNetwork.xcframework; path = platform/FBAudienceNetwork.xcframework; sourceTree = "<group>"; };
 		5EFC8F4C263ABC430011A0C2 /* InMobiSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = InMobiSDK.xcframework; path = platform/InMobiSDK.xcframework; sourceTree = "<group>"; };
 		5EFC8F4D263ABC430011A0C2 /* InMobiAdapter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = InMobiAdapter.xcframework; path = platform/InMobiAdapter.xcframework; sourceTree = "<group>"; };
@@ -112,7 +114,6 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				
 				5E343CDE291BFA3600F047EB /* MetaAdapter.xcframework */,
 				5E6743A727F4B86A00BEE594 /* libz.tbd */,
 				5E6743A527F4B85800BEE594 /* libsqlite3.0.tbd */,
@@ -134,6 +135,8 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5E58AD4C2ADAE76000C78E7F /* StatusBarHiddenViewController.h */,
+				5E58AD4D2ADAE76000C78E7F /* StatusBarHiddenViewController.m */,
 				24DD6CF71134B3F500162E58 /* TiAdmobModule.h */,
 				24DD6CF81134B3F500162E58 /* TiAdmobModule.m */,
 				249BE66D11B47B2700AF41CF /* TiAdmobViewProxy.h */,
@@ -164,6 +167,7 @@
 				AA747D9F0F9514B9006C5449 /* TiAdmob_Prefix.pch in Headers */,
 				24DD6CF91134B3F500162E58 /* TiAdmobModule.h in Headers */,
 				249BE66F11B47B2700AF41CF /* TiAdmobViewProxy.h in Headers */,
+				5E58AD4E2ADAE76000C78E7F /* StatusBarHiddenViewController.h in Headers */,
 				3AF5B7731C233383002E3DC7 /* TiAdmobTypes.h in Headers */,
 				249BE67311B47B3800AF41CF /* TiAdmobView.h in Headers */,
 			);
@@ -225,6 +229,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E58AD4F2ADAE76000C78E7F /* StatusBarHiddenViewController.m in Sources */,
 				24DD6CFA1134B3F500162E58 /* TiAdmobModule.m in Sources */,
 				5E0B17A527F21AED001D0BD9 /* File.swift in Sources */,
 				249BE67011B47B2700AF41CF /* TiAdmobViewProxy.m in Sources */,
