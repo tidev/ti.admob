@@ -146,7 +146,12 @@ function requestConsent() {
             }
             // If the status is "obtained" (freshly granted) or not required (already granted) continue
             if ([Admob.CONSENT_STATUS_NOT_REQUIRED, Admob.CONSENT_STATUS_OBTAINED].includes(e.status)) {
-              openTestAdsWin();
+              if (Admob.canShowAds()){
+                openTestAdsWin();
+              } else {
+                alert('You have not granted at least the minimum requirements to show ads!' +
+                  'No fear! You can buy an in-app purchase to use the app without ads :)');
+              }                
             } else {
               alert('Not ready to show ads! Status = ' + e.status);
             }
@@ -250,6 +255,7 @@ function openTestAdsWin() {
     contentURL: 'https://admob.com', // URL string for a webpage whose content matches the app content.
     requestAgent: 'Titanium Mobile App', // String that identifies the ad request's origin.
     extras: {
+      'npa': !Admob.canShowPersonalizedAds(),
       'version': 1.0,
       'name': 'My App'
     }, // Object of additional infos
@@ -289,6 +295,7 @@ function openTestAdsWin() {
     adUnitId: 'ca-app-pub-3940256099942544/4411468910', // You can get your own at http: //www.admob.com/
     keywords: ['keyword1', 'keyword2'],
     extras: {
+      'npa': !Admob.canShowPersonalizedAds(),
       'version': 1.0,
       'name': 'My App'
     }, // Object of additional infos
@@ -352,6 +359,7 @@ function openTestAdsWin() {
     adType: Admob.AD_TYPE_REWARDED_VIDEO,
     adUnitId: 'ca-app-pub-3940256099942544/1712485313',
     extras: {
+      'npa': !Admob.canShowPersonalizedAds(),
       'version': 1.0,
       'name': 'My App'
     } // Object of additional infos
@@ -442,6 +450,7 @@ function openTestAdsWin() {
       adType: Admob.AD_TYPE_APP_OPEN,
       adUnitId: 'ca-app-pub-3940256099942544/5662855259', // You can get your own at http: //www.admob.com/
       extras: {
+        'npa': !Admob.canShowPersonalizedAds(),
         'version': 1.0,
         'name': 'My App'
       } // Object of additional infos

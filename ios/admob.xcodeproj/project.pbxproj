@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -73,7 +73,6 @@
 				5E6743A427F4B84500BEE594 /* WebKit.framework in Frameworks */,
 				5E343CDF291BFA3600F047EB /* MetaAdapter.xcframework in Frameworks */,
 				5ED7B66026EBC395007F4D90 /* FBAudienceNetwork.xcframework in Frameworks */,
-				
 				5EFC8F50263ABC430011A0C2 /* InMobiSDK.xcframework in Frameworks */,
 				5EFC8F51263ABC430011A0C2 /* InMobiAdapter.xcframework in Frameworks */,
 				3ABFE38E26335E0000887180 /* nanopb.xcframework in Frameworks */,

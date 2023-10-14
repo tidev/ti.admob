@@ -102,6 +102,15 @@ The module uses these two methods to be able to use it:
 
 In the [app.js](/ios/example/app.js) there is a complete example to better understand how to use them.
 
+### User Consent and Ad serving 
+
+**If consent is denied, or if certain values are not checked in the consent management phase, the ads will not be loaded**.
+
+Why does this happen? If you pay attention to the **ConsentStatus.OBTAINED**  field, you will notice that it says that  **the consent is obtained, but the personalization is not defined**. As you see [here](https://itnext.io/android-admob-consent-with-ump-personalized-or-non-personalized-ads-in-eea-3592e192ec90).
+
+It is up to us developers to check if the user has granted the  [**minimum requirements**](https://support.google.com/admob/answer/9760862?ref_topic=10303737) to be able to view the ads, and if he has chosen to see personalized or non-personalized ones. 
+
+In order to assist you with this, [Mirko Dimartino](https://mirko-ddd.medium.com/?source=post_page-----3592e192ec90--------------------------------) created a solution inspired on [Tyler V](https://stackoverflow.com/questions/65351543/how-to-implement-ump-sdk-correctly-for-eu-consent/68310602#68310602) that I have implemented in this module thanks to [deckameron](https://github.com/deckameron).
 
 ### Mediation adapters
 
@@ -184,6 +193,29 @@ To check if a form is available, use the callback status parameter
 
 - `callback` (Function)
 Async callback function that return `{status: Modules.Admob.CONSENT_STATUS_*}`
+
+### `isGDPR()` (Boolean)
+
+Check in the IABTCF string if GDPR applies, so if in EEA.
+
+### `canShowAds()` (Boolean)
+
+If false (and GDPR applies, so if in EEA) you should prompt the user or to accept all, or explain in details (check above) what to check to display at least Non-Personalized Ads, or ask the user to opt for a premium version of the app, otherwise you will earn absolutely nothing.
+
+If true you can check if user granted at least minimum requirements to show Personalized Ads with the following method.
+
+### `canShowPersonalizedAds` (Boolean)
+
+Finally you know if you can request AdMob Personalized or Non-Personalized Ads, if Non-Personalized you have to forward the request using this snippet.
+
+```js
+  var Admob = require('ti.admob');
+
+  var ad = Admob.createView({
+    // your properties...
+    extras: { 'npa': "1"}, // npa=1 disables personalized ads 
+  });
+```
 
 ### `requestConsentInfoUpdateWithParameters(args)`
 
@@ -612,7 +644,6 @@ If you are also using [Titanium Firebase Core Module](https://github.com/hansema
 `GoogleAppMeasurementIdentitySupport.xcframework`
 `GoogleUtilities.xcframework`
 `nanopb.xcframework`
-`PromisesObjC.xcframework`
 
 ## Usage
 
