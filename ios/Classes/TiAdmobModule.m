@@ -384,7 +384,7 @@
 
 - (void)setTagForUnderAgeOfConsent:(id)tagForUnderAgeOfConsent
 {
-  DEPRECATED_REMOVED(@"Admob.setTagForUnderAgeOfConsent", @"5.0.0", @"5.0.0 (Removed since Ti.Admob 5.0.0. You can set 'tagForUnderAgeOfConsent' parameter in Admob.requestConsentInfoUpdateWithParameters() )");
+  DEPRECATED_REMOVED(@"Admob.setTagForUnderAgeOfConsent", @"5.0.0", @"5.0.0 (Removed since Ti.Admob 5.0.0. You can set 'tagForUnderAgeOfConsent' parameter in Admob.requestConsentInfoUpdateWithParameters() or in Admob.createView() )");
   /*
   ENSURE_TYPE(tagForUnderAgeOfConsent, NSNumber);
   [[PACConsentInformation sharedInstance] setTagForUnderAgeOfConsent:[TiUtils boolValue:tagForUnderAgeOfConsent]];
@@ -393,7 +393,7 @@
 
 - (NSNumber *)isTaggedForUnderAgeOfConsent:(id)unused
 {
-  DEPRECATED_REMOVED(@"Admob.isTaggedForUnderAgeOfConsent", @"5.0.0", @"5.0.0 (Removed since Ti.Admob 5.0.0. You can set 'tagForUnderAgeOfConsent' parameter in Admob.requestConsentInfoUpdateWithParameters() )");
+  DEPRECATED_REMOVED(@"Admob.isTaggedForUnderAgeOfConsent", @"5.0.0", @"5.0.0 (Removed since Ti.Admob 5.0.0. You can set 'tagForUnderAgeOfConsent' parameter in Admob.requestConsentInfoUpdateWithParameters() or in Admob.createView() )");
   //return @([[PACConsentInformation sharedInstance] isTaggedForUnderAgeOfConsent]);
 }
 
@@ -499,5 +499,10 @@ MAKE_SYSTEM_PROP(AD_TYPE_BANNER, TiAdmobAdTypeBanner);
 MAKE_SYSTEM_PROP(AD_TYPE_INTERSTITIAL, TiAdmobAdTypeInterstitial);
 MAKE_SYSTEM_PROP(AD_TYPE_REWARDED_VIDEO, TiAdmobAdTypeRewardedVideo);
 MAKE_SYSTEM_PROP(AD_TYPE_APP_OPEN, TiAdmobAdTypeAppOpen);
+
+MAKE_SYSTEM_STR(MAX_AD_CONTENT_RATING_GENERAL, GADMaxAdContentRatingGeneral);
+MAKE_SYSTEM_STR(MAX_AD_CONTENT_RATING_PARENTAL_GUIDANCE, GADMaxAdContentRatingParentalGuidance);
+MAKE_SYSTEM_STR(MAX_AD_CONTENT_RATING_TEEN, GADMaxAdContentRatingTeen);
+MAKE_SYSTEM_STR(MAX_AD_CONTENT_RATING_MATURE_AUDIENCE, GADMaxAdContentRatingMatureAudience);
 
 @end

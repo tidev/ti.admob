@@ -157,8 +157,31 @@
 - (void)setTagForChildDirectedTreatment_:(id)value
 {
   ENSURE_TYPE(value, NSNumber);
-  [GADMobileAds.sharedInstance.requestConfiguration tagForChildDirectedTreatment:[TiUtils boolValue:value]];
+  GADMobileAds.sharedInstance.requestConfiguration.tagForChildDirectedTreatment = [TiUtils boolValue:value] ? @YES : @NO;
 }
+
+- (void)setTagForUnderAgeOfConsent_:(id)value
+{
+  ENSURE_TYPE(value, NSNumber);
+  GADMobileAds.sharedInstance.requestConfiguration.tagForUnderAgeOfConsent = [TiUtils boolValue:value] ? @YES : @NO;
+}
+
+- (void)setMaxAdContentRating_:(NSString *)maxAdContentRating
+{
+    NSLog(@"[DEBUG] MaxAdContentRating setted to: %@", maxAdContentRating);
+    if ([maxAdContentRating isEqualToString:GADMaxAdContentRatingGeneral]) {
+        [GADMobileAds.sharedInstance.requestConfiguration setMaxAdContentRating:GADMaxAdContentRatingGeneral];
+    } else if ([maxAdContentRating isEqualToString:GADMaxAdContentRatingParentalGuidance]) {
+        [GADMobileAds.sharedInstance.requestConfiguration setMaxAdContentRating:GADMaxAdContentRatingParentalGuidance];
+    } else if ([maxAdContentRating isEqualToString:GADMaxAdContentRatingTeen]) {
+        [GADMobileAds.sharedInstance.requestConfiguration setMaxAdContentRating:GADMaxAdContentRatingTeen];
+    } else if ([maxAdContentRating isEqualToString:GADMaxAdContentRatingMatureAudience]) {
+        [GADMobileAds.sharedInstance.requestConfiguration setMaxAdContentRating:GADMaxAdContentRatingMatureAudience];
+    } else {
+        NSLog(@"[DEBUG] Invalid maxAdContentRating: %@", maxAdContentRating);
+    }
+}
+
 
 - (void)setRequestAgent_:(id)value
 {
@@ -278,7 +301,7 @@
     //
     [GADAppOpenAd loadWithAdUnitID:adUnitId
                            request:[GADRequest request]
-                       orientation:UIInterfaceOrientationPortrait
+                       //orientation:UIInterfaceOrientationPortrait
                  completionHandler:^(GADAppOpenAd *_Nullable _appOpenAd, NSError *_Nullable error) {
         _isLoadingAd = NO;
         if (error) {
@@ -407,7 +430,7 @@ StatusBarHiddenViewController *adViewController;
 
 - (NSString *)exampleAdId
 {
-  return @"ca-app-pub-3940256099942544/1712485313";
+  return @"ca-app-pub-3940256099942544/2934735716"; // Banner demo ad unit ID
 }
 
 #pragma mark - GADBannerViewDelegate
@@ -494,9 +517,9 @@ StatusBarHiddenViewController *adViewController;
 - (void)adDidDismissFullScreenContent:(id<GADFullScreenPresentingAd>)ad
 {
   if ([ad isKindOfClass:[GADAppOpenAd class]]) {
-      [adViewController dismissViewControllerAnimated:YES completion:nil];
-      _isShowingAd = NO;
-      appOpenAd = nil;
+    [adViewController dismissViewControllerAnimated:YES completion:nil];
+    _isShowingAd = NO;
+    appOpenAd = nil;
   }
   [self.proxy fireEvent:@"didDismissScreen" withObject:@{ @"adUnitId": adUnitId }];
 }

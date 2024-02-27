@@ -901,6 +901,15 @@ SWIFT_CLASS("_TtC9InMobiSDK28IMInterstitialPreloadManager")
 @end
 
 
+enum IMRemoteLogLevel : NSInteger;
+
+SWIFT_PROTOCOL("_TtP9InMobiSDK9IMLogging_")
+@protocol IMLogging
+@optional
+- (void)logWithMessage:(NSString * _Nonnull)message tag:(NSString * _Nonnull)tag logLevel:(enum IMRemoteLogLevel)logLevel;
+- (void)saveAndSync;
+@end
+
 @class UITraitCollection;
 
 /// Use this class to move ad view around the screen. Add the <code>adView</code> as a subview to the instance of this class
@@ -1128,6 +1137,13 @@ SWIFT_CLASS("_TtC9InMobiSDK19IMPrivacyCompliance")
 + (void)setUSPrivacyString:(NSString * _Nonnull)privacyString;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
+
+typedef SWIFT_ENUM(NSInteger, IMRemoteLogLevel, open) {
+  IMRemoteLogLevelError = 0,
+  IMRemoteLogLevelDebug = 1,
+  IMRemoteLogLevelInfo = 2,
+  IMRemoteLogLevelState = 3,
+};
 
 
 SWIFT_CLASS("_TtC9InMobiSDK15IMRequestStatus")

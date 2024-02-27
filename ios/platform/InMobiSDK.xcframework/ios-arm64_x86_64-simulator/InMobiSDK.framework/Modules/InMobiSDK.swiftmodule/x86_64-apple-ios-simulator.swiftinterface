@@ -356,6 +356,21 @@ extension InMobiSDK.IMAudio {
   @objc override dynamic public init()
   @objc deinit
 }
+@objc public enum IMRemoteLogLevel : Swift.Int {
+  case error
+  case debug
+  case info
+  case state
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public protocol IMLogging {
+  @objc optional func log(message: Swift.String, tag: Swift.String, logLevel: InMobiSDK.IMRemoteLogLevel)
+  @objc optional func saveAndSync()
+}
 #warning("Long Term: Need to Re Name to IMImpressionType")
 #warning("Long Term: Need relook as per old IMInMobiViewabilityModel model after renderview is converted")
 #warning("Convert to camel case")
@@ -505,6 +520,9 @@ extension InMobiSDK.IMBannerAudioStatus : Swift.Equatable {}
 extension InMobiSDK.IMBannerAudioStatus : Swift.Hashable {}
 extension InMobiSDK.IMBannerAudioStatus : Swift.RawRepresentable {}
 extension InMobiSDK.IMBannerAudioStatus : Swift.Sendable {}
+extension InMobiSDK.IMRemoteLogLevel : Swift.Equatable {}
+extension InMobiSDK.IMRemoteLogLevel : Swift.Hashable {}
+extension InMobiSDK.IMRemoteLogLevel : Swift.RawRepresentable {}
 extension InMobiSDK.IMSDKLogLevel : Swift.Equatable {}
 extension InMobiSDK.IMSDKLogLevel : Swift.Hashable {}
 extension InMobiSDK.IMSDKLogLevel : Swift.RawRepresentable {}

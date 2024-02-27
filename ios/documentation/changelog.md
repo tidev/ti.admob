@@ -1,5 +1,16 @@
 # Change Log
 
+### v7.0.0
+- Migration to SDK v11 (https://developers.google.com/admob/ios/migration#migrate-to-sdk-v11)
+- Update Google Mobile Ads SDK 11.0.1 (https://github.com/CocoaPods/Specs/tree/master/Specs/5/9/a/Google-Mobile-Ads-SDK/11.0.1)
+- Update InMobi SDK 10.6.4 (https://support.inmobi.com/monetize/sdk-documentation/download-sdk)
+- Update InMobiAdapter 10.6.0.0 (https://developers.google.com/admob/ios/mediation/inmobi#version-10.6.0.0)
+- Added iphone property: `tagForChildDirectedTreatment`. https://developers.google.com/admob/ios/targeting#child-directed_setting for more infos
+- Added iphone property: `tagForUnderAgeOfConsent`.https://developers.google.com/admob/ios/targeting#users_under_the_age_of_consent for more infos
+- Added iphone property: `maxAdContentRating`. https://developers.google.com/admob/ios/targeting#ad_content_filtering for more infos
+- Deprecated iOS `Admob.SIMULATOR_ID`
+- Updated documentation and iOS example
+
 ### v6.3.1
 - Fixed AppOpen auto closing on iOS
 

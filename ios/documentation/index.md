@@ -159,7 +159,9 @@ parameters[object]: a dictionary object of properties defined in [Ti.Admob.View]
     contentURL: 'https://admob.com', // URL string for a webpage whose content matches the app content.
     requestAgent: 'Titanium Mobile App', // String that identifies the ad request's origin.
     extras: { 'npa': "1", 'version': 1.0, 'name': 'My App' }, // Object of additional infos. NOTE: npa=1 disables personalized ads (!)
-    tagForChildDirectedTreatment: false, // http:///business.ftc.gov/privacy-and-security/childrens-privacy for more infos
+    tagForChildDirectedTreatment: false, // https://developers.google.com/admob/ios/targeting#child-directed_setting for more infos
+    tagForUnderAgeOfConsent: false, //https://developers.google.com/admob/ios/targeting#users_under_the_age_of_consent for more infos
+    maxAdContentRating: Admob.MAX_AD_CONTENT_RATING_GENERAL, // https://developers.google.com/admob/ios/targeting#ad_content_filtering for more infos
     keywords: ['keyword1', 'keyword2']
   });
 ```
@@ -228,7 +230,7 @@ To force the SDK to treat the device as though it is not in the EEA or UK, use U
 - `tagForUnderAgeOfConsent` (Boolean)
 Sets whether the user is tagged for under age of consent
 - `testDeviceIdentifiers` (Array<String>)
-Array of "TEST-DEVICE-HASHED-ID" strings. You can use `Admob.SIMULATOR_ID` for simulator.
+Array of "TEST-DEVICE-HASHED-ID" strings.
 - `callback` (Function)
 Async callback function to invoke when done
 
@@ -397,9 +399,21 @@ A constant to be passed to the `gender` property to specify a gender if used. **
 
 A constant to be passed to the `gender` property to specify a gender if used. **Deprecated by the AdMob SDK,deleted from 4.5.0**.
 
+### String `MAX_AD_CONTENT_RATING_GENERAL`
+A constant to be passed to the `maxAdContentRating` property to specify a maximum ad content rating for all ad requests if used.
+
+### String `MAX_AD_CONTENT_RATING_PARENTAL_GUIDANCE`
+A constant to be passed to the `maxAdContentRating` property to specify a maximum ad content rating for all ad requests if used. 
+
+### String `MAX_AD_CONTENT_RATING_TEEN`
+A constant to be passed to the `maxAdContentRating` property to specify a maximum ad content rating for all ad requests if used. 
+
+### String `MAX_AD_CONTENT_RATING_MATURE_AUDIENCE`
+A constant to be passed to the `maxAdContentRating` property to specify a maximum ad content rating for all ad requests if used. 
+
 ### String `SIMULATOR_ID`
 
-A constant to be passed in an array to the `testDevices` property to get test ads on the simulator.
+A constant to be passed in an array to the `testDevices` property to get test ads on the simulator. Deprecated since 7.0.0 (Simulators are already in test mode by default.)
 
 ### Number `TRACKING_AUTHORIZATION_STATUS_NOT_DETERMINED`
 
@@ -438,7 +452,9 @@ var bannerAdView = Admob.createView({
     'version': 1.0,
     'name': 'My App'
   }, // Object of additional infos
-  tagForChildDirectedTreatment: false, // http:///business.ftc.gov/privacy-and-security/childrens-privacy for more infos
+  tagForChildDirectedTreatment: false, // https://developers.google.com/admob/ios/targeting#child-directed_setting for more infos
+  tagForUnderAgeOfConsent: false, //https://developers.google.com/admob/ios/targeting#users_under_the_age_of_consent for more infos
+  maxAdContentRating: Admob.MAX_AD_CONTENT_RATING_GENERAL, // https://developers.google.com/admob/ios/targeting#ad_content_filtering for more infos
   keywords: ['keyword1', 'keyword2']
 });
 win.add(bannerAdView);
@@ -489,7 +505,10 @@ var interstitialAd = Admob.createView({
     'version': 1.0,
     'name': 'My App'
   }, // Object of additional infos
-  visible: false // If true, covers the win when added and can't tap nothing
+  visible: false, // If true, covers the win when added and can't tap nothing
+  tagForChildDirectedTreatment: false, // https://developers.google.com/admob/ios/targeting#child-directed_setting for more infos
+  tagForUnderAgeOfConsent: false, //https://developers.google.com/admob/ios/targeting#users_under_the_age_of_consent for more infos
+  maxAdContentRating: Admob.MAX_AD_CONTENT_RATING_GENERAL, // https://developers.google.com/admob/ios/targeting#ad_content_filtering for more infos
 });
 win.add(interstitialAd);
 

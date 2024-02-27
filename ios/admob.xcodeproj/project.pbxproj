@@ -14,11 +14,7 @@
 		24DD6CF91134B3F500162E58 /* TiAdmobModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DD6CF71134B3F500162E58 /* TiAdmobModule.h */; };
 		24DD6CFA1134B3F500162E58 /* TiAdmobModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DD6CF81134B3F500162E58 /* TiAdmobModule.m */; };
 		3ABFE38D26335E0000887180 /* GoogleMobileAds.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38126335E0000887180 /* GoogleMobileAds.xcframework */; };
-		3ABFE38E26335E0000887180 /* nanopb.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38226335E0000887180 /* nanopb.xcframework */; };
-		3ABFE39326335E0000887180 /* PromisesObjC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38726335E0000887180 /* PromisesObjC.xcframework */; };
 		3ABFE39526335E0000887180 /* UserMessagingPlatform.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38926335E0000887180 /* UserMessagingPlatform.xcframework */; };
-		3ABFE39626335E0000887180 /* GoogleAppMeasurement.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38A26335E0000887180 /* GoogleAppMeasurement.xcframework */; };
-		3ABFE39726335E0000887180 /* GoogleUtilities.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABFE38B26335E0000887180 /* GoogleUtilities.xcframework */; };
 		3AF5B7731C233383002E3DC7 /* TiAdmobTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AF5B7711C233383002E3DC7 /* TiAdmobTypes.h */; };
 		5E0B17A527F21AED001D0BD9 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B17A427F21AED001D0BD9 /* File.swift */; };
 		5E343CDF291BFA3600F047EB /* MetaAdapter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E343CDE291BFA3600F047EB /* MetaAdapter.xcframework */; };
@@ -27,7 +23,6 @@
 		5E6743A427F4B84500BEE594 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6743A327F4B84500BEE594 /* WebKit.framework */; };
 		5E6743A627F4B85800BEE594 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6743A527F4B85800BEE594 /* libsqlite3.0.tbd */; };
 		5E6743A827F4B86A00BEE594 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6743A727F4B86A00BEE594 /* libz.tbd */; };
-		5E6743AE27F4BEA300BEE594 /* GoogleAppMeasurementIdentitySupport.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6743AD27F4BEA300BEE594 /* GoogleAppMeasurementIdentitySupport.xcframework */; };
 		5ED7B66026EBC395007F4D90 /* FBAudienceNetwork.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ED7B65F26EBC395007F4D90 /* FBAudienceNetwork.xcframework */; };
 		5EFC8F50263ABC430011A0C2 /* InMobiSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFC8F4C263ABC430011A0C2 /* InMobiSDK.xcframework */; };
 		5EFC8F51263ABC430011A0C2 /* InMobiAdapter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFC8F4D263ABC430011A0C2 /* InMobiAdapter.xcframework */; };
@@ -43,11 +38,7 @@
 		24DD6CF81134B3F500162E58 /* TiAdmobModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiAdmobModule.m; path = Classes/TiAdmobModule.m; sourceTree = "<group>"; };
 		24DD6D1B1134B66800162E58 /* titanium.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = titanium.xcconfig; sourceTree = "<group>"; };
 		3ABFE38126335E0000887180 /* GoogleMobileAds.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleMobileAds.xcframework; path = platform/GoogleMobileAds.xcframework; sourceTree = "<group>"; };
-		3ABFE38226335E0000887180 /* nanopb.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = nanopb.xcframework; path = platform/nanopb.xcframework; sourceTree = "<group>"; };
-		3ABFE38726335E0000887180 /* PromisesObjC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = PromisesObjC.xcframework; path = platform/PromisesObjC.xcframework; sourceTree = "<group>"; };
 		3ABFE38926335E0000887180 /* UserMessagingPlatform.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = UserMessagingPlatform.xcframework; path = platform/UserMessagingPlatform.xcframework; sourceTree = "<group>"; };
-		3ABFE38A26335E0000887180 /* GoogleAppMeasurement.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurement.xcframework; path = platform/GoogleAppMeasurement.xcframework; sourceTree = "<group>"; };
-		3ABFE38B26335E0000887180 /* GoogleUtilities.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleUtilities.xcframework; path = platform/GoogleUtilities.xcframework; sourceTree = "<group>"; };
 		3AF5B7711C233383002E3DC7 /* TiAdmobTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiAdmobTypes.h; path = Classes/TiAdmobTypes.h; sourceTree = "<group>"; };
 		5E0B17A327F21AED001D0BD9 /* admob-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "admob-Bridging-Header.h"; sourceTree = "<group>"; };
 		5E0B17A427F21AED001D0BD9 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
@@ -57,7 +48,6 @@
 		5E6743A327F4B84500BEE594 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/iOSSupport/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		5E6743A527F4B85800BEE594 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/lib/libsqlite3.0.tbd; sourceTree = DEVELOPER_DIR; };
 		5E6743A727F4B86A00BEE594 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
-		5E6743AD27F4BEA300BEE594 /* GoogleAppMeasurementIdentitySupport.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleAppMeasurementIdentitySupport.xcframework; path = platform/GoogleAppMeasurementIdentitySupport.xcframework; sourceTree = "<group>"; };
 		5ED7B65F26EBC395007F4D90 /* FBAudienceNetwork.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBAudienceNetwork.xcframework; path = platform/FBAudienceNetwork.xcframework; sourceTree = "<group>"; };
 		5EFC8F4C263ABC430011A0C2 /* InMobiSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = InMobiSDK.xcframework; path = platform/InMobiSDK.xcframework; sourceTree = "<group>"; };
 		5EFC8F4D263ABC430011A0C2 /* InMobiAdapter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = InMobiAdapter.xcframework; path = platform/InMobiAdapter.xcframework; sourceTree = "<group>"; };
@@ -77,13 +67,8 @@
 				5ED7B66026EBC395007F4D90 /* FBAudienceNetwork.xcframework in Frameworks */,
 				5EFC8F50263ABC430011A0C2 /* InMobiSDK.xcframework in Frameworks */,
 				5EFC8F51263ABC430011A0C2 /* InMobiAdapter.xcframework in Frameworks */,
-				3ABFE38E26335E0000887180 /* nanopb.xcframework in Frameworks */,
 				3ABFE39526335E0000887180 /* UserMessagingPlatform.xcframework in Frameworks */,
 				3ABFE38D26335E0000887180 /* GoogleMobileAds.xcframework in Frameworks */,
-				3ABFE39626335E0000887180 /* GoogleAppMeasurement.xcframework in Frameworks */,
-				5E6743AE27F4BEA300BEE594 /* GoogleAppMeasurementIdentitySupport.xcframework in Frameworks */,
-				3ABFE39326335E0000887180 /* PromisesObjC.xcframework in Frameworks */,
-				3ABFE39726335E0000887180 /* GoogleUtilities.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,12 +106,7 @@
 				5ED7B65F26EBC395007F4D90 /* FBAudienceNetwork.xcframework */,
 				5EFC8F4D263ABC430011A0C2 /* InMobiAdapter.xcframework */,
 				5EFC8F4C263ABC430011A0C2 /* InMobiSDK.xcframework */,
-				3ABFE38A26335E0000887180 /* GoogleAppMeasurement.xcframework */,
-				5E6743AD27F4BEA300BEE594 /* GoogleAppMeasurementIdentitySupport.xcframework */,
 				3ABFE38126335E0000887180 /* GoogleMobileAds.xcframework */,
-				3ABFE38B26335E0000887180 /* GoogleUtilities.xcframework */,
-				3ABFE38226335E0000887180 /* nanopb.xcframework */,
-				3ABFE38726335E0000887180 /* PromisesObjC.xcframework */,
 				3ABFE38926335E0000887180 /* UserMessagingPlatform.xcframework */,
 			);
 			name = Frameworks;

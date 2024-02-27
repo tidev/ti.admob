@@ -47,18 +47,14 @@ typedef void (^GADAppOpenAdLoadCompletionHandler)(GADAppOpenAd *_Nullable appOpe
 
 /// Returns whether the app open ad can be presented from the provided root view controller. Sets
 /// the error out parameter if the app open ad can't be presented. Must be called on the main
-/// thread.
-- (BOOL)canPresentFromRootViewController:(nonnull UIViewController *)rootViewController
+/// thread. If rootViewController is nil, uses the top view controller of the application's main
+/// window.
+- (BOOL)canPresentFromRootViewController:(nullable UIViewController *)rootViewController
                                    error:(NSError *_Nullable __autoreleasing *_Nullable)error;
 
 /// Presents the app open ad with the provided view controller. Must be called on the main thread.
-- (void)presentFromRootViewController:(nonnull UIViewController *)rootViewController;
-
-#pragma mark - Deprecated
-/// Deprecated. Use +loadWithAdUnitID:request:completionHandler instead.
-+ (void)loadWithAdUnitID:(nonnull NSString *)adUnitID
-                 request:(nullable GADRequest *)request
-             orientation:(UIInterfaceOrientation)orientation
-       completionHandler:(nonnull GADAppOpenAdLoadCompletionHandler)completionHandler;
+/// If rootViewController is nil, attempts to present from the top view controller of the
+/// application's main window.
+- (void)presentFromRootViewController:(nullable UIViewController *)rootViewController;
 
 @end

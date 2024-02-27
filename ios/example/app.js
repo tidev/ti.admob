@@ -113,7 +113,7 @@ function requestTrackingAuthorization() {
 function requestConsent() {
   console.log("request consent");
   Admob.requestConsentInfoUpdateWithParameters({
-    testDeviceIdentifiers: [Admob.SIMULATOR_ID, 'YOUR-TEST-DEVICE-HASHED-ID'],
+    testDeviceIdentifiers: ['YOUR-TEST-DEVICE-HASHED-ID'],
     geography: Admob.DEBUG_GEOGRAPHY_EEA, // `Admob.DEBUG_GEOGRAPHY_NOT_EEA` or `Admob.DEBUG_GEOGRAPHY_DISABLED`
     tagForUnderAgeOfConsent: false,
     callback: function (e) {
@@ -259,7 +259,9 @@ function openTestAdsWin() {
       'version': 1.0,
       'name': 'My App'
     }, // Object of additional infos
-    tagForChildDirectedTreatment: false, // http:///business.ftc.gov/privacy-and-security/childrens-privacy for more infos
+    tagForChildDirectedTreatment: false, // https://developers.google.com/admob/ios/targeting#child-directed_setting for more infos
+    tagForUnderAgeOfConsent: false, //https://developers.google.com/admob/ios/targeting#users_under_the_age_of_consent for more infos
+    maxAdContentRating: Admob.MAX_AD_CONTENT_RATING_GENERAL, // https://developers.google.com/admob/ios/targeting#ad_content_filtering for more infos
     keywords: ['keyword1', 'keyword2']
   });
 
@@ -299,7 +301,10 @@ function openTestAdsWin() {
       'version': 1.0,
       'name': 'My App'
     }, // Object of additional infos
-    visible: false // If true, covers the win when added and can't tap nothing
+    visible: false, // If true, covers the win when added and can't tap nothing
+    tagForChildDirectedTreatment: false, // https://developers.google.com/admob/ios/targeting#child-directed_setting for more infos
+    tagForUnderAgeOfConsent: false, //https://developers.google.com/admob/ios/targeting#users_under_the_age_of_consent for more infos
+    maxAdContentRating: Admob.MAX_AD_CONTENT_RATING_GENERAL, // https://developers.google.com/admob/ios/targeting#ad_content_filtering for more infos
   });
   
 
@@ -362,7 +367,10 @@ function openTestAdsWin() {
       'npa': !Admob.canShowPersonalizedAds(),
       'version': 1.0,
       'name': 'My App'
-    } // Object of additional infos
+    }, // Object of additional infos
+    tagForChildDirectedTreatment: false, // https://developers.google.com/admob/ios/targeting#child-directed_setting for more infos
+    tagForUnderAgeOfConsent: false, //https://developers.google.com/admob/ios/targeting#users_under_the_age_of_consent for more infos
+    maxAdContentRating: Admob.MAX_AD_CONTENT_RATING_GENERAL, // https://developers.google.com/admob/ios/targeting#ad_content_filtering for more infos
   });
  
   rewardedVideo.addEventListener('didRewardUser', function (reward) {
@@ -453,7 +461,10 @@ function openTestAdsWin() {
         'npa': !Admob.canShowPersonalizedAds(),
         'version': 1.0,
         'name': 'My App'
-      } // Object of additional infos
+      }, // Object of additional infos
+      tagForChildDirectedTreatment: false, // https://developers.google.com/admob/ios/targeting#child-directed_setting for more infos
+      tagForUnderAgeOfConsent: false, //https://developers.google.com/admob/ios/targeting#users_under_the_age_of_consent for more infos
+      maxAdContentRating: Admob.MAX_AD_CONTENT_RATING_GENERAL, // https://developers.google.com/admob/ios/targeting#ad_content_filtering for more infos
     });
 
     // appOpenAd custom events
