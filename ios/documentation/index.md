@@ -216,7 +216,18 @@ Finally you know if you can request AdMob Personalized or Non-Personalized Ads, 
   var ad = Admob.createView({
     // your properties...
     extras: { 'npa': "1"}, // npa=1 disables personalized ads 
-  });
+  });  
+```
+
+or 
+
+```js
+  import Admob from 'ti.admob';
+  
+  var ad = Admob.createView({
+    // your properties...
+    extras: { 'npa': "1"}, // npa=1 disables personalized ads 
+  });  
 ```
 
 ### `requestConsentInfoUpdateWithParameters(args)`

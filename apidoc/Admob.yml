@@ -452,21 +452,21 @@ methods:
       type: Boolean
     summary: Check in the IABTCF string if GDPR applies, so if in EEA.
     platforms: [iphone, ipad]
-    since: "2.6.3"
+    since: "6.3.0"
   
   - name: canShowAds
     returns:
       type: Boolean
     summary: Check in the IABTCF string if user granted at least minimum requirements to show ads.
     platforms: [iphone, ipad]
-    since: "2.6.3"
+    since: "6.3.0"
 
   - name: canShowPersonalizedAds
     returns:
       type: Boolean
     summary: Check in the IABTCF string if user granted at least minimum requirements to show Personalized ads.
     platforms: [iphone, ipad]
-    since: "2.6.3"
+    since: "6.3.0"
 
   - name: requestConsentInfoUpdateForPublisherIdentifiers
     returns:
