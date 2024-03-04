@@ -102,6 +102,15 @@ The module uses these two methods to be able to use it:
 
 In the [app.js](/ios/example/app.js) there is a complete example to better understand how to use them.
 
+### User Consent and Ad serving 
+
+**If consent is denied, or if certain values are not checked in the consent management phase, the ads will not be loaded**.
+
+Why does this happen? If you pay attention to the **ConsentStatus.OBTAINED**  field, you will notice that it says that  **the consent is obtained, but the personalization is not defined**. As you see [here](https://itnext.io/android-admob-consent-with-ump-personalized-or-non-personalized-ads-in-eea-3592e192ec90).
+
+It is up to us developers to check if the user has granted the  [**minimum requirements**](https://support.google.com/admob/answer/9760862?ref_topic=10303737) to be able to view the ads, and if he has chosen to see personalized or non-personalized ones. 
+
+In order to assist you with this, [Mirko Dimartino](https://mirko-ddd.medium.com/?source=post_page-----3592e192ec90--------------------------------) created a solution inspired on [Tyler V](https://stackoverflow.com/questions/65351543/how-to-implement-ump-sdk-correctly-for-eu-consent/68310602#68310602) that I have implemented in this module thanks to [deckameron](https://github.com/deckameron).
 
 ### Mediation adapters
 
@@ -150,7 +159,9 @@ parameters[object]: a dictionary object of properties defined in [Ti.Admob.View]
     contentURL: 'https://admob.com', // URL string for a webpage whose content matches the app content.
     requestAgent: 'Titanium Mobile App', // String that identifies the ad request's origin.
     extras: { 'npa': "1", 'version': 1.0, 'name': 'My App' }, // Object of additional infos. NOTE: npa=1 disables personalized ads (!)
-    tagForChildDirectedTreatment: false, // http:///business.ftc.gov/privacy-and-security/childrens-privacy for more infos
+    tagForChildDirectedTreatment: false, // https://developers.google.com/admob/ios/targeting#child-directed_setting for more infos
+    tagForUnderAgeOfConsent: false, //https://developers.google.com/admob/ios/targeting#users_under_the_age_of_consent for more infos
+    maxAdContentRating: Admob.MAX_AD_CONTENT_RATING_GENERAL, // https://developers.google.com/admob/ios/targeting#ad_content_filtering for more infos
     keywords: ['keyword1', 'keyword2']
   });
 ```
@@ -185,6 +196,40 @@ To check if a form is available, use the callback status parameter
 - `callback` (Function)
 Async callback function that return `{status: Modules.Admob.CONSENT_STATUS_*}`
 
+### `isGDPR()` (Boolean)
+
+Check in the IABTCF string if GDPR applies, so if in EEA.
+
+### `canShowAds()` (Boolean)
+
+If false (and GDPR applies, so if in EEA) you should prompt the user or to accept all, or explain in details (check above) what to check to display at least Non-Personalized Ads, or ask the user to opt for a premium version of the app, otherwise you will earn absolutely nothing.
+
+If true you can check if user granted at least minimum requirements to show Personalized Ads with the following method.
+
+### `canShowPersonalizedAds` (Boolean)
+
+Finally you know if you can request AdMob Personalized or Non-Personalized Ads, if Non-Personalized you have to forward the request using this snippet.
+
+```js
+  var Admob = require('ti.admob');
+
+  var ad = Admob.createView({
+    // your properties...
+    extras: { 'npa': "1"}, // npa=1 disables personalized ads 
+  });  
+```
+
+or 
+
+```js
+  import Admob from 'ti.admob';
+  
+  var ad = Admob.createView({
+    // your properties...
+    extras: { 'npa': "1"}, // npa=1 disables personalized ads 
+  });  
+```
+
 ### `requestConsentInfoUpdateWithParameters(args)`
 
 Request the latest consent information.
@@ -196,7 +241,7 @@ To force the SDK to treat the device as though it is not in the EEA or UK, use U
 - `tagForUnderAgeOfConsent` (Boolean)
 Sets whether the user is tagged for under age of consent
 - `testDeviceIdentifiers` (Array<String>)
-Array of "TEST-DEVICE-HASHED-ID" strings. You can use `Admob.SIMULATOR_ID` for simulator.
+Array of "TEST-DEVICE-HASHED-ID" strings.
 - `callback` (Function)
 Async callback function to invoke when done
 
@@ -365,9 +410,21 @@ A constant to be passed to the `gender` property to specify a gender if used. **
 
 A constant to be passed to the `gender` property to specify a gender if used. **Deprecated by the AdMob SDK,deleted from 4.5.0**.
 
+### String `MAX_AD_CONTENT_RATING_GENERAL`
+A constant to be passed to the `maxAdContentRating` property to specify a maximum ad content rating for all ad requests if used.
+
+### String `MAX_AD_CONTENT_RATING_PARENTAL_GUIDANCE`
+A constant to be passed to the `maxAdContentRating` property to specify a maximum ad content rating for all ad requests if used. 
+
+### String `MAX_AD_CONTENT_RATING_TEEN`
+A constant to be passed to the `maxAdContentRating` property to specify a maximum ad content rating for all ad requests if used. 
+
+### String `MAX_AD_CONTENT_RATING_MATURE_AUDIENCE`
+A constant to be passed to the `maxAdContentRating` property to specify a maximum ad content rating for all ad requests if used. 
+
 ### String `SIMULATOR_ID`
 
-A constant to be passed in an array to the `testDevices` property to get test ads on the simulator.
+A constant to be passed in an array to the `testDevices` property to get test ads on the simulator. Deprecated since 7.0.0 (Simulators are already in test mode by default.)
 
 ### Number `TRACKING_AUTHORIZATION_STATUS_NOT_DETERMINED`
 
@@ -406,7 +463,9 @@ var bannerAdView = Admob.createView({
     'version': 1.0,
     'name': 'My App'
   }, // Object of additional infos
-  tagForChildDirectedTreatment: false, // http:///business.ftc.gov/privacy-and-security/childrens-privacy for more infos
+  tagForChildDirectedTreatment: false, // https://developers.google.com/admob/ios/targeting#child-directed_setting for more infos
+  tagForUnderAgeOfConsent: false, //https://developers.google.com/admob/ios/targeting#users_under_the_age_of_consent for more infos
+  maxAdContentRating: Admob.MAX_AD_CONTENT_RATING_GENERAL, // https://developers.google.com/admob/ios/targeting#ad_content_filtering for more infos
   keywords: ['keyword1', 'keyword2']
 });
 win.add(bannerAdView);
@@ -457,7 +516,10 @@ var interstitialAd = Admob.createView({
     'version': 1.0,
     'name': 'My App'
   }, // Object of additional infos
-  visible: false // If true, covers the win when added and can't tap nothing
+  visible: false, // If true, covers the win when added and can't tap nothing
+  tagForChildDirectedTreatment: false, // https://developers.google.com/admob/ios/targeting#child-directed_setting for more infos
+  tagForUnderAgeOfConsent: false, //https://developers.google.com/admob/ios/targeting#users_under_the_age_of_consent for more infos
+  maxAdContentRating: Admob.MAX_AD_CONTENT_RATING_GENERAL, // https://developers.google.com/admob/ios/targeting#ad_content_filtering for more infos
 });
 win.add(interstitialAd);
 
@@ -612,7 +674,6 @@ If you are also using [Titanium Firebase Core Module](https://github.com/hansema
 `GoogleAppMeasurementIdentitySupport.xcframework`
 `GoogleUtilities.xcframework`
 `nanopb.xcframework`
-`PromisesObjC.xcframework`
 
 ## Usage
 

@@ -307,6 +307,9 @@ properties:
     summary: The deviceId for emulators to be used with <Modules.Admob.View.testDevices> property
     permission: read-only
     platforms: [android, iphone, ipad]
+    deprecated:
+      since: "7.0.0"
+      notes: Simulators are already in test mode by default.
     
   - name: TRACKING_AUTHORIZATION_STATUS_NOT_DETERMINED
     type: Number
@@ -443,6 +446,27 @@ methods:
       - name: callback
         type: Callback<LoadFormObject>
         summary: async callback called when retrieved
+
+  - name: isGDPR
+    returns:
+      type: Boolean
+    summary: Check in the IABTCF string if GDPR applies, so if in EEA.
+    platforms: [iphone, ipad]
+    since: "6.3.0"
+  
+  - name: canShowAds
+    returns:
+      type: Boolean
+    summary: Check in the IABTCF string if user granted at least minimum requirements to show ads.
+    platforms: [iphone, ipad]
+    since: "6.3.0"
+
+  - name: canShowPersonalizedAds
+    returns:
+      type: Boolean
+    summary: Check in the IABTCF string if user granted at least minimum requirements to show Personalized ads.
+    platforms: [iphone, ipad]
+    since: "6.3.0"
 
   - name: requestConsentInfoUpdateForPublisherIdentifiers
     returns:
@@ -697,7 +721,7 @@ objects:
 
       - name: testDeviceIdentifiers
         type: Array<String>
-        summary: Array of "TEST-DEVICE-HASHED-ID" strings. You can use Admob.SIMULATOR_ID for simulator.
+        summary: Array of "TEST-DEVICE-HASHED-ID" strings.
         optional: true
         
       - name: callback

@@ -1,5 +1,29 @@
 # Change Log
 
+### v7.0.0
+- Migration to SDK v11 (https://developers.google.com/admob/ios/migration#migrate-to-sdk-v11)
+- Update Google Mobile Ads SDK 11.0.1 (https://github.com/CocoaPods/Specs/tree/master/Specs/5/9/a/Google-Mobile-Ads-SDK/11.0.1)
+- Update InMobi SDK 10.6.4 (https://support.inmobi.com/monetize/sdk-documentation/download-sdk)
+- Update InMobiAdapter 10.6.0.0 (https://developers.google.com/admob/ios/mediation/inmobi#version-10.6.0.0)
+- Added iphone property: `tagForChildDirectedTreatment`. https://developers.google.com/admob/ios/targeting#child-directed_setting for more infos
+- Added iphone property: `tagForUnderAgeOfConsent`.https://developers.google.com/admob/ios/targeting#users_under_the_age_of_consent for more infos
+- Added iphone property: `maxAdContentRating`. https://developers.google.com/admob/ios/targeting#ad_content_filtering for more infos
+- Deprecated iOS `Admob.SIMULATOR_ID`
+- Updated documentation and iOS example
+
+### v6.3.1
+- Fixed AppOpen auto closing on iOS
+
+### v6.3.0
+- Added iphone methods `isGDPR()`, `canShowAds()`, `canShowPersonalizedAds()`
+- Update Google Mobile Ads SDK 10.12.0 (https://github.com/CocoaPods/Specs/tree/master/Specs/5/9/a/Google-Mobile-Ads-SDK/10.12.0)
+- Update Meta Audience Network SDK 6.14.0 (https://developers.facebook.com/docs/audience-network/setting-up/platform-setup/ios/changelog#6_14_0)
+- Update Meta Adapter 6.14.0.0 (https://developers.google.com/admob/ios/mediation/meta#version-6.14.0.0)
+- Update InMobi SDK 10.1.3 (https://support.inmobi.com/monetize/sdk-documentation/download-sdk)
+- Update InMobiAdapter 10.5.8.0 (https://developers.google.com/admob/ios/mediation/inmobi#version-10.5.8.0)
+- Updated documentation and iOS example
+
+
 ### v6.2.0
 - Added support for App Open Ad (https://developers.google.com/admob/ios/app-open)
 - Reset TC string if last updated date was more than 13 months ago (https://developers.google.com/admob/ios/privacy/gdpr#troubleshooting)

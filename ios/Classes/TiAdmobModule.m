@@ -216,6 +216,85 @@
   */
 }
 
+/**
+ * This functions check if the user has granted the minimum requirements to be able to view the ads,
+ * (https://support.google.com/admob/answer/9760862?ref_topic=10303737) and if he has chosen to see 
+ * personalized or non-personalized ones.
+ *
+ * Inspired by https://stackoverflow.com/questions/65351543/how-to-implement-ump-sdk-correctly-for-eu-consent/68310602#68310602
+ */
+
+- (NSNumber *)isGDPR:(id)unused
+{
+    NSUserDefaults *settings = [NSUserDefaults standardUserDefaults];
+    NSInteger gdpr = [settings integerForKey:@"IABTCF_gdprApplies"];
+    return @(gdpr == 1);
+}
+
+- (NSNumber *)canShowAds:(id)unused
+{
+    NSUserDefaults *settings = [NSUserDefaults standardUserDefaults];
+    
+    NSString *purposeConsent = [settings stringForKey:@"IABTCF_PurposeConsents"] ?: @"";
+    NSString *vendorConsent = [settings stringForKey:@"IABTCF_VendorConsents"] ?: @"";
+    NSString *vendorLI = [settings stringForKey:@"IABTCF_VendorLegitimateInterests"] ?: @"";
+    NSString *purposeLI = [settings stringForKey:@"IABTCF_PurposeLegitimateInterests"] ?: @"";
+    
+    NSInteger googleId = 755;
+    BOOL hasGoogleVendorConsent = [self hasAttribute:vendorConsent atIndex:googleId];
+    BOOL hasGoogleVendorLI = [self hasAttribute:vendorLI atIndex:googleId];
+    
+    return @([self hasConsentFor:@[@(1)] purposeConsent:purposeConsent hasVendorConsent:hasGoogleVendorConsent]
+             && [self hasConsentOrLegitimateInterestFor:@[@(2), @(7), @(9), @(10)] purposeConsent:purposeConsent purposeLI:purposeLI hasVendorConsent:hasGoogleVendorConsent hasVendorLI:hasGoogleVendorLI]);
+}
+
+- (NSNumber *)canShowPersonalizedAds:(id)unused
+{
+    NSUserDefaults *settings = [NSUserDefaults standardUserDefaults];
+    
+    NSString *purposeConsent = [settings stringForKey:@"IABTCF_PurposeConsents"] ?: @"";
+    NSString *vendorConsent = [settings stringForKey:@"IABTCF_VendorConsents"] ?: @"";
+    NSString *vendorLI = [settings stringForKey:@"IABTCF_VendorLegitimateInterests"] ?: @"";
+    NSString *purposeLI = [settings stringForKey:@"IABTCF_PurposeLegitimateInterests"] ?: @"";
+    
+    NSInteger googleId = 755;
+    BOOL hasGoogleVendorConsent = [self hasAttribute:vendorConsent atIndex:googleId];
+    BOOL hasGoogleVendorLI = [self hasAttribute:vendorLI atIndex:googleId];
+    
+    return @([self hasConsentFor:@[@(1), @(3), @(4)] purposeConsent:purposeConsent hasVendorConsent:hasGoogleVendorConsent]
+             && [self hasConsentOrLegitimateInterestFor:@[@(2), @(7), @(9), @(10)] purposeConsent:purposeConsent purposeLI:purposeLI hasVendorConsent:hasGoogleVendorConsent hasVendorLI:hasGoogleVendorLI]);
+}
+
+- (BOOL)hasAttribute:(NSString *)input atIndex:(NSInteger)index
+{
+    return input.length >= index && [[input substringWithRange:NSMakeRange(index - 1, 1)] isEqualToString:@"1"];
+}
+
+- (BOOL)hasConsentFor:(NSArray *)purposes purposeConsent:(NSString *)purposeConsent hasVendorConsent:(BOOL)hasVendorConsent
+{
+    for (NSNumber *purpose in purposes) {
+        NSInteger i = [purpose integerValue];
+        if (![self hasAttribute:purposeConsent atIndex:i]) {
+            return NO;
+        }
+    }
+    return hasVendorConsent;
+}
+
+- (BOOL)hasConsentOrLegitimateInterestFor:(NSArray *)purposes purposeConsent:(NSString *)purposeConsent purposeLI:(NSString *)purposeLI hasVendorConsent:(BOOL)hasVendorConsent hasVendorLI:(BOOL)hasVendorLI
+{
+    for (NSNumber *purpose in purposes) {
+        NSInteger i = [purpose integerValue];
+        if (([self hasAttribute:purposeLI atIndex:i] && hasVendorLI) ||
+            ([self hasAttribute:purposeConsent atIndex:i] && hasVendorConsent)) {
+            continue;
+        } else {
+            return NO;
+        }
+    }
+    return YES;
+}
+
 - (void)showConsentForm:(id)args
 {
   DEPRECATED_REMOVED(@"Admob.showConsentForm", @"5.0.0", @"5.0.0 (Removed since Ti.Admob 5.0.0 in favor of new UMP method Admob.requestConsentInfoUpdateWithParameters())");
@@ -305,7 +384,7 @@
 
 - (void)setTagForUnderAgeOfConsent:(id)tagForUnderAgeOfConsent
 {
-  DEPRECATED_REMOVED(@"Admob.setTagForUnderAgeOfConsent", @"5.0.0", @"5.0.0 (Removed since Ti.Admob 5.0.0. You can set 'tagForUnderAgeOfConsent' parameter in Admob.requestConsentInfoUpdateWithParameters() )");
+  DEPRECATED_REMOVED(@"Admob.setTagForUnderAgeOfConsent", @"5.0.0", @"5.0.0 (Removed since Ti.Admob 5.0.0. You can set 'tagForUnderAgeOfConsent' parameter in Admob.requestConsentInfoUpdateWithParameters() or in Admob.createView() )");
   /*
   ENSURE_TYPE(tagForUnderAgeOfConsent, NSNumber);
   [[PACConsentInformation sharedInstance] setTagForUnderAgeOfConsent:[TiUtils boolValue:tagForUnderAgeOfConsent]];
@@ -314,7 +393,7 @@
 
 - (NSNumber *)isTaggedForUnderAgeOfConsent:(id)unused
 {
-  DEPRECATED_REMOVED(@"Admob.isTaggedForUnderAgeOfConsent", @"5.0.0", @"5.0.0 (Removed since Ti.Admob 5.0.0. You can set 'tagForUnderAgeOfConsent' parameter in Admob.requestConsentInfoUpdateWithParameters() )");
+  DEPRECATED_REMOVED(@"Admob.isTaggedForUnderAgeOfConsent", @"5.0.0", @"5.0.0 (Removed since Ti.Admob 5.0.0. You can set 'tagForUnderAgeOfConsent' parameter in Admob.requestConsentInfoUpdateWithParameters() or in Admob.createView() )");
   //return @([[PACConsentInformation sharedInstance] isTaggedForUnderAgeOfConsent]);
 }
 
@@ -374,11 +453,11 @@
   if ([TiUtils boolValue:updateGDPRConsent]) {
     // this method is required by InMobi to set GDPR    
     [consentObject setObject:@"1" forKey:@"gdpr"];
-    [consentObject setObject:@"true" forKey:IM_GDPR_CONSENT_AVAILABLE];
+    [consentObject setObject:@"true" forKey:IMCommonConstants.IM_GDPR_CONSENT_AVAILABLE];
     NSLog(@"[DEBUG] Ti.AdMob: inMobi_updateGDPRConsent --> true");
   }  else {    
     [consentObject setObject:@"0" forKey:@"gdpr"];
-    [consentObject setObject:@"true" forKey:IM_GDPR_CONSENT_AVAILABLE];
+    [consentObject setObject:@"true" forKey:IMCommonConstants.IM_GDPR_CONSENT_AVAILABLE];
     NSLog(@"[DEBUG] Ti.AdMob: inMobi_updateGDPRConsent --> false");
   }
 
@@ -420,5 +499,10 @@ MAKE_SYSTEM_PROP(AD_TYPE_BANNER, TiAdmobAdTypeBanner);
 MAKE_SYSTEM_PROP(AD_TYPE_INTERSTITIAL, TiAdmobAdTypeInterstitial);
 MAKE_SYSTEM_PROP(AD_TYPE_REWARDED_VIDEO, TiAdmobAdTypeRewardedVideo);
 MAKE_SYSTEM_PROP(AD_TYPE_APP_OPEN, TiAdmobAdTypeAppOpen);
+
+MAKE_SYSTEM_STR(MAX_AD_CONTENT_RATING_GENERAL, GADMaxAdContentRatingGeneral);
+MAKE_SYSTEM_STR(MAX_AD_CONTENT_RATING_PARENTAL_GUIDANCE, GADMaxAdContentRatingParentalGuidance);
+MAKE_SYSTEM_STR(MAX_AD_CONTENT_RATING_TEEN, GADMaxAdContentRatingTeen);
+MAKE_SYSTEM_STR(MAX_AD_CONTENT_RATING_MATURE_AUDIENCE, GADMaxAdContentRatingMatureAudience);
 
 @end

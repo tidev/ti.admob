@@ -35,6 +35,10 @@
 
 - (void)setTagForChildDirectedTreatment_:(id)value;
 
+- (void)setTagForUnderAgeOfConsent_:(id)value;
+
+- (void)setMaxAdContentRating_:(NSString *)maxAdContentRating;
+
 - (void)setRequestAgent_:(id)value;
 
 - (void)setContentURL_:(id)value;

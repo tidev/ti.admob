@@ -24,4 +24,4 @@ properties:
 
   - name: testDevices
     type: Array<String>
-    summary: Test ads will be returned for devices with device IDs specified in this array. Use AdMob.SIMULATOR_ID to add the simulator.
+    summary: Test ads will be returned for devices with device IDs specified in this array.

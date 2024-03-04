@@ -15,6 +15,12 @@
 
 - (void)loadForm:(id)args;
 
+- (NSNumber *)isGDPR:(id)unused;
+
+- (NSNumber *)canShowAds:(id)unused;
+
+- (NSNumber *)canShowPersonalizedAds:(id)unused;
+
 - (void)requestConsentInfoUpdateForPublisherIdentifiers:(id)args; // REMOVED
 
 - (void)showConsentForm:(id)args; // REMOVED

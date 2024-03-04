@@ -10,6 +10,8 @@
 #import "TiApp.h"
 #import "TiUtils.h"
 
+#import "StatusBarHiddenViewController.h"
+
 @implementation TiAdmobView {
   BOOL _isLoadingAd;
   BOOL _isShowingAd;
@@ -155,8 +157,31 @@
 - (void)setTagForChildDirectedTreatment_:(id)value
 {
   ENSURE_TYPE(value, NSNumber);
-  [GADMobileAds.sharedInstance.requestConfiguration tagForChildDirectedTreatment:[TiUtils boolValue:value]];
+  GADMobileAds.sharedInstance.requestConfiguration.tagForChildDirectedTreatment = [TiUtils boolValue:value] ? @YES : @NO;
 }
+
+- (void)setTagForUnderAgeOfConsent_:(id)value
+{
+  ENSURE_TYPE(value, NSNumber);
+  GADMobileAds.sharedInstance.requestConfiguration.tagForUnderAgeOfConsent = [TiUtils boolValue:value] ? @YES : @NO;
+}
+
+- (void)setMaxAdContentRating_:(NSString *)maxAdContentRating
+{
+    NSLog(@"[DEBUG] MaxAdContentRating setted to: %@", maxAdContentRating);
+    if ([maxAdContentRating isEqualToString:GADMaxAdContentRatingGeneral]) {
+        [GADMobileAds.sharedInstance.requestConfiguration setMaxAdContentRating:GADMaxAdContentRatingGeneral];
+    } else if ([maxAdContentRating isEqualToString:GADMaxAdContentRatingParentalGuidance]) {
+        [GADMobileAds.sharedInstance.requestConfiguration setMaxAdContentRating:GADMaxAdContentRatingParentalGuidance];
+    } else if ([maxAdContentRating isEqualToString:GADMaxAdContentRatingTeen]) {
+        [GADMobileAds.sharedInstance.requestConfiguration setMaxAdContentRating:GADMaxAdContentRatingTeen];
+    } else if ([maxAdContentRating isEqualToString:GADMaxAdContentRatingMatureAudience]) {
+        [GADMobileAds.sharedInstance.requestConfiguration setMaxAdContentRating:GADMaxAdContentRatingMatureAudience];
+    } else {
+        NSLog(@"[DEBUG] Invalid maxAdContentRating: %@", maxAdContentRating);
+    }
+}
+
 
 - (void)setRequestAgent_:(id)value
 {
@@ -276,7 +301,7 @@
     //
     [GADAppOpenAd loadWithAdUnitID:adUnitId
                            request:[GADRequest request]
-                       orientation:UIInterfaceOrientationPortrait
+                       //orientation:UIInterfaceOrientationPortrait
                  completionHandler:^(GADAppOpenAd *_Nullable _appOpenAd, NSError *_Nullable error) {
         _isLoadingAd = NO;
         if (error) {
@@ -294,6 +319,7 @@
     }];
 }
 
+StatusBarHiddenViewController *adViewController;
 - (void)showAppOpenAd
 {
   // If the app open ad is already showing, do not show the ad again.
@@ -310,7 +336,7 @@
 
   // If the app open ad is not available yet, invoke the callback then load the ad.
   if (![self isAdAvailable]) {
-      NSLog(@"[ERROR] The App Open Ad is not available. Did you call load() method?");            
+      NSLog(@"[ERROR] The App Open Ad is not available. Did you call load() method?");
       [self.proxy fireEvent:@"didFailToReceiveAd" withObject:@{ @"adUnitId" : adUnitId, @"error": [NSString stringWithFormat:@"The App Open Ad is not available. Did you call load() method?"]}];
       appOpenAd = nil;
       return;
@@ -321,11 +347,17 @@
 
   if (canPresent) {
     _isShowingAd = YES;
-    //[appOpenAd presentFromRootViewController:[[[TiApp app] controller] topPresentedController]];
+    // Create an instance of StatusBarHiddenViewController
+    adViewController = [[StatusBarHiddenViewController alloc] init];
+    adViewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
     
+    // Set the ad property
+    adViewController.ad = appOpenAd;
+
+    // Present the ad view controller
     UIViewController *rootViewController = [[[TiApp app] controller] topPresentedController];
-    [appOpenAd presentFromRootViewController:rootViewController];
-      
+    rootViewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    [rootViewController presentViewController:adViewController animated:YES completion:nil];      
   } else {
     NSLog(@"[WARN] Cannot show App Open ad: %@", error.localizedDescription);
     [self.proxy fireEvent:@"didFailToShowAd" withObject:@{ @"adUnitId" : adUnitId, @"error": error.localizedDescription }];
@@ -398,7 +430,7 @@
 
 - (NSString *)exampleAdId
 {
-  return @"ca-app-pub-3940256099942544/1712485313";
+  return @"ca-app-pub-3940256099942544/2934735716"; // Banner demo ad unit ID
 }
 
 #pragma mark - GADBannerViewDelegate
@@ -485,6 +517,7 @@
 - (void)adDidDismissFullScreenContent:(id<GADFullScreenPresentingAd>)ad
 {
   if ([ad isKindOfClass:[GADAppOpenAd class]]) {
+    [adViewController dismissViewControllerAnimated:YES completion:nil];
     _isShowingAd = NO;
     appOpenAd = nil;
   }

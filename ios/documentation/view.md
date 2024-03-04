@@ -30,7 +30,6 @@ The background color used for the ad.
 An array of test device ids. Adding the id of a test device to this array 
 will allow that device to be served test ads. 
 
-Use the module constant `SIMULATOR_ID` to use the simulator as a test device. 
 If you do not know the id for your device, launch your app and request an ad 
 like you normally would, then look in the console for the id. 
 
@@ -84,19 +83,36 @@ is mediating requests to the Mobile Ads SDK should set this property as "CoolAds
 
 ### Boolean tagForChildDirectedTreatment
 
-This property allows you to specify whether you would like your app to be treated as child-directed for purposes of the 
-Children's Online Privacy Protection Act (COPPA), http:///business.ftc.gov/privacy-and-security/childrens-privacy.
+For purposes of the [Children's Online Privacy Protection Act (COPPA)](https://www.ftc.gov/business-guidance/privacy-security/childrens-privacy), there is a setting called tagForChildDirectedTreatment.
 
-If you call this method with YES, you are indicating that your app should be treated as child-directed for purposes of the 
-Children's Online Privacy Protection Act (COPPA). If you call this method with NO, you are indicating that your app should 
-not be treated as child-directed for purposes of the Children's Online Privacy Protection Act (COPPA). If you do not call this 
-method, ad requests will include no indication of how you would like your app treated with respect to COPPA.
+As an app developer, you can indicate whether you want Google to treat your content as child-directed when you make an ad request. When you indicate that you want Google to treat your content as child-directed, Google takes steps to disable IBA and remarketing ads on that ad request. The setting options are as follows:
 
-By setting this method, you certify that this notification is accurate and you are authorized to act on behalf of the owner of 
-the app. You understand that abuse of this setting may result in termination of your Google account.
+- Set `tagForChildDirectedTreatment` to `true` to indicate that you want your content treated as child-directed for purposes of COPPA. This prevents the transmission of the Advertising Identifier, IDFA.
+- Set `tagForChildDirectedTreatment` to `false` to indicate that you don't want your content treated as child-directed for purposes of COPPA.
+- Don't set `tagForChildDirectedTreatment` if you don't want to indicate how you would like your content treated with respect to COPPA.
 
-It may take some time for this designation to be fully implemented in applicable Google services. This designation will 
-only apply to ad requests for which you have set this method.
+By setting this tag, you certify that this notification is accurate and you are authorized to act on behalf of the owner of the app. You understand that abuse of this setting may result in termination of your Google Account.
+
+### Boolean tagForUnderAgeOfConsent
+
+You can mark your ad requests to receive treatment for users in the European Economic Area (EEA) under the age of consent. This feature is designed to help facilitate compliance with the [General Data Protection Regulation (GDPR)](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679). Note that you may have other legal obligations under GDPR. Review the European Union’s guidance and consult with your own legal counsel. Note that Google's tools are designed to facilitate compliance and do not relieve any particular publisher of its obligations under the law. [Learn more about how the GDPR affects publishers](https://support.google.com/admob/answer/7666366).
+
+When using this feature, a Tag For Users under the Age of Consent in Europe (TFUA) parameter will be included in all future ad requests. This parameter disables personalized advertising, including remarketing, for that specific ad request. It also disables requests to third-party ad vendors, such as ad measurement pixels and third-party ad servers.
+
+The setting can be used with all versions of the Google Mobile Ads SDK by setting the `tagForUnderAgeOfConsent` property on the GADMobileAds.requestConfiguration object and passing in `true`.
+
+- Set `tagForUnderAgeOfConsent` to `true` to indicate that you want ad requests to be handled in a manner suitable for users under the age of consent. This also prevents the transmission of the Advertising Identifier, IDFA.
+- Not setting `tagForUnderAgeOfConsent` indicates that you don't want ad requests to be handled in a manner suitable for users under the age of consent.
+
+The tags to enable the `tagForChildDirectedTreatmentsetting` and `tagForUnderAgeOfConsent` shouldn't both simultaneously be set to `true`. If they are, the child-directed setting takes precedence.
+
+### Module constant maxAdContentRating
+
+Apps can set a maximum ad content rating for all ad requests using the `maxAdContentRating` property. This setting applies to all future ad requests for the remainder of the session. The possible values for this property are based on [digital content label classifications](https://support.google.com/admob/answer/7562142), and should be one of the following Admob module constants:
+- `MAX_AD_CONTENT_RATING_GENERAL`
+- `MAX_AD_CONTENT_RATING_PARENTAL_GUIDANCE`
+- `MAX_AD_CONTENT_RATING_TEEN`
+- `MAX_AD_CONTENT_RATING_MATURE_AUDIENCE`
 
 ### Boolean debugEnabled
 
