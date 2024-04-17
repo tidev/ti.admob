@@ -430,6 +430,8 @@
 
 - (void)setAdvertiserTrackingEnabled:(id)advertiserTrackingEnabled
 {
+  NSLog(@"[WARN] Ti.AdMob: The setter for advertiserTrackingEnabled flag is deprecated since Ti.Admob 7.1.0: The setAdvertiserTrackingEnabled flag is not used for Audience Network SDK 6.15.0+ on iOS 17+ as the Audience Network SDK 6.15.0+ on iOS 17+ now relies on [ATTrackingManager trackingAuthorizationStatus] to accurately represent ATT permission for users of your app);");
+  
   // this method is required by Facebook Audience Network for iOS >= 14
   if (@available(iOS 14, *)) {
     ENSURE_TYPE(advertiserTrackingEnabled, NSNumber);      

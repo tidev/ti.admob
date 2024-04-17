@@ -83,6 +83,7 @@ description: |
     If you use Facebook Audience Network mediation, starting with iOS 14, you will need to implement the setAdvertiserTrackingEnabled flag.
     This allows you to inform Facebook whether to use the data to deliver personalized ads. If the flag is set to false, Facebook will not be able to deliver personalized ads.
     You need to set this flag before initializing the mediation SDK in order to receive it in the bidding request.
+    The setter for advertiserTrackingEnabled flag is deprecated from iOS ti.admob version 7.1.0: The setAdvertiserTrackingEnabled flag is not used for Audience Network SDK 6.15.0+ on iOS 17+ as the Audience Network SDK 6.15.0+ on iOS 17+ now relies on [ATTrackingManager trackingAuthorizationStatus] to accurately represent ATT permission for users of your app.
 
     If you use InMobi mediation, instead, you will have to use the method setInMobi_updateGDPRConsent to deliver personalized ads.
 
@@ -525,6 +526,9 @@ methods:
             be able to deliver personalized ads.
     platforms: [iphone, ipad]
     since: "3.1.0"
+    deprecated:
+      since: "7.1.0"
+      notes: "The setter for advertiserTrackingEnabled flag is deprecated: The setAdvertiserTrackingEnabled flag is not used for Audience Network SDK 6.15.0+ on iOS 17+ as the Audience Network SDK 6.15.0+ on iOS 17+ now relies on [ATTrackingManager trackingAuthorizationStatus] to accurately represent ATT permission for users of your app."
     osver: {ios: {min: "14.0"}}
     parameters:
       - name: tag

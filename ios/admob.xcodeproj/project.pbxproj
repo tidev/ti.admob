@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,7 @@
 		3AF5B7731C233383002E3DC7 /* TiAdmobTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AF5B7711C233383002E3DC7 /* TiAdmobTypes.h */; };
 		5E0B17A527F21AED001D0BD9 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B17A427F21AED001D0BD9 /* File.swift */; };
 		5E343CDF291BFA3600F047EB /* MetaAdapter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E343CDE291BFA3600F047EB /* MetaAdapter.xcframework */; };
+		5E54F76B2BCEDF40001F794D /* InMobiSDK_Privacy.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5E54F76A2BCEDF40001F794D /* InMobiSDK_Privacy.bundle */; };
 		5E58AD4E2ADAE76000C78E7F /* StatusBarHiddenViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E58AD4C2ADAE76000C78E7F /* StatusBarHiddenViewController.h */; };
 		5E58AD4F2ADAE76000C78E7F /* StatusBarHiddenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E58AD4D2ADAE76000C78E7F /* StatusBarHiddenViewController.m */; };
 		5E6743A427F4B84500BEE594 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6743A327F4B84500BEE594 /* WebKit.framework */; };
@@ -43,12 +44,13 @@
 		5E0B17A327F21AED001D0BD9 /* admob-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "admob-Bridging-Header.h"; sourceTree = "<group>"; };
 		5E0B17A427F21AED001D0BD9 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		5E343CDE291BFA3600F047EB /* MetaAdapter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MetaAdapter.xcframework; path = platform/MetaAdapter.xcframework; sourceTree = "<group>"; };
+		5E54F76A2BCEDF40001F794D /* InMobiSDK_Privacy.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = InMobiSDK_Privacy.bundle; path = Resources/InMobiSDK_Privacy.bundle; sourceTree = "<group>"; };
 		5E58AD4C2ADAE76000C78E7F /* StatusBarHiddenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusBarHiddenViewController.h; path = Classes/StatusBarHiddenViewController.h; sourceTree = "<group>"; };
 		5E58AD4D2ADAE76000C78E7F /* StatusBarHiddenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatusBarHiddenViewController.m; path = Classes/StatusBarHiddenViewController.m; sourceTree = "<group>"; };
 		5E6743A327F4B84500BEE594 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/iOSSupport/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		5E6743A527F4B85800BEE594 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/lib/libsqlite3.0.tbd; sourceTree = DEVELOPER_DIR; };
 		5E6743A727F4B86A00BEE594 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
-		5ED7B65F26EBC395007F4D90 /* FBAudienceNetwork.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBAudienceNetwork.xcframework; path = platform/FBAudienceNetwork.xcframework; sourceTree = "<group>"; };
+		5ED7B65F26EBC395007F4D90 /* FBAudienceNetwork.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:V9WTTPBFK9:Meta Platforms, Inc."; lastKnownFileType = wrapper.xcframework; name = FBAudienceNetwork.xcframework; path = platform/FBAudienceNetwork.xcframework; sourceTree = "<group>"; };
 		5EFC8F4C263ABC430011A0C2 /* InMobiSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = InMobiSDK.xcframework; path = platform/InMobiSDK.xcframework; sourceTree = "<group>"; };
 		5EFC8F4D263ABC430011A0C2 /* InMobiAdapter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = InMobiAdapter.xcframework; path = platform/InMobiAdapter.xcframework; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* TiAdmob_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiAdmob_Prefix.pch; sourceTree = SOURCE_ROOT; };
@@ -86,6 +88,7 @@
 		0867D691FE84028FC02AAC07 /* admob */ = {
 			isa = PBXGroup;
 			children = (
+				5E54F76A2BCEDF40001F794D /* InMobiSDK_Privacy.bundle */,
 				5E0B17A427F21AED001D0BD9 /* File.swift */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
@@ -163,6 +166,7 @@
 				D2AAC07A0554694100DB518D /* Headers */,
 				D2AAC07B0554694100DB518D /* Sources */,
 				D2AAC07C0554694100DB518D /* Frameworks */,
+				5E54F7692BCEDE00001F794D /* Resources */,
 			);
 			buildRules = (
 			);
@@ -203,6 +207,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5E54F7692BCEDE00001F794D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E54F76B2BCEDF40001F794D /* InMobiSDK_Privacy.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D2AAC07B0554694100DB518D /* Sources */ = {

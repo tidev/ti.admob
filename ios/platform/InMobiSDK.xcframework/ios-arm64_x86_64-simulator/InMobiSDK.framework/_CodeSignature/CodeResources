@@ -10,7 +10,7 @@
 		</data>
 		<key>Headers/InMobiSDK-Swift.h</key>
 		<data>
-		AbO/y5le9L3+ls1Z5Ww/EkBj7+k=
+		ogKk8JBWCKwr20u4ytpHnN/rJRo=
 		</data>
 		<key>Headers/InMobiSDK.h</key>
 		<data>
@@ -18,59 +18,51 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		fCCoLwePx94lKyzLwI+fMe5euyc=
-		</data>
-		<key>Modules/InMobiSDK.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
-		<data>
-		eRPnJMbdGY7pRymG0KzsuRY24CI=
-		</data>
-		<key>Modules/InMobiSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
-		<data>
-		Ce6kWVvha5rZXsSOY3kDUZO7PJU=
+		64vwoCvpr10mx3AgBbRtArMaSMA=
 		</data>
 		<key>Modules/InMobiSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		Yt1so838FH0jFTEuK18rWopxKqU=
+		YoieygZVoWU7F/DUplBJrfUKzzo=
 		</data>
 		<key>Modules/InMobiSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		Llw0O/HpVrkoklZbCjHcbnX+keQ=
+		zYkF/VemKD1srodUOK59qwPIISs=
 		</data>
 		<key>Modules/InMobiSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		bdgWNUYHjJXJ2bu374+c+gwkarY=
+		uT7TnpW592ZP6lbC9OyeRMmA9i8=
 		</data>
 		<key>Modules/InMobiSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		Llw0O/HpVrkoklZbCjHcbnX+keQ=
+		zYkF/VemKD1srodUOK59qwPIISs=
 		</data>
 		<key>Modules/InMobiSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		AG9HXVAtnBFsHnQphOrUWciZcD0=
+		dmONc1D+F7SbOgC7oIZRsIothg0=
 		</data>
 		<key>Modules/InMobiSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		Yt1so838FH0jFTEuK18rWopxKqU=
+		YoieygZVoWU7F/DUplBJrfUKzzo=
 		</data>
 		<key>Modules/InMobiSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		kyDZ6VMDt8isem85dQjAbeatkOI=
+		Z6yZ5+d68QlVzyN/GIHLQNbRg+I=
 		</data>
 		<key>Modules/InMobiSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		GJbW1Wy+yR5kcKTRxt+Wg9FxmgM=
+		7lrKYqpvblZdloEMPa64wM6ID4Y=
 		</data>
 		<key>Modules/InMobiSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		kyDZ6VMDt8isem85dQjAbeatkOI=
+		Z6yZ5+d68QlVzyN/GIHLQNbRg+I=
 		</data>
 		<key>Modules/InMobiSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		/TNrW3FCGyXhhTYkPvN6LhT03YE=
+		E3X2vsUuQyVaQ6Pm6EHFJ0r+Dug=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		8zr/wtKSctlMg4yokcsatseU4K0=
+		L5/WkxFuF4De87Yb/A8c42oVpSU=
 		</data>
 		<key>PrivateHeaders/ASCloseButton.h</key>
 		<data>
@@ -434,7 +426,7 @@
 		</data>
 		<key>PrivateHeaders/IMKeyValueStoreObjc.h</key>
 		<data>
-		OnqthVd+jE5lGAvghXrFUVdsY9A=
+		VHlinPEgOZe2WEZ+iX6zgjY4HRI=
 		</data>
 		<key>PrivateHeaders/IMLandingPageModel.h</key>
 		<data>
@@ -650,7 +642,7 @@
 		</data>
 		<key>PrivateHeaders/IMSDKCommonUtil.h</key>
 		<data>
-		VNqzV+y/a/4rnbQU9bf3gh6Qf3k=
+		S7mCn7H4qrLz3HC1yX/iW6hWTFo=
 		</data>
 		<key>PrivateHeaders/IMSDKCommonsNetworkReachabilityObjc.h</key>
 		<data>
@@ -982,7 +974,7 @@
 		</data>
 		<key>PrivateHeaders/OMIDAdSessionContext.h</key>
 		<data>
-		uC65f296y58FraiFGpdSJh4Wbf0=
+		bIA9RqmfInic1VTINpYZTzwdJQQ=
 		</data>
 		<key>PrivateHeaders/OMIDFriendlyObstructionType.h</key>
 		<data>
@@ -990,7 +982,11 @@
 		</data>
 		<key>PrivateHeaders/OMIDImports.h</key>
 		<data>
-		kklBQQiiHyi6ArUe1OOfy92xxX4=
+		/ghw/vX0KUlF9SSq4LZhhZDpZb4=
+		</data>
+		<key>PrivateHeaders/OMIDJavaScriptSessionService.h</key>
+		<data>
+		mBu9XauLFBZBYvbJs+k74fx3z1w=
 		</data>
 		<key>PrivateHeaders/OMIDMediaEvents.h</key>
 		<data>
@@ -1002,7 +998,7 @@
 		</data>
 		<key>PrivateHeaders/OMIDSDK.h</key>
 		<data>
-		Cw/IDUiu+WAOmr/+A66VP2y0hqk=
+		9SXNS1hFnZvl4vfiUbp4uQVp4rw=
 		</data>
 		<key>PrivateHeaders/OMIDScriptInjector.h</key>
 		<data>
@@ -1038,11 +1034,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			AbO/y5le9L3+ls1Z5Ww/EkBj7+k=
+			ogKk8JBWCKwr20u4ytpHnN/rJRo=
 			</data>
 			<key>hash2</key>
 			<data>
-			Oz4xBamoLT8ejuhYEHwIT6QpqluPpfVSp6/bclZbs1U=
+			Is+u8HTLd8j0qzza64WCTmui0d10yJsXkN1iATK4g6g=
 			</data>
 		</dict>
 		<key>Headers/InMobiSDK.h</key>
@@ -1056,147 +1052,125 @@
 			2PaXJLHGE3cA0IZoMszUFgo6s75xn6DyMbs+Ctyry54=
 			</data>
 		</dict>
-		<key>Modules/InMobiSDK.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			eRPnJMbdGY7pRymG0KzsuRY24CI=
-			</data>
-			<key>hash2</key>
-			<data>
-			U+bPQLb75utYwm74n/KpYNw2PG16yMKb4NcJ1kFV7X8=
-			</data>
-		</dict>
-		<key>Modules/InMobiSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			Ce6kWVvha5rZXsSOY3kDUZO7PJU=
-			</data>
-			<key>hash2</key>
-			<data>
-			pVse6j4v9gny0v/MHXBlau2cPc3ijLsGpRSIuodrEoA=
-			</data>
-		</dict>
 		<key>Modules/InMobiSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Yt1so838FH0jFTEuK18rWopxKqU=
+			YoieygZVoWU7F/DUplBJrfUKzzo=
 			</data>
 			<key>hash2</key>
 			<data>
-			0H+TCZMg2bFIqPrUWSPSr13soyGfbJwz9OOZ5+8xN88=
+			szURhVCmC0tvYxhNXkkiPYlWvI6e1/j+DOrU7y2hX4s=
 			</data>
 		</dict>
 		<key>Modules/InMobiSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Llw0O/HpVrkoklZbCjHcbnX+keQ=
+			zYkF/VemKD1srodUOK59qwPIISs=
 			</data>
 			<key>hash2</key>
 			<data>
-			dk2Yx7G5WFijx4WR5MPx3wtB6lG57QXHXd3FkdFvV9I=
+			CKv542+PbINXW1/D8eVrrlMx8xGa9Y/Gcp38SjkBLXs=
 			</data>
 		</dict>
 		<key>Modules/InMobiSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			bdgWNUYHjJXJ2bu374+c+gwkarY=
+			uT7TnpW592ZP6lbC9OyeRMmA9i8=
 			</data>
 			<key>hash2</key>
 			<data>
-			EktureymyPHcMmf1wK30AkN6Po5iZTcT7aVatGaNEkE=
+			wNIvSUWJHYE7iDBjykGHr/iz1Kxl5td9f6isIWqblWk=
 			</data>
 		</dict>
 		<key>Modules/InMobiSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Llw0O/HpVrkoklZbCjHcbnX+keQ=
+			zYkF/VemKD1srodUOK59qwPIISs=
 			</data>
 			<key>hash2</key>
 			<data>
-			dk2Yx7G5WFijx4WR5MPx3wtB6lG57QXHXd3FkdFvV9I=
+			CKv542+PbINXW1/D8eVrrlMx8xGa9Y/Gcp38SjkBLXs=
 			</data>
 		</dict>
 		<key>Modules/InMobiSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			AG9HXVAtnBFsHnQphOrUWciZcD0=
+			dmONc1D+F7SbOgC7oIZRsIothg0=
 			</data>
 			<key>hash2</key>
 			<data>
-			0U0UupWKqhOQ5a7n8cqHg/3EYf/X3wNoY6C/WS4/PE8=
+			ziq9KVLYG4PWzV4k+FlZLuIhIu1xy8E2DwDvgKZfSSM=
 			</data>
 		</dict>
 		<key>Modules/InMobiSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Yt1so838FH0jFTEuK18rWopxKqU=
+			YoieygZVoWU7F/DUplBJrfUKzzo=
 			</data>
 			<key>hash2</key>
 			<data>
-			0H+TCZMg2bFIqPrUWSPSr13soyGfbJwz9OOZ5+8xN88=
+			szURhVCmC0tvYxhNXkkiPYlWvI6e1/j+DOrU7y2hX4s=
 			</data>
 		</dict>
 		<key>Modules/InMobiSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			kyDZ6VMDt8isem85dQjAbeatkOI=
+			Z6yZ5+d68QlVzyN/GIHLQNbRg+I=
 			</data>
 			<key>hash2</key>
 			<data>
-			UKJbE6K2HqpuhdpHbtkVYfHzZxDcwPhfSd9Guc1meog=
+			mcNl6IwF3UOftI13VKKInaGKkzpnn3EarVFB8LgALEk=
 			</data>
 		</dict>
 		<key>Modules/InMobiSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			GJbW1Wy+yR5kcKTRxt+Wg9FxmgM=
+			7lrKYqpvblZdloEMPa64wM6ID4Y=
 			</data>
 			<key>hash2</key>
 			<data>
-			Br2cJKJ00rXR3BAUbzdN+vY/IfgvFxweGozg+k+XikM=
+			bGLYHSk4qvj7PGgr5l0ccpPoLfX+IuYzg3wzVQ/utOA=
 			</data>
 		</dict>
 		<key>Modules/InMobiSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			kyDZ6VMDt8isem85dQjAbeatkOI=
+			Z6yZ5+d68QlVzyN/GIHLQNbRg+I=
 			</data>
 			<key>hash2</key>
 			<data>
-			UKJbE6K2HqpuhdpHbtkVYfHzZxDcwPhfSd9Guc1meog=
+			mcNl6IwF3UOftI13VKKInaGKkzpnn3EarVFB8LgALEk=
 			</data>
 		</dict>
 		<key>Modules/InMobiSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			/TNrW3FCGyXhhTYkPvN6LhT03YE=
+			E3X2vsUuQyVaQ6Pm6EHFJ0r+Dug=
 			</data>
 			<key>hash2</key>
 			<data>
-			olXLpSvgWOwWxlFo7QbaJApSfR7L1oZ3rLabuh9p1lE=
+			FeK/R/U7JeUWsWvQA/80NsWZBT3hrBIhZt3tVu7a2t4=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			8zr/wtKSctlMg4yokcsatseU4K0=
+			L5/WkxFuF4De87Yb/A8c42oVpSU=
 			</data>
 			<key>hash2</key>
 			<data>
-			kN6EmH/VYjCIh31r88LqD/DNTaHbG2MAg+Lzd5Vd6eU=
+			ljXDeySm5QncPlojibVtSz6r/6n7YnxgVyeLcFTLMEY=
 			</data>
 		</dict>
 		<key>PrivateHeaders/ASCloseButton.h</key>
@@ -2193,11 +2167,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			OnqthVd+jE5lGAvghXrFUVdsY9A=
+			VHlinPEgOZe2WEZ+iX6zgjY4HRI=
 			</data>
 			<key>hash2</key>
 			<data>
-			Fg3KH+kH95uFbbKseN/rB9viVFKjg1r+yPpU+9ACcJw=
+			UwcXuQizVX2qSxZAsHKBuG7p20yDEwVfpTvrQFijy2o=
 			</data>
 		</dict>
 		<key>PrivateHeaders/IMLandingPageModel.h</key>
@@ -2787,11 +2761,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			VNqzV+y/a/4rnbQU9bf3gh6Qf3k=
+			S7mCn7H4qrLz3HC1yX/iW6hWTFo=
 			</data>
 			<key>hash2</key>
 			<data>
-			iQqNI443VqUsNBkB6iShHfTiRe7ip8iQ93wBaakhWso=
+			NDmi5v/XJELsUJjS67sW7p3QwfHJjQsEqhwa+C5A0is=
 			</data>
 		</dict>
 		<key>PrivateHeaders/IMSDKCommonsNetworkReachabilityObjc.h</key>
@@ -3700,11 +3674,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			uC65f296y58FraiFGpdSJh4Wbf0=
+			bIA9RqmfInic1VTINpYZTzwdJQQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			FrLzLGR4BzQfmHpQWqGLV31ChG3Gcbyl1WG40Axh27Q=
+			NyYpkM9ApFoq6zUNXkHkpHHODofP5SAGluKuvPM99SI=
 			</data>
 		</dict>
 		<key>PrivateHeaders/OMIDFriendlyObstructionType.h</key>
@@ -3722,11 +3696,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			kklBQQiiHyi6ArUe1OOfy92xxX4=
+			/ghw/vX0KUlF9SSq4LZhhZDpZb4=
 			</data>
 			<key>hash2</key>
 			<data>
-			WWfw+Z3RNrtOfWYdio9jyxKjmeVbPXzWNH7Pa7ErD0U=
+			XQBgb62m3DEN2XBtnlS+hqca4MEIuBJjq6po9fIbZco=
+			</data>
+		</dict>
+		<key>PrivateHeaders/OMIDJavaScriptSessionService.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			mBu9XauLFBZBYvbJs+k74fx3z1w=
+			</data>
+			<key>hash2</key>
+			<data>
+			gRK7u1BSR6kfGbblY8pq+xLy6vJ8POqC7hreN++RUW4=
 			</data>
 		</dict>
 		<key>PrivateHeaders/OMIDMediaEvents.h</key>
@@ -3755,11 +3740,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Cw/IDUiu+WAOmr/+A66VP2y0hqk=
+			9SXNS1hFnZvl4vfiUbp4uQVp4rw=
 			</data>
 			<key>hash2</key>
 			<data>
-			UdVRa9Kr8Rh1EEezr+RVohyZ00u/yOaO14PHvPh8OB8=
+			PT1Ax8hdKgylE6+zFSPBPIgCXLBhv1PDoZ8CNkEQdNY=
 			</data>
 		</dict>
 		<key>PrivateHeaders/OMIDScriptInjector.h</key>
