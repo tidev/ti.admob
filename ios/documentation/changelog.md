@@ -1,5 +1,14 @@
 # Change Log
 
+### v7.1.0
+- Update Google Mobile Ads SDK 11.3.0 (https://github.com/CocoaPods/Specs/tree/master/Specs/5/9/a/Google-Mobile-Ads-SDK/11.3.0)
+- Update Meta Audience Network SDK 6.15.0 (https://developers.facebook.com/docs/audience-network/setting-up/platform-setup/ios/changelog#6_15_0)
+- Update Meta Adapter 6.15.0.0 (https://developers.google.com/admob/ios/mediation/meta#version-6.15.0.0)
+- Update InMobi SDK 10.7.1 (https://support.inmobi.com/monetize/sdk-documentation/download-sdk)
+- Update InMobiAdapter 10.7.1.0 (https://developers.google.com/admob/ios/mediation/inmobi#version-10.7.1.0)
+- Deprecated iOS `setAdvertiserTrackingEnabled` for Audience Network
+- Updated documentation
+
 ### v7.0.0
 - Migration to SDK v11 (https://developers.google.com/admob/ios/migration#migrate-to-sdk-v11)
 - Update Google Mobile Ads SDK 11.0.1 (https://github.com/CocoaPods/Specs/tree/master/Specs/5/9/a/Google-Mobile-Ads-SDK/11.0.1)

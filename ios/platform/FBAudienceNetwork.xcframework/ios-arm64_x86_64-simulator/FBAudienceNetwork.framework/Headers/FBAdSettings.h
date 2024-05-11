@@ -116,13 +116,14 @@ FB_CLASS_EXPORT FB_SUBCLASSING_RESTRICTED @interface FBAdSettings : NSObject
 
 /**
  User's consent for advertiser tracking.
-
-
- The setter API only works in iOS14 or above and won't take effect in iOS13 or below.
  */
-+ (void)setAdvertiserTrackingEnabled:(BOOL)advertiserTrackingEnabled;
++ (void)setAdvertiserTrackingEnabled:(BOOL)advertiserTrackingEnabled
+    NS_DEPRECATED_IOS(
+        12_0,
+        17_0,
+        "The setter for advertiserTrackingEnabled flag is deprecated: The setAdvertiserTrackingEnabled flag is not used for Audience Network SDK 6.15.0+ on iOS 17+ as the Audience Network SDK 6.15.0+ on iOS 17+ now relies on [ATTrackingManager trackingAuthorizationStatus] to accurately represent ATT permission for users of your app");
 
-/**
+/*
  Returns test mode on/off.
  */
 + (BOOL)isTestMode;

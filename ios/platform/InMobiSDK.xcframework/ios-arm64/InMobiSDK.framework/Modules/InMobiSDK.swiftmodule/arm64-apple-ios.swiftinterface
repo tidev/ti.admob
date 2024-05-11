@@ -1,6 +1,6 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.7.1 (swiftlang-5.7.1.135.3 clang-1400.0.29.51)
-// swift-module-flags: -target arm64-apple-ios11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name InMobiSDK
+// swift-compiler-version: Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
+// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name InMobiSDK
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 import AdSupport
 import AppTrackingTransparency
@@ -20,6 +20,7 @@ import UIKit
 import WebKit
 import _Concurrency
 import _StringProcessing
+import _SwiftConcurrencyShims
 @_hasMissingDesignatedInitializers @objc public class IMBannerPreloadManager : ObjectiveC.NSObject {
   @objc public func preload()
   @objc public func load()
@@ -62,7 +63,7 @@ import _StringProcessing
 }
 @objc public protocol IMInterstitialDelegate {
   @objc optional func interstitial(_ interstitial: InMobiSDK.IMInterstitial, didReceiveWithMetaInfo metaInfo: InMobiSDK.IMAdMetaInfo)
-  @objc optional func interstitial(_ interstitial: InMobiSDK.IMInterstitial, didFailToReceiveWithError error: Swift.Error)
+  @objc optional func interstitial(_ interstitial: InMobiSDK.IMInterstitial, didFailToReceiveWithError error: any Swift.Error)
   @objc optional func interstitialDidReceiveAd(_ interstitial: InMobiSDK.IMInterstitial)
   @objc optional func interstitialDidFinishLoading(_ interstitial: InMobiSDK.IMInterstitial)
   @objc optional func interstitial(_ interstitial: InMobiSDK.IMInterstitial, didFailToLoadWithError error: InMobiSDK.IMRequestStatus)
@@ -86,8 +87,8 @@ import _StringProcessing
   @objc deinit
 }
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class IMSdk : ObjectiveC.NSObject {
-  @objc public class func initWithAccountID(_ accountID: Swift.String, andCompletionHandler completionBlock: ((Swift.Error?) -> Swift.Void)? = nil)
-  @objc public class func initWithAccountID(_ accountID: Swift.String, consentDictionary: [Swift.String : Any]?, andCompletionHandler completionBlock: ((Swift.Error?) -> Swift.Void)? = nil)
+  @objc public class func initWithAccountID(_ accountID: Swift.String, andCompletionHandler completionBlock: (((any Swift.Error)?) -> Swift.Void)? = nil)
+  @objc public class func initWithAccountID(_ accountID: Swift.String, consentDictionary: [Swift.String : Any]?, andCompletionHandler completionBlock: (((any Swift.Error)?) -> Swift.Void)? = nil)
   @available(*, deprecated, message: "Please use new API initWithAccountID:consentDictionary:andCompletionHandler: as this API can be removed in future")
   @objc public class func initWithAccountID(_ accountID: Swift.String, consentDictionary: [Swift.String : Any]?)
   @available(*, deprecated, message: "Please use new API initWithAccountID:andCompletionHandler: as this API can be removed in future")
@@ -152,8 +153,8 @@ extension InMobiSDK.IMSdk {
     @objc get
     @objc set
   }
-  @objc @_Concurrency.MainActor(unsafe) weak public var delegate: InMobiSDK.IMBannerDelegate?
-  @objc @_Concurrency.MainActor(unsafe) weak public var audioDelegate: InMobiSDK.IMBannerAudioDelegate? {
+  @objc @_Concurrency.MainActor(unsafe) weak public var delegate: (any InMobiSDK.IMBannerDelegate)?
+  @objc @_Concurrency.MainActor(unsafe) weak public var audioDelegate: (any InMobiSDK.IMBannerAudioDelegate)? {
     @objc get
     @objc set
   }
@@ -188,7 +189,7 @@ extension InMobiSDK.IMSdk {
   }
   @_Concurrency.MainActor(unsafe) @objc override convenience dynamic public init(frame: CoreFoundation.CGRect)
   @objc @_Concurrency.MainActor(unsafe) convenience public init(frame: CoreFoundation.CGRect, placementId: Swift.Int64)
-  @objc @_Concurrency.MainActor(unsafe) public init(frame: CoreFoundation.CGRect, placementId: Swift.Int64, delegate: InMobiSDK.IMBannerDelegate?)
+  @objc @_Concurrency.MainActor(unsafe) public init(frame: CoreFoundation.CGRect, placementId: Swift.Int64, delegate: (any InMobiSDK.IMBannerDelegate)?)
   @objc @_Concurrency.MainActor(unsafe) public func load()
   @objc @_Concurrency.MainActor(unsafe) public func load(_ response: Foundation.Data)
   @objc @_Concurrency.MainActor(unsafe) public func shouldAutoRefresh(_ shouldAutoRefresh: Swift.Bool)
@@ -220,7 +221,7 @@ extension InMobiSDK.IMSdk {
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class IMUnifiedIdService : ObjectiveC.NSObject {
   @objc public class func push(_ data: InMobiSDK.IMUserDataModel?)
   @objc public class func reset()
-  @objc public class func fetchUnifiedIds(_ delegate: InMobiSDK.IMUnifiedIdDelegate?)
+  @objc public class func fetchUnifiedIds(_ delegate: (any InMobiSDK.IMUnifiedIdDelegate)?)
   @objc public class func enableDebugMode(_ debugMode: Swift.Bool)
   @objc deinit
 }
@@ -234,7 +235,7 @@ extension InMobiSDK.IMSdk {
     @objc get
     @objc set
   }
-  @objc weak public var delegate: InMobiSDK.IMNativeDelegate?
+  @objc weak public var delegate: (any InMobiSDK.IMNativeDelegate)?
   @objc public var keywords: Swift.String? {
     @objc get
     @objc set
@@ -275,7 +276,7 @@ extension InMobiSDK.IMSdk {
     @objc get
   }
   @objc convenience public init(placementId: Swift.Int64)
-  @objc public init(placementId: Swift.Int64, delegate: InMobiSDK.IMNativeDelegate?)
+  @objc public init(placementId: Swift.Int64, delegate: (any InMobiSDK.IMNativeDelegate)?)
   @objc public func primaryView(ofWidth width: CoreFoundation.CGFloat) -> UIKit.UIView?
   @objc public func load()
   @objc public func load(_ response: Foundation.Data)
@@ -314,7 +315,7 @@ extension InMobiSDK.IMSdk {
   @objc optional func banner(_ banner: InMobiSDK.IMBanner, audioStatusChanged status: InMobiSDK.IMBannerAudioStatus)
 }
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc @_Concurrency.MainActor(unsafe) public class IMAudio : UIKit.UIView {
-  @objc @_Concurrency.MainActor(unsafe) weak public var delegate: InMobiSDK.IMAudioDelegate?
+  @objc @_Concurrency.MainActor(unsafe) weak public var delegate: (any InMobiSDK.IMAudioDelegate)?
   @objc @_Concurrency.MainActor(unsafe) public var placementId: Swift.Int64 {
     @objc get
     @objc set
@@ -340,7 +341,7 @@ extension InMobiSDK.IMSdk {
   }
   @_Concurrency.MainActor(unsafe) @objc override convenience dynamic public init(frame: CoreFoundation.CGRect)
   @objc @_Concurrency.MainActor(unsafe) convenience public init(frame: CoreFoundation.CGRect, placementId: Swift.Int64)
-  @objc @_Concurrency.MainActor(unsafe) public init(frame: CoreFoundation.CGRect, placementId: Swift.Int64, delegate: InMobiSDK.IMAudioDelegate?)
+  @objc @_Concurrency.MainActor(unsafe) public init(frame: CoreFoundation.CGRect, placementId: Swift.Int64, delegate: (any InMobiSDK.IMAudioDelegate)?)
   @objc @_Concurrency.MainActor(unsafe) public func getAdMetaInfo() -> [Swift.String : Any]?
   @objc deinit
 }
@@ -352,7 +353,7 @@ extension InMobiSDK.IMAudio {
 }
 @_inheritsConvenienceInitializers @objc public class IMBannerAudioHandler : ObjectiveC.NSObject {
   @objc public static func setAudioEnabled(_ isEnabled: Swift.Bool)
-  @objc public func onView(_ view: UIKit.UIView, addBannerAudioDelegate delegate: InMobiSDK.IMBannerAudioDelegate)
+  @objc public func onView(_ view: UIKit.UIView, addBannerAudioDelegate delegate: any InMobiSDK.IMBannerAudioDelegate)
   @objc override dynamic public init()
   @objc deinit
 }
@@ -390,7 +391,7 @@ extension InMobiSDK.IMAudio {
     @objc get
     @objc set
   }
-  @objc weak public var delegate: InMobiSDK.IMInterstitialDelegate?
+  @objc weak public var delegate: (any InMobiSDK.IMInterstitialDelegate)?
   @objc public var keywords: Swift.String? {
     @objc get
     @objc set
@@ -410,7 +411,7 @@ extension InMobiSDK.IMAudio {
     @objc get
   }
   @objc convenience public init(placementId: Swift.Int64)
-  @objc public init(placementId: Swift.Int64, delegate: InMobiSDK.IMInterstitialDelegate?)
+  @objc public init(placementId: Swift.Int64, delegate: (any InMobiSDK.IMInterstitialDelegate)?)
   @objc public func load()
   @objc public func load(_ response: Foundation.Data)
   @objc public func isReady() -> Swift.Bool

@@ -271,9 +271,11 @@ Resets consent information to default state and clears ad providers.
 
 ### `setAdvertiserTrackingEnabled(true|false)`
 
-If you use Facebook Audience Network mediation, starting with iOS 14, you will need to implement the setAdvertiserTrackingEnabled flag.
+If you use Facebook Audience Network mediation, starting with iOS 14, you will need to implement the `setAdvertiserTrackingEnabled` flag.
 This allows you to inform Facebook whether to use the data to deliver personalized ads. If the flag is set to false, Facebook will not be able to deliver personalized ads.
 You need to set this flag before initializing the mediation SDK in order to receive it in the bidding request.
+
+ The setter for advertiserTrackingEnabled flag is deprecated since Ti.Admob 7.1.0: The `setAdvertiserTrackingEnabled` flag is not used for Audience Network SDK 6.15.0+ on iOS 17+ as the Audience Network SDK 6.15.0+ on iOS 17+ now relies on `[ATTrackingManager trackingAuthorizationStatus]` to accurately represent ATT permission for users of your app.
 
 ### `setInMobi_updateGDPRConsent(true|false)`
 

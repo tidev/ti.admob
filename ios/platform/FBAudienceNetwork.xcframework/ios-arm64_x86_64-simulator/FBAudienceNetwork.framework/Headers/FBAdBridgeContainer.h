@@ -81,10 +81,7 @@ typedef void (*FBAdBridgeErrorCallback)(uint32_t uniqueId, char const *error);
 @property (nonatomic, assign) FBAdBridgeCallback rewardedVideoAdDidLoadCallback;
 @property (nonatomic, assign) FBAdBridgeErrorCallback rewardedVideoAdDidFailWithErrorCallback;
 @property (nonatomic, assign) FBAdBridgeCallback rewardedVideoAdWillLogImpressionCallback;
-
 @property (nonatomic, assign) FBAdBridgeCallback rewardedVideoAdVideoCompleteCallback;
-@property (nonatomic, assign) FBAdBridgeCallback rewardedVideoAdServerRewardDidSucceedCallback;
-@property (nonatomic, assign) FBAdBridgeCallback rewardedVideoAdServerRewardDidFailCallback;
 
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;

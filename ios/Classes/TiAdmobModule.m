@@ -54,42 +54,43 @@
 - (void)deleteTCStringIfOutdated {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
-    // IABTCF string is stored in userDefaults
-    NSString *tcString = [userDefaults stringForKey:@"IABTCF_TCString"] ?: @"";
-
-  // Check if the TCF string is empty
-  if (tcString.length > 0) {
+    // Retrieve the IABTCF string from userDefaults
+    NSString *tcString = [userDefaults stringForKey:@"IABTCF_TCString"];
     
-      // base64 alphabet used to store data in IABTCF string
-      NSString *base64 = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-      
-      // Date is stored in digits 1..7 of the IABTCF string
-      NSString *dateSubstring = [tcString substringWithRange:NSMakeRange(1, 6)];
-      
-      // Interpret date substring as base64-encoded integer value
-      long timestamp = 0;
-      for (int i = 0; i < dateSubstring.length; i++) {
-          unichar c = [dateSubstring characterAtIndex:i];
-          
-          NSInteger value = [base64 rangeOfString:[NSString stringWithFormat:@"%C", c]].location;
-          timestamp = timestamp * 64 + value;
-      }
-      
-      // Timestamp is given is deci-seconds, convert to milliseconds
-      timestamp *= 100;
-      
-      // Compare with current timestamp to get age in days
-      long daysAgo = (long)(([[NSDate date] timeIntervalSince1970] * 1000) - timestamp) / (1000 * 60 * 60 * 24);
-      NSLog(@"[DEBUG] Ti.AdMob: TC string last updated date was %ld days ago", daysAgo);
-      // Delete TC string if age is over a year
-      if (daysAgo > 365) {        
-          [userDefaults removeObjectForKey:@"IABTCF_TCString"];
-          [userDefaults synchronize];
-          NSLog(@"[DEBUG] Ti.AdMob: TC string removed");
-      }
-  } else {
-    NSLog(@"[DEBUG] The TCF string does not exist or is empty.");
-  }
+    // Return early if the TC string does not exist
+    if (!tcString) {
+        NSLog(@"[DEBUG] The IABTCF_TCString does not exist.");
+        return;
+    }
+    
+    // Base64 alphabet used to store data in IABTCF string
+    NSString *base64 = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+    
+    // Date is stored in digits 1..7 of the IABTCF string
+    NSString *dateSubstring = [tcString substringWithRange:NSMakeRange(1, 6)];
+    
+    // Interpret date substring as base64-encoded integer value
+    long long timestamp = 0;
+    for (int i = 0; i < dateSubstring.length; i++) {
+        unichar c = [dateSubstring characterAtIndex:i];
+        NSUInteger value = [base64 rangeOfString:[NSString stringWithFormat:@"%C", c]].location;
+        timestamp = timestamp * 64 + value;
+    }
+    
+    // Timestamp is given in deci-seconds, convert to milliseconds
+    timestamp *= 100;
+    
+    // Calculate age in days by comparing with the current timestamp
+    long daysAgo = (long)(([[NSDate date] timeIntervalSince1970] * 1000 - timestamp) / (1000 * 60 * 60 * 24));
+    
+    // Delete TC string if it is over a year old
+    if (daysAgo > 365) {
+        [userDefaults removeObjectForKey:@"IABTCF_TCString"];
+        [userDefaults synchronize];
+        NSLog(@"[DEBUG] Ti.AdMob: TC string removed as it was %ld days old.", daysAgo);
+    } else {
+        NSLog(@"[DEBUG] Ti.AdMob: TC string is not outdated. Last updated %ld days ago.", daysAgo);
+    }
 }
 
 - (void)disableSDKCrashReporting:(id)unused
@@ -430,6 +431,8 @@
 
 - (void)setAdvertiserTrackingEnabled:(id)advertiserTrackingEnabled
 {
+  DEPRECATED_REMOVED(@"advertiserTrackingEnabled", @"7.1.0", @"8.0.0 The setAdvertiserTrackingEnabled flag is not used for Audience Network SDK 6.15.0+ on iOS 17+ as the Audience Network SDK 6.15.0+ on iOS 17+ now relies on [ATTrackingManager trackingAuthorizationStatus] to accurately represent ATT permission for users of your app);");  
+  
   // this method is required by Facebook Audience Network for iOS >= 14
   if (@available(iOS 14, *)) {
     ENSURE_TYPE(advertiserTrackingEnabled, NSNumber);      

@@ -39,6 +39,9 @@ typedef void (^GADAppOpenAdLoadCompletionHandler)(GADAppOpenAd *_Nullable appOpe
 /// presenting the ad.
 @property(nonatomic, weak, nullable) id<GADFullScreenContentDelegate> fullScreenContentDelegate;
 
+/// The ad unit ID.
+@property(nonatomic, readonly, nonnull) NSString *adUnitID;
+
 /// Information about the ad response that returned the ad.
 @property(nonatomic, readonly, nonnull) GADResponseInfo *responseInfo;
 
