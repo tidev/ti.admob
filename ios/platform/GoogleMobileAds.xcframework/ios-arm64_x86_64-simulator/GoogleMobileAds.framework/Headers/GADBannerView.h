@@ -60,6 +60,9 @@
 /// Requests an ad. The request object supplies targeting information.
 - (void)loadRequest:(nullable GADRequest *)request;
 
+/// Loads the ad and informs |delegate| of the outcome.
+- (void)loadWithAdResponseString:(nonnull NSString *)adResponseString;
+
 /// A Boolean value that determines whether autoloading of ads in the receiver is enabled. If
 /// enabled, you do not need to call the loadRequest: method to load ads.
 @property(nonatomic, assign, getter=isAutoloadEnabled) IBInspectable BOOL autoloadEnabled;
@@ -72,5 +75,8 @@
 
 /// Called when ad is estimated to have earned money. Available for allowlisted accounts only.
 @property(nonatomic, nullable, copy) GADPaidEventHandler paidEventHandler;
+
+/// Indicates whether the last loaded ad is a collapsible banner.
+@property(nonatomic, readonly) BOOL isCollapsible;
 
 @end
