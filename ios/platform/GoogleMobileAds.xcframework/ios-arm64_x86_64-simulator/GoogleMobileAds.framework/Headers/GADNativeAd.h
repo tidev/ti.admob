@@ -23,6 +23,7 @@
 /// (see GADAdLoaderAdTypes.h) to the |adTypes| parameter in GADAdLoader's initializer method. If
 /// you request this ad type, your delegate must conform to the GADNativeAdLoaderDelegate
 /// protocol.
+NS_SWIFT_NAME(NativeAd)
 @interface GADNativeAd : NSObject
 
 #pragma mark - Must be displayed if available
@@ -72,7 +73,8 @@
 @property(nonatomic, nullable, copy) GADPaidEventHandler paidEventHandler;
 
 /// Indicates whether custom Mute This Ad is available for the native ad.
-@property(nonatomic, readonly, getter=isCustomMuteThisAdAvailable) BOOL customMuteThisAdAvailable;
+@property(nonatomic, readonly, getter=isCustomMuteThisAdAvailable)
+    BOOL customMuteThisAdAvailable NS_SWIFT_NAME(isCustomMuteThisAdAvailable);
 
 /// An array of Mute This Ad reasons used to render customized mute ad survey. Use this array to
 /// implement your own Mute This Ad feature only when customMuteThisAdAvailable is YES.
@@ -102,6 +104,7 @@
 #pragma mark - Protocol and constants
 
 /// The delegate of a GADAdLoader object implements this protocol to receive GADNativeAd ads.
+NS_SWIFT_NAME(NativeAdLoaderDelegate)
 @protocol GADNativeAdLoaderDelegate <GADAdLoaderDelegate>
 /// Called when a native ad is received.
 - (void)adLoader:(nonnull GADAdLoader *)adLoader didReceiveNativeAd:(nonnull GADNativeAd *)nativeAd;
@@ -111,6 +114,7 @@
 
 /// Base class for native ad views. Your native ad view must be a subclass of this class and must
 /// call superclass methods for all overridden methods.
+NS_SWIFT_NAME(NativeAdView)
 @interface GADNativeAdView : UIView
 
 /// This property must point to the native ad object rendered by this ad view.

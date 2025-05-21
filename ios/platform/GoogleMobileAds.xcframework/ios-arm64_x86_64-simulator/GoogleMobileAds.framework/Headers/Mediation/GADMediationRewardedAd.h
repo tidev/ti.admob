@@ -11,10 +11,14 @@
 #import <UIKit/UIKit.h>
 
 /// Rendered rewarded ad.
+NS_SWIFT_NAME(MediationRewardedAd)
 @protocol GADMediationRewardedAd <GADMediationAd>
-- (void)presentFromViewController:(nonnull UIViewController *)viewController;
+
+- (void)presentFromViewController:(nonnull UIViewController *)viewController
+    NS_SWIFT_NAME(present(from:));
 @end
 
 /// Rewarded ad configuration.
+NS_SWIFT_NAME(MediationRewardedAdConfiguration)
 @interface GADMediationRewardedAdConfiguration : GADMediationAdConfiguration
 @end

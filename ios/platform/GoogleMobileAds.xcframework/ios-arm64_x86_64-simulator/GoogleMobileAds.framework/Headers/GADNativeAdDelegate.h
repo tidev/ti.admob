@@ -10,6 +10,7 @@
 @class GADNativeAd;
 
 /// Identifies native ad assets.
+NS_SWIFT_NAME(NativeAdDelegate)
 @protocol GADNativeAdDelegate <NSObject>
 
 @optional
@@ -34,14 +35,14 @@
 /// the nativeAdDidDismissScreen: message. However, if the user hits the Home button or clicks on an
 /// App Store link, your application will be backgrounded. The next method called will be the
 /// applicationWillResignActive: of your UIApplicationDelegate object.
-- (void)nativeAdWillPresentScreen:(nonnull GADNativeAd *)nativeAd;
+- (void)nativeAdWillPresentScreen:(nonnull GADNativeAd *)nativeAd NS_SWIFT_UI_ACTOR;
 
 /// Called before dismissing a full screen view.
-- (void)nativeAdWillDismissScreen:(nonnull GADNativeAd *)nativeAd;
+- (void)nativeAdWillDismissScreen:(nonnull GADNativeAd *)nativeAd NS_SWIFT_UI_ACTOR;
 
 /// Called after dismissing a full screen view. Use this opportunity to restart anything you may
 /// have stopped as part of nativeAdWillPresentScreen:.
-- (void)nativeAdDidDismissScreen:(nonnull GADNativeAd *)nativeAd;
+- (void)nativeAdDidDismissScreen:(nonnull GADNativeAd *)nativeAd NS_SWIFT_UI_ACTOR;
 
 #pragma mark - Mute This Ad
 

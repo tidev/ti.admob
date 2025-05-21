@@ -1,5 +1,20 @@
 # Change Log
 
+### v8.0.0
+- Migration to SDK v12 (https://developers.google.com/admob/ios/migration#migrate-to-sdk-v12)
+- Update Google Mobile Ads SDK 12.4.0 (https://github.com/CocoaPods/Specs/tree/master/Specs/5/9/a/Google-Mobile-Ads-SDK/12.4.0)
+- Update Meta Audience Network SDK 6.17.1 (https://developers.facebook.com/docs/audience-network/setting-up/platform-setup/ios/changelog#6_17_1)
+- Meta Audience Network Adapter 6.17.1.0 (https://developers.google.com/admob/ios/mediation/meta#version-6.17.1.0)
+- Update InMobi SDK 10.8.3 (https://support.inmobi.com/monetize/sdk-documentation/download-sdk)
+- Update InMobiAdapter 10.8.3.0 (https://developers.google.com/admob/ios/mediation/inmobi#version-10.8.3.0)
+- Added iphone method `Admob.presentPrivacyOptionsForm()` (https://developers.google.com/admob/ios/privacy#present-privacy-options-form)
+- Added iphone method `Admob.isPrivacyOptionsRequired()` (https://developers.google.com/admob/ios/privacy#check-privacy-options).
+- Added iphone method `Admob.canRequestAds()` (https://developers.google.com/admob/ios/privacy#request-ads)
+- Added iphone property: `Admob.DEBUG_GEOGRAPHY_REGULATED_US_STATE`(https://developers.google.com/admob/ios/privacy/api/reference/Enums/UMPDebugGeography.html#umpdebuggeographyregulatedusstate)
+- Added iphone property: `Admob.DEBUG_GEOGRAPHY_OTHER` (https://developers.google.com/admob/ios/privacy/api/reference/Enums/UMPDebugGeography.html#umpdebuggeographyother)
+- Removed iOS `Admob.DEBUG_GEOGRAPHY_NOT_EEA` because deprecated (https://developers.google.com/admob/ios/privacy/api/reference/Enums/UMPDebugGeography.html#umpdebuggeographynoteea)
+- Removed iOS `Admob.SIMULATOR_ID`. Simulators are already in test mode by default
+
 ### v7.1.0
 - Update Google Mobile Ads SDK 11.3.0 (https://github.com/CocoaPods/Specs/tree/master/Specs/5/9/a/Google-Mobile-Ads-SDK/11.3.0)
 - Update Meta Audience Network SDK 6.15.0 (https://developers.facebook.com/docs/audience-network/setting-up/platform-setup/ios/changelog#6_15_0)

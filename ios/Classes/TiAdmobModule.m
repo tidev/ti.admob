@@ -149,49 +149,91 @@
                                                                         }];
 }
 
-- (void)loadForm:(id)args 
+-(void)loadForm:(id)args
 {
-  ENSURE_SINGLE_ARG(args, NSDictionary);
+    ENSURE_SINGLE_ARG(args, NSDictionary);
+    KrollCallback *callback = [args objectForKey:@"callback"];
 
-  KrollCallback *callback = [args objectForKey:@"callback"];
-  
-  TiThreadPerformOnMainThread(
-      ^{
-        [UMPConsentForm loadWithCompletionHandler:^(UMPConsentForm *form,
-                                                    NSError *loadError) {
-          if (loadError) {
-            // Handle the error.
-            [callback call:@[ @{ @"loadError" : loadError.localizedDescription } ] thisObject:self];
-          } else {
-            // Present the form. You can also hold on to the reference to present
-            // later.
-            NSNumber *status = @(UMPConsentInformation.sharedInstance.consentStatus);
-            if (UMPConsentInformation.sharedInstance.consentStatus ==
-                UMPConsentStatusRequired) {
-              [form
-                  presentFromViewController:[[[TiApp app] controller] topPresentedController]
-                          completionHandler:^(NSError *_Nullable dismissError) {
-                            if (UMPConsentInformation.sharedInstance.consentStatus ==
-                                UMPConsentStatusObtained) {
-                              // App can start requesting ads. 
-                              [callback call:@[ @{
-                                @"status" : @(UMPConsentInformation.sharedInstance.consentStatus), // update here because it can change between the above assignment
-                                @"dismissError" : NULL_IF_NIL(dismissError.localizedDescription)
-                              } ]
-                                  thisObject:self]; 
-                              return;                            
-                            }
-                          }];
+    TiThreadPerformOnMainThread(
+        ^{
+            UIViewController *viewController = [[[TiApp app] controller] topPresentedController];
+             // Automatically load and present the form if required
+            [UMPConsentForm loadAndPresentIfRequiredFromViewController:viewController
+                                                  completionHandler:^(NSError *loadError) {
+                if (loadError) {
+                    // Handle the error
+                    [callback call:@[ @{ @"loadError" : loadError.localizedDescription } ] thisObject:self];
+                } else {
+                    // Return the consent status
+                    NSNumber *status = @(UMPConsentInformation.sharedInstance.consentStatus);
+                    [callback call:@[ @{@"status" : status} ] thisObject:self];
+                }
+            }];
+            
+            /*[UMPConsentForm loadWithCompletionHandler:^(UMPConsentForm *form,
+                                                        NSError *loadError) {
+              if (loadError) {
+                // Handle the error.
+                [callback call:@[ @{ @"loadError" : loadError.localizedDescription } ] thisObject:self];
+              } else {
+                // Present the form. You can also hold on to the reference to present
+                // later.
+                NSNumber *status = @(UMPConsentInformation.sharedInstance.consentStatus);
+                if (UMPConsentInformation.sharedInstance.consentStatus ==
+                    UMPConsentStatusRequired) {
+                  [form
+                      presentFromViewController:[[[TiApp app] controller] topPresentedController]
+                              completionHandler:^(NSError *_Nullable dismissError) {
+                                if (UMPConsentInformation.sharedInstance.consentStatus ==
+                                    UMPConsentStatusObtained) {
+                                  // App can start requesting ads.
+                                  [callback call:@[ @{
+                                    @"status" : @(UMPConsentInformation.sharedInstance.consentStatus), // update here because it can change between the above assignment
+                                    @"dismissError" : NULL_IF_NIL(dismissError.localizedDescription)
+                                  } ]
+                                      thisObject:self];
+                                  return;
+                                }
+                              }];
+                } else {
+                  [callback call:@[ @{
+                    @"status" : status
+                  } ]
+                      thisObject:self];
+                }
+              }
+            }];*/
+        },
+        NO);
+}
+
+-(void)presentPrivacyOptionsForm:(id)args
+{
+    ENSURE_SINGLE_ARG(args, NSDictionary);
+    KrollCallback *callback = [args objectForKey:@"callback"];
+
+    TiThreadPerformOnMainThread(^{
+        UIViewController *viewController = [[[TiApp app] controller] topPresentedController];
+
+        [UMPConsentForm presentPrivacyOptionsFormFromViewController:viewController
+                                                   completionHandler:^(NSError *error) {
+            if (error) {
+                // Handle the error
+                NSLog(@"[ERROR] presentPrivacyOptionsForm: %@", error.localizedDescription);
+                NSDictionary *result = @{ @"error": error.localizedDescription };
+                if (callback) {
+                     [callback call:@[result] thisObject:self];
+                }
+               
             } else {
-              [callback call:@[ @{
-                @"status" : status
-              } ]
-                  thisObject:self];
+                NSDictionary *result = @{ @"success": @(YES) };
+                 if (callback) {
+                     [callback call:@[result] thisObject:self];
+                }
             }
-          }
         }];
-      },
-      NO);
+    },
+    NO);
 }
 
 - (void)requestConsentInfoUpdateForPublisherIdentifiers:(id)args
@@ -294,6 +336,17 @@
         }
     }
     return YES;
+}
+
+- (NSNumber*)isPrivacyOptionsRequired:(id)args
+{
+    UMPPrivacyOptionsRequirementStatus status = UMPConsentInformation.sharedInstance.privacyOptionsRequirementStatus;
+    return NUMBOOL(status == UMPPrivacyOptionsRequirementStatusRequired);
+}
+
+- (NSNumber *)canRequestAds:(id)args
+{
+    return NUMBOOL(UMPConsentInformation.sharedInstance.canRequestAds);
 }
 
 - (void)showConsentForm:(id)args
@@ -490,11 +543,13 @@ MAKE_SYSTEM_PROP(CONSENT_STATUS_OBTAINED, UMPConsentStatusObtained); // 3
 //MAKE_SYSTEM_PROP(DEBUG_GEOGRAPHY_EEA, PACDebugGeographyEEA);
 //MAKE_SYSTEM_PROP(DEBUG_GEOGRAPHY_NOT_EEA, PACDebugGeographyNotEEA);
 
-MAKE_SYSTEM_PROP(DEBUG_GEOGRAPHY_DISABLED, UMPDebugGeographyDisabled);
-MAKE_SYSTEM_PROP(DEBUG_GEOGRAPHY_EEA,  UMPDebugGeographyEEA);
-MAKE_SYSTEM_PROP(DEBUG_GEOGRAPHY_NOT_EEA, UMPDebugGeographyNotEEA);
+MAKE_SYSTEM_PROP(DEBUG_GEOGRAPHY_DISABLED, UMPDebugGeographyDisabled); // 0
+MAKE_SYSTEM_PROP(DEBUG_GEOGRAPHY_EEA,  UMPDebugGeographyEEA); // 1
+//MAKE_SYSTEM_PROP(DEBUG_GEOGRAPHY_NOT_EEA, UMPDebugGeographyNotEEA); // 2 (Deprecated and deleted from 8.0.0)
+MAKE_SYSTEM_PROP(DEBUG_GEOGRAPHY_REGULATED_US_STATE, UMPDebugGeographyRegulatedUSState); // 3
+MAKE_SYSTEM_PROP(DEBUG_GEOGRAPHY_OTHER, UMPDebugGeographyOther); // 4
 
-MAKE_SYSTEM_STR(SIMULATOR_ID, GADSimulatorID);
+//MAKE_SYSTEM_STR(SIMULATOR_ID, GADSimulatorID); deleted from 8.0.0
 //MAKE_SYSTEM_PROP(GENDER_MALE, kGADGenderMale); deleted from 4.5.0
 //MAKE_SYSTEM_PROP(GENDER_FEMALE, kGADGenderFemale); deleted from 4.5.0
 //MAKE_SYSTEM_PROP(GENDER_UNKNOWN, kGADGenderUnknown); deleted from 4.5.0

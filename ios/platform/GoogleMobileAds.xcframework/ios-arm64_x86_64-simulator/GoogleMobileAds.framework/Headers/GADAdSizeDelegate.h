@@ -12,6 +12,7 @@
 
 /// The class implementing this protocol will be notified when the GADBannerView's ad content
 /// changes size. Any views that may be affected by the banner size change will have time to adjust.
+NS_SWIFT_NAME(AdSizeDelegate)
 @protocol GADAdSizeDelegate <NSObject>
 
 /// Called before the ad view changes to the new size.

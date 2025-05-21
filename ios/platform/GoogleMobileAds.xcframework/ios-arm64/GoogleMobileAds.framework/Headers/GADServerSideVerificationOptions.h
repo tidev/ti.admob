@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 
 /// Options for server-side verification callbacks for a rewarded ad.
+NS_SWIFT_NAME(ServerSideVerificationOptions)
 @interface GADServerSideVerificationOptions : NSObject <NSCopying>
 
 /// A unique identifier used to identify the user when making server-side verification reward
@@ -16,6 +17,6 @@
 @property(nonatomic, copy, nullable) NSString *userIdentifier;
 
 /// Optional custom reward string to include in the server-side verification callback.
-@property(nonatomic, copy, nullable) NSString *customRewardString;
+@property(nonatomic, copy, nullable) NSString *customRewardString NS_SWIFT_NAME(customRewardText);
 
 @end

@@ -9,5 +9,6 @@
 
 /// Rendered ad. Objects conforming to this protocol are created by the adapter and returned to
 /// the Google Mobile Ads SDK through the adapter's render method completion handler.
+NS_SWIFT_NAME(MediationAd)
 @protocol GADMediationAd <NSObject>
 @end

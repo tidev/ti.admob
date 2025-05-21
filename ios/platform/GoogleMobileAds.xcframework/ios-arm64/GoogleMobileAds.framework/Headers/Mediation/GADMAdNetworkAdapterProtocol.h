@@ -14,6 +14,7 @@
 #define GADMAdapterClassNamePrefix @"GADMAdapter"
 
 /// Ad network adapter protocol.
+NS_SWIFT_NAME(MediationAdNetworkAdapter)
 @protocol GADMAdNetworkAdapter <NSObject>
 
 /// Returns a version string for the adapter. It can be any string that uniquely identifies the
@@ -32,7 +33,7 @@
 /// Asks the adapter to initiate an asynchronous banner ad request. The adapter may act as a
 /// delegate to your SDK to listen to callbacks. If your SDK doesn't support the given ad size, or
 /// doesn't support banner ads, call adapter:didFailAd: on the connector.
-- (void)getBannerWithSize:(GADAdSize)adSize;
+- (void)getBannerWithSize:(GADAdSize)adSize NS_SWIFT_NAME(getBanner(with:));
 
 /// Asks the adapter to initiate an asynchronous interstitial ad request. The adapter may act as a
 /// delegate to your SDK to listen to callbacks. If your SDK doesn't support interstitials, call
@@ -54,7 +55,8 @@
 /// The adapter must call adapterWillPresentInterstitial: on the connector when the interstitial is
 /// about to be presented, and adapterWillDismissInterstitial: and adapterDidDismissInterstitial:
 /// when the interstitial is being dismissed.
-- (void)presentInterstitialFromRootViewController:(UIViewController *)rootViewController;
+- (void)presentInterstitialFromRootViewController:(UIViewController *)rootViewController
+    NS_SWIFT_NAME(presentInterstitial(from:));
 
 @optional
 
@@ -66,7 +68,8 @@
 /// On ad load success or failure, call adapter:didReceiveNativeAdDataSource:mediationDelegate or
 /// adapter:didFailAd: on the connector.
 - (void)getNativeAdWithAdTypes:(NSArray<GADAdLoaderAdType> *)adTypes
-                       options:(NSArray<GADAdLoaderOptions *> *)options;
+                       options:(NSArray<GADAdLoaderOptions *> *)options
+    NS_SWIFT_NAME(getNativeAd(with:options:));
 
 /// Indicates if the adapter handles user clicks. If the adapter returns YES, it must handle user
 /// clicks and notify the Google Mobile Ads SDK of clicks using

@@ -26,7 +26,9 @@ typedef id<GADMediationBannerAdEventDelegate> _Nullable (^GADMediationBannerLoad
 /// couldn't be created or if the block has already been called.
 typedef id<GADMediationBannerAdEventDelegate> _Nullable (
     ^GADMediationInterscrollerAdLoadCompletionHandler)(_Nullable id<GADMediationInterscrollerAd> ad,
-                                                       NSError *_Nullable error);
+                                                       NSError *_Nullable error)
+    GAD_DEPRECATED_MSG_ATTRIBUTE("Interscroller mediation is no longer supported. This API will be "
+                                 "removed in a future release.");
 
 /// Called by the adapter after loading the interstitial ad or encountering an error. Returns an
 /// ad event delegate to send ad events to the Google Mobile Ads SDK. The block returns nil if a
@@ -64,6 +66,7 @@ typedef void (^GADMediationAdapterSetUpCompletionBlock)(NSError *_Nullable error
 ///
 /// Adapters are initialized on a background queue and should avoid using the main queue until
 /// load time.
+NS_SWIFT_NAME(MediationAdapter)
 @protocol GADMediationAdapter <NSObject>
 /// Returns the adapter version.
 + (GADVersionNumber)adapterVersion;
@@ -84,7 +87,8 @@ typedef void (^GADMediationAdapterSetUpCompletionBlock)(NSError *_Nullable error
 /// or configuration work. The adapter must call completionHandler once the adapter can service ad
 /// requests, or if it encounters an error while setting up.
 + (void)setUpWithConfiguration:(nonnull GADMediationServerConfiguration *)configuration
-             completionHandler:(nonnull GADMediationAdapterSetUpCompletionBlock)completionHandler;
+             completionHandler:(nonnull GADMediationAdapterSetUpCompletionBlock)completionHandler
+    NS_SWIFT_NAME(setUp(with:completionHandler:));
 
 /// Asks the adapter to load a banner ad with the provided ad configuration. The adapter must call
 /// back completionHandler with the loaded ad, or it may call back with an error. This method is
@@ -92,16 +96,6 @@ typedef void (^GADMediationAdapterSetUpCompletionBlock)(NSError *_Nullable error
 - (void)loadBannerForAdConfiguration:(nonnull GADMediationBannerAdConfiguration *)adConfiguration
                    completionHandler:
                        (nonnull GADMediationBannerLoadCompletionHandler)completionHandler;
-
-/// Asks the adapter to load an interscroller ad with the provided ad configuration. The adapter
-/// must call back completionHandler with the loaded ad, or it may call back with an error. This
-/// method is called on the main thread, and completionHandler must be called back on the main
-/// thread.
-- (void)loadInterscrollerAdForAdConfiguration:
-            (nonnull GADMediationBannerAdConfiguration *)adConfiguration
-                            completionHandler:
-                                (nonnull GADMediationInterscrollerAdLoadCompletionHandler)
-                                    completionHandler;
 
 /// Asks the adapter to load an interstitial ad with the provided ad configuration. The adapter
 /// must call back completionHandler with the loaded ad, or it may call back with an error. This
@@ -145,4 +139,18 @@ typedef void (^GADMediationAdapterSetUpCompletionBlock)(NSError *_Nullable error
             (nonnull GADMediationAppOpenAdConfiguration *)adConfiguration
                       completionHandler:
                           (nonnull GADMediationAppOpenLoadCompletionHandler)completionHandler;
+
+#pragma mark Deprecated
+
+/// Asks the adapter to load an interscroller ad with the provided ad configuration. The adapter
+/// must call back completionHandler with the loaded ad, or it may call back with an error. This
+/// method is called on the main thread, and completionHandler must be called back on the main
+/// thread.
+- (void)loadInterscrollerAdForAdConfiguration:
+            (nonnull GADMediationBannerAdConfiguration *)adConfiguration
+                            completionHandler:
+                                (nonnull GADMediationInterscrollerAdLoadCompletionHandler)
+                                    completionHandler
+    GAD_DEPRECATED_MSG_ATTRIBUTE("Interscroller mediation is no longer supported. This API will be "
+                                 "removed in a future release.");
 @end

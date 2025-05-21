@@ -15,6 +15,7 @@ typedef void (^GAMInterstitialAdLoadCompletionHandler)(GAMInterstitialAd *_Nulla
 
 /// Google Ad Manager interstitial ad, a full-screen advertisement shown at natural
 /// transition points in your application such as between game levels or news stories.
+NS_SWIFT_NAME(AdManagerInterstitialAd)
 @interface GAMInterstitialAd : GADInterstitialAd
 
 /// Optional delegate that is notified when creatives send app events.
@@ -27,7 +28,8 @@ typedef void (^GAMInterstitialAdLoadCompletionHandler)(GAMInterstitialAd *_Nulla
 /// @param completionHandler A handler to execute when the load operation finishes or times out.
 + (void)loadWithAdManagerAdUnitID:(nonnull NSString *)adUnitID
                           request:(nullable GAMRequest *)request
-                completionHandler:(nonnull GAMInterstitialAdLoadCompletionHandler)completionHandler;
+                completionHandler:(nonnull GAMInterstitialAdLoadCompletionHandler)completionHandler
+    NS_SWIFT_NAME(load(with:request:completionHandler:));
 
 + (void)loadWithAdUnitID:(nonnull NSString *)adUnitID
                  request:(nullable GADRequest *)request

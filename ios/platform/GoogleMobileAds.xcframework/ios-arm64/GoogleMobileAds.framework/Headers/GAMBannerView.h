@@ -14,6 +14,7 @@
 @class GAMBannerView;
 
 /// The delegate of a GADAdLoader object must conform to this protocol to receive GAMBannerViews.
+NS_SWIFT_NAME(AdManagerBannerAdLoaderDelegate)
 @protocol GAMBannerAdLoaderDelegate <GADAdLoaderDelegate>
 
 /// Asks the delegate which banner ad sizes should be requested.
@@ -30,6 +31,7 @@
 /// To request this ad type using GADAdLoader, you need to pass GADAdLoaderAdTypeGAMBanner (see
 /// GADAdLoaderAdTypes.h) to the |adTypes| parameter in GADAdLoader's initializer method. If you
 /// request this ad type, your delegate must conform to the GAMBannerAdLoaderDelegate protocol.
+NS_SWIFT_NAME(AdManagerBannerView)
 @interface GAMBannerView : GADBannerView
 
 /// Required value created on the Ad Manager website. Create a new ad unit for every unique
@@ -69,7 +71,7 @@
 /// Video controller for controlling video rendered by this ad view.
 @property(nonatomic, readonly, nonnull) GADVideoController *videoController;
 
-/// If you've set enableManualImpressions to YES, call this method when the ad is visible.
+/// If you've set manualImpressionsEnabled to YES, call this method when the ad is visible.
 - (void)recordImpression;
 
 /// Use this function to resize the banner view without launching a new ad request.

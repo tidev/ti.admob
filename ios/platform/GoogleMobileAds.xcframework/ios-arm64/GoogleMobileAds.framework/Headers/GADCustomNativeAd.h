@@ -26,6 +26,7 @@ FOUNDATION_EXPORT NSString *_Nonnull const GADCustomNativeAdMediaViewKey;
 /// GADAdLoaderAdTypeCustomNative (see GADAdLoaderAdTypes.h) to the |adTypes| parameter
 /// in GADAdLoader's initializer method. If you request this ad type, your delegate must conform to
 /// the GADCustomNativeAdLoaderDelegate protocol.
+NS_SWIFT_NAME(CustomNativeAd)
 @interface GADCustomNativeAd : NSObject
 
 /// The ad's format ID.
@@ -79,6 +80,7 @@ FOUNDATION_EXPORT NSString *_Nonnull const GADCustomNativeAdMediaViewKey;
 
 /// The delegate of a GADAdLoader object implements this protocol to receive
 /// GADCustomNativeAd ads.
+NS_SWIFT_NAME(CustomNativeAdLoaderDelegate)
 @protocol GADCustomNativeAdLoaderDelegate <GADAdLoaderDelegate>
 
 /// Called when requesting an ad. Asks the delegate for an array of custom native ad format ID

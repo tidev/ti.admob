@@ -11,6 +11,7 @@
 @class GADNativeAd;
 
 /// Delegate methods for handling native ad unconfirmed clicks.
+NS_SWIFT_NAME(NativeAdUnconfirmedClickDelegate)
 @protocol GADNativeAdUnconfirmedClickDelegate <NSObject>
 
 /// Tells the delegate that native ad receives an unconfirmed click on view with asset ID. You

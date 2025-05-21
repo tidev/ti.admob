@@ -18,7 +18,8 @@ struct GADVersionNumber {
   NSInteger minorVersion;
   /// Patch version.
   NSInteger patchVersion;
-};
+} NS_SWIFT_NAME(VersionNumber);
 
 /// Returns a string representation of the version number.
-NSString *_Nonnull GADGetStringFromVersionNumber(GADVersionNumber version);
+NSString *_Nonnull GADGetStringFromVersionNumber(GADVersionNumber version)
+    NS_SWIFT_NAME(string(for:));

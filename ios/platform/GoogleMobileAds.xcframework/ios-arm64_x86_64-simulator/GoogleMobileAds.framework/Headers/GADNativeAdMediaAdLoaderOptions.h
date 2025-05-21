@@ -9,6 +9,7 @@
 #import <GoogleMobileAds/GADMediaAspectRatio.h>
 
 /// Ad loader options for native ad media settings.
+NS_SWIFT_NAME(NativeAdMediaAdLoaderOptions)
 @interface GADNativeAdMediaAdLoaderOptions : GADAdLoaderOptions
 
 /// Image and video aspect ratios. Defaults to GADMediaAspectRatioUnknown. Portrait, landscape, and

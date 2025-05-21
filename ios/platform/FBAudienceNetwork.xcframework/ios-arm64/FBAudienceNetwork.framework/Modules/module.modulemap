@@ -55,4 +55,5 @@ framework module FBAudienceNetwork {
     header "FBAdViewBridge.h"
     header "FBInterstitialAdBridge.h"
     header "FBRewardedVideoAdBridge.h"
+    header "FBAudienceNetwork-Swift.h"
 }

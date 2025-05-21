@@ -12,6 +12,7 @@
 
 /// Reports information to the Google Mobile Ads SDK from the adapter. Adapters receive an ad event
 /// delegate when they provide a GADMediationAd by calling a render completion handler.
+NS_SWIFT_NAME(MediationAdEventDelegate)
 @protocol GADMediationAdEventDelegate <NSObject>
 
 /// Notifies Google Mobile Ads SDK that an impression occurred on the GADMediationAd.
@@ -37,16 +38,19 @@
 @end
 
 /// Reports banner related information to the Google Mobile Ads SDK from the adapter.
+NS_SWIFT_NAME(MediationBannerAdEventDelegate)
 @protocol GADMediationBannerAdEventDelegate <GADMediationAdEventDelegate>
 
 @end
 
 /// Reports interstitial related information to the Google Mobile Ads SDK from the adapter.
+NS_SWIFT_NAME(MediationInterstitialAdEventDelegate)
 @protocol GADMediationInterstitialAdEventDelegate <GADMediationAdEventDelegate>
 
 @end
 
 /// Reports native related information to the Google Mobile Ads SDK from the adapter.
+NS_SWIFT_NAME(MediationNativeAdEventDelegate)
 @protocol GADMediationNativeAdEventDelegate <GADMediationAdEventDelegate>
 
 /// Notifies Google Mobile Ads SDK that the GADMediationAd started video playback.
@@ -67,6 +71,7 @@
 @end
 
 /// Reports rewarded related information to the Google Mobile Ads SDK from the adapter.
+NS_SWIFT_NAME(MediationRewardedAdEventDelegate)
 @protocol GADMediationRewardedAdEventDelegate <GADMediationAdEventDelegate>
 
 /// Notifies the Google Mobile Ads SDK that the GADMediationAd has rewarded the user.
@@ -81,6 +86,7 @@
 @end
 
 /// Reports app open related information to the Google Mobile Ads SDK from the adapter.
+NS_SWIFT_NAME(MediationAppOpenAdEventDelegate)
 @protocol GADMediationAppOpenAdEventDelegate <GADMediationAdEventDelegate>
 
 @end

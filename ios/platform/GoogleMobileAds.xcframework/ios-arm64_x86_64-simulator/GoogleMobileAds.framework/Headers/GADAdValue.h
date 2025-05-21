@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, GADAdValuePrecision) {
   GADAdValuePrecisionPublisherProvided = 2,
   /// The precise value paid for this ad.
   GADAdValuePrecisionPrecise = 3
-};
+} NS_SWIFT_NAME(AdValuePrecision);
 
 @class GADAdValue;
 
@@ -24,6 +24,7 @@ typedef NS_ENUM(NSInteger, GADAdValuePrecision) {
 typedef void (^GADPaidEventHandler)(GADAdValue *_Nonnull value);
 
 /// The monetary value earned from an ad.
+NS_SWIFT_NAME(AdValue)
 @interface GADAdValue : NSObject <NSCopying>
 
 /// The precision of the reported ad value.

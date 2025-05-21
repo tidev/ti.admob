@@ -200,6 +200,10 @@ Async callback function that return `{status: Modules.Admob.CONSENT_STATUS_*}`
 
 Check in the IABTCF string if GDPR applies, so if in EEA.
 
+### `canRequestAds()` (Boolean)
+
+Indicates whether the SDK has gathered consent aligned with the app’s configured messages. Returns NO until `requestConsentInfoUpdateWithParameters()` is called.
+
 ### `canShowAds()` (Boolean)
 
 If false (and GDPR applies, so if in EEA) you should prompt the user or to accept all, or explain in details (check above) what to check to display at least Non-Personalized Ads, or ask the user to opt for a premium version of the app, otherwise you will earn absolutely nothing.
@@ -230,14 +234,24 @@ or
   });  
 ```
 
+### `isPrivacyOptionsRequired()` (Boolean)
+
+Check privacy options requirement status. This method should only be called after `requestConsentInfoUpdateWithParameters()`, otherwise it returns value defaults to the previous session’s value or `false`.
+
+### `presentPrivacyOptionsForm(args)`
+Presents a privacy options form if `isPrivacyOptionsRequired()` is `true`. 
+
+This method should only be called in response to a user input to request a privacy options form to be shown. The privacy options form is preloaded by the SDK automatically when a form becomes available. If no form is preloaded, the SDK will invoke the completionHandler on the next run loop, but will asynchronously retry to load one. If viewController is nil, uses the top view controller of the application’s main window.
+
+- `callback` (Function)
+Async callback function that return `{error: ...}` or `{success: true}`
+
 ### `requestConsentInfoUpdateWithParameters(args)`
 
-Request the latest consent information.
-It is recommended that you request an update of the consent information at every app launch.
-This will determine whether or not your user needs to provide consent.
+Requests consent information update. Must be called in every app session before checking the user’s consentStatus or loading a consent form. After calling this method, consentStatus will be updated synchronously to hold the consent state from the previous app session, if one exists. consentStatus may be updated again immediately before the completion handler is called.
 
 - `geography` (Number) `Admob.DEBUG_GEOGRAPHY_*`
-To force the SDK to treat the device as though it is not in the EEA or UK, use UMPDebugGeographyNotEEA. Note that debug settings only work on test devices. Emulators do not need to be added to the device id list as they have testing enabled by default.
+The UMP SDK provides a way to test your app's behavior as though the device were located in various regions, such as the EEA or UK. Note that debug settings only work on test devices. Emulators do not need to be added to the device id list as they have testing enabled by default.
 - `tagForUnderAgeOfConsent` (Boolean)
 Sets whether the user is tagged for under age of consent
 - `testDeviceIdentifiers` (Array<String>)
@@ -398,7 +412,17 @@ Geography appears as in EEA for debug devices.
 
 ### Number `DEBUG_GEOGRAPHY_NOT_EEA`
 
+⚠️ Removed since Ti.Admob 8.0.0, Use `DEBUG_GEOGRAPHY_OTHER`
+
 Geography appears as not in EEA for debug devices.
+
+### Number `DEBUG_GEOGRAPHY_OTHER`
+
+Geography appears as in a region with no regulation in force.
+
+### Number `DEBUG_GEOGRAPHY_REGULATED_US_STATE`
+
+Geography appears as in a regulated US State.
 
 ### Number `GENDER_MALE`
 
@@ -426,7 +450,7 @@ A constant to be passed to the `maxAdContentRating` property to specify a maximu
 
 ### String `SIMULATOR_ID`
 
-A constant to be passed in an array to the `testDevices` property to get test ads on the simulator. Deprecated since 7.0.0 (Simulators are already in test mode by default.)
+A constant to be passed in an array to the `testDevices` property to get test ads on the simulator. **Deprecated since 7.0.0, deleted from 8.0.0 (Simulators are already in test mode by default.)**
 
 ### Number `TRACKING_AUTHORIZATION_STATUS_NOT_DETERMINED`
 

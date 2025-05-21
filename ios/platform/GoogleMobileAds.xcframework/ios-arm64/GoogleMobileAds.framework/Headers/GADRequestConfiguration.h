@@ -20,10 +20,6 @@ FOUNDATION_EXPORT GADMaxAdContentRating _Nonnull const GADMaxAdContentRatingTeen
 /// Rating for content suitable only for mature audiences.
 FOUNDATION_EXPORT GADMaxAdContentRating _Nonnull const GADMaxAdContentRatingMatureAudience;
 
-/// Add this constant to the testDevices property's array to receive test ads on the simulator.
-FOUNDATION_EXPORT NSString *_Nonnull const GADSimulatorID GAD_DEPRECATED_MSG_ATTRIBUTE(
-    "Deprecated. Simulators are already in test mode by default.");
-
 /// Publisher privacy treatment personalization states.
 typedef NS_ENUM(NSInteger, GADPublisherPrivacyPersonalizationState) {
   /// Indicates that ad requests should receive the default publisher privacy treatment.
@@ -32,9 +28,10 @@ typedef NS_ENUM(NSInteger, GADPublisherPrivacyPersonalizationState) {
   GADPublisherPrivacyPersonalizationStateEnabled = 1,
   /// Indicates that ad requests should receive non-personalized publisher privacy treatment.
   GADPublisherPrivacyPersonalizationStateDisabled = 2,
-};
+} NS_SWIFT_NAME(PublisherPrivacyPersonalizationState);
 
 /// Request configuration. The settings in this class will apply to all ad requests.
+NS_SWIFT_NAME(RequestConfiguration)
 @interface GADRequestConfiguration : NSObject
 
 /// The maximum ad content rating. All Google ads will have this content rating or lower.

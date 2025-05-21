@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-#import <FBAudienceNetwork/FBAdDefines.h>
 #import <FBAudienceNetwork/FBMediaViewVideoRenderer.h>
 #import <FBAudienceNetwork/UIView+FBNativeAdViewTag.h>
 #import <Foundation/Foundation.h>
+#import "FBAdDefines.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

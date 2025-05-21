@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 /// Measurement used for display custom native ad formats.
+NS_SWIFT_NAME(DisplayAdMeasurement)
 @interface GADDisplayAdMeasurement : NSObject
 
 /// Ad view used to measure viewability. This property can be modified before or after starting

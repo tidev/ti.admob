@@ -22,6 +22,7 @@ typedef void (^GADAppOpenAdLoadCompletionHandler)(GADAppOpenAd *_Nullable appOpe
                                                   NSError *_Nullable error);
 
 /// An app open ad. Used to monetize app load screens.
+NS_SWIFT_NAME(AppOpenAd)
 @interface GADAppOpenAd : NSObject <GADFullScreenPresentingAd>
 
 /// Loads an app open ad.
@@ -31,7 +32,16 @@ typedef void (^GADAppOpenAdLoadCompletionHandler)(GADAppOpenAd *_Nullable appOpe
 /// @param completionHandler A handler to execute when the load operation finishes or times out.
 + (void)loadWithAdUnitID:(nonnull NSString *)adUnitID
                  request:(nullable GADRequest *)request
-       completionHandler:(nonnull GADAppOpenAdLoadCompletionHandler)completionHandler;
+       completionHandler:(nonnull GADAppOpenAdLoadCompletionHandler)completionHandler
+    NS_SWIFT_NAME(load(with:request:completionHandler:));
+
+/// Loads an app open ad.
+///
+/// @param adResponseString A server-to-server ad response string.
+/// @param completionHandler A handler to execute when the load operation finishes or times out.
++ (void)loadWithAdResponseString:(nonnull NSString *)adResponseString
+               completionHandler:(nonnull GADAppOpenAdLoadCompletionHandler)completionHandler
+    NS_SWIFT_NAME(load(with:completionHandler:));
 
 /// Optional delegate object that receives notifications about presentation and dismissal of full
 /// screen content from this ad. Full screen content covers your application's content. The delegate
@@ -48,16 +58,23 @@ typedef void (^GADAppOpenAdLoadCompletionHandler)(GADAppOpenAd *_Nullable appOpe
 /// Called when the ad is estimated to have earned money. Available for allowlisted accounts only.
 @property(nonatomic, nullable, copy) GADPaidEventHandler paidEventHandler;
 
-/// Returns whether the app open ad can be presented from the provided root view controller. Sets
-/// the error out parameter if the app open ad can't be presented. Must be called on the main
-/// thread. If rootViewController is nil, uses the top view controller of the application's main
-/// window.
+/// Indicates whether the app open ad can be presented from the provided root view controller. Must
+/// be called on the main thread.
+///
+/// - Parameters:
+///   - rootViewController: The root view controller to present the ad from. If `rootViewController`
+/// is `nil`, uses the top view controller of the application's main window.
+///   - error: Sets the error out parameter if the ad can't be presented.
+/// - Returns: `YES` if the app open ad can be presented from the provided root view controller,
+/// `NO` otherwise.
 - (BOOL)canPresentFromRootViewController:(nullable UIViewController *)rootViewController
-                                   error:(NSError *_Nullable __autoreleasing *_Nullable)error;
+                                   error:(NSError *_Nullable __autoreleasing *_Nullable)error
+    NS_SWIFT_NAME(canPresent(from:)) NS_SWIFT_UI_ACTOR;
 
 /// Presents the app open ad with the provided view controller. Must be called on the main thread.
 /// If rootViewController is nil, attempts to present from the top view controller of the
 /// application's main window.
-- (void)presentFromRootViewController:(nullable UIViewController *)rootViewController;
+- (void)presentFromRootViewController:(nullable UIViewController *)rootViewController
+    NS_SWIFT_NAME(present(from:)) NS_SWIFT_UI_ACTOR;
 
 @end

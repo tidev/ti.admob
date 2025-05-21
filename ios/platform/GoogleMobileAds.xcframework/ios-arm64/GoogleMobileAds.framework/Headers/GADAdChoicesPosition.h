@@ -13,4 +13,4 @@ typedef NS_ENUM(NSInteger, GADAdChoicesPosition) {
   GADAdChoicesPositionTopLeftCorner,      ///< Top left corner.
   GADAdChoicesPositionBottomRightCorner,  ///< Bottom right corner.
   GADAdChoicesPositionBottomLeftCorner    ///< Bottom Left Corner.
-};
+} NS_SWIFT_NAME(AdChoicesPosition);
