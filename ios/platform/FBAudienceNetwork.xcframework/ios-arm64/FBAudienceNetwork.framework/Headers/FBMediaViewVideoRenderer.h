@@ -8,7 +8,6 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import <UIKit/UIKit.h>
-
 #import "FBAdDefines.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -20,6 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 FB_CLASS_EXPORT
 @interface FBMediaViewVideoRenderer : UIView
+
++ (instancetype)new NS_UNAVAILABLE;
+- (instancetype)init NS_UNAVAILABLE;
+- (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
 
 /**
  The aspect ratio of the video content. Returns a positive CGFloat, or 0.0 if no ad is currently loaded.
@@ -47,9 +51,19 @@ FB_CLASS_EXPORT
 @property (nonatomic, assign) float volume;
 
 /**
+  The number of times the video will or has been played. If the value is 0 it means the video will only be played once.
+ */
+@property (nonatomic, assign) NSUInteger videoLoopTimes;
+
+/**
  Starts or resumes video playback.
  */
 - (void)playVideo;
+
+/**
+ Replays or stops video playback. Only useful if you want to loop the video.
+ */
+- (void)replayOrStopVideo;
 
 /**
  Pauses video playback.

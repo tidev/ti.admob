@@ -1,5 +1,12 @@
 # Change Log
 
+### v8.1.0
+- Update Google Mobile Ads SDK 12.6.0 (https://github.com/CocoaPods/Specs/tree/master/Specs/5/9/a/Google-Mobile-Ads-SDK/12.6.0)
+- Update Meta Audience Network SDK 6.20.0 (https://developers.facebook.com/docs/audience-network/setting-up/platform-setup/ios/changelog#6_20_0)
+- Meta Audience Network Adapter 6.20.0.0 (https://developers.google.com/admob/ios/mediation/meta#version-6.20.0.0)
+- Update InMobi SDK 10.8.3 (https://support.inmobi.com/monetize/sdk-documentation/download-sdk)
+- Update InMobiAdapter 10.8.3.1 (https://developers.google.com/admob/ios/mediation/inmobi#version-10.8.3.1)
+
 ### v8.0.0
 - Migration to SDK v12 (https://developers.google.com/admob/ios/migration#migrate-to-sdk-v12)
 - Update Google Mobile Ads SDK 12.4.0 (https://github.com/CocoaPods/Specs/tree/master/Specs/5/9/a/Google-Mobile-Ads-SDK/12.4.0)

@@ -18,6 +18,8 @@
 		3AF5B7731C233383002E3DC7 /* TiAdmobTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AF5B7711C233383002E3DC7 /* TiAdmobTypes.h */; };
 		5E0B17A527F21AED001D0BD9 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B17A427F21AED001D0BD9 /* File.swift */; };
 		5E343CDF291BFA3600F047EB /* MetaAdapter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E343CDE291BFA3600F047EB /* MetaAdapter.xcframework */; };
+		5E3BC2822E1523580029D85F /* InMobiSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFC8F4C263ABC430011A0C2 /* InMobiSDK.xcframework */; };
+		5E3BC2832E1523580029D85F /* InMobiSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFC8F4C263ABC430011A0C2 /* InMobiSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5E54F76B2BCEDF40001F794D /* InMobiSDK_Privacy.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5E54F76A2BCEDF40001F794D /* InMobiSDK_Privacy.bundle */; };
 		5E58AD4E2ADAE76000C78E7F /* StatusBarHiddenViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E58AD4C2ADAE76000C78E7F /* StatusBarHiddenViewController.h */; };
 		5E58AD4F2ADAE76000C78E7F /* StatusBarHiddenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E58AD4D2ADAE76000C78E7F /* StatusBarHiddenViewController.m */; };
@@ -25,10 +27,23 @@
 		5E6743A627F4B85800BEE594 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6743A527F4B85800BEE594 /* libsqlite3.0.tbd */; };
 		5E6743A827F4B86A00BEE594 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6743A727F4B86A00BEE594 /* libz.tbd */; };
 		5ED7B66026EBC395007F4D90 /* FBAudienceNetwork.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ED7B65F26EBC395007F4D90 /* FBAudienceNetwork.xcframework */; };
-		5EFC8F50263ABC430011A0C2 /* InMobiSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFC8F4C263ABC430011A0C2 /* InMobiSDK.xcframework */; };
 		5EFC8F51263ABC430011A0C2 /* InMobiAdapter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFC8F4D263ABC430011A0C2 /* InMobiAdapter.xcframework */; };
 		AA747D9F0F9514B9006C5449 /* TiAdmob_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* TiAdmob_Prefix.pch */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5E3BC2842E1523580029D85F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5E3BC2832E1523580029D85F /* InMobiSDK.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		249BE66D11B47B2700AF41CF /* TiAdmobViewProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiAdmobViewProxy.h; path = Classes/TiAdmobViewProxy.h; sourceTree = "<group>"; };
@@ -65,9 +80,9 @@
 				5E6743A827F4B86A00BEE594 /* libz.tbd in Frameworks */,
 				5E6743A627F4B85800BEE594 /* libsqlite3.0.tbd in Frameworks */,
 				5E6743A427F4B84500BEE594 /* WebKit.framework in Frameworks */,
+				5E3BC2822E1523580029D85F /* InMobiSDK.xcframework in Frameworks */,
 				5E343CDF291BFA3600F047EB /* MetaAdapter.xcframework in Frameworks */,
 				5ED7B66026EBC395007F4D90 /* FBAudienceNetwork.xcframework in Frameworks */,
-				5EFC8F50263ABC430011A0C2 /* InMobiSDK.xcframework in Frameworks */,
 				5EFC8F51263ABC430011A0C2 /* InMobiAdapter.xcframework in Frameworks */,
 				3ABFE39526335E0000887180 /* UserMessagingPlatform.xcframework in Frameworks */,
 				3ABFE38D26335E0000887180 /* GoogleMobileAds.xcframework in Frameworks */,
@@ -167,6 +182,7 @@
 				D2AAC07B0554694100DB518D /* Sources */,
 				D2AAC07C0554694100DB518D /* Frameworks */,
 				5E54F7692BCEDE00001F794D /* Resources */,
+				5E3BC2842E1523580029D85F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -239,7 +255,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -309,7 +324,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
