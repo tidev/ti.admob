@@ -16,6 +16,10 @@ Use the Google Admob Module in Titanium.
 
 Interested in contributing? Fork and submit your PR :)
 
+## Full sample app
+
+This is a [full sample app](https://github.com/Astrovic/ti.admob-sample-app) to test Google Admob SDK in a Titanium SDK app using the [ti.admob](https://github.com/tidev/ti.admob/tree/master/ios) (iOS) and [ti.android.admob](https://github.com/deckameron/Ti.Android.Admob) (android) modules
+
 ## Issues
 
 Report issues to [TiSlack](https://slack.tidev.io/).

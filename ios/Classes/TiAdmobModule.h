@@ -15,11 +15,17 @@
 
 - (void)loadForm:(id)args;
 
+- (void)presentPrivacyOptionsForm:(id)args;
+
 - (NSNumber *)isGDPR:(id)unused;
 
 - (NSNumber *)canShowAds:(id)unused;
 
 - (NSNumber *)canShowPersonalizedAds:(id)unused;
+
+- (NSNumber *)isPrivacyOptionsRequired:(id)args;
+
+- (NSNumber *)canRequestAds:(id)args;
 
 - (void)requestConsentInfoUpdateForPublisherIdentifiers:(id)args; // REMOVED
 

@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 #import <FBAudienceNetwork/FBAdCompanionView.h>
-#import <FBAudienceNetwork/FBAdDefines.h>
 #import <FBAudienceNetwork/FBAdExtraHint.h>
 #import <FBAudienceNetwork/FBAdView.h>
 #import <UIKit/UIKit.h>
+#import "FBAdDefines.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -161,7 +161,7 @@ FB_CLASS_EXPORT FB_SUBCLASSING_RESTRICTED @interface FBInterstitialAd : NSObject
 /**
   Experimental Feature, DO NOT USE IN PRODUCTION!
 
- @param FBAdCompanionView should return a Companion View for the Interstitial Ad.
+ @param completion a block returns a Companion View for the Interstitial Ad.
  */
 - (void)interstitialAdCompanionViewProvider:(void (^)(FBAdCompanionView *_Nullable))completion;
 

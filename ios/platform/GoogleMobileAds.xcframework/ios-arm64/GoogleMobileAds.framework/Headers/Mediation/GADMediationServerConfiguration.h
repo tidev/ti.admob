@@ -9,6 +9,7 @@
 #import <GoogleMobileAds/GADAdFormat.h>
 
 /// Mediation configuration set by the publisher on the AdMob UI.
+NS_SWIFT_NAME(MediationCredentials)
 @interface GADMediationCredentials : NSObject
 
 /// The AdMob UI settings.
@@ -20,6 +21,7 @@
 @end
 
 /// Third party SDK configuration.
+NS_SWIFT_NAME(MediationServerConfiguration)
 @interface GADMediationServerConfiguration : NSObject
 
 /// Array of mediation configurations set by the publisher on the AdMob UI. Each configuration is a

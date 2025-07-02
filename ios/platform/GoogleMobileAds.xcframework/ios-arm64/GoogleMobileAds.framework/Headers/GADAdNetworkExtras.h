@@ -12,5 +12,6 @@
 ///
 /// Ad networks should create an 'extras' object implementing this protocol for their publishers to
 /// use.
+NS_SWIFT_NAME(AdNetworkExtras)
 @protocol GADAdNetworkExtras <NSObject>
 @end

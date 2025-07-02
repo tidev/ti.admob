@@ -12,6 +12,7 @@
 #import <UIKit/UIKit.h>
 
 /// Rendered banner ad. Provides a single subview to add to the banner view's view hierarchy.
+NS_SWIFT_NAME(MediationBannerAd)
 @protocol GADMediationBannerAd <GADMediationAd>
 
 /// The banner ad view.
@@ -24,6 +25,7 @@
 @end
 
 /// Rendered interscroller ad.
+GAD_DEPRECATED_MSG_ATTRIBUTE("Interscroller will not be supported.")
 @protocol GADMediationInterscrollerAd <GADMediationBannerAd>
 
 /// Indicates whether the interscroller rendering effect should be delegated to the Google Mobile
@@ -33,6 +35,7 @@
 @end
 
 /// Banner ad configuration.
+NS_SWIFT_NAME(MediationBannerAdConfiguration)
 @interface GADMediationBannerAdConfiguration : GADMediationAdConfiguration
 
 /// Banner ad size requested of the adapter.

@@ -12,6 +12,7 @@
 
 /// Provided by the Google Mobile Ads SDK for the adapter to render the ad. Contains 3PAS and other
 /// ad configuration information.
+NS_SWIFT_NAME(MediationAdConfiguration)
 @interface GADMediationAdConfiguration : NSObject
 
 /// The ad string returned from the 3PAS.

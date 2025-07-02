@@ -262,7 +262,21 @@ properties:
     type: Number
     summary: Geography appears as not in EEA for debug devices.
     permission: read-only
-    value: 3 # FIXME: 2 on iOS, 3 on Android
+    value: 2
+    deleted:
+      since: "8.0.0"
+  
+  - name: DEBUG_GEOGRAPHY_REGULATED_US_STATE
+    type: Number
+    summary: Geography appears as in a regulated US State for debug devices.
+    permission: read-only
+    value: 3
+  
+  - name: DEBUG_GEOGRAPHY_OTHER
+    type: Number
+    summary: Geography appears as in a region with no regulation in force.
+    permission: read-only
+    value: 4 
 
   - name: debugIdentifiers
     type: Array<String>
@@ -305,11 +319,14 @@ properties:
 
   - name: SIMULATOR_ID
     type: String
-    summary: The deviceId for emulators to be used with <Modules.Admob.View.testDevices> property
+    summary: The deviceId for emulators to be used with <Modules.Admob.View.testDevices> property. Deleted from 8.0.0
     permission: read-only
     platforms: [android, iphone, ipad]
     deprecated:
       since: "7.0.0"
+      notes: Simulators are already in test mode by default.
+    deleted:
+      since: "8.0.0"
       notes: Simulators are already in test mode by default.
     
   - name: TRACKING_AUTHORIZATION_STATUS_NOT_DETERMINED
@@ -455,6 +472,16 @@ methods:
     platforms: [iphone, ipad]
     since: "6.3.0"
   
+  - name: canRequestAds
+    returns:
+      type: Boolean
+    summary: Indicates whether the SDK has gathered consent aligned with the app’s configured messages. 
+    description: |
+        Indicates whether the SDK has gathered consent aligned with the app’s configured messages. 
+        Returns NO until `requestConsentInfoUpdateWithParameters()` is called.
+    platforms: [iphone, ipad]
+    since: "8.0.0"
+
   - name: canShowAds
     returns:
       type: Boolean
@@ -469,6 +496,35 @@ methods:
     platforms: [iphone, ipad]
     since: "6.3.0"
 
+  - name: isPrivacyOptionsRequired
+    returns:
+      type: Boolean
+    summary: Check privacy options requirement status.
+    description: |
+        Check privacy options requirement status. This method should only be called after 
+        `Admob.requestConsentInfoUpdateWithParameters()`, otherwise it returns value defaults to 
+        the previous session’s value or `false`.
+    platforms: [iphone, ipad]
+    since: "8.0.0"
+  
+  - name: presentPrivacyOptionsForm
+    summary: Presents a privacy options form if `Admob.isPrivacyOptionsRequired()` is `true`. 
+    description: |
+        Presents a privacy options form if `Admob.isPrivacyOptionsRequired()` is `true`.        
+        This method should only be called in response to a user input to request a privacy options form 
+        to be shown. The privacy options form is preloaded by the SDK automatically when a form becomes 
+        available. If no form is preloaded, the SDK will invoke the completionHandler on the next run loop, 
+        but will asynchronously retry to load one. If viewController is nil, uses the top view controller 
+        of the application’s main window.
+    platforms: [iphone, ipad]
+    since: "8.0.0"
+    parameters:
+      - name: callback
+        type: Callback<presentPrivacyOptionsFormCallback>
+        summary: Async callback function to invoke when done
+        optional: false
+
+    
   - name: requestConsentInfoUpdateForPublisherIdentifiers
     returns:
       type: void
@@ -691,6 +747,20 @@ objects:
         optional: true
         permission: read-only
         constants: Modules.Admob.CONSENT_STATUS_* 
+
+  - name: presentPrivacyOptionsFormCallback
+    summary: Simple object passed to the callback used in <Modules.Admob.presentPrivacyOptionsForm>
+    platforms: [iphone, ipad]
+    properties:
+      - name: success
+        type: Boolean
+        summary: Check if received a valid response
+        optional: true
+
+      - name: error
+        type: String
+        summary: the error message if the privacy options form fails
+        optional: false
 
   - name: RequestConsentInfoOptions
     summary: simple object passed to the <Modules.Admob.requestConsentInfoUpdateForPublisherIdentifiers> method

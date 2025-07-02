@@ -10,7 +10,8 @@
 @interface GADNativeAd (CustomClickGesture)
 
 /// Indicates whether the custom click gestures feature can be used.
-@property(nonatomic, readonly, getter=isCustomClickGestureEnabled) BOOL customClickGestureEnabled;
+@property(nonatomic, readonly, getter=isCustomClickGestureEnabled)
+    BOOL customClickGestureEnabled NS_SWIFT_NAME(isCustomClickGestureEnabled);
 
 /// Enables custom click gestures. Must be called before the ad is associated with an ad view.
 /// Available for allowlisted accounts only.

@@ -114,7 +114,7 @@ function requestConsent() {
   console.log("request consent");
   Admob.requestConsentInfoUpdateWithParameters({
     testDeviceIdentifiers: ['YOUR-TEST-DEVICE-HASHED-ID'],
-    geography: Admob.DEBUG_GEOGRAPHY_EEA, // `Admob.DEBUG_GEOGRAPHY_NOT_EEA` or `Admob.DEBUG_GEOGRAPHY_DISABLED`
+    geography: Admob.DEBUG_GEOGRAPHY_EEA, // DEBUG_GEOGRAPHY_REGULATED_US_STATE, DEBUG_GEOGRAPHY_OTHER, DEBUG_GEOGRAPHY_DISABLED
     tagForUnderAgeOfConsent: false,
     callback: function (e) {
       console.log("requestConsentInfoUpdateWithParameters callback");

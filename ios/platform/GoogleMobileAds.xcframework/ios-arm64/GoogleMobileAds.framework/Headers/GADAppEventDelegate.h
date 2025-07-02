@@ -12,6 +12,7 @@
 
 /// Implement your app event within these methods. The delegate will be notified when the SDK
 /// receives an app event message from the ad.
+NS_SWIFT_NAME(AppEventDelegate)
 @protocol GADAppEventDelegate <NSObject>
 
 @optional
@@ -19,11 +20,11 @@
 /// Called when the banner receives an app event.
 - (void)adView:(nonnull GADBannerView *)banner
     didReceiveAppEvent:(nonnull NSString *)name
-              withInfo:(nullable NSString *)info;
+              withInfo:(nullable NSString *)info NS_SWIFT_NAME(adView(_:didReceiveAppEvent:with:));
 
 /// Called when the interstitial receives an app event.
 - (void)interstitialAd:(nonnull GADInterstitialAd *)interstitialAd
     didReceiveAppEvent:(nonnull NSString *)name
-              withInfo:(nullable NSString *)info;
+              withInfo:(nullable NSString *)info NS_SWIFT_NAME(adView(_:didReceiveAppEvent:with:));
 
 @end

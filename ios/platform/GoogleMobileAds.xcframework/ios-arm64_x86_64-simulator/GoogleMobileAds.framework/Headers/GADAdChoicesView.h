@@ -12,5 +12,6 @@
 /// If a GADAdChoicesView is set on GADNativeAdView prior to calling -setNativeAd:, AdChoices
 /// content will render inside the GADAdChoicesView. By default, AdChoices is placed in the top
 /// right corner of GADNativeAdView.
+NS_SWIFT_NAME(AdChoicesView)
 @interface GADAdChoicesView : UIView
 @end

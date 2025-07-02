@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "FBAdDefines.h"
 
 @class FBDisplayAdController;
 
@@ -18,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  This class is experimental and should not be used in production versions of your application
  */
+FB_CLASS_EXPORT
 @interface FBAdCompanionView : UIView
 
 @property (nonatomic, weak, nullable) id<FBAdCompanionViewDelegate> delegate;

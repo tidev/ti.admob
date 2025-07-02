@@ -10,6 +10,7 @@
 @class GADAudioVideoManager;
 
 /// A set of methods to inform the delegate of audio video manager events.
+NS_SWIFT_NAME(AudioVideoManagerDelegate)
 @protocol GADAudioVideoManagerDelegate <NSObject>
 
 @optional

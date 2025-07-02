@@ -27,7 +27,9 @@
 #endif
 
 #define FB_CLASS_EXPORT __attribute__((visibility("default")))
+// patternlint-disable-next-line no-direct-deprecations-without-message internal-deprecations-must-use-fb-deprecated
 #define FB_DEPRECATED __attribute__((deprecated))
+// patternlint-disable-next-line no-direct-deprecations-with-message internal-deprecations-must-use-fb-deprecated
 #define FB_DEPRECATED_WITH_MESSAGE(M) __attribute__((deprecated(M)))
 
 #if __has_feature(objc_generics)

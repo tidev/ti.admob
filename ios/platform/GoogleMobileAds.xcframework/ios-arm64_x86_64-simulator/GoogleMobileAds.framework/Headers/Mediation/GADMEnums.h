@@ -18,4 +18,4 @@ typedef NS_ENUM(NSInteger, GADMBannerAnimationType) {
   GADMBannerAnimationTypeSlideFromRight = 6,  ///< Slide from right.
   GADMBannerAnimationTypeFadeIn = 7,          ///< Fade in.
   GADMBannerAnimationTypeRandom = 8,          ///< Random animation.
-};
+} NS_SWIFT_NAME(MediationBannerAnimationType);

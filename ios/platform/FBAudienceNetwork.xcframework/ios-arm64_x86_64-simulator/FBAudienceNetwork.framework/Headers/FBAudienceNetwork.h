@@ -45,4 +45,7 @@
 #import <FBAudienceNetwork/FBInterstitialAdBridge.h>
 #import <FBAudienceNetwork/FBRewardedVideoAdBridge.h>
 
-#define FB_AD_SDK_VERSION @"6.15.0"
+// NOTE: Any changes should also be made to the module.modulemap
+// to ensure comptability with Swift apps using Cocoapods
+
+#define FB_AD_SDK_VERSION @"6.20.0"

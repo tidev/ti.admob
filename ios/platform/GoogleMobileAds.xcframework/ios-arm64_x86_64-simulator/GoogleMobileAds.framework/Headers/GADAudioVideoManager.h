@@ -12,6 +12,7 @@
 ///
 /// Don't create an instance of this class and use the one available from GADMobileAds
 /// sharedInstance's audioVideoManager.
+NS_SWIFT_NAME(AudioVideoManager)
 @interface GADAudioVideoManager : NSObject
 
 /// Delegate for receiving video and audio updates.
@@ -24,6 +25,7 @@
 /// AVAudioSession's category to AVAudioSessionCategorySoloAmbient when any playing video becomes
 /// unmuted, and allowing background apps to continue playing sound when all videos rendered by
 /// Google Mobile Ads SDK are muted or have stopped playing. Must be accessed on main thread only.
-@property(nonatomic, assign) BOOL audioSessionIsApplicationManaged;
+@property(nonatomic, assign)
+    BOOL audioSessionIsApplicationManaged NS_SWIFT_NAME(isAudioSessionApplicationManaged);
 
 @end

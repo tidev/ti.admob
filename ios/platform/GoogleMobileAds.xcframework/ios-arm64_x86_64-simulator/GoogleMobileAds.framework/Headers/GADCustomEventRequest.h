@@ -12,6 +12,7 @@
 
 /// Specifies optional ad request targeting parameters that are provided by the publisher and are
 /// forwarded to custom events for purposes of populating an ad request to a 3rd party ad network.
+NS_SWIFT_NAME(CustomEventRequest)
 @interface GADCustomEventRequest : NSObject
 
 /// Keywords set in GADRequest. Returns nil if no keywords are set.

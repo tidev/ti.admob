@@ -21,6 +21,7 @@
 ///
 /// If the native ad doesn't have video content and image loading is disabled, the media view is
 /// empty.
+NS_SWIFT_NAME(MediaView)
 @interface GADMediaView : UIView
 
 /// The media content displayed in the media view.

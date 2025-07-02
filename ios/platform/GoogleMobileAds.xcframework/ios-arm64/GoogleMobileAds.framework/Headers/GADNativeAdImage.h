@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 /// Native ad image.
+NS_SWIFT_NAME(NativeAdImage)
 @interface GADNativeAdImage : NSObject
 
 /// The image. If image autoloading is disabled, this property will be nil.

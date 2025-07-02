@@ -19,4 +19,4 @@ typedef NS_ENUM(NSInteger, GADMediaAspectRatio) {
   GADMediaAspectRatioPortrait = 3,
   /// Close to square media aspect ratio. This is not a strict 1:1 aspect ratio.
   GADMediaAspectRatioSquare = 4
-};
+} NS_SWIFT_NAME(MediaAspectRatio);

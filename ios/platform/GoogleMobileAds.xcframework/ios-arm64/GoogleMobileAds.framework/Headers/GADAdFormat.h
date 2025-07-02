@@ -15,5 +15,5 @@ typedef NS_ENUM(NSInteger, GADAdFormat) {
   GADAdFormatRewarded = 2,              ///< Rewarded.
   GADAdFormatNative = 3,                ///< Native.
   GADAdFormatRewardedInterstitial = 4,  ///< Rewarded interstitial.
-  GADAdFormatAppOpen = 6,  ///< App open.
-};
+  GADAdFormatAppOpen = 6,               ///< App open.
+} NS_SWIFT_NAME(AdFormat);

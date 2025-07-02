@@ -9,6 +9,7 @@
 #import <GoogleMobileAds/GoogleMobileAdsDefines.h>
 
 /// Response metadata for an individual ad network in an ad response.
+NS_SWIFT_NAME(AdNetworkResponseInfo)
 @interface GADAdNetworkResponseInfo : NSObject
 
 /// A class name that identifies the ad network.
@@ -56,13 +57,15 @@ FOUNDATION_EXPORT NSString *_Nonnull const GADCustomEventAdNetworkClassName;
 FOUNDATION_EXPORT NSString *_Nonnull GADErrorUserInfoKeyResponseInfo;
 
 /// Information about a response to an ad request.
+NS_SWIFT_NAME(ResponseInfo)
 @interface GADResponseInfo : NSObject
 
 /// Unique identifier of the ad response.
 @property(nonatomic, readonly, nullable) NSString *responseIdentifier;
 
 /// Dictionary of extra parameters that may be returned in an ad response.
-@property(nonatomic, readonly, nonnull) NSDictionary<NSString *, id> *extrasDictionary;
+@property(nonatomic, readonly, nonnull)
+    NSDictionary<NSString *, id> *extrasDictionary NS_SWIFT_NAME(extras);
 
 /// The GADAdNetworkResponseInfo corresponding to the adapter that was used to load the ad. Nil if
 /// the ad failed to load.
